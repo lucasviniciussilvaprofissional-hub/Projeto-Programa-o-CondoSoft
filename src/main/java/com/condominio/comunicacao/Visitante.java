@@ -1,4 +1,4 @@
-package com.condominio.relatorio;
+package com.condominio.comunicacao;
 import java.time.LocalDateTime;
 public class Visitante {
 
