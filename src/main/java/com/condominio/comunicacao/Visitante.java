@@ -53,11 +53,11 @@ public class Visitante {
         this.dataSaida = dataSaida;
     }
 
-    public String getUnidadeVisitada() {
-        return unidadeVisitada;
+    public Unidade getUnidade() {
+        return unidade;
     }
 
-    public void setUnidadeVisitada(String unidadeVisitada) {
-        this.unidadeVisitada = unidadeVisitada;
+    public void setUnidade(Unidade unidade) {
+        this.unidade = unidade;
     }
 }
