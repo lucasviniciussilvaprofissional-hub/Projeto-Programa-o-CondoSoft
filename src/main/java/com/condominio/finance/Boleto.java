@@ -1,12 +1,13 @@
 package com.condominio.finance;
 import java.time.LocalDate;
+
 public class Boleto {
     private int id;
     private String codigoBarras;
     private float valor;
     private LocalDate dataVencimento;
     private String status;
-    private int despesaId;
+    private Despesa despesa;
 
     public int getId() {
         return id;
@@ -48,11 +49,11 @@ public class Boleto {
         this.status = status;
     }
 
-    public int getDespesaId() {
-        return despesaId;
+    public Despesa getDespesa() {
+        return despesa;
     }
 
-    public void setDespesaId(int despesaId) {
-        this.despesaId = despesaId;
+    public void setDespesa(Despesa despesa) {
+        this.despesa = despesa;
     }
 }

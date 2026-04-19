@@ -1,11 +1,13 @@
 package com.condominio.finance;
 
+import com.condominio.model.Unidade;
+
 public class Rateio {
 
     private int id;
-    private float valorTotal;
-    private int despesaId;
-    private int unidadeId;
+    private float valorRateado;
+    private Despesa despesa;
+    private Unidade unidade;
 
     public Rateio() {
     }
@@ -20,27 +22,27 @@ public class Rateio {
         this.id = id;
     }
 
-    public float getValorTotal() {
-        return valorTotal;
+    public float getValorRateado() {
+        return valorRateado;
     }
 
-    public void setValorTotal(float valorTotal) {
-        this.valorTotal = valorTotal;
+    public void setValorRateado(float valorRateado) {
+        this.valorRateado = valorRateado;
     }
 
-    public int getDespesaId() {
-        return despesaId;
+    public Despesa getDespesa() {
+        return despesa;
     }
 
-    public void setDespesaId(int despesaId) {
-        this.despesaId = despesaId;
+    public void setDespesa(Despesa despesa) {
+        this.despesa = despesa;
     }
 
-    public int getUnidadeId() {
-        return unidadeId;
+    public Unidade getUnidade() {
+        return unidade;
     }
 
-    public void setUnidadeId(int unidadeId) {
-        this.unidadeId = unidadeId;
+    public void setUnidade(Unidade unidade) {
+        this.unidade = unidade;
     }
 }

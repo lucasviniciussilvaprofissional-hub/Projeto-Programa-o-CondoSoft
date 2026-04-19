@@ -1,4 +1,6 @@
 package com.condominio.comunicacao;
+import com.condominio.model.Unidade;
+
 import java.time.LocalDateTime;
 public class Visitante {
 
@@ -7,7 +9,7 @@ public class Visitante {
     private String documento;
     private LocalDateTime dataEntrada;
     private LocalDateTime dataSaida;
-    private String unidadeVisitada;
+    private Unidade unidade;
 
     public Visitante (){
         this.dataEntrada = LocalDateTime.now();

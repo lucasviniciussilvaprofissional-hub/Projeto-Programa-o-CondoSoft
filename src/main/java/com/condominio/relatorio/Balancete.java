@@ -1,18 +1,30 @@
 package com.condominio.relatorio;
 
+import java.util.List;
+import com.condominio.finance.Pagamento;
+import com.condominio.finance.Despesa;
+
 public class Balancete {
 
     private int id;
     private float totalReceitas;
     private float totalDespesas;
     private float saldoFinal;
+    private String periodo;
 
-    private String periodo; // ex: "2026-04"
+    private List<Pagamento> pagamentos;
+    private List<Despesa> despesas;
 
     public Balancete() {
     }
 
-    // getters e setters
+    public Balancete(int id, float totalReceitas, float totalDespesas, String periodo) {
+        this.id = id;
+        this.totalReceitas = totalReceitas;
+        this.totalDespesas = totalDespesas;
+        this.saldoFinal = totalReceitas - totalDespesas;
+        this.periodo = periodo;
+    }
 
     public int getId() {
         return id;
@@ -52,5 +64,21 @@ public class Balancete {
 
     public void setPeriodo(String periodo) {
         this.periodo = periodo;
+    }
+
+    public List<Pagamento> getPagamentos() {
+        return pagamentos;
+    }
+
+    public void setPagamentos(List<Pagamento> pagamentos) {
+        this.pagamentos = pagamentos;
+    }
+
+    public List<Despesa> getDespesas() {
+        return despesas;
+    }
+
+    public void setDespesas(List<Despesa> despesas) {
+        this.despesas = despesas;
     }
 }

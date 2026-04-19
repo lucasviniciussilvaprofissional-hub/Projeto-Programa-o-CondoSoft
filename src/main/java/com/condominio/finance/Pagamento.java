@@ -8,8 +8,7 @@ public class Pagamento {
     private float valorPago;
     private String formaPagamento;
     private LocalDateTime dataPagamento;
-    private int boletoId;
-    private int despesaId;
+    private Boleto boleto;
 
     public Pagamento() {
         this.dataPagamento = LocalDateTime.now();
@@ -49,19 +48,12 @@ public class Pagamento {
         this.dataPagamento = dataPagamento;
     }
 
-    public int getBoletoId() {
-        return boletoId;
+    public Boleto getBoleto() {
+        return boleto;
     }
 
-    public void setBoletoId(int boletoId) {
-        this.boletoId = boletoId;
+    public void setBoleto(Boleto boleto) {
+        this.boleto = boleto;
     }
 
-    public int getDespesaId() {
-        return despesaId;
-    }
-
-    public void setDespesaId(int despesaId) {
-        this.despesaId = despesaId;
-    }
 }

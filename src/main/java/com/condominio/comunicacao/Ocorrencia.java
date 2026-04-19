@@ -9,7 +9,6 @@ public class Ocorrencia {
     private String tipo; // BARULHO, ELEVADOR, SEGURANCA
     private String status; // ABERTA, EM_ANALISE, RESOLVIDA
     private LocalDateTime dataRegistro;
-
     private String unidade;
 
     public Ocorrencia() {
