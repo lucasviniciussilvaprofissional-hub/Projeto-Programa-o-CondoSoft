@@ -2,10 +2,10 @@ package com.condominio.model;
 
 public abstract class Morador
 {
-    private int  id;
-    private String nome;
-    private String cpf;
-    private String telefone;
+    protected int  id;
+    protected String nome;
+    protected String cpf;
+    protected String telefone;
 
     public Morador(int id, String nome, String cpf, String telefone, Unidade unidade)
     {
