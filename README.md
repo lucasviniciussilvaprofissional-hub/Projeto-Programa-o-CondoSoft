@@ -44,4 +44,10 @@ O sistema foca na transparência, permitindo que moradores acompanhem despesas e
 ## Possíveis APIs/Bibliotecas
 - **Java Mail API** – Envio de boletos.
 - **JasperReports** – Balancetes.
-- **iText** – Confirmação de reservas e QR codes para convidados. 
+- **iText** – Confirmação de reservas e QR codes para convidados.
+
+- Integrante do grupo:
+- Lucas Vinicius Cabral da Silva | lucasviniciussilvaprofissional@gmail.com
+- Caio Vinicius Ferreira Cabral | mentornap@gmail.com
+- Alan Sergio |
+- Guilherme Oiveira |
