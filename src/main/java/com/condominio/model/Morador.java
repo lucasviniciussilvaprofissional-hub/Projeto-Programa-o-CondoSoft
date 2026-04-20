@@ -6,7 +6,6 @@ public abstract class Morador
     private String nome;
     private String cpf;
     private String telefone;
-    private Unidade unidade;
 
     public Morador(int id, String nome, String cpf, String telefone, Unidade unidade)
     {
@@ -14,7 +13,6 @@ public abstract class Morador
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
-        this.unidade = unidade;
     }
 
     //Setters
@@ -36,15 +34,9 @@ public abstract class Morador
         this.telefone = telefone;
     }
 
-    public void setUnidade(Unidade unidade) {
-        this.unidade = unidade;
-    }
 
     //Getters
 
-    public Unidade getUnidade() {
-        return unidade;
-    }
 
     public int getId() {
         return id;

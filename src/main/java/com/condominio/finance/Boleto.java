@@ -1,4 +1,6 @@
 package com.condominio.finance;
+import com.condominio.model.Unidade;
+
 import java.time.LocalDate;
 
 public class Boleto {
@@ -8,9 +10,14 @@ public class Boleto {
     private LocalDate dataVencimento;
     private String status;
     private Despesa despesa;
+    private Unidade unidade;
 
     public int getId() {
         return id;
+    }
+
+    public Unidade getUnidade() {
+        return unidade;
     }
 
     public void setId(int id) {
@@ -47,6 +54,10 @@ public class Boleto {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setUnidade(Unidade unidade) {
+        this.unidade = unidade;
     }
 
     public Despesa getDespesa() {

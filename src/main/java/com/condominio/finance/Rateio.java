@@ -9,6 +9,7 @@ public class Rateio {
     private Despesa despesa;
     private Unidade unidade;
 
+
     public Rateio() {
     }
 

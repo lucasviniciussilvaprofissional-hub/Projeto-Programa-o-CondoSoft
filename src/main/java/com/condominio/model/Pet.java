@@ -7,7 +7,6 @@ public class Pet
     private String tipo;
     private String raca;
     private String cor;
-    private Unidade unidade;
 
 
     public Pet(int id, String nome, String tipo, String raca, String cor, Unidade unidade) {
@@ -16,7 +15,6 @@ public class Pet
         this.tipo = tipo;
         this.raca = raca;
         this.cor = cor;
-        this.unidade = unidade;
     }
 
     //Setters
@@ -42,9 +40,6 @@ public class Pet
         this.tipo = tipo;
     }
 
-    public void setUnidade(Unidade unidade) {
-        this.unidade = unidade;
-    }
 
     //Getters
 
@@ -61,9 +56,6 @@ public class Pet
         return nome;
     }
 
-    public Unidade getUnidade() {
-        return unidade;
-    }
 
     public String getRaca() {
         return raca;

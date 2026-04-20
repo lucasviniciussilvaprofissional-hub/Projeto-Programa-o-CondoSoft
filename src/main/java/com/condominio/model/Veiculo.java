@@ -7,7 +7,6 @@ public class Veiculo
     private String modelo;
     private String marca;
     private String cor;
-    private Unidade unidade;
 
 
     //Setters------------------------------------------------------------------------------------------------
@@ -33,9 +32,6 @@ public class Veiculo
         this.placa = placa;
     }
 
-    public void setUnidade(Unidade unidade) {
-        this.unidade = unidade;
-    }
 
     //Getters---------------------------------------------------------------------------------------------
 
@@ -57,10 +53,6 @@ public class Veiculo
 
     public String getPlaca() {
         return placa;
-    }
-
-    public Unidade getUnidade() {
-        return unidade;
     }
 
 }
