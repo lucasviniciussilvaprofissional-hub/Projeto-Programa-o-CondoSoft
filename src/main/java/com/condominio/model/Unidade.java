@@ -86,15 +86,34 @@ public class Unidade {
 
     public void adicionarMorador(Morador morador)
     {
+        if (morador == null)
+        {
+            return;
+        };
+        if (!moradores.contains(morador))
+        {
+            moradores.add(morador);
+            morador.setUnidade(this);
+        }
         this.moradores.add(morador);
     }
 
     public void  adicionarVeiculo(Veiculo veiculo)
     {
-        this.veiculos.add(veiculo);
+        if (veiculo == null) return;
+
+        if (!veiculos.contains(veiculo)) {
+            veiculos.add(veiculo);
+            veiculo.setUnidade(this);
+        }
     }
     public void adicionarPet(Pet pet)
     {
-        this.pets.add(pet);
+        if (pet == null) return;
+
+        if (!pets.contains(pet)) {
+            pets.add(pet);
+            pet.setUnidade(this);
     }
+}
 }
