@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.condominio.model.Morador;
 
-public class MoradorRepositoryImpl implements MoradorRepository {
+public abstract class MoradorRepositoryImpl implements MoradorRepository {
     private List<Morador> moradores = new ArrayList<>();
 
     @Override
@@ -42,10 +42,6 @@ public class MoradorRepositoryImpl implements MoradorRepository {
         return null;
     }
 
-    @Override
-    public void TUlizR(Morador morador) {
-
-    }
 
     @Override
     public void atualizar(Morador morador){
