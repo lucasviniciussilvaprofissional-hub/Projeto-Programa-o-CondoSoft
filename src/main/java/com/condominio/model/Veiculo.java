@@ -7,10 +7,15 @@ public class Veiculo
     private String modelo;
     private String marca;
     private String cor;
+    private Unidade unidade;
 
 
     //Setters------------------------------------------------------------------------------------------------
 
+
+    public void setUnidade(Unidade unidade) {
+        this.unidade = unidade;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -34,6 +39,11 @@ public class Veiculo
 
 
     //Getters---------------------------------------------------------------------------------------------
+
+
+    public Unidade getUnidade() {
+        return unidade;
+    }
 
     public int getId() {
         return id;
