@@ -12,6 +12,7 @@ public class Unidade {
     private List<Veiculo> veiculos;
     private List<Pet> pets;
 
+
     public Unidade(int id, String bloco, String status, double fracaoIdeal)
     {
         this.id = id;

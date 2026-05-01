@@ -51,6 +51,9 @@ public abstract class Morador
     }
 
     public String getTelefone() {
-        return telefone;
+        return null;
+    }
+
+    public void set(int i, Morador morador) {
     }
 }

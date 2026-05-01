@@ -8,7 +8,6 @@ public class Pet
     private String raca;
     private String cor;
 
-
     public Pet(int id, String nome, String tipo, String raca, String cor, Unidade unidade) {
         this.id = id;
         this.nome = nome;
