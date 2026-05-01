@@ -2,11 +2,10 @@ package com.condominio.model;
 
 public abstract class Morador
 {
-    private int  id;
-    private String nome;
-    private String cpf;
-    private String telefone;
-    private Unidade unidade;
+    protected int  id;
+    protected String nome;
+    protected String cpf;
+    protected String telefone;
 
     public Morador(int id, String nome, String cpf, String telefone, Unidade unidade)
     {
@@ -14,15 +13,10 @@ public abstract class Morador
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
-        this.unidade = unidade;
     }
 
     //Setters
 
-
-    public void setUnidade(Unidade unidade) {
-        this.unidade = unidade;
-    }
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -43,10 +37,6 @@ public abstract class Morador
 
     //Getters
 
-
-    public Unidade getUnidade() {
-        return unidade;
-    }
 
     public int getId() {
         return id;
