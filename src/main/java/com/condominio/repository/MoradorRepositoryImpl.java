@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import com.condominio.model.Morador;
 
-public abstract class MoradorRepositoryImpl implements MoradorRepository {
-    private List<Morador> moradores = new ArrayList<>();
+public class MoradorRepositoryImpl implements MoradorRepository {
+
+    private final List<Morador> moradores = new ArrayList<>();
 
     @Override
     public void salvar(Morador morador) {
@@ -28,11 +29,6 @@ public abstract class MoradorRepositoryImpl implements MoradorRepository {
     }
 
     @Override
-    public Morador buscaporCpf(String Cpf) {
-        return null;
-    }
-
-    @Override
     public Morador buscarPorCpf(String cpf) {
         for (Morador m : moradores) {
             if (m.getCpf().equals(cpf)) {
@@ -42,19 +38,18 @@ public abstract class MoradorRepositoryImpl implements MoradorRepository {
         return null;
     }
 
-
     @Override
-    public void atualizar(Morador morador){
-        for(int i = 0; i< moradores.size();i++){
-            if (moradores.get(i).getId() == morador.getId()){
-                morador.set(i,morador);
+    public void atualizar(Morador morador) {
+        for (int i = 0; i < moradores.size(); i++) {
+            if (moradores.get(i).getId() == morador.getId()) {
+                moradores.set(i, morador);
                 return;
             }
         }
     }
+
     @Override
-    public void remover(int id){
-        moradores.removeIf(m-> m.getId()==id);
+    public void remover(int id) {
+        moradores.removeIf(m -> m.getId() == id);
     }
 }
-

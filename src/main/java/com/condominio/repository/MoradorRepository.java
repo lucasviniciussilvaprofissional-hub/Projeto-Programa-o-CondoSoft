@@ -5,16 +5,15 @@ import java.util.List;
 
 public interface MoradorRepository {
 
- void salvar(Morador morador);
- List<Morador> listar();
+    void salvar(Morador morador);
 
- Morador buscarPorId(int id);
- Morador buscaporCpf(String Cpf);
+    List<Morador> listar();
 
- void atualizar(Morador morador);
- void remover(int id);
+    Morador buscarPorId(int id);
 
     Morador buscarPorCpf(String cpf);
 
-    void TUlizR(Morador morador);
+    void atualizar(Morador morador);
+
+    void remover(int id);
 }
