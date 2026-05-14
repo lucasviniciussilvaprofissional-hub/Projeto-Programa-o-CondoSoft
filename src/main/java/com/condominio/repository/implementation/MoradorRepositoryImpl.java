@@ -1,10 +1,11 @@
-package com.condominio.repository;
+package com.condominio.repository.implementation;
 
 import java.util.ArrayList;
 import java.util.List;
 import com.condominio.models.moradia.Morador;
+import com.condominio.repository.interfaces.IMoradorRepository;
 
-public class MoradorRepositoryImpl implements MoradorRepository {
+public class MoradorRepositoryImpl implements IMoradorRepository {
 
     private final List<Morador> moradores = new ArrayList<>();
 

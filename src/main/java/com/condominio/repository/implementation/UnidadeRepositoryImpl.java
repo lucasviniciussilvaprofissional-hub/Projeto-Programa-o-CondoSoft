@@ -1,10 +1,12 @@
-package com.condominio.repository;
+package com.condominio.repository.implementation;
 
 import com.condominio.models.moradia.Unidade;
+import com.condominio.repository.interfaces.IUnidadeRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class UnidadeRepositoryImpl implements UnidadeRepository {
+public class UnidadeRepositoryImpl implements IUnidadeRepository {
 
     private final List<Unidade> unidades = new ArrayList<>();
 

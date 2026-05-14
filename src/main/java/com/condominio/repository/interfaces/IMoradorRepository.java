@@ -1,9 +1,9 @@
-package com.condominio.repository;
+package com.condominio.repository.interfaces;
 
 import com.condominio.models.moradia.Morador;
 import java.util.List;
 
-public interface MoradorRepository {
+public interface IMoradorRepository {
 
     void salvar(Morador morador);
 

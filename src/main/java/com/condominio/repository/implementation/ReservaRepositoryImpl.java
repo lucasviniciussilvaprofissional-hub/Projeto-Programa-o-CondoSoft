@@ -1,11 +1,12 @@
-package com.condominio.repository;
+package com.condominio.repository.implementation;
 
 import com.condominio.models.area.Reserva;
+import com.condominio.repository.interfaces.IReservaRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservaRepositoryImpl implements ReservaRepository{
+public class ReservaRepositoryImpl implements IReservaRepository {
 
 
     private final List<Reserva> reservas = new ArrayList<>();
