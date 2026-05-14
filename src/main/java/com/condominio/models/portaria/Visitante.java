@@ -1,4 +1,4 @@
-package com.condominio.models.acesso;
+package com.condominio.models.portaria;
 import com.condominio.models.moradia.Unidade;
 
 import java.time.LocalDateTime;

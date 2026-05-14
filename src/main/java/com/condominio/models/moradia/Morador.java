@@ -7,8 +7,9 @@ public abstract class Morador
     protected String cpf;
     protected String telefone;
     protected Unidade unidade;
+    protected String email;
 
-    public Morador(int id, String nome, String cpf, String telefone, Unidade unidade)
+    public Morador(int id, String nome, String cpf, String telefone, Unidade unidade, String email)
     {
         this.id = id;
         this.nome = nome;
@@ -19,6 +20,10 @@ public abstract class Morador
 
     //Setters
 
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public void setUnidade(Unidade unidade) {
         this.unidade = unidade;
@@ -43,6 +48,10 @@ public abstract class Morador
 
     //Getters
 
+
+    public String getEmail() {
+        return email;
+    }
 
     public Unidade getUnidade() {
             return unidade;

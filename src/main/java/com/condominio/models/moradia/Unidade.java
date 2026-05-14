@@ -5,15 +5,18 @@ import java.util.List;
 
 public class Unidade {
     private int id;
+    private int numero;
     private String bloco;
+    private String tipo;
     private String status;
+    private String metragem;
     private double fracaoIdeal;
     private List<Morador> moradores;
     private List<Veiculo> veiculos;
     private List<Pet> pets;
 
 
-    public Unidade(int id, String bloco, String status, double fracaoIdeal)
+    public Unidade(int id, String bloco, String status, double fracaoIdeal, int numero,  String tipo, String metragem)
     {
         this.id = id;
         this.bloco = bloco;
@@ -25,6 +28,19 @@ public class Unidade {
     }
 
     //Setters-------------------------------------------------------------------------------------------------
+
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public void setMetragem(String metragem) {
+        this.metragem = metragem;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -54,6 +70,19 @@ public class Unidade {
         this.veiculos = veiculos;
     }
     //Getters---------------------------------------------------------------------------------------------
+
+
+    public String getMetragem() {
+        return metragem;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
 
     public int getId() {
         return id;
