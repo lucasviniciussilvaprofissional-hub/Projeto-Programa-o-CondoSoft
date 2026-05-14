@@ -6,6 +6,7 @@ public class Rateio {
 
     private int id;
     private float valorRateado;
+    private String competencia;
     private Despesa despesa;
     private Unidade unidade;
 
@@ -14,6 +15,15 @@ public class Rateio {
     }
 
     // getters e setters
+
+
+    public String getCompetencia() {
+        return competencia;
+    }
+
+    public void setCompetencia(String competencia) {
+        this.competencia = competencia;
+    }
 
     public int getId() {
         return id;

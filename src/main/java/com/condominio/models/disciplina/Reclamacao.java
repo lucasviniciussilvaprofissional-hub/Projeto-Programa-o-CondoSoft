@@ -12,7 +12,6 @@ public class Reclamacao {
     private String descricao;
     private String status;
     private LocalDateTime dataRegistro;
-
     private Morador morador;
     private Unidade unidade;
 

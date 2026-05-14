@@ -7,11 +7,20 @@ public class Boleto {
     private int id;
     private String codigoBarras;
     private float valor;
+    private String competencia;
     private LocalDate dataVencimento;
     private String status;
     private Despesa despesa;
     private Unidade unidade;
 
+
+    public String getCompetencia() {
+        return competencia;
+    }
+
+    public void setCompetencia(String competencia) {
+        this.competencia = competencia;
+    }
 
     public int getId() {
         return id;

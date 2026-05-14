@@ -6,12 +6,10 @@ import java.util.List;
 public class Agenda {
 
     private int id;
-    private AreaComum areaComum;
     private List<Reserva> reservas;
 
-    public Agenda(int id, AreaComum areaComum) {
+    public Agenda(int id) {
         this.id = id;
-        this.areaComum = areaComum;
         this.reservas = new ArrayList<>();
     }
 
@@ -31,14 +29,6 @@ public class Agenda {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public AreaComum getAreaComum() {
-        return areaComum;
-    }
-
-    public void setAreaComum(AreaComum areaComum) {
-        this.areaComum = areaComum;
     }
 
     public List<Reserva> getReservas() {

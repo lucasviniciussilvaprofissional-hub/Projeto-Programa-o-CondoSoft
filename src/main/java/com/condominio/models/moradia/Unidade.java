@@ -11,6 +11,8 @@ public class Unidade {
     private String status;
     private String metragem;
     private double fracaoIdeal;
+    private String situacaoFinanceira;
+    private int capacidade;
     private List<Morador> moradores;
     private List<Veiculo> veiculos;
     private List<Pet> pets;
@@ -29,6 +31,14 @@ public class Unidade {
 
     //Setters-------------------------------------------------------------------------------------------------
 
+
+    public void setCapacidade(int capacidade) {
+        this.capacidade = capacidade;
+    }
+
+    public void setSituacaoFinanceira(String situacaoFinanceira) {
+        this.situacaoFinanceira = situacaoFinanceira;
+    }
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
@@ -71,6 +81,14 @@ public class Unidade {
     }
     //Getters---------------------------------------------------------------------------------------------
 
+
+    public int getCapacidade() {
+        return capacidade;
+    }
+
+    public String getSituacaoFinanceira() {
+        return situacaoFinanceira;
+    }
 
     public String getMetragem() {
         return metragem;
