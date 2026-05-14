@@ -1,10 +1,10 @@
-package com.condominio.repository;
+package com.condominio.repository.interfaces;
 
 import com.condominio.models.area.Reserva;
 
 import java.util.List;
 
-public interface ReservaRepository {
+public interface IReservaRepository {
 
     void salvar(Reserva reserva);
 

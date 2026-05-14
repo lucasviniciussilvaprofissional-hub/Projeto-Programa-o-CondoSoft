@@ -1,9 +1,9 @@
-package com.condominio.repository;
+package com.condominio.repository.interfaces;
 
 import com.condominio.models.moradia.Unidade;
 import java.util.List;
 
-public interface UnidadeRepository {
+public interface IUnidadeRepository {
 
     void salvar (Unidade unidade);
     List<Unidade> listar();
