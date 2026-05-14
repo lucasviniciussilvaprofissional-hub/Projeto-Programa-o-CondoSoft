@@ -1,8 +1,8 @@
-package com.condominio.relatorio;
+package com.condominio.models.relatorio;
 
 import java.util.List;
-import com.condominio.finance.Pagamento;
-import com.condominio.finance.Despesa;
+import com.condominio.models.finance.Pagamento;
+import com.condominio.models.finance.Despesa;
 
 public class Balancete {
 

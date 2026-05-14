@@ -1,4 +1,4 @@
-package com.condominio.comunicacao;
+package com.condominio.models.disciplina;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package com.condominio.model;
+package com.condominio.models.moradia;
 
 public class Veiculo
 {

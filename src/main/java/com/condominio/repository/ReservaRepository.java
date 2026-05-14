@@ -1,6 +1,6 @@
 package com.condominio.repository;
 
-import com.condominio.area.Reserva;
+import com.condominio.models.area.Reserva;
 
 import java.util.List;
 

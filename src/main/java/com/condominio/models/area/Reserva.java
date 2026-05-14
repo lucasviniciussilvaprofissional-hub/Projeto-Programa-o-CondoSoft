@@ -1,7 +1,7 @@
-package com.condominio.area;
+package com.condominio.models.area;
 
-import com.condominio.model.Morador;
-import com.condominio.model.Unidade;
+import com.condominio.models.moradia.Morador;
+import com.condominio.models.moradia.Unidade;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

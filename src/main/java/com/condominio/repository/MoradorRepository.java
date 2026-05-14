@@ -1,6 +1,6 @@
 package com.condominio.repository;
 
-import com.condominio.model.Morador;
+import com.condominio.models.moradia.Morador;
 import java.util.List;
 
 public interface MoradorRepository {

@@ -1,8 +1,7 @@
-package com.condominio.finance;
-import com.condominio.model.Unidade;
+package com.condominio.models.finance;
+import com.condominio.models.moradia.Unidade;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Boleto {
     private int id;

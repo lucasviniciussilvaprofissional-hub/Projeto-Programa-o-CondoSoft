@@ -1,4 +1,4 @@
-package com.condominio.area;
+package com.condominio.models.area;
 
 public class AreaComum
 {

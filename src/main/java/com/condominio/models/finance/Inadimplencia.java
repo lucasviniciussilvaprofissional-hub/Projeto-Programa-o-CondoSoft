@@ -1,6 +1,6 @@
-package com.condominio.finance;
+package com.condominio.models.finance;
 
-import com.condominio.model.Unidade;
+import com.condominio.models.moradia.Unidade;
 
 public class Inadimplencia {
 

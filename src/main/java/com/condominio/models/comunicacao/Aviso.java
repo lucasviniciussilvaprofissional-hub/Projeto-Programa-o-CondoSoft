@@ -1,4 +1,4 @@
-package com.condominio.comunicacao;
+package com.condominio.models.comunicacao;
 import java.time.LocalDateTime;
 
 public class Aviso {

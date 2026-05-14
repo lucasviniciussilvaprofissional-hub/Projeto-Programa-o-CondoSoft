@@ -1,6 +1,6 @@
 package com.condominio.repository;
 
-import com.condominio.model.Unidade;
+import com.condominio.models.moradia.Unidade;
 import java.util.ArrayList;
 import java.util.List;
 

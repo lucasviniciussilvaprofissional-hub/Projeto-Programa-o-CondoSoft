@@ -1,7 +1,7 @@
-package com.condominio.relatorio;
+package com.condominio.models.relatorio;
 
 import java.time.LocalDateTime;
-import com.condominio.finance.Inadimplencia;
+import com.condominio.models.finance.Inadimplencia;
 
 public class ExportacaoInadimplentes {
 

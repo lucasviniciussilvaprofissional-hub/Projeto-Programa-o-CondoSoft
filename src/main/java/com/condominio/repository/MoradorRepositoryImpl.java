@@ -2,7 +2,7 @@ package com.condominio.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.condominio.model.Morador;
+import com.condominio.models.moradia.Morador;
 
 public class MoradorRepositoryImpl implements MoradorRepository {
 

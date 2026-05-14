@@ -1,4 +1,4 @@
-package com.condominio.finance;
+package com.condominio.models.finance;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package com.condominio.model;
+package com.condominio.models.moradia;
 
 public abstract class Morador
 {
@@ -45,7 +45,7 @@ public abstract class Morador
 
 
     public Unidade getUnidade() {
-        return unidade;
+            return unidade;
     }
 
     public int getId() {

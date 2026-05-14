@@ -1,5 +1,5 @@
-package com.condominio.comunicacao;
-import com.condominio.model.Unidade;
+package com.condominio.models.acesso;
+import com.condominio.models.moradia.Unidade;
 
 import java.time.LocalDateTime;
 public class Visitante {

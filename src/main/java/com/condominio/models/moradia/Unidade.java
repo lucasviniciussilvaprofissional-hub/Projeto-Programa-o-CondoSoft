@@ -1,4 +1,4 @@
-package com.condominio.model;
+package com.condominio.models.moradia;
 
 import java.util.ArrayList;
 import java.util.List;
