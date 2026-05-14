@@ -2,6 +2,7 @@ package com.condominio.models.finance;
 import com.condominio.models.moradia.Unidade;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Boleto {
     private int id;
@@ -12,6 +13,16 @@ public class Boleto {
     private String status;
     private Despesa despesa;
     private Unidade unidade;
+
+    Boleto(int id, String codigoBarras, float valor, String competencia, LocalDate dataVencimento, String status)
+    {
+        this.id = id;
+        this.codigoBarras = codigoBarras;
+        this.valor = valor;
+        this.competencia = competencia;
+        this.dataVencimento = dataVencimento;
+        this.status = status;
+    }
 
 
     public String getCompetencia() {

@@ -9,7 +9,7 @@ public class Pet
     private String cor;
     private Unidade unidade;
 
-    public Pet(int id, String nome, String tipo, String raca, String cor, Unidade unidade) {
+    public Pet(int id, String nome, String tipo, String raca, String cor) {
         this.id = id;
         this.nome = nome;
         this.tipo = tipo;

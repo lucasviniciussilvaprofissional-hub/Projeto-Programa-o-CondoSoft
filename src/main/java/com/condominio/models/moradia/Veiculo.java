@@ -9,6 +9,15 @@ public class Veiculo
     private String cor;
     private Unidade unidade;
 
+    public Veiculo(int id, String placa, String modelo, String marca, String cor)
+    {
+        this.id = id;
+        this.placa = placa;
+        this.modelo = modelo;
+        this.marca = marca;
+        this.cor = cor;
+    }
+
 
     //Setters------------------------------------------------------------------------------------------------
 

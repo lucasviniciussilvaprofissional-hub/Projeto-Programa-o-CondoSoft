@@ -18,15 +18,20 @@ public class Unidade {
     private List<Pet> pets;
 
 
-    public Unidade(int id, String bloco, String status, double fracaoIdeal, int numero,  String tipo, String metragem)
+    public Unidade(int id, String bloco, String status, double fracaoIdeal, int numero,  String tipo, String metragem, int capacidade, String situacaoFinanceira)
     {
         this.id = id;
+        this.numero = numero;
+        this.tipo = tipo;
+        this.metragem = metragem;
         this.bloco = bloco;
         this.status = status;
         this.fracaoIdeal = fracaoIdeal;
         this.moradores = new ArrayList<>();
         this.veiculos = new ArrayList<>();
         this.pets = new ArrayList<>();
+        this.capacidade = capacidade;
+        this.situacaoFinanceira = situacaoFinanceira;
     }
 
     //Setters-------------------------------------------------------------------------------------------------
