@@ -1,8 +1,8 @@
 package com.condominio.models.finance;
+import com.condominio.enums.StatusBoleto;
 import com.condominio.models.moradia.Unidade;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Boleto {
     private int id;
@@ -10,11 +10,11 @@ public class Boleto {
     private float valor;
     private String competencia;
     private LocalDate dataVencimento;
-    private String status;
     private Despesa despesa;
     private Unidade unidade;
+    private StatusBoleto status;
 
-    Boleto(int id, String codigoBarras, float valor, String competencia, LocalDate dataVencimento, String status)
+    Boleto(int id, String codigoBarras, float valor, String competencia, LocalDate dataVencimento, StatusBoleto status)
     {
         this.id = id;
         this.codigoBarras = codigoBarras;
@@ -69,12 +69,12 @@ public class Boleto {
         this.dataVencimento = dataVencimento;
     }
 
-    public String getStatus() {
+    public StatusBoleto Boleto(StatusBoleto status) {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus(StatusBoleto status) {
+
     }
 
     public void setUnidade(Unidade unidade) {

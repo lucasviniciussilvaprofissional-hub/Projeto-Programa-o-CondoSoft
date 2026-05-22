@@ -1,5 +1,6 @@
 package com.condominio.service;
 
+import com.condominio.enums.StatusBoleto;
 import com.condominio.models.area.Reserva;
 import com.condominio.models.finance.Boleto;
 import com.condominio.models.moradia.Morador;
@@ -51,7 +52,7 @@ public class CondominioService {
 
     public void registrarPagamento(Boleto boleto) {
 
-        boleto.setStatus("PAGO");
+        boleto.setStatus(StatusBoleto.valueOf("PAGO"));
     }
 
 

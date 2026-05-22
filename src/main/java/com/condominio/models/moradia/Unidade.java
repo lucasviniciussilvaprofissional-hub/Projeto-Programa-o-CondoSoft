@@ -1,5 +1,8 @@
 package com.condominio.models.moradia;
 
+import com.condominio.enums.StatusUnidade;
+import com.condominio.enums.TipoUnidade;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +10,8 @@ public class Unidade {
     private int id;
     private int numero;
     private String bloco;
-    private String tipo;
-    private String status;
+    private TipoUnidade tipo;
+    private StatusUnidade status;
     private String metragem;
     private double fracaoIdeal;
     private String situacaoFinanceira;
@@ -18,7 +21,7 @@ public class Unidade {
     private List<Pet> pets;
 
 
-    public Unidade(int id, String bloco, String status, double fracaoIdeal, int numero,  String tipo, String metragem, int capacidade, String situacaoFinanceira)
+    public Unidade(int id, String bloco, StatusUnidade status, double fracaoIdeal, int numero, TipoUnidade tipo, String metragem, int capacidade, String situacaoFinanceira)
     {
         this.id = id;
         this.numero = numero;
@@ -45,7 +48,7 @@ public class Unidade {
         this.situacaoFinanceira = situacaoFinanceira;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoUnidade tipo) {
         this.tipo = tipo;
     }
 
@@ -65,7 +68,7 @@ public class Unidade {
         this.bloco = bloco;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusUnidade status) {
         this.status = status;
     }
 
@@ -99,7 +102,7 @@ public class Unidade {
         return metragem;
     }
 
-    public String getTipo() {
+    public TipoUnidade getTipo() {
         return tipo;
     }
 
@@ -115,7 +118,7 @@ public class Unidade {
         return bloco;
     }
 
-    public String getStatus() {
+    public StatusUnidade getStatus() {
         return status;
     }
 

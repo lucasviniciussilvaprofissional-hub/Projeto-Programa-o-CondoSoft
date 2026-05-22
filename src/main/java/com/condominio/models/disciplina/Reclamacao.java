@@ -1,5 +1,6 @@
 package com.condominio.models.disciplina;
 
+import com.condominio.enums.StatusReclamacao;
 import com.condominio.models.moradia.Morador;
 import com.condominio.models.moradia.Unidade;
 
@@ -10,7 +11,7 @@ public class Reclamacao {
     private int id;
     private String titulo;
     private String descricao;
-    private String status;
+    private StatusReclamacao status;
     private LocalDateTime dataRegistro;
     private Morador morador;
     private Unidade unidade;
@@ -27,7 +28,7 @@ public class Reclamacao {
         this.morador = morador;
         this.unidade = unidade;
         this.dataRegistro = LocalDateTime.now();
-        this.status = "ABERTA";
+        this.status = StatusReclamacao.valueOf("ABERTA");
     }
 
     // Getters e Setters
@@ -56,11 +57,11 @@ public class Reclamacao {
         this.descricao = descricao;
     }
 
-    public String getStatus() {
+    public StatusReclamacao getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusReclamacao status) {
         this.status = status;
     }
 

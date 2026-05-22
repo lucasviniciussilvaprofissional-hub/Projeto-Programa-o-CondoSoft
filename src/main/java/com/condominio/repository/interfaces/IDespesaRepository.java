@@ -1,5 +1,6 @@
 package com.condominio.repository.interfaces;
 
+import com.condominio.enums.StatusDespesa;
 import com.condominio.models.finance.Despesa;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface IDespesaRepository {
 
     Despesa buscarPorId(int id);
 
-    List<Despesa> buscarPorStatus(String status);
+    List<Despesa> buscarPorStatus(StatusDespesa status);
 
     List<Despesa> buscarPorTipo(String tipo);
 

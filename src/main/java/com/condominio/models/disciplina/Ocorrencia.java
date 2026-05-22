@@ -2,18 +2,21 @@ package com.condominio.models.disciplina;
 
 import java.time.LocalDateTime;
 
+import com.condominio.enums.StatusOcorrencia;
+import com.condominio.enums.TipoOcorrencia;
+
 public class Ocorrencia {
 
     private int id;
     private String descricao;
-    private String tipo; // BARULHO, ELEVADOR, SEGURANCA
-    private String status; // ABERTA, EM_ANALISE, RESOLVIDA
+    private TipoOcorrencia tipo; // BARULHO, ELEVADOR, SEGURANCA
+    private StatusOcorrencia status; // ABERTA, EM_ANALISE, RESOLVIDA
     private LocalDateTime dataRegistro;
     private String unidade;
 
     public Ocorrencia() {
         this.dataRegistro = LocalDateTime.now();
-        this.status = "ABERTA";
+        this.status = StatusOcorrencia.valueOf("ABERTA");
     }
 
     // getters e setters
@@ -34,19 +37,19 @@ public class Ocorrencia {
         this.descricao = descricao;
     }
 
-    public String getTipo() {
+    public TipoOcorrencia getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoOcorrencia tipo) {
         this.tipo = tipo;
     }
 
-    public String getStatus() {
+    public StatusOcorrencia getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusOcorrencia status) {
         this.status = status;
     }
 

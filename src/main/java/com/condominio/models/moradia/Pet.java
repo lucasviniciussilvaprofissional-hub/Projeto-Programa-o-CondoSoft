@@ -1,15 +1,15 @@
 package com.condominio.models.moradia;
-
+import com.condominio.enums.TipoPet;
 public class Pet
 {
     private int id;
     private String nome;
-    private String tipo;
+    private TipoPet tipo;
     private String raca;
     private String cor;
     private Unidade unidade;
 
-    public Pet(int id, String nome, String tipo, String raca, String cor) {
+    public Pet(int id, String nome, TipoPet tipo, String raca, String cor) {
         this.id = id;
         this.nome = nome;
         this.tipo = tipo;
@@ -36,7 +36,7 @@ public class Pet
         this.raca = raca;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoPet tipo) {
         this.tipo = tipo;
     }
 
@@ -68,7 +68,7 @@ public class Pet
         return raca;
     }
 
-    public String getTipo() {
+    public TipoPet getTipo() {
         return tipo;
     }
 }

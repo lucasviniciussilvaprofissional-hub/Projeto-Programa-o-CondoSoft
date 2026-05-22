@@ -1,5 +1,8 @@
 package com.condominio.models.finance;
 
+import com.condominio.enums.StatusDespesa;
+import com.condominio.enums.TipoDespesa;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -9,8 +12,8 @@ public abstract class Despesa {
     protected String descricao;
     protected float valor; // VALOR TOTAL
     protected LocalDate dataVencimento;
-    protected String status;
-    protected String tipo;
+    protected StatusDespesa status;
+    protected TipoDespesa tipo;
     protected LocalDateTime dataCriacao;
 
     //Setters
@@ -28,11 +31,11 @@ public abstract class Despesa {
         this.descricao = descricao;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoDespesa tipo) {
         this.tipo = tipo;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusDespesa status) {
         this.status = status;
     }
 
@@ -59,11 +62,11 @@ public abstract class Despesa {
         return valor;
     }
 
-    public String getTipo() {
+    public TipoDespesa getTipo() {
         return tipo;
     }
 
-    public String getStatus() {
+    public StatusDespesa getStatus() {
         return status;
     }
 

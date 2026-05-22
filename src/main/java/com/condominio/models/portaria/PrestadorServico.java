@@ -1,6 +1,7 @@
 package com.condominio.models.portaria;
 
 import com.condominio.models.moradia.Unidade;
+import com.condominio.enums.TipoServico;
 
 public class PrestadorServico
 {
@@ -8,17 +9,17 @@ public class PrestadorServico
     private String nome;
     private String cpf;
     private String empresa;
-    private  String tipoServico;
+    private  TipoServico servico;
     private String telefone;
     private Unidade unidadeDestino;
 
-    public PrestadorServico(int id, String nome, String cpf, String empresa, String tipoServico, String telefone, Unidade unidadeDestino)
+    public PrestadorServico(int id, String nome, String cpf, String empresa, TipoServico tipoServico, String telefone, Unidade unidadeDestino)
     {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.empresa = empresa;
-        this.tipoServico = tipoServico;
+        this.servico = servico;
         this.telefone = telefone;
         this.unidadeDestino = unidadeDestino;
     }
@@ -46,8 +47,8 @@ public class PrestadorServico
         return empresa;
     }
 
-    public String getTipoServico() {
-        return tipoServico;
+    public TipoServico getServico() {
+        return servico;
     }
 
     public Unidade getUnidadeDestino() {
@@ -78,8 +79,8 @@ public class PrestadorServico
         this.empresa = empresa;
     }
 
-    public void setTipoServico(String tipoServico) {
-        this.tipoServico = tipoServico;
+    public void setServico(TipoServico servico) {
+        this.servico = servico;
     }
 
     public void setUnidadeDestino(Unidade unidadeDestino) {

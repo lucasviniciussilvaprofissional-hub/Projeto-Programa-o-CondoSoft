@@ -1,6 +1,7 @@
 package com.condominio.models.comunicacao;
 
 import java.time.LocalDateTime;
+import com.condominio.enums.StatusEdital;
 
 public class Edital {
 
@@ -9,7 +10,7 @@ public class Edital {
     private String descricao;
     private LocalDateTime dataPublicacao;
     private LocalDateTime validade;
-    private String status;
+    private StatusEdital status;
 
     public Edital(int id,
                   String titulo,
@@ -22,7 +23,7 @@ public class Edital {
         this.validade = validade;
 
         this.dataPublicacao = LocalDateTime.now();
-        this.status = "ATIVO";
+        this.status = StatusEdital.valueOf("ATIVO");
     }
 
     // Getters e Setters
@@ -67,11 +68,11 @@ public class Edital {
         this.validade = validade;
     }
 
-    public String getStatus() {
+    public StatusEdital getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusEdital status) {
         this.status = status;
     }
 }
