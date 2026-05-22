@@ -12,7 +12,7 @@ public class Boleto {
     private LocalDate dataVencimento;
     private Despesa despesa;
     private Unidade unidade;
-    private StatusBoleto status;
+    public StatusBoleto status;
 
     Boleto(int id, String codigoBarras, float valor, String competencia, LocalDate dataVencimento, StatusBoleto status)
     {
