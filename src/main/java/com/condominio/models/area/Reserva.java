@@ -35,15 +35,15 @@ public class Reserva {
                    int quantidadePessoas,
                    StatusReserva status) {
 
-        this.id = id;
-        this.area = area;
-        this.unidade = unidade;
-        this.responsavel = responsavel;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-        this.quantidadePessoas = quantidadePessoas;
-        this.status = status;
-        this.convidados = new ArrayList<>();
+        setArea(area);
+        setUnidade(unidade);
+        setResponsavel(responsavel);
+        setDataInicio(dataInicio);
+        setDataFim(dataFim);
+        setQuantidadePessoas(quantidadePessoas);
+        setStatus(status);
+
+        this.convidados = new ArrayList<>(convidados);
 
     }
 

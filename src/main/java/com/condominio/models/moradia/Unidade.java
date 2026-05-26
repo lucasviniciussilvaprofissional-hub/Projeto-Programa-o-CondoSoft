@@ -36,15 +36,15 @@ public class Unidade {
                    int capacidade,
                    String situacaoFinanceira) {
 
-        this.id = id;
-        this.numero = numero;
-        this.tipo = tipo;
-        this.metragem = metragem;
-        this.bloco = bloco;
-        this.status = status;
-        this.fracaoIdeal = fracaoIdeal;
-        this.capacidade = capacidade;
-        this.situacaoFinanceira = situacaoFinanceira;
+        setId(id);
+        setNumero(numero);
+        setTipo(tipo);
+        setMetragem(metragem);
+        setBloco(bloco);
+        setStatus(status);
+        setFracaoIdeal(fracaoIdeal);
+        setCapacidade(capacidade);
+        setSituacaoFinanceira(situacaoFinanceira);
 
         this.moradores = new ArrayList<>();
         this.veiculos = new ArrayList<>();

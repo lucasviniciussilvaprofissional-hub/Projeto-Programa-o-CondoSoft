@@ -21,11 +21,11 @@ public class Pet {
                String raca,
                String cor) {
 
-        this.id = id;
-        this.nome = nome;
-        this.tipo = tipo;
-        this.raca = raca;
-        this.cor = cor;
+        setId(id);
+        setNome(nome);
+        setTipo(tipo);
+        setRaca(raca);
+        setCor(cor);
 
     }
 

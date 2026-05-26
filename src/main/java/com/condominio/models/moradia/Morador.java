@@ -24,13 +24,13 @@ public abstract class Morador {
                    String email,
                    StatusMorador status) {
 
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.unidade = unidade;
-        this.email = email;
-        this.status = status;
+        setId(id);
+        setNome(nome);
+        setCpf(cpf);
+        setTelefone(telefone);
+        setUnidade(unidade);
+        setEmail(email);
+        setStatus(status);
 
     }
 

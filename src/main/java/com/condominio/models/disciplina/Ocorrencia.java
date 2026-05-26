@@ -34,14 +34,14 @@ public class Ocorrencia {
                       Unidade unidade,
                       LocalDateTime dataCriacao) {
 
-        this.id = id;
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.tipo = tipo;
-        this.status = status;
-        this.responsavel = responsavel;
-        this.unidade = unidade;
-        this.dataCriacao = dataCriacao;
+        setId(id);
+        setTitulo(titulo);
+        setDescricao(descricao);
+        setTipo(tipo);
+        setStatus(status);
+        setResponsavel(responsavel);
+        setUnidade(unidade);
+        setDataCriacao(dataCriacao);
 
     }
 

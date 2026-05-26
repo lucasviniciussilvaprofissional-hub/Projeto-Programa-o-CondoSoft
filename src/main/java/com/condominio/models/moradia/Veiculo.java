@@ -19,11 +19,11 @@ public class Veiculo {
                    String cor,
                    Unidade unidade) {
 
-        this.id = id;
-        this.modelo = modelo;
-        this.placa = placa;
-        this.cor = cor;
-        this.unidade = unidade;
+        setId(id);
+        setModelo(modelo);
+        setPlaca(placa);
+        setCor(cor);
+        setUnidade(unidade);
 
     }
 

@@ -27,12 +27,12 @@ public class Boleto {
                   LocalDate dataVencimento,
                   StatusBoleto status) {
 
-        this.id = id;
-        this.codigoBarras = codigoBarras;
-        this.valor = valor;
-        this.competencia = competencia;
-        this.dataVencimento = dataVencimento;
-        this.status = status;
+        setId(id);
+        setCodigoBarras(codigoBarras);
+        setValor(valor);
+        setCompetencia(competencia);
+        setDataVencimento(dataVencimento);
+        setStatus(status);
 
     }
 
