@@ -6,20 +6,19 @@ import java.util.List;
 import com.condominio.enums.StatusBoleto;
 import com.condominio.enums.StatusDespesa;
 
-import com.condominio.models.finance.Boleto;
-import com.condominio.models.finance.Despesa;
-
-
 public class FinanceiroController {
 
     private List<Boleto> boletos;
     private List<Despesa> despesas;
 
+    // =========================
+    // CONSTRUTOR
+    // =========================
+
     public FinanceiroController() {
 
         this.boletos = new ArrayList<>();
         this.despesas = new ArrayList<>();
-
 
     }
 
@@ -29,13 +28,55 @@ public class FinanceiroController {
 
     public void adicionarBoleto(Boleto boleto) {
 
+        if (boleto == null) {
+
+            throw new IllegalArgumentException("Boleto inválido.");
+
+        }
+
+        if (boleto.getValor() <= 0) {
+
+            throw new IllegalArgumentException("Valor do boleto inválido.");
+
+        }
+
         boletos.add(boleto);
 
     }
 
     public void pagarBoleto(Boleto boleto) {
 
+        if (boleto == null) {
+
+            throw new IllegalArgumentException("Boleto inexistente.");
+
+        }
+
+        if (boleto.getStatus() == StatusBoleto.PAGO) {
+
+            throw new IllegalArgumentException("Boleto já pago.");
+
+        }
+
         boleto.setStatus(StatusBoleto.PAGO);
+
+    }
+
+    public void cancelarBoleto(Boleto boleto) {
+
+        if (boleto == null) {
+
+            throw new IllegalArgumentException("Boleto inválido.");
+
+        }
+
+        if (boleto.getStatus() == StatusBoleto.PAGO) {
+
+            throw new IllegalArgumentException("Não é possível cancelar boleto pago.");
+
+        }
+
+        boleto.setStatus(StatusBoleto.CANCELADO);
 
     }
 
@@ -51,7 +92,7 @@ public class FinanceiroController {
 
         for (Boleto boleto : boletos) {
 
-            if (boleto.status == StatusBoleto.PENDENTE) {
+            if (boleto.getStatus() == StatusBoleto.PENDENTE) {
 
                 pendentes.add(boleto);
 
@@ -60,6 +101,24 @@ public class FinanceiroController {
         }
 
         return pendentes;
+
+    }
+
+    public List<Boleto> listarBoletosVencidos() {
+
+        List<Boleto> vencidos = new ArrayList<>();
+
+        for (Boleto boleto : boletos) {
+
+            if (boleto.getStatus() == StatusBoleto.VENCIDO) {
+
+                vencidos.add(boleto);
+
+            }
+
+        }
+
+        return vencidos;
 
     }
 
@@ -83,7 +142,43 @@ public class FinanceiroController {
 
     public void adicionarDespesa(Despesa despesa) {
 
+        if (despesa == null) {
+
+            throw new IllegalArgumentException("Despesa inválida.");
+
+        }
+
+        if (despesa.getValor() <= 0) {
+
+            throw new IllegalArgumentException("Valor da despesa inválido.");
+
+        }
+
         despesas.add(despesa);
+
+    }
+
+    public void pagarDespesa(Despesa despesa) {
+
+        if (despesa == null) {
+
+            throw new IllegalArgumentException("Despesa inválida.");
+
+        }
+
+        if (despesa.getStatus() == StatusDespesa.PAGA) {
+
+            throw new IllegalArgumentException("Despesa já paga.");
+
+        }
+
+        despesa.setStatus(StatusDespesa.PAGA);
+
+    }
+
+    public List<Despesa> listarDespesas() {
+
+        return despesas;
 
     }
 
@@ -125,7 +220,59 @@ public class FinanceiroController {
 
     public double calcularMulta(Boleto boleto) {
 
-        return boleto.getValor() * 0.02;
+        if (boleto == null) {
+
+            throw new IllegalArgumentException("Boleto inválido.");
+
+        }
+
+        if (boleto.getStatus() == StatusBoleto.VENCIDO) {
+
+            return boleto.getValor() * 0.02;
+
+        }
+
+        return 0;
+
+    }
+
+    // =========================
+    // RELATÓRIOS
+    // =========================
+
+    public int quantidadeBoletosPendentes() {
+
+        int quantidade = 0;
+
+        for (Boleto boleto : boletos) {
+
+            if (boleto.getStatus() == StatusBoleto.PENDENTE) {
+
+                quantidade++;
+
+            }
+
+        }
+
+        return quantidade;
+
+    }
+
+    public int quantidadeDespesasPendentes() {
+
+        int quantidade = 0;
+
+        for (Despesa despesa : despesas) {
+
+            if (despesa.getStatus() == StatusDespesa.PENDENTE) {
+
+                quantidade++;
+
+            }
+
+        }
+
+        return quantidade;
 
     }
 

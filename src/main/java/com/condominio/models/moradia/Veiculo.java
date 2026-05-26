@@ -1,69 +1,102 @@
 package com.condominio.models.moradia;
 
-public class Veiculo
-{
+public class Veiculo {
+
     private int id;
-    private String placa;
     private String modelo;
-    private String marca;
+    private String placa;
     private String cor;
+
     private Unidade unidade;
 
-    public Veiculo(int id, String placa, String modelo, String marca, String cor)
-    {
+    // =========================
+    // CONSTRUTOR
+    // =========================
+
+    public Veiculo(int id,
+                   String modelo,
+                   String placa,
+                   String cor,
+                   Unidade unidade) {
+
         this.id = id;
-        this.placa = placa;
         this.modelo = modelo;
-        this.marca = marca;
+        this.placa = placa;
         this.cor = cor;
-    }
-
-
-    //Setters------------------------------------------------------------------------------------------------
-
-
-    public void setUnidade(Unidade unidade) {
         this.unidade = unidade;
+
     }
+
+    // =========================
+    // SETTERS
+    // =========================
 
     public void setId(int id) {
+
+        if (id <= 0) {
+
+            throw new IllegalArgumentException("ID inválido.");
+
+        }
+
         this.id = id;
-    }
 
-    public void setCor(String cor) {
-        this.cor = cor;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
     }
 
     public void setModelo(String modelo) {
+
+        if (modelo == null || modelo.isEmpty()) {
+
+            throw new IllegalArgumentException("Modelo inválido.");
+
+        }
+
         this.modelo = modelo;
+
     }
 
     public void setPlaca(String placa) {
+
+        if (placa == null || placa.length() < 7) {
+
+            throw new IllegalArgumentException("Placa inválida.");
+
+        }
+
         this.placa = placa;
+
     }
 
+    public void setCor(String cor) {
 
-    //Getters---------------------------------------------------------------------------------------------
+        if (cor == null || cor.isEmpty()) {
 
+            throw new IllegalArgumentException("Cor inválida.");
 
-    public Unidade getUnidade() {
-        return unidade;
+        }
+
+        this.cor = cor;
+
     }
+
+    public void setUnidade(Unidade unidade) {
+
+        if (unidade == null) {
+
+            throw new IllegalArgumentException("Unidade inválida.");
+
+        }
+
+        this.unidade = unidade;
+
+    }
+
+    // =========================
+    // GETTERS
+    // =========================
 
     public int getId() {
         return id;
-    }
-
-    public String getCor() {
-        return cor;
-    }
-
-    public String getMarca() {
-        return marca;
     }
 
     public String getModelo() {
@@ -72,6 +105,36 @@ public class Veiculo
 
     public String getPlaca() {
         return placa;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+
+    public Unidade getUnidade() {
+        return unidade;
+    }
+
+    // =========================
+    // REGRAS DE NEGÓCIO
+    // =========================
+
+    public boolean placaValida() {
+
+        return placa != null && placa.length() >= 7;
+
+    }
+
+    public void removerUnidade() {
+
+        this.unidade = null;
+
+    }
+
+    public boolean possuiUnidade() {
+
+        return unidade != null;
+
     }
 
 }
