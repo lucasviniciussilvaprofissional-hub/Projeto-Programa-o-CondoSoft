@@ -7,6 +7,7 @@ import com.condominio.models.moradia.Morador;
 import com.condominio.models.moradia.Unidade;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class CondominioService {
@@ -53,6 +54,17 @@ public class CondominioService {
     public void registrarPagamento(Boleto boleto) {
 
         boleto.setStatus(StatusBoleto.valueOf("PAGO"));
+    }
+
+    public Boleto gerarBoleto(Unidade unidade) {
+
+        return new Boleto(
+                unidade.getId(),
+                "",
+                0.0f,
+                "2026-05",
+                LocalDate.now().plusDays(10)
+        );
     }
 
 

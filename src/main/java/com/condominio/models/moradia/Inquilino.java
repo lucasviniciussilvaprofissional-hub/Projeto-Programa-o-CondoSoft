@@ -1,10 +1,19 @@
 package com.condominio.models.moradia;
 
+import com.condominio.enums.StatusContrato;
+
+import java.time.LocalDateTime;
+
 public class Inquilino extends Morador
 {
-    public Inquilino(int id, String nome, String cpf, String telefone, Unidade unidade, String email)
+    private LocalDateTime dataInicioContrato;
+    private StatusContrato contrato;
+
+    public Inquilino(int id, String nome, String cpf, String telefone, Unidade unidade, String email, LocalDateTime dataInicioContrato)
     {
         super(id,nome,cpf,telefone,unidade,email);
+
+        this.dataInicioContrato = dataInicioContrato;
     }
 
 }
