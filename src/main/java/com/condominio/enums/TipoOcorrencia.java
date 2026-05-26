@@ -1,7 +1,8 @@
 package com.condominio.enums;
 
 public enum TipoOcorrencia {
-    BARULHO,
-    ELEVADOR,
-    SEGURANCA
+    ABERTA,
+    EM_ANDAMENTO,
+    FINALIZADA,
+    CANCELADA
 }

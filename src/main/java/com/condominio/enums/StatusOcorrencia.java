@@ -3,5 +3,5 @@ package com.condominio.enums;
 public enum StatusOcorrencia {
     ABERTA,
     EM_ANALISE,
-    RESOLVIDA
+    FINALIZADA, CANCELADA, EM_ANDAMENTO, RESOLVIDA
 }
