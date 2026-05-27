@@ -49,5 +49,3 @@ O sistema foca na transparência, permitindo que moradores acompanhem despesas e
 - Integrante do grupo:
 - Lucas Vinicius Cabral da Silva | lucasviniciussilvaprofissional@gmail.com
 - Caio Vinicius Ferreira Cabral | mentornap@gmail.com
-- Alan Sergio |
-- Guilherme Oiveira |
