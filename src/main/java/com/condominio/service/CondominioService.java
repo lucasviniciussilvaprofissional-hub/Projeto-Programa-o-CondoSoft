@@ -58,12 +58,28 @@ public class CondominioService {
 
     public Boleto gerarBoleto(Unidade unidade) {
 
+        if (unidade == null) {
+            throw new IllegalArgumentException("Unidade não pode ser nula");
+        }
+
+        int id = unidade.getId();
+
+        String codigoBarras = "BOL" + unidade.getId();
+
+        float valor = 350.0f;
+
+        String competencia = LocalDate.now().getYear() + "-" +
+                String.format("%02d", LocalDate.now().getMonthValue());
+
+        LocalDate vencimento = LocalDate.now().plusDays(10);
+
         return new Boleto(
-                unidade.getId(),
-                "",
-                0.0f,
-                "2026-05",
-                LocalDate.now().plusDays(10)
+                id,
+                codigoBarras,
+                valor,
+                competencia,
+                vencimento,
+                StatusBoleto.PENDENTE
         );
     }
 

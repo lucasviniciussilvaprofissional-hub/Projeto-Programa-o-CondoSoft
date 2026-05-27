@@ -40,7 +40,7 @@ public class DespesaRepositoryImpl implements IReservaRepository.IDespesaReposit
 
         for (Despesa d : despesas) {
 
-            if (d.getStatus().equalsIgnoreCase(status)) {
+            if (d.getStatus().name().equalsIgnoreCase(status)) {
                 resultado.add(d);
             }
         }
@@ -55,7 +55,7 @@ public class DespesaRepositoryImpl implements IReservaRepository.IDespesaReposit
 
         for (Despesa d : despesas) {
 
-            if (d.getTipo().equalsIgnoreCase(tipo)) {
+            if (d.getTipo().name().equalsIgnoreCase(tipo)) {
                 resultado.add(d);
             }
         }
