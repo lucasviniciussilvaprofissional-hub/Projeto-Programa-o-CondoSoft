@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane
+    fx:id="listarUnidadeRoot"
+    prefHeight="750.0"
+    prefWidth="1200.0"
+    style="-fx-background-color: #F7F8FA;"
+    xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.condominio.controller.ListarUnidadeController">
+
+    <!-- ══════════════════════════════════════════════════════
+         HEADER
+    ══════════════════════════════════════════════════════ -->
+    <top>
+        <HBox
+            alignment="CENTER_LEFT"
+            prefHeight="68.0"
+            style="-fx-background-color: #1E293B; -fx-padding: 0 48 0 48;">
+            <VBox alignment="CENTER_LEFT" spacing="2.0">
+                <Label text="CondoSoft"
+                       style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                <Label text="Listagem de Unidades"
+                       style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="12.0" alignment="CENTER_RIGHT">
+                <Button fx:id="btnCadastrarNovaUnidade" text="+ Nova Unidade"
+                        onAction="#abrirCadastrarUnidade"
+                        style="-fx-background-color: #2563EB; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 8; -fx-padding: 8 20;"/>
+                <Button fx:id="btnVoltarUnidades" text="← Unidades"
+                        onAction="#voltarUnidades"
+                        style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-font-size: 13; -fx-cursor: hand; -fx-border-color: #334155; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 20;"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- ══════════════════════════════════════════════════════
+         CONTEÚDO PRINCIPAL
+    ══════════════════════════════════════════════════════ -->
+    <center>
+        <VBox spacing="0.0" style="-fx-background-color: #F7F8FA; -fx-padding: 40 60 40 60;">
+
+            <!-- Breadcrumb -->
+            <HBox spacing="6.0" alignment="CENTER_LEFT" style="-fx-padding: 0 0 24 0;">
+                <Label text="Início" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarHome"/>
+                <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+                <Label text="Unidades" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarUnidades"/>
+                <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+                <Label text="Listagem" style="-fx-font-size: 12; -fx-text-fill: #1E293B;"/>
+            </HBox>
+
+            <!-- Título + contador -->
+            <HBox alignment="CENTER_LEFT" style="-fx-padding: 0 0 24 0;">
+                <VBox spacing="4.0">
+                    <Label text="Unidades Cadastradas"
+                           style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                    <Label fx:id="lblTotalUnidades" text="0 unidades encontradas"
+                           style="-fx-font-size: 13; -fx-text-fill: #64748B;"/>
+                </VBox>
+            </HBox>
+
+            <!-- ── Card com filtros + tabela ── -->
+            <VBox
+                VBox.vgrow="ALWAYS"
+                style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0; -fx-border-radius: 16; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);"
+                spacing="0.0">
+
+                <!-- Barra de filtros -->
+                <HBox
+                    alignment="CENTER_LEFT" spacing="12.0"
+                    style="-fx-padding: 20 24 20 24; -fx-border-color: transparent transparent #F1F5F9 transparent; -fx-border-width: 1;">
+                    <!-- Campo de busca -->
+                    <HBox
+                        alignment="CENTER_LEFT" spacing="8.0"
+                        style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-width: 1; -fx-padding: 0 14;"
+                        prefWidth="320.0" prefHeight="40.0">
+                        <Label text="🔍" style="-fx-font-size: 13; -fx-text-fill: #94A3B8;"/>
+                        <TextField fx:id="txtBusca"
+                                   promptText="Buscar por número ou bloco..."
+                                   style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 13; -fx-text-fill: #1E293B;"
+                                   prefWidth="260.0"
+                                   onKeyReleased="#filtrarUnidades"/>
+                    </HBox>
+
+                    <!-- Filtro por bloco -->
+                    <ComboBox fx:id="cmbFiltroBloco"
+                              promptText="Todos os Blocos"
+                              prefWidth="160.0" prefHeight="40.0"
+                              onAction="#filtrarUnidades"
+                              style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-width: 1; -fx-font-size: 13;"/>
+
+                    <!-- Filtro por tipo -->
+                    <ComboBox fx:id="cmbFiltroTipo"
+                              promptText="Todos os Tipos"
+                              prefWidth="160.0" prefHeight="40.0"
+                              onAction="#filtrarUnidades"
+                              style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-width: 1; -fx-font-size: 13;"/>
+
+                    <Region HBox.hgrow="ALWAYS"/>
+
+                    <Button fx:id="btnLimparFiltros" text="Limpar Filtros"
+                            onAction="#limparFiltros"
+                            style="-fx-background-color: transparent; -fx-text-fill: #64748B; -fx-font-size: 12; -fx-cursor: hand;"/>
+                </HBox>
+
+                <!-- TableView -->
+                <TableView fx:id="tabelaUnidades"
+                           VBox.vgrow="ALWAYS"
+                           prefHeight="460.0"
+                           style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-table-cell-border-color: #F1F5F9; -fx-font-size: 13;">
+
+                    <columns>
+                        <TableColumn fx:id="colNumero"
+                                     text="Nº Unidade"
+                                     prefWidth="110.0"
+                                     style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colBloco"
+                                     text="Bloco"
+                                     prefWidth="90.0"
+                                     style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colTipo"
+                                     text="Tipo"
+                                     prefWidth="130.0"/>
+                        <TableColumn fx:id="colAndar"
+                                     text="Andar"
+                                     prefWidth="80.0"
+                                     style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colArea"
+                                     text="Área (m²)"
+                                     prefWidth="110.0"
+                                     style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colCapacidade"
+                                     text="Capacidade"
+                                     prefWidth="110.0"
+                                     style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colStatus"
+                                     text="Status"
+                                     prefWidth="110.0"
+                                     style="-fx-alignment: CENTER;"/>
+                        <TableColumn fx:id="colAcoes"
+                                     text="Ações"
+                                     prefWidth="200.0"
+                                     style="-fx-alignment: CENTER;"/>
+                    </columns>
+
+                    <placeholder>
+                        <VBox alignment="CENTER" spacing="12.0">
+                            <Label text="🏢"
+                                   style="-fx-font-size: 36;"/>
+                            <Label text="Nenhuma unidade encontrada"
+                                   style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                            <Label text="Cadastre a primeira unidade para começar"
+                                   style="-fx-font-size: 12; -fx-text-fill: #CBD5E1;"/>
+                        </VBox>
+                    </placeholder>
+
+                </TableView>
+
+                <!-- Barra de ações inferiores -->
+                <HBox
+                    alignment="CENTER_LEFT" spacing="12.0"
+                    style="-fx-padding: 16 24 16 24; -fx-border-color: #F1F5F9 transparent transparent transparent; -fx-border-width: 1; -fx-background-color: #FAFBFC; -fx-background-radius: 0 0 16 16;">
+                    <Button fx:id="btnVerDetalhes"
+                            text="🔍  Ver Detalhes"
+                            onAction="#abrirDetalhesUnidade"
+                            style="-fx-background-color: #2563EB; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                    <Button fx:id="btnEditarUnidade"
+                            text="✏️  Editar"
+                            onAction="#editarUnidade"
+                            style="-fx-background-color: #F1F5F9; -fx-text-fill: #374151; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-cursor: hand; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-border-width: 1;"/>
+                    <Button fx:id="btnRemoverUnidade"
+                            text="🗑️  Remover"
+                            onAction="#confirmarRemocaoUnidade"
+                            style="-fx-background-color: #FEF2F2; -fx-text-fill: #DC2626; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-cursor: hand; -fx-border-color: #FECACA; -fx-border-radius: 8; -fx-border-width: 1;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="lblSelecaoInfo"
+                           text="Selecione uma unidade para gerenciá-la"
+                           style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+                </HBox>
+
+            </VBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>
