@@ -96,7 +96,7 @@
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>
-                        com.example.projetoip2/com.example.projetoip.HelloApplication
+                        com.example.projetoip2/com.condominio.MainApplication
                     </mainClass>
                 </configuration>
             </plugin>

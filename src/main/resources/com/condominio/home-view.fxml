@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane
+    fx:id="homeRoot"
+    prefHeight="750.0"
+    prefWidth="1200.0"
+    style="-fx-background-color: #F7F8FA;"
+    xmlns="http://javafx.com/javafx/17"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.condominio.controller.HomeController">
+
+    <!-- ══════════════════════════════════════════════════════
+         HEADER
+    ══════════════════════════════════════════════════════ -->
+    <top>
+        <HBox
+            alignment="CENTER_LEFT"
+            prefHeight="68.0"
+            style="-fx-background-color: #1E293B; -fx-padding: 0 48 0 48;">
+            <VBox alignment="CENTER_LEFT" spacing="2.0">
+                <Label
+                    text="CondoSoft"
+                    style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <Label
+                    text="Sistema de Gestão Condominial"
+                    style="-fx-font-size: 11; -fx-text-fill: #94A3B8;"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <VBox alignment="CENTER_RIGHT" spacing="2.0">
+                <Label
+                    fx:id="lblDataAtual"
+                    text="quinta-feira, 28 de maio de 2026"
+                    style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+                <Label
+                    text="Bem-vindo ao sistema"
+                    style="-fx-font-size: 11; -fx-text-fill: #475569;"/>
+            </VBox>
+        </HBox>
+    </top>
+
+    <!-- ══════════════════════════════════════════════════════
+         CONTEÚDO PRINCIPAL
+    ══════════════════════════════════════════════════════ -->
+    <center>
+        <ScrollPane
+            fitToWidth="true"
+            style="-fx-background: #F7F8FA; -fx-background-color: #F7F8FA; -fx-border-color: transparent;">
+
+            <VBox spacing="32.0" style="-fx-background-color: #F7F8FA; -fx-padding: 48 60 48 60;">
+
+                <!-- Título da página -->
+                <VBox spacing="6.0">
+                    <Label
+                        text="Painel Principal"
+                        style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                    <Label
+                        text="Selecione um módulo para acessar as funcionalidades do sistema"
+                        style="-fx-font-size: 13; -fx-text-fill: #64748B;"/>
+                </VBox>
+
+                <Separator/>
+
+                <!-- Label de seção -->
+                <Label
+                    text="MÓDULOS DO SISTEMA"
+                    style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+
+                <!-- ── Grid de Cards de Módulos (4 colunas × 2 linhas) ── -->
+                <GridPane hgap="20.0" vgap="20.0">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="25.0"/>
+                        <ColumnConstraints percentWidth="25.0"/>
+                        <ColumnConstraints percentWidth="25.0"/>
+                        <ColumnConstraints percentWidth="25.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="190.0"/>
+                        <RowConstraints minHeight="190.0"/>
+                    </rowConstraints>
+
+                    <!-- ─── UNIDADES ─── -->
+                    <VBox
+                        GridPane.columnIndex="0" GridPane.rowIndex="0"
+                        spacing="14.0"
+                        style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                        <HBox
+                            alignment="CENTER"
+                            prefWidth="44.0" prefHeight="44.0" maxWidth="44.0"
+                            style="-fx-background-color: #EFF6FF; -fx-background-radius: 10;">
+                            <Label text="🏢" style="-fx-font-size: 20;"/>
+                        </HBox>
+                        <VBox spacing="5.0">
+                            <Label text="Unidades"
+                                   style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                            <Label text="Cadastre e gerencie as unidades do condomínio"
+                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;"
+                                   wrapText="true"/>
+                        </VBox>
+                        <Region VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="btnModuloUnidades" text="Acessar →"
+                                onAction="#abrirUnidades" maxWidth="Infinity"
+                                style="-fx-background-color: #2563EB; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                    </VBox>
+
+                    <!-- ─── MORADORES ─── -->
+                    <VBox
+                        GridPane.columnIndex="1" GridPane.rowIndex="0"
+                        spacing="14.0"
+                        style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                        <HBox
+                            alignment="CENTER"
+                            prefWidth="44.0" prefHeight="44.0" maxWidth="44.0"
+                            style="-fx-background-color: #F5F3FF; -fx-background-radius: 10;">
+                            <Label text="👥" style="-fx-font-size: 20;"/>
+                        </HBox>
+                        <VBox spacing="5.0">
+                            <Label text="Moradores"
+                                   style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                            <Label text="Gerencie os moradores e seus dados cadastrais"
+                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;"
+                                   wrapText="true"/>
+                        </VBox>
+                        <Region VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="btnModuloMoradores" text="Acessar →"
+                                onAction="#abrirMoradores" maxWidth="Infinity"
+                                style="-fx-background-color: #7C3AED; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                    </VBox>
+
+                    <!-- ─── RESERVAS ─── -->
+                    <VBox
+                        GridPane.columnIndex="2" GridPane.rowIndex="0"
+                        spacing="14.0"
+                        style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                        <HBox
+                            alignment="CENTER"
+                            prefWidth="44.0" prefHeight="44.0" maxWidth="44.0"
+                            style="-fx-background-color: #ECFDF5; -fx-background-radius: 10;">
+                            <Label text="📅" style="-fx-font-size: 20;"/>
+                        </HBox>
+                        <VBox spacing="5.0">
+                            <Label text="Reservas"
+                                   style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                            <Label text="Agende e controle as áreas comuns do condomínio"
+                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;"
+                                   wrapText="true"/>
+                        </VBox>
+                        <Region VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="btnModuloReservas" text="Acessar →"
+                                onAction="#abrirReservas" maxWidth="Infinity"
+                                style="-fx-background-color: #059669; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                    </VBox>
+
+                    <!-- ─── FINANCEIRO ─── -->
+                    <VBox
+                        GridPane.columnIndex="3" GridPane.rowIndex="0"
+                        spacing="14.0"
+                        style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                        <HBox
+                            alignment="CENTER"
+                            prefWidth="44.0" prefHeight="44.0" maxWidth="44.0"
+                            style="-fx-background-color: #FFFBEB; -fx-background-radius: 10;">
+                            <Label text="💰" style="-fx-font-size: 20;"/>
+                        </HBox>
+                        <VBox spacing="5.0">
+                            <Label text="Financeiro"
+                                   style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                            <Label text="Boletos, pagamentos e controle de inadimplência"
+                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;"
+                                   wrapText="true"/>
+                        </VBox>
+                        <Region VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="btnModuloFinanceiro" text="Acessar →"
+                                onAction="#abrirFinanceiro" maxWidth="Infinity"
+                                style="-fx-background-color: #D97706; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                    </VBox>
+
+                    <!-- ─── RELATÓRIOS ─── -->
+                    <VBox
+                        GridPane.columnIndex="0" GridPane.rowIndex="1"
+                        spacing="14.0"
+                        style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                        <HBox
+                            alignment="CENTER"
+                            prefWidth="44.0" prefHeight="44.0" maxWidth="44.0"
+                            style="-fx-background-color: #EEF2FF; -fx-background-radius: 10;">
+                            <Label text="📊" style="-fx-font-size: 20;"/>
+                        </HBox>
+                        <VBox spacing="5.0">
+                            <Label text="Relatórios"
+                                   style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                            <Label text="Balancetes e relatórios de inadimplência"
+                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;"
+                                   wrapText="true"/>
+                        </VBox>
+                        <Region VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="btnModuloRelatorios" text="Acessar →"
+                                onAction="#abrirRelatorios" maxWidth="Infinity"
+                                style="-fx-background-color: #4F46E5; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                    </VBox>
+
+                    <!-- ─── PORTARIA ─── -->
+                    <VBox
+                        GridPane.columnIndex="1" GridPane.rowIndex="1"
+                        spacing="14.0"
+                        style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                        <HBox
+                            alignment="CENTER"
+                            prefWidth="44.0" prefHeight="44.0" maxWidth="44.0"
+                            style="-fx-background-color: #FFF1F2; -fx-background-radius: 10;">
+                            <Label text="🚪" style="-fx-font-size: 20;"/>
+                        </HBox>
+                        <VBox spacing="5.0">
+                            <Label text="Portaria"
+                                   style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                            <Label text="Controle visitantes, prestadores e entradas"
+                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;"
+                                   wrapText="true"/>
+                        </VBox>
+                        <Region VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="btnModuloPortaria" text="Acessar →"
+                                onAction="#abrirPortaria" maxWidth="Infinity"
+                                style="-fx-background-color: #DB2777; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                    </VBox>
+
+                    <!-- ─── COMUNICAÇÃO ─── -->
+                    <VBox
+                        GridPane.columnIndex="2" GridPane.rowIndex="1"
+                        spacing="14.0"
+                        style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                        <HBox
+                            alignment="CENTER"
+                            prefWidth="44.0" prefHeight="44.0" maxWidth="44.0"
+                            style="-fx-background-color: #F0FDFA; -fx-background-radius: 10;">
+                            <Label text="📢" style="-fx-font-size: 20;"/>
+                        </HBox>
+                        <VBox spacing="5.0">
+                            <Label text="Comunicação"
+                                   style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                            <Label text="Avisos, editais e comunicados oficiais"
+                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;"
+                                   wrapText="true"/>
+                        </VBox>
+                        <Region VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="btnModuloComunicacao" text="Acessar →"
+                                onAction="#abrirComunicacao" maxWidth="Infinity"
+                                style="-fx-background-color: #0D9488; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                    </VBox>
+
+                    <!-- ─── DISCIPLINA ─── -->
+                    <VBox
+                        GridPane.columnIndex="3" GridPane.rowIndex="1"
+                        spacing="14.0"
+                        style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                        <HBox
+                            alignment="CENTER"
+                            prefWidth="44.0" prefHeight="44.0" maxWidth="44.0"
+                            style="-fx-background-color: #FFF7ED; -fx-background-radius: 10;">
+                            <Label text="⚖️" style="-fx-font-size: 20;"/>
+                        </HBox>
+                        <VBox spacing="5.0">
+                            <Label text="Disciplina"
+                                   style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                            <Label text="Reclamações, ocorrências e infrações"
+                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;"
+                                   wrapText="true"/>
+                        </VBox>
+                        <Region VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="btnModuloDisciplina" text="Acessar →"
+                                onAction="#abrirDisciplina" maxWidth="Infinity"
+                                style="-fx-background-color: #DC2626; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                    </VBox>
+
+                </GridPane>
+
+                <!-- Rodapé -->
+                <HBox alignment="CENTER" style="-fx-padding: 8 0 0 0;">
+                    <Label text="CondoSoft v1.0  ·  Sistema de Gestão Condominial"
+                           style="-fx-font-size: 11; -fx-text-fill: #CBD5E1;"/>
+                </HBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

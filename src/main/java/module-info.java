@@ -1,4 +1,5 @@
 module com.example.projetoip {
+
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -6,6 +7,8 @@ module com.example.projetoip {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
 
-    opens com.example.projetoip to javafx.fxml;
-    exports com.example.projetoip;
+    opens com.condominio to javafx.fxml;
+    opens com.condominio.controller to javafx.fxml;
+
+    exports com.condominio;
 }
