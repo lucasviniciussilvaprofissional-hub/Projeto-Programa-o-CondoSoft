@@ -44,6 +44,7 @@ public class HomeController {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
     public void abrirReservas(ActionEvent event) throws IOException {
 
         Parent root = FXMLLoader.load(
@@ -60,12 +61,12 @@ public class HomeController {
         stage.show();
     }
 
-    public void abrirFinanceiro(ActionEvent event) throws  IOException{
+    public void abrirFinanceiro(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(
-            getClass().getResource(
-                    "/com/condominio/financeiro/financeiro-view.fxml"
-            )
-    );
+                getClass().getResource(
+                        "/com/condominio/financeiro/financeiro-view.fxml"
+                )
+        );
 
         Stage stage = (Stage) ((Node) event.getSource())
                 .getScene()
@@ -76,7 +77,7 @@ public class HomeController {
     }
 
 
-    public void abrirRelatorios(ActionEvent event) throws  IOException{
+    public void abrirRelatorios(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(
                 getClass().getResource(
                         "/com/condominio/relatorio/relatorio-view.fxml"
@@ -91,8 +92,7 @@ public class HomeController {
         stage.show();
     }
 
-    public void abrirPortaria(ActionEvent event) throws IOException
-    {
+    public void abrirPortaria(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(
                 getClass().getResource(
                         "/com/condominio/portaria/portaria-view.fxml"
@@ -107,8 +107,35 @@ public class HomeController {
         stage.show();
     }
 
-    public void abrirComunicacao(ActionEvent event) {}
+    public void abrirComunicacao(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(
+                getClass().getResource(
+                        "/com/condominio/comunicacao/comunicacao-view.fxml"
+                )
+        );
 
-    public void abrirDisciplina(ActionEvent event) {}
+        Stage stage = (Stage) ((Node) event.getSource())
+                .getScene()
+                .getWindow();
 
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void abrirDisciplina(ActionEvent event) throws IOException {
+
+        Parent root = FXMLLoader.load(
+                getClass().getResource(
+                        "/com/condominio/disciplina/disciplina-view.fxml"
+                )
+        );
+
+        Stage stage = (Stage) ((Node) event.getSource())
+                .getScene()
+                .getWindow();
+
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
 }

@@ -5,33 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT: Adição da khome-view.fxml e da secção Unidade">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/HomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/PortariaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/RelatoriosController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/BalanceteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/FinanceiroController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/GerarBoletoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/PagamentosController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/AgendaAreaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ListaReservaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/NovaReservaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ReservaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/ListarMoradoresController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/portaria-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio/relatorio-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/listar-moradores-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/comunicacao/ComunicacaoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/disciplina/DisciplinaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/comunicacao/comunicacao-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/disciplina/disciplina-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/CadastrarUnidadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/CadastrarUnidadeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/DetalhesUnidadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/DetalhesUnidadeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/HomeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/ListarUnidadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/ListarUnidadeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/UnidadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/UnidadeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/cadastrar-unidade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/cadastrar-unidade-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/detalhes-unidade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/detalhes-unidade-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/home-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/home-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/listar-unidade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/listar-unidade-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/unidade-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/unidade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/unidade-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,12 +38,12 @@
     &quot;assignee&quot;: &quot;CaioMentornap&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:lucasviniciussilvaprofissional-hub/Projeto-Programa-o-CondoSoft.git&quot;,
-    &quot;accountId&quot;: &quot;cf52056f-eb42-4fd9-a47e-c2901a010278&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/lucasviniciussilvaprofissional-hub/Projeto-Programa-o-CondoSoft.git",
+    "accountId": "fb94e1c8-ca18-43e1-8cfd-478e485eeebd"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -109,17 +92,6 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/condominio/reserva" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/condominio/portaria" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.condominio" />
-    </key>
-  </component>
   <component name="RunManager">
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.condominio.MainApplication" />
@@ -153,10 +125,7 @@
       <workItem from="1779993327902" duration="846000" />
       <workItem from="1779994274999" duration="1479000" />
       <workItem from="1779995767471" duration="24000" />
-      <workItem from="1779995804513" duration="1482000" />
-      <workItem from="1780018536402" duration="631000" />
-      <workItem from="1780102152117" duration="6012000" />
-      <workItem from="1780108176461" duration="84000" />
+      <workItem from="1780108800888" duration="4050000" />
     </task>
     <task id="LOCAL-00001" summary="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros">
       <option name="closed" value="true" />
@@ -174,15 +143,7 @@
       <option name="project" value="LOCAL" />
       <updated>1779995714547</updated>
     </task>
-    <task id="LOCAL-00003" summary="FEAT: Adição da khome-view.fxml e da secção Unidade">
-      <option name="closed" value="true" />
-      <created>1779995925557</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1779995925557</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,24 +163,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros" />
     <MESSAGE value="FEAT: Adição da home-view.fxml e da secção Unidade" />
-    <MESSAGE value="FEAT: Adição da khome-view.fxml e da secção Unidade" />
-    <option name="LAST_COMMIT_MESSAGE" value="FEAT: Adição da khome-view.fxml e da secção Unidade" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/condominio/HomeController.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/condominio/HomeController.java</url>
-          <line>79</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <option name="LAST_COMMIT_MESSAGE" value="FEAT: Adição da home-view.fxml e da secção Unidade" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
