@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="financeiroRoot" prefHeight="750.0" prefWidth="1200.0"
+            style="-fx-background-color: #F7F8FA;"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.condominio.controller.financeiro.FinanceiroController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="68.0"
+              style="-fx-background-color: #1E293B; -fx-padding: 0 48 0 48;">
+            <VBox alignment="CENTER_LEFT" spacing="2.0">
+                <Label text="CondoSoft" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                <Label text="Financeiro" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnVoltarHome" text="← Início" onAction="#voltarHome"
+                    style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-font-size: 13;
+                           -fx-cursor: hand; -fx-border-color: #334155; -fx-border-radius: 8;
+                           -fx-background-radius: 8; -fx-padding: 8 20;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true"
+                    style="-fx-background: #F7F8FA; -fx-background-color: #F7F8FA; -fx-border-color: transparent;">
+            <VBox spacing="32.0" style="-fx-background-color: #F7F8FA; -fx-padding: 48 60 48 60;">
+
+                <HBox spacing="6.0" alignment="CENTER_LEFT">
+                    <Label text="Início" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarHome"/>
+                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+                    <Label text="Financeiro" style="-fx-font-size: 12; -fx-text-fill: #1E293B;"/>
+                </HBox>
+
+                <VBox spacing="6.0">
+                    <Label text="Gestão Financeira"
+                           style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                    <Label text="Controle de boletos, pagamentos e inadimplência do condomínio"
+                           style="-fx-font-size: 13; -fx-text-fill: #64748B;"/>
+                </VBox>
+
+                <Separator/>
+
+                <!-- KPIs rápidos -->
+                <GridPane hgap="16.0" vgap="16.0">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="25.0"/>
+                        <ColumnConstraints percentWidth="25.0"/>
+                        <ColumnConstraints percentWidth="25.0"/>
+                        <ColumnConstraints percentWidth="25.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="90.0"/>
+                    </rowConstraints>
+                    <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" alignment="CENTER_LEFT" spacing="6.0"
+                          style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0;
+                                 -fx-border-radius: 12; -fx-border-width: 1; -fx-padding: 20 24;">
+                        <Label text="ARRECADADO (MÊS)" style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                        <Label fx:id="lblArrecadado" text="R$ 0,00"
+                               style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #059669;"/>
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="CENTER_LEFT" spacing="6.0"
+                          style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0;
+                                 -fx-border-radius: 12; -fx-border-width: 1; -fx-padding: 20 24;">
+                        <Label text="INADIMPLÊNCIA" style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                        <Label fx:id="lblInadimplencia" text="R$ 0,00"
+                               style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #DC2626;"/>
+                    </VBox>
+                    <VBox GridPane.columnIndex="2" GridPane.rowIndex="0" alignment="CENTER_LEFT" spacing="6.0"
+                          style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0;
+                                 -fx-border-radius: 12; -fx-border-width: 1; -fx-padding: 20 24;">
+                        <Label text="BOLETOS ABERTOS" style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                        <Label fx:id="lblBoletosAbertos" text="0"
+                               style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #D97706;"/>
+                    </VBox>
+                    <VBox GridPane.columnIndex="3" GridPane.rowIndex="0" alignment="CENTER_LEFT" spacing="6.0"
+                          style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0;
+                                 -fx-border-radius: 12; -fx-border-width: 1; -fx-padding: 20 24;">
+                        <Label text="DEVEDORES" style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                        <Label fx:id="lblDevedores" text="0 unidades"
+                               style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #7C3AED;"/>
+                    </VBox>
+                </GridPane>
+
+                <Label text="MÓDULOS" style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+
+                <!-- Cards de módulo -->
+                <GridPane hgap="24.0" vgap="24.0">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="33.33"/>
+                        <ColumnConstraints percentWidth="33.33"/>
+                        <ColumnConstraints percentWidth="33.33"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="220.0"/>
+                    </rowConstraints>
+
+                    <!-- Gerar Boleto -->
+                    <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="16.0"
+                          style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0;
+                                 -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 32;
+                                 -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                        <VBox alignment="CENTER" prefWidth="56.0" prefHeight="56.0" maxWidth="56.0"
+                              style="-fx-background-color: #FFFBEB; -fx-background-radius: 14;">
+                            <Label text="🧾" style="-fx-font-size: 24;"/>
+                        </VBox>
+                        <VBox spacing="8.0">
+                            <Label text="Gerar Boleto" style="-fx-font-size: 17; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                            <Label text="Gere boletos de cobrança para unidades com vencimento personalizado."
+                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;" wrapText="true"/>
+                        </VBox>
+                        <Region VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="btnIrGerarBoleto" text="Gerar Boleto →"
+                                onAction="#abrirGerarBoleto" maxWidth="Infinity"
+                                style="-fx-background-color: #D97706; -fx-text-fill: white; -fx-background-radius: 10;
+                                       -fx-padding: 12 24; -fx-font-size: 13; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                    </VBox>
+
+                    <!-- Pagamentos -->
+                    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="16.0"
+                          style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0;
+                                 -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 32;
+                                 -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                        <VBox alignment="CENTER" prefWidth="56.0" prefHeight="56.0" maxWidth="56.0"
+                              style="-fx-background-color: #ECFDF5; -fx-background-radius: 14;">
+                            <Label text="💳" style="-fx-font-size: 24;"/>
+                        </VBox>
+                        <VBox spacing="8.0">
+                            <Label text="Pagamentos" style="-fx-font-size: 17; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                            <Label text="Registre e liste os pagamentos realizados pelas unidades do condomínio."
+                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;" wrapText="true"/>
+                        </VBox>
+                        <Region VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="btnIrPagamentos" text="Gerenciar →"
+                                onAction="#abrirPagamentos" maxWidth="Infinity"
+                                style="-fx-background-color: #059669; -fx-text-fill: white; -fx-background-radius: 10;
+                                       -fx-padding: 12 24; -fx-font-size: 13; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                    </VBox>
+
+                    <!-- Inadimplência -->
+                    <VBox GridPane.columnIndex="2" GridPane.rowIndex="0" spacing="16.0"
+                          style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0;
+                                 -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 32;
+                                 -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                        <VBox alignment="CENTER" prefWidth="56.0" prefHeight="56.0" maxWidth="56.0"
+                              style="-fx-background-color: #FFF1F2; -fx-background-radius: 14;">
+                            <Label text="⚠️" style="-fx-font-size: 24;"/>
+                        </VBox>
+                        <VBox spacing="8.0">
+                            <Label text="Inadimplência" style="-fx-font-size: 17; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                            <Label text="Visualize e gerencie as unidades com pagamentos em atraso."
+                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;" wrapText="true"/>
+                        </VBox>
+                        <Region VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="btnIrInadimplencia" text="Gerenciar →"
+                                onAction="#abrirInadimplencia" maxWidth="Infinity"
+                                style="-fx-background-color: #DC2626; -fx-text-fill: white; -fx-background-radius: 10;
+                                       -fx-padding: 12 24; -fx-font-size: 13; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                    </VBox>
+                </GridPane>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

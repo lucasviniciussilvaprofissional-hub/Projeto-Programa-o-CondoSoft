@@ -1,4 +1,4 @@
-package com.condominio.controller;
+package com.condominio.controller.unidade;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +22,7 @@ public class CadastrarUnidadeController {
     }
 
     public void voltarUnidades(ActionEvent event) {
-        trocarTela(event, "/com/condominio/unidade-view.fxml");
+        trocarTela(event, "/com/condominio/unidade/unidade-view.fxml");
     }
 
     // ==========================
@@ -34,7 +34,7 @@ public class CadastrarUnidadeController {
     }
 
     public void voltarUnidades(MouseEvent event) {
-        trocarTela(event, "/com/condominio/unidade-view.fxml");
+        trocarTela(event, "/com/condominio/unidade/unidade-view.fxml");
     }
 
     // ==========================

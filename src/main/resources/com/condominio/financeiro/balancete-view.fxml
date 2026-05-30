@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="balanceteRoot" prefHeight="750.0" prefWidth="1200.0"
+            style="-fx-background-color: #F7F8FA;"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.condominio.controller.financeiro.BalanceteController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="68.0"
+              style="-fx-background-color: #1E293B; -fx-padding: 0 48 0 48;">
+            <VBox alignment="CENTER_LEFT" spacing="2.0">
+                <Label text="CondoSoft" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                <Label text="Balancete Financeiro" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="12.0" alignment="CENTER_RIGHT">
+                <Button fx:id="btnExportarPDF" text="⬇  Exportar PDF" onAction="#exportarPDF"
+                        style="-fx-background-color: #4F46E5; -fx-text-fill: white; -fx-font-size: 13;
+                               -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 8; -fx-padding: 8 20;"/>
+                <Button fx:id="btnVoltarRelatorios" text="← Relatórios" onAction="#voltarRelatorios"
+                        style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-font-size: 13;
+                               -fx-cursor: hand; -fx-border-color: #334155; -fx-border-radius: 8;
+                               -fx-background-radius: 8; -fx-padding: 8 20;"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true"
+                    style="-fx-background: #F7F8FA; -fx-background-color: #F7F8FA; -fx-border-color: transparent;">
+            <VBox spacing="28.0" style="-fx-background-color: #F7F8FA; -fx-padding: 40 60 40 60;">
+
+                <HBox spacing="6.0" alignment="CENTER_LEFT">
+                    <Label text="Início" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarHome"/>
+                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+                    <Label text="Relatórios" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarRelatorios"/>
+                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+                    <Label text="Balancete" style="-fx-font-size: 12; -fx-text-fill: #1E293B;"/>
+                </HBox>
+
+                <!-- Seletor de período -->
+                <VBox spacing="16.0"
+                      style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0;
+                             -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 28;
+                             -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                    <Label text="PERÍODO DO BALANCETE" style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                    <HBox alignment="CENTER_LEFT" spacing="16.0">
+                        <VBox spacing="6.0">
+                            <Label text="Mês" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <ComboBox fx:id="cmbMes" prefWidth="160.0" prefHeight="40.0"
+                                      style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                             -fx-background-radius: 8; -fx-padding: 4 8; -fx-font-size: 13;"/>
+                        </VBox>
+                        <VBox spacing="6.0">
+                            <Label text="Ano" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <ComboBox fx:id="cmbAno" prefWidth="120.0" prefHeight="40.0"
+                                      style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                             -fx-background-radius: 8; -fx-padding: 4 8; -fx-font-size: 13;"/>
+                        </VBox>
+                        <VBox spacing="6.0">
+                            <Label text=" " style="-fx-font-size: 12;"/>
+                            <Button fx:id="btnGerarBalancete" text="Gerar Balancete" onAction="#gerarBalancete"
+                                    prefHeight="40.0"
+                                    style="-fx-background-color: #4F46E5; -fx-text-fill: white; -fx-background-radius: 8;
+                                           -fx-padding: 0 28; -fx-font-size: 13; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="lblPeriodoSelecionado" text="Selecione o período acima"
+                               style="-fx-font-size: 13; -fx-text-fill: #64748B;"/>
+                    </HBox>
+                </VBox>
+
+                <!-- KPI cards -->
+                <GridPane hgap="16.0">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="25.0"/>
+                        <ColumnConstraints percentWidth="25.0"/>
+                        <ColumnConstraints percentWidth="25.0"/>
+                        <ColumnConstraints percentWidth="25.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="100.0"/>
+                    </rowConstraints>
+                    <VBox GridPane.columnIndex="0" spacing="6.0" alignment="CENTER_LEFT"
+                          style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0;
+                                 -fx-border-radius: 12; -fx-border-width: 1; -fx-padding: 22 24;">
+                        <Label text="TOTAL ARRECADADO" style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                        <Label fx:id="lblTotalArrecadado" text="R$ 0,00"
+                               style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #059669;"/>
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" spacing="6.0" alignment="CENTER_LEFT"
+                          style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0;
+                                 -fx-border-radius: 12; -fx-border-width: 1; -fx-padding: 22 24;">
+                        <Label text="TOTAL DESPESAS" style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                        <Label fx:id="lblTotalDespesas" text="R$ 0,00"
+                               style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #DC2626;"/>
+                    </VBox>
+                    <VBox GridPane.columnIndex="2" spacing="6.0" alignment="CENTER_LEFT"
+                          style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0;
+                                 -fx-border-radius: 12; -fx-border-width: 1; -fx-padding: 22 24;">
+                        <Label text="SALDO DO PERÍODO" style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                        <Label fx:id="lblSaldo" text="R$ 0,00"
+                               style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                    </VBox>
+                    <VBox GridPane.columnIndex="3" spacing="6.0" alignment="CENTER_LEFT"
+                          style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0;
+                                 -fx-border-radius: 12; -fx-border-width: 1; -fx-padding: 22 24;">
+                        <Label text="INADIMPLÊNCIA" style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                        <Label fx:id="lblInadimplenciaBalancete" text="R$ 0,00"
+                               style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #D97706;"/>
+                    </VBox>
+                </GridPane>
+
+                <!-- Tabela de lançamentos -->
+                <VBox spacing="0.0"
+                      style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0;
+                             -fx-border-radius: 16; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                    <HBox alignment="CENTER_LEFT"
+                          style="-fx-padding: 20 24 16 24; -fx-border-color: transparent transparent #F1F5F9 transparent; -fx-border-width: 1;">
+                        <Label text="Lançamentos do Período"
+                               style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <ComboBox fx:id="cmbFiltroTipo" promptText="Todos"
+                                  prefWidth="160.0" prefHeight="36.0" onAction="#filtrarLancamentos"
+                                  style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0; -fx-border-radius: 8;
+                                         -fx-background-radius: 8; -fx-border-width: 1; -fx-font-size: 12;"/>
+                    </HBox>
+                    <TableView fx:id="tabelaLancamentos" prefHeight="300.0"
+                               style="-fx-background-color: transparent; -fx-border-color: transparent;
+                                      -fx-table-cell-border-color: #F1F5F9; -fx-font-size: 13;">
+                        <columns>
+                            <TableColumn fx:id="colData" text="Data" prefWidth="110.0" style="-fx-alignment: CENTER;"/>
+                            <TableColumn fx:id="colDescricao" text="Descrição" prefWidth="280.0"/>
+                            <TableColumn fx:id="colCategoria" text="Categoria" prefWidth="150.0"/>
+                            <TableColumn fx:id="colTipo" text="Tipo" prefWidth="100.0" style="-fx-alignment: CENTER;"/>
+                            <TableColumn fx:id="colValor" text="Valor (R$)" prefWidth="130.0" style="-fx-alignment: CENTER;"/>
+                            <TableColumn fx:id="colSaldo" text="Saldo Acum." prefWidth="130.0" style="-fx-alignment: CENTER;"/>
+                        </columns>
+                        <placeholder>
+                            <VBox alignment="CENTER" spacing="10.0">
+                                <Label text="📊" style="-fx-font-size: 32;"/>
+                                <Label text="Gere o balancete para visualizar os lançamentos"
+                                       style="-fx-font-size: 13; -fx-text-fill: #94A3B8;"/>
+                            </VBox>
+                        </placeholder>
+                    </TableView>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

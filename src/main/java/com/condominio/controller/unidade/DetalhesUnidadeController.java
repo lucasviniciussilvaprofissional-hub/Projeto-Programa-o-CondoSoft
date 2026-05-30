@@ -1,4 +1,4 @@
-package com.condominio.controller;
+package com.condominio.controller.unidade;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -16,23 +16,23 @@ public class DetalhesUnidadeController {
     }
 
     public void voltarUnidades(ActionEvent event) {
-        trocarTela(event, "/com/condominio/unidade-view.fxml");
+        trocarTela(event, "/com/condominio/unidade/unidade-view.fxml");
     }
 
     public void voltarUnidades(javafx.scene.input.MouseEvent event) {
-        trocarTela(event, "/com/condominio/unidade-view.fxml");
+        trocarTela(event, "/com/condominio/unidade/unidade-view.fxml");
     }
 
     public void voltarListagem(ActionEvent event) {
-        trocarTela(event, "/com/condominio/listar-unidade-view.fxml");
+        trocarTela(event, "/com/condominio/unidade/listar-unidade-view.fxml");
     }
 
     public void voltarListagem(javafx.scene.input.MouseEvent event) {
-        trocarTela(event, "/com/condominio/listar-unidade-view.fxml");
+        trocarTela(event, "/com/condominio/unidade/listar-unidade-view.fxml");
     }
 
     public void editarUnidade(ActionEvent event) {
-        trocarTela(event, "/com/condominio/cadastrar-unidade-view.fxml");
+        trocarTela(event, "/com/condominio/unidade/cadastrar-unidade-view.fxml");
     }
 
     public void abrirGerenciarMoradores(ActionEvent event) {

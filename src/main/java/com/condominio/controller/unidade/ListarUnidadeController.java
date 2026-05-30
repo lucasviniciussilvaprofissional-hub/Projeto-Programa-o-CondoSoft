@@ -1,4 +1,4 @@
-package com.condominio.controller;
+package com.condominio.controller.unidade;
 
 import javafx.event.ActionEvent;
 import javafx.scene.input.KeyEvent;

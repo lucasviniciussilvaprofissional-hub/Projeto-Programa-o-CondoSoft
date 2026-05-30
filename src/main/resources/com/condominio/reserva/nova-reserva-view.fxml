@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="novaReservaRoot" prefHeight="750.0" prefWidth="1200.0"
+            style="-fx-background-color: #F7F8FA;"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.condominio.controller.reserva.NovaReservaController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="68.0"
+              style="-fx-background-color: #1E293B; -fx-padding: 0 48 0 48;">
+            <VBox alignment="CENTER_LEFT" spacing="2.0">
+                <Label text="CondoSoft" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                <Label text="Nova Reserva" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="12.0" alignment="CENTER_RIGHT">
+                <Button fx:id="btnVoltarReservas" text="← Reservas" onAction="#voltarReservas"
+                        style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-font-size: 13;
+                               -fx-cursor: hand; -fx-border-color: #334155; -fx-border-radius: 8;
+                               -fx-background-radius: 8; -fx-padding: 8 20;"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true"
+                    style="-fx-background: #F7F8FA; -fx-background-color: #F7F8FA; -fx-border-color: transparent;">
+            <VBox spacing="28.0" style="-fx-background-color: #F7F8FA; -fx-padding: 40 60 40 60;">
+
+                <!-- Breadcrumb -->
+                <HBox spacing="6.0" alignment="CENTER_LEFT">
+                    <Label text="Início" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarHome"/>
+                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+                    <Label text="Reservas" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarReservas"/>
+                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+                    <Label text="Nova Reserva" style="-fx-font-size: 12; -fx-text-fill: #1E293B;"/>
+                </HBox>
+
+                <VBox spacing="6.0">
+                    <Label text="Solicitar Nova Reserva"
+                           style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                    <Label text="Preencha os dados para agendar uma área comum"
+                           style="-fx-font-size: 13; -fx-text-fill: #64748B;"/>
+                </VBox>
+
+                <Separator/>
+
+                <!-- Layout 2 colunas: formulário | painel convidados -->
+                <HBox spacing="24.0" VBox.vgrow="ALWAYS">
+
+                    <!-- ── Coluna Esquerda: Formulário ── -->
+                    <VBox spacing="24.0" HBox.hgrow="ALWAYS"
+                          style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0;
+                                 -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 36;
+                                 -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+
+                        <Label text="DADOS DA RESERVA"
+                               style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                        <Separator/>
+
+                        <GridPane hgap="20.0" vgap="18.0">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50.0"/>
+                                <ColumnConstraints percentWidth="50.0"/>
+                            </columnConstraints>
+
+                            <!-- Área -->
+                            <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="6.0">
+                                <Label text="Área Comum *" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                                <ComboBox fx:id="cmbAreaComum" promptText="Selecione a área..." maxWidth="Infinity"
+                                          onAction="#verificarDisponibilidade"
+                                          style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                                 -fx-background-radius: 8; -fx-padding: 4 8; -fx-font-size: 13;"/>
+                            </VBox>
+
+                            <!-- Unidade -->
+                            <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="6.0">
+                                <Label text="Unidade *" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                                <ComboBox fx:id="cmbUnidade" promptText="Selecione a unidade..." maxWidth="Infinity"
+                                          style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                                 -fx-background-radius: 8; -fx-padding: 4 8; -fx-font-size: 13;"/>
+                            </VBox>
+
+                            <!-- Data -->
+                            <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" spacing="6.0">
+                                <Label text="Data da Reserva *" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                                <DatePicker fx:id="dpDataReserva" maxWidth="Infinity"
+                                            onAction="#verificarDisponibilidade"
+                                            style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                                   -fx-background-radius: 8; -fx-font-size: 13;"/>
+                            </VBox>
+
+                            <!-- Horário Início -->
+                            <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="6.0">
+                                <Label text="Horário de Início *" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                                <ComboBox fx:id="cmbHorarioInicio" promptText="Selecione..." maxWidth="Infinity"
+                                          onAction="#verificarDisponibilidade"
+                                          style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                                 -fx-background-radius: 8; -fx-padding: 4 8; -fx-font-size: 13;"/>
+                            </VBox>
+
+                            <!-- Horário Fim -->
+                            <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" spacing="6.0">
+                                <Label text="Horário de Término *" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                                <ComboBox fx:id="cmbHorarioFim" promptText="Selecione..." maxWidth="Infinity"
+                                          style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                                 -fx-background-radius: 8; -fx-padding: 4 8; -fx-font-size: 13;"/>
+                            </VBox>
+
+                            <!-- Nº Convidados -->
+                            <VBox GridPane.columnIndex="1" GridPane.rowIndex="2" spacing="6.0">
+                                <Label text="Nº de Convidados" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                                <TextField fx:id="txtNumConvidados" promptText="Ex: 10"
+                                           style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                                  -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13;"/>
+                            </VBox>
+                        </GridPane>
+
+                        <!-- Disponibilidade feedback -->
+                        <HBox fx:id="hboxDisponibilidade" alignment="CENTER_LEFT" spacing="10.0"
+                              style="-fx-background-color: #F0FDF4; -fx-background-radius: 8; -fx-border-color: #BBF7D0;
+                                     -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 12 16;" managed="false" visible="false">
+                            <Label text="✅" style="-fx-font-size: 14;"/>
+                            <Label fx:id="lblDisponibilidade" text="Horário disponível para reserva"
+                                   style="-fx-font-size: 12; -fx-text-fill: #166534;"/>
+                        </HBox>
+
+                        <!-- Observações -->
+                        <VBox spacing="6.0">
+                            <Label text="Observações" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <TextArea fx:id="txtObservacoes" prefHeight="80.0" wrapText="true"
+                                      promptText="Informações adicionais sobre a reserva..."
+                                      style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                             -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13;"/>
+                        </VBox>
+
+                        <!-- Botões -->
+                        <HBox spacing="12.0" alignment="CENTER_RIGHT">
+                            <Button fx:id="btnCancelar" text="Cancelar" onAction="#voltarReservas"
+                                    style="-fx-background-color: #F1F5F9; -fx-text-fill: #475569; -fx-background-radius: 8;
+                                           -fx-padding: 12 28; -fx-font-size: 13; -fx-cursor: hand;
+                                           -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-border-width: 1;"/>
+                            <Button fx:id="btnConfirmarReserva" text="Confirmar Reserva" onAction="#confirmarReserva"
+                                    style="-fx-background-color: #059669; -fx-text-fill: white; -fx-background-radius: 8;
+                                           -fx-padding: 12 32; -fx-font-size: 13; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- ── Coluna Direita: Convidados ── -->
+                    <VBox spacing="16.0" prefWidth="340.0" minWidth="300.0"
+                          style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0;
+                                 -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 28;
+                                 -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+
+                        <Label text="CONVIDADOS" style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                        <Separator/>
+
+                        <!-- Adicionar convidado -->
+                        <VBox spacing="10.0">
+                            <TextField fx:id="txtNomeConvidado" promptText="Nome do convidado..."
+                                       style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                              -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13;"/>
+                            <TextField fx:id="txtDocConvidado" promptText="CPF ou RG (opcional)"
+                                       style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                              -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13;"/>
+                            <Button fx:id="btnAdicionarConvidado" text="+ Adicionar Convidado"
+                                    onAction="#adicionarConvidado" maxWidth="Infinity"
+                                    style="-fx-background-color: #EFF6FF; -fx-text-fill: #2563EB; -fx-background-radius: 8;
+                                           -fx-border-color: #BFDBFE; -fx-border-radius: 8; -fx-border-width: 1;
+                                           -fx-padding: 10 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                        </VBox>
+
+                        <Separator/>
+
+                        <!-- Lista de convidados -->
+                        <Label text="Lista de Convidados" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+
+                        <TableView fx:id="tabelaConvidados" prefHeight="260.0"
+                                   style="-fx-background-color: transparent; -fx-border-color: #E2E8F0;
+                                          -fx-border-radius: 8; -fx-background-radius: 8;
+                                          -fx-table-cell-border-color: #F1F5F9; -fx-font-size: 12;">
+                            <columns>
+                                <TableColumn fx:id="colNomeConvidado" text="Nome" prefWidth="170.0"/>
+                                <TableColumn fx:id="colDocConvidado" text="Doc." prefWidth="90.0"/>
+                                <TableColumn fx:id="colRemoverConvidado" text="" prefWidth="36.0"/>
+                            </columns>
+                            <placeholder>
+                                <VBox alignment="CENTER" spacing="6.0">
+                                    <Label text="👥" style="-fx-font-size: 24;"/>
+                                    <Label text="Nenhum convidado" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+                                </VBox>
+                            </placeholder>
+                        </TableView>
+
+                        <Label fx:id="lblContadorConvidados" text="0 convidados adicionados"
+                               style="-fx-font-size: 11; -fx-text-fill: #94A3B8;"/>
+                    </VBox>
+
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

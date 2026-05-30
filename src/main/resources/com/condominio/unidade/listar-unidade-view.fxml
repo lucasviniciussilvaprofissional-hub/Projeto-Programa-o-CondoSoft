@@ -20,7 +20,7 @@
     style="-fx-background-color: #F7F8FA;"
     xmlns="http://javafx.com/javafx/21"
     xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="com.condominio.controller.ListarUnidadeController">
+    fx:controller="com.condominio.controller.unidade.ListarUnidadeController">
 
     <!-- ══════════════════════════════════════════════════════
          HEADER
