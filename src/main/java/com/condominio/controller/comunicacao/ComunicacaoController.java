@@ -1,120 +1,52 @@
 package com.condominio.controller.comunicacao;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 
 public class ComunicacaoController {
 
     @FXML
-    private Button btnVoltarHome;
+    public void voltarInicio(ActionEvent event) throws IOException {
 
-    @FXML
-    private Button btnNovoComunicado;
-
-    @FXML
-    private Button btnEnviar;
-
-    @FXML
-    private Label lblComunicados;
-
-    @FXML
-    private Label lblLidos;
-
-    @FXML
-    private Label lblAvisosAtivos;
-
-    @FXML
-    private ComboBox<String> cmbCategoria;
-
-    @FXML
-    private ComboBox<String> cmbDestinatario;
-
-    @FXML
-    private TextField txtTitulo;
-
-    @FXML
-    private TextArea txtMensagem;
-
-    @FXML
-    private TableView<?> tabelaComunicados;
-
-    @FXML
-    private TableColumn<?, ?> colTitulo;
-
-    @FXML
-    private TableColumn<?, ?> colCategoria;
-
-    @FXML
-    private TableColumn<?, ?> colDestinatario;
-
-    @FXML
-    private TableColumn<?, ?> colData;
-
-    @FXML
-    private TableColumn<?, ?> colStatus;
-
-    @FXML
-    public void initialize() {
-
-        cmbCategoria.getItems().addAll(
-                "Aviso",
-                "Assembleia",
-                "Comunicado",
-                "Manutenção",
-                "Urgente"
+        Parent root = FXMLLoader.load(
+                getClass().getResource(
+                        "/com/condominio/home-view.fxml"
+                )
         );
 
-        cmbDestinatario.getItems().addAll(
-                "Todos os Moradores",
-                "Bloco A",
-                "Bloco B",
-                "Bloco C",
-                "Síndico"
-        );
+        Stage stage = (Stage)
+                ((Node) event.getSource())
+                        .getScene()
+                        .getWindow();
+
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    public void novaMensagem(ActionEvent event) {
 
     }
 
     @FXML
-    private void voltarHome() {
+    public void enviarComunicado(ActionEvent event) {
 
     }
 
     @FXML
-    private void novoComunicado() {
-
-        txtTitulo.clear();
-        txtMensagem.clear();
-
-        cmbCategoria.getSelectionModel().clearSelection();
-        cmbDestinatario.getSelectionModel().clearSelection();
+    public void pesquisarMensagem(ActionEvent event) {
 
     }
 
     @FXML
-    private void enviarComunicado() {
+    public void filtrarMensagens(ActionEvent event) {
 
     }
-
-    @FXML
-    private void filtrarComunicados() {
-
-    }
-
-    @FXML
-    private void visualizarComunicado() {
-
-    }
-
-    @FXML
-    private void excluirComunicado() {
-
-    }
-
 }

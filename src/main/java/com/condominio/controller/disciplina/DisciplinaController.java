@@ -2,6 +2,14 @@ package com.condominio.controller.disciplina;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+import javafx.event.ActionEvent;
+
+import java.io.IOException;
 
 public class DisciplinaController {
 
@@ -64,7 +72,20 @@ public class DisciplinaController {
     }
 
     @FXML
-    private void voltarHome() {
+    private void voltarHome(ActionEvent event) throws IOException {
+
+        Parent root = FXMLLoader.load(
+                getClass().getResource(
+                        "/com/condominio/home-view.fxml"
+                )
+        );
+
+        Stage stage = (Stage) ((Node) event.getSource())
+                .getScene()
+                .getWindow();
+
+        stage.setScene(new Scene(root));
+        stage.show();
 
     }
 

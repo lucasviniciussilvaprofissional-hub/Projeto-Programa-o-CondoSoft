@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 
 public class MainApplication extends Application {
 
+    public static void changeScene(String s) {
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
 

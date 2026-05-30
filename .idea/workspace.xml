@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT: Adição da khome-view.fxml e da secção Unidade">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/comunicacao/ComunicacaoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/disciplina/DisciplinaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/comunicacao/comunicacao-view.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/disciplina/disciplina-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/unidade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/unidade-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/comunicacao/ComunicacaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/comunicacao/ComunicacaoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/disciplina/DisciplinaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/disciplina/DisciplinaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/comunicacao/comunicacao-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/comunicacao/comunicacao-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/disciplina/disciplina-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/disciplina/disciplina-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,12 +34,12 @@
     &quot;assignee&quot;: &quot;CaioMentornap&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/lucasviniciussilvaprofissional-hub/Projeto-Programa-o-CondoSoft.git",
-    "accountId": "fb94e1c8-ca18-43e1-8cfd-478e485eeebd"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/lucasviniciussilvaprofissional-hub/Projeto-Programa-o-CondoSoft.git&quot;,
+    &quot;accountId&quot;: &quot;fb94e1c8-ca18-43e1-8cfd-478e485eeebd&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -52,7 +48,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -125,7 +121,9 @@
       <workItem from="1779993327902" duration="846000" />
       <workItem from="1779994274999" duration="1479000" />
       <workItem from="1779995767471" duration="24000" />
-      <workItem from="1780108800888" duration="4050000" />
+      <workItem from="1780108800888" duration="6170000" />
+      <workItem from="1780171723368" duration="2517000" />
+      <workItem from="1780174266223" duration="3859000" />
     </task>
     <task id="LOCAL-00001" summary="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros">
       <option name="closed" value="true" />
@@ -143,7 +141,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779995714547</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="FEAT: ADIÇÃO TELA DE COMUNICAÇÃO + DISCIPLINA.">
+      <option name="closed" value="true" />
+      <created>1780112966147</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1780112966147</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,7 +169,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros" />
     <MESSAGE value="FEAT: Adição da home-view.fxml e da secção Unidade" />
-    <option name="LAST_COMMIT_MESSAGE" value="FEAT: Adição da home-view.fxml e da secção Unidade" />
+    <MESSAGE value="FEAT: ADIÇÃO TELA DE COMUNICAÇÃO + DISCIPLINA." />
+    <option name="LAST_COMMIT_MESSAGE" value="FEAT: ADIÇÃO TELA DE COMUNICAÇÃO + DISCIPLINA." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
