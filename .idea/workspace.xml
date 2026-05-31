@@ -4,20 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT; CORREÇÃO DE BUGS DISCIPLINA E COMUNICAÇÃO">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/models/moradia/MoradorOcorrencia.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/OcorrenciaRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/interfaces/IOcorrenciaRepository.java" afterDir="false" />
+    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT; CORREÇÃO DE BUGS DISCIPLINA E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/ComunicacaoRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/interfaces/IComunicacaoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/service/ComunicacaoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/PortariaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/portaria/PortariaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/RelatoriosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/relatorio/RelatoriosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/disciplina/DisciplinaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/disciplina/DisciplinaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/enums/TipoOcorrencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/enums/TipoOcorrencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/models/disciplina/Ocorrencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/models/disciplina/Ocorrencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/models/moradia/Unidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/models/moradia/Unidade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/portaria-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/portaria-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio/relatorio-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio/relatorio-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/comunicacao/ComunicacaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/comunicacao/ComunicacaoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/comunicacao/comunicacao-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/comunicacao/comunicacao-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -137,7 +130,7 @@
       <workItem from="1780108800888" duration="6170000" />
       <workItem from="1780171723368" duration="2517000" />
       <workItem from="1780174266223" duration="4972000" />
-      <workItem from="1780189691242" duration="8726000" />
+      <workItem from="1780189691242" duration="10634000" />
     </task>
     <task id="LOCAL-00001" summary="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros">
       <option name="closed" value="true" />
@@ -171,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780179927757</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="FEAT; CORREÇÃO DE BUGS DISCIPLINA E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES">
+      <option name="closed" value="true" />
+      <created>1780200693771</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1780200693771</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,7 +194,8 @@
     <MESSAGE value="FEAT: Adição da home-view.fxml e da secção Unidade" />
     <MESSAGE value="FEAT: ADIÇÃO TELA DE COMUNICAÇÃO + DISCIPLINA." />
     <MESSAGE value="FEAT; CORREÇÃO DE BUGS DISCIPLINA E COMUNICAÇÃO" />
-    <option name="LAST_COMMIT_MESSAGE" value="FEAT; CORREÇÃO DE BUGS DISCIPLINA E COMUNICAÇÃO" />
+    <MESSAGE value="FEAT; CORREÇÃO DE BUGS DISCIPLINA E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES" />
+    <option name="LAST_COMMIT_MESSAGE" value="FEAT; CORREÇÃO DE BUGS DISCIPLINA E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

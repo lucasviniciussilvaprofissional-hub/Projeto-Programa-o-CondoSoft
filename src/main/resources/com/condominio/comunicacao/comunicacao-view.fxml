@@ -3,112 +3,116 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="comunicacaoRoot" prefHeight="750.0" prefWidth="1200.0"
+<BorderPane prefHeight="850.0"
+            prefWidth="1400.0"
             style="-fx-background-color: #F7F8FA;"
             xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.condominio.controller.comunicacao.ComunicacaoController">
 
     <top>
-        <HBox alignment="CENTER_LEFT" prefHeight="68.0"
-              style="-fx-background-color: #1E293B; -fx-padding: 0 48 0 48;">
-            <VBox spacing="2">
-                <Label text="CondoSoft"
-                       style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
-                <Label text="Comunicação"
-                       style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+        <HBox alignment="CENTER_LEFT" prefHeight="70" style="-fx-background-color: #1E293B; -fx-padding: 0 40;">
+            <VBox alignment="CENTER_LEFT" spacing="2">
+                <Label text="CondoSoft" style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;"/>
+                <Label text="Módulo de Comunicação" style="-fx-text-fill: #94A3B8; -fx-font-size: 11;"/>
             </VBox>
-
             <Region HBox.hgrow="ALWAYS"/>
-
-            <Button fx:id="btnVoltarInicio"
-                    text="🏠 Início"
-                    onAction="#voltarInicio"
-                    style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-border-color: #334155; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 20;"/>
+            <Button text="← Início" onAction="#voltarHome"
+                    style="-fx-background-color: #334155; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand; -fx-padding: 8 15;"/>
         </HBox>
     </top>
 
     <center>
-        <HBox spacing="24"
-              style="-fx-padding: 40 60 40 60; -fx-background-color: #F7F8FA;">
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: #F7F8FA;">
+            <VBox spacing="25" style="-fx-padding: 35;">
 
-            <VBox spacing="20" prefWidth="360"
-                  style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0; -fx-border-radius: 16; -fx-padding: 30;">
-
-                <Label text="NOVO COMUNICADO"
-                       style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
-
-                <Separator/>
-
-                <VBox spacing="6">
-                    <Label text="Título"/>
-                    <TextField fx:id="txtTitulo"/>
-                </VBox>
-
-                <VBox spacing="6">
-                    <Label text="Categoria"/>
-                    <ComboBox fx:id="cmbCategoria"/>
-                </VBox>
-
-                <VBox spacing="6">
-                    <Label text="Mensagem"/>
-                    <TextArea fx:id="txtMensagem"
-                              prefHeight="180"/>
-                </VBox>
-
-                <Button fx:id="btnEnviar"
-                        text="Enviar Comunicado"
-                        onAction="#enviarComunicado"
-                        maxWidth="Infinity"
-                        style="-fx-background-color: #2563EB; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12; -fx-background-radius: 10;"/>
-            </VBox>
-
-            <VBox spacing="0"
-                  HBox.hgrow="ALWAYS"
-                  style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0; -fx-border-radius: 16;">
-
-                <HBox spacing="12"
-                      alignment="CENTER_LEFT"
-                      style="-fx-padding: 20;">
-
-                    <Label text="Mensagens"
-                           style="-fx-font-size: 16; -fx-font-weight: bold;"/>
-
-                    <Region HBox.hgrow="ALWAYS"/>
-
-                    <ComboBox fx:id="cmbFiltro"
-                              promptText="Filtrar"
-                              onAction="#filtrarMensagens"
-                              prefWidth="150"/>
-
-                    <TextField fx:id="txtBusca"
-                               promptText="Pesquisar"/>
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <Label text="Início" style="-fx-text-fill: #2563EB; -fx-cursor: hand;"/>
+                    <Label text="›" style="-fx-text-fill: #94A3B8;"/>
+                    <Label text="Comunicação" style="-fx-text-fill: #64748B;"/>
                 </HBox>
 
-                <TableView fx:id="tabelaMensagens"
-                           VBox.vgrow="ALWAYS">
+                <VBox spacing="5">
+                    <Label text="Mural de Comunicação" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                    <Label text="Publique avisos urgentes ou informativos para todo o condomínio." style="-fx-text-fill: #64748B; -fx-font-size: 14;"/>
+                </VBox>
 
-                    <columns>
-                        <TableColumn fx:id="colTitulo" text="Título" prefWidth="250"/>
-                        <TableColumn fx:id="colCategoria" text="Categoria" prefWidth="180"/>
-                        <TableColumn fx:id="colData" text="Data" prefWidth="150"/>
-                        <TableColumn fx:id="colAutor" text="Autor" prefWidth="180"/>
-                    </columns>
+                <Separator style="-fx-opacity: 0.5;"/>
 
-                </TableView>
+                <HBox spacing="25" alignment="TOP_LEFT">
+
+                    <VBox prefWidth="420" spacing="18"
+                          style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0; -fx-border-radius: 12; -fx-padding: 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.02), 10, 0, 0, 4);">
+
+                        <Label text="Nova Publicação" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                        <Separator style="-fx-opacity: 0.5;"/>
+
+                        <VBox spacing="6">
+                            <Label text="Título do Comunicado" style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 12;"/>
+                            <TextField fx:id="txtTitulo" promptText="Ex: Manutenção do Elevador"
+                                       style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-padding: 10; -fx-border-color: #CBD5E1;"/>
+                        </VBox>
+
+                        <VBox spacing="6">
+                            <Label text="Tipo de Mensagem" style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 12;"/>
+                            <ComboBox fx:id="cmbCategoria" promptText="Selecione..." maxWidth="Infinity"
+                                      style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-padding: 5; -fx-border-color: #CBD5E1; -fx-background-color: white;"/>
+                        </VBox>
+
+                        <VBox spacing="6">
+                            <Label text="Conteúdo da Mensagem" style="-fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 12;"/>
+                            <TextArea fx:id="txtMensagem" promptText="Digite o texto detalhado aqui..." prefHeight="180" wrapText="true"
+                                      style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #CBD5E1; -fx-padding: 5;"/>
+                        </VBox>
+
+                        <HBox spacing="12" alignment="CENTER">
+                            <Button text="Limpar" onAction="#limparFormulario" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                                    style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-text-fill: #475569; -fx-padding: 10; -fx-cursor: hand;"/>
+
+                            <Button text="Publicar" onAction="#enviarComunicado" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                                    style="-fx-background-color: #2563EB; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 10; -fx-cursor: hand;"/>
+                        </HBox>
+                    </VBox>
+
+                    <VBox spacing="15" HBox.hgrow="ALWAYS"
+                          style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0; -fx-border-radius: 12; -fx-padding: 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.02), 10, 0, 0, 4);">
+
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Histórico de Publicações" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <ComboBox fx:id="cmbFiltrar" promptText="Filtrar por..." prefWidth="150"
+                                      style="-fx-background-radius: 8; -fx-background-color: white; -fx-border-color: #E2E8F0; -fx-border-radius: 8;"/>
+                        </HBox>
+
+                        <TableView fx:id="tabelaComunicados" prefHeight="550" VBox.vgrow="ALWAYS"
+                                   style="-fx-background-color: white; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8;">
+                            <columns>
+                                <TableColumn fx:id="colTitulo" text="Título" prefWidth="250"/>
+                                <TableColumn fx:id="colCategoria" text="Categoria" prefWidth="130"/>
+                                <TableColumn fx:id="colData" text="Data de Publicação" prefWidth="160"/>
+                                <TableColumn fx:id="colAutor" text="Autor" prefWidth="140"/>
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                            </columnResizePolicy>
+                        </TableView>
+                    </VBox>
+                </HBox>
             </VBox>
-
-        </HBox>
+        </ScrollPane>
     </center>
-
 </BorderPane>
