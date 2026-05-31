@@ -25,15 +25,7 @@ public class Unidade {
     // =========================================================================
     // CONSTRUTOR ORIGINAL (9 PARÂMETROS)
     // =========================================================================
-    public Unidade(int id,
-                   String bloco,
-                   StatusUnidade status,
-                   double fracaoIdeal,
-                   int numero,
-                   TipoUnidade tipo,
-                   String metragem,
-                   int capacidade,
-                   String situacaoFinanceira) {
+    public Unidade() {
 
         setId(id);
         setNumero(numero);

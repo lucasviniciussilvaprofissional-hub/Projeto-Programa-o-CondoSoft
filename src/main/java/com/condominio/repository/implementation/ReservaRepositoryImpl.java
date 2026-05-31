@@ -8,12 +8,13 @@ import java.util.List;
 
 public class ReservaRepositoryImpl implements IReservaRepository {
 
-
-    private final List<Reserva> reservas = new ArrayList<>();
+    // Modificado para static para manter os dados vivos entre a troca de telas do JavaFX
+    private static final List<Reserva> reservas = new ArrayList<>();
 
     @Override
     public void salvar(Reserva reserva) {
         reservas.add(reserva);
+        System.out.println("[Repository] Reserva salva com sucesso. Total na memória: " + reservas.size());
     }
 
     @Override
@@ -23,8 +24,8 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 
     @Override
     public Reserva buscarPorId(int id) {
-        for (Reserva r: reservas){
-            if(r.getId() == id){
+        for (Reserva r : reservas) {
+            if (r.getId() == id) {
                 return r;
             }
         }
@@ -33,9 +34,9 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 
     @Override
     public void atualizar(Reserva reserva) {
-        for (int i= 0; i< reservas.size();i++) {
-            if(reservas.get(i).getId() == reserva.getId()){
-                reservas.set(i,reserva);
+        for (int i = 0; i < reservas.size(); i++) {
+            if (reservas.get(i).getId() == reserva.getId()) {
+                reservas.set(i, reserva);
                 return;
             }
         }
@@ -43,7 +44,6 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 
     @Override
     public void remover(int id) {
-        reservas.removeIf(r-> r.getId()==id);
+        reservas.removeIf(r -> r.getId() == id);
     }
-
 }

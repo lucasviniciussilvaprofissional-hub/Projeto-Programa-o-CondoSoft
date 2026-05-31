@@ -2,7 +2,7 @@ package com.condominio.models.moradia;
 
 import com.condominio.enums.StatusMorador;
 
-public abstract class Morador {
+public class Morador {
 
     protected int id;
     protected String nome;
