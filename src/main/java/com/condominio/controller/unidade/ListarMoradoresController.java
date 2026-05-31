@@ -46,15 +46,6 @@ public class ListarMoradoresController {
 
     private void configurarTabela() {
 
-        // Exemplo:
-        //
-        // colNome.setCellValueFactory(
-        //      new PropertyValueFactory<>("nome")
-        // );
-        //
-        // colCpf.setCellValueFactory(
-        //      new PropertyValueFactory<>("cpf")
-        // );
     }
 
     /* ==========================

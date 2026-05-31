@@ -217,8 +217,8 @@ public class CadastrarMoradorController {
     @FXML public void voltarGerenciarMoradores(ActionEvent event) { trocarTela(event, "/com/condominio/morador/morador-view.fxml"); }
     @FXML public void voltarHome(MouseEvent event) { trocarTela(event, "/com/condominio/home-view.fxml"); }
     @FXML public void voltarUnidades(MouseEvent event) { trocarTela(event, "/com/condominio/unidade/unidade-view.fxml"); }
-    @FXML public void voltarDetalhes(MouseEvent event) { trocarTela(event, "/com/condominio/unidade/detalhes-unidade-view.fxml"); }
-
+    @FXML public void voltarDetalhes(MouseEvent event) { trocarTela(event, "/com/condominio/unidade/unidade-view.fxml"); }
+    
     private void trocarTela(javafx.event.Event event, String caminhoFXML) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(caminhoFXML));

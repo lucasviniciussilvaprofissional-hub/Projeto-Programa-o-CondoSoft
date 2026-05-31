@@ -35,7 +35,7 @@
                 <HBox spacing="8.0" alignment="CENTER_LEFT">
                     <Label text="Detalhes da Unidade"
                            style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
-                    <Label fx:id="lblBadgeUnidade" text="Apto 101 – Bloco A"
+                    <Label fx:id="lblBadgeUnidade"
                            style="-fx-background-color: #334155; -fx-text-fill: #94A3B8; -fx-background-radius: 6; -fx-padding: 4 12; -fx-font-size: 12;"/>
                 </HBox>
             </VBox>
