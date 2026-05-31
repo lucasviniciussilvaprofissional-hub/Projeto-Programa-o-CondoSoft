@@ -175,7 +175,25 @@
                             <TextField fx:id="txtFracaoIdeal"
                                        promptText="Ex: 1.25"
                                        style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #1E293B;"/>
+
+                            <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" spacing="6.0">
+                                <Label text="Situação Financeira"
+                                       style="-fx-font-size: 12;
+                            -fx-font-weight: bold;
+                            -fx-text-fill: #374151;"/>
+
+                                <ComboBox fx:id="cmbSituacaoFinanceira"
+                                          promptText="Selecione..."
+                                          maxWidth="Infinity"
+                                          style="-fx-background-color: white;
+                                 -fx-border-color: #CBD5E1;
+                                 -fx-border-radius: 8;
+                                 -fx-background-radius: 8;
+                                 -fx-padding: 4 8;
+                                 -fx-font-size: 13;"/>
+                            </VBox>
                         </VBox>
+
 
                     </GridPane>
 

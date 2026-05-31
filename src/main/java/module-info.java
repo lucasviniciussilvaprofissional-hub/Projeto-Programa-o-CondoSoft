@@ -17,6 +17,7 @@ module com.example.projetoip {
     opens com.condominio.controller.disciplina to javafx.fxml;
     opens com.condominio.controller.portaria to javafx.fxml;
     opens com.condominio.controller.relatorio to javafx.fxml;
+    opens com.condominio.models.moradia to javafx.base;
 
     exports com.condominio;
 }

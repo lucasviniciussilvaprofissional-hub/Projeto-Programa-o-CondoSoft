@@ -7,7 +7,7 @@ import com.condominio.repository.interfaces.IMoradorRepository;
 
 public class MoradorRepositoryImpl implements IMoradorRepository {
 
-    private final List<Morador> moradores = new ArrayList<>();
+    private static final List<Morador> moradores = new ArrayList<>();
 
     @Override
     public void salvar(Morador morador) {

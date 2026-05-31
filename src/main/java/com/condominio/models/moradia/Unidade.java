@@ -22,10 +22,15 @@ public class Unidade {
     private List<Veiculo> veiculos;
     private List<Pet> pets;
 
-    // =========================================================================
-    // CONSTRUTOR ORIGINAL (9 PARÂMETROS)
-    // =========================================================================
-    public Unidade() {
+    public Unidade(int id,
+                   String bloco,
+                   StatusUnidade status,
+                   double fracaoIdeal,
+                   int numero,
+                   TipoUnidade tipo,
+                   String metragem,
+                   int capacidade,
+                   String situacaoFinanceira) {
 
         setId(id);
         setNumero(numero);
