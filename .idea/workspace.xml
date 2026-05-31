@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT; CORREÇÃO DE BUGS DISCIPLINA E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/ComunicacaoRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/interfaces/IComunicacaoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/service/ComunicacaoService.java" afterDir="false" />
+    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT; CORREÇÃO DE BUGS COMUNICAÇÃO E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/portaria/ControleAcessoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/portaria/EncomendasController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/portaria/OcorrenciaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/controle-acesso-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/encomendas-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/ocorrencia-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/comunicacao/ComunicacaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/comunicacao/ComunicacaoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/comunicacao/comunicacao-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/comunicacao/comunicacao-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/portaria/PortariaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/portaria/PortariaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/portaria-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/portaria-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -67,6 +70,8 @@
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
     "Application.MainApplication.executor": "Run",
+    "Maven.ProjetoIP [clean].executor": "Run",
+    "Maven.ProjetoIP [compile].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -130,7 +135,8 @@
       <workItem from="1780108800888" duration="6170000" />
       <workItem from="1780171723368" duration="2517000" />
       <workItem from="1780174266223" duration="4972000" />
-      <workItem from="1780189691242" duration="10634000" />
+      <workItem from="1780189691242" duration="10673000" />
+      <workItem from="1780233867004" duration="8446000" />
     </task>
     <task id="LOCAL-00001" summary="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros">
       <option name="closed" value="true" />
@@ -172,7 +178,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780200693771</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="FEAT; CORREÇÃO DE BUGS COMUNICAÇÃO E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES">
+      <option name="closed" value="true" />
+      <created>1780202034849</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1780202034849</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,7 +209,8 @@
     <MESSAGE value="FEAT: ADIÇÃO TELA DE COMUNICAÇÃO + DISCIPLINA." />
     <MESSAGE value="FEAT; CORREÇÃO DE BUGS DISCIPLINA E COMUNICAÇÃO" />
     <MESSAGE value="FEAT; CORREÇÃO DE BUGS DISCIPLINA E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES" />
-    <option name="LAST_COMMIT_MESSAGE" value="FEAT; CORREÇÃO DE BUGS DISCIPLINA E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES" />
+    <MESSAGE value="FEAT; CORREÇÃO DE BUGS COMUNICAÇÃO E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES" />
+    <option name="LAST_COMMIT_MESSAGE" value="FEAT; CORREÇÃO DE BUGS COMUNICAÇÃO E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
