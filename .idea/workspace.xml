@@ -4,25 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="ADD: CONTROLE ACESSO, ENCOMENDA  E OCORRENCIA E SUAS RESPECTIVAS RELAÇÕES E FUNCIONALIDADES">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/InadimplenciaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/relatorio/RelatorioController.java" afterDir="false" />
+    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="ADD: finalizado relatorio e suas respectivas opções assim como alteraçôes em reserva para armazenar o Morador que deseja fazer sua reserva">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/BalanceteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/BalanceteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/relatorio/RelatoriosController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ListaReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ListaReservaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ReservaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/models/area/AreaComum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/models/area/AreaComum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/models/area/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/models/area/Reserva.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/models/moradia/Morador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/models/moradia/Morador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/models/moradia/Unidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/models/moradia/Unidade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/ReservaRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/ReservaRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/balancete-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/balancete-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/inadimplencia-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/inadimplencia-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio/relatorio-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio/relatorio-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/lista-reserva-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/lista-reserva-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/reserva-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/reserva-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/FinanceiroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/FinanceiroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/GerarBoletoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/GerarBoletoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/PagamentosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/PagamentosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/financeiro-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/financeiro-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/gerar-boleto-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/gerar-boleto-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/pagamentos-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/pagamentos-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +137,7 @@
       <workItem from="1780171723368" duration="2517000" />
       <workItem from="1780174266223" duration="4972000" />
       <workItem from="1780189691242" duration="10673000" />
-      <workItem from="1780233867004" duration="20400000" />
+      <workItem from="1780233867004" duration="24294000" />
     </task>
     <task id="LOCAL-00001" summary="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros">
       <option name="closed" value="true" />
@@ -206,7 +195,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780244073034</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="ADD: finalizado relatorio e suas respectivas opções assim como alteraçôes em reserva para armazenar o Morador que deseja fazer sua reserva">
+      <option name="closed" value="true" />
+      <created>1780258662011</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1780258662011</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,7 +228,8 @@
     <MESSAGE value="FEAT; CORREÇÃO DE BUGS DISCIPLINA E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES" />
     <MESSAGE value="FEAT; CORREÇÃO DE BUGS COMUNICAÇÃO E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES" />
     <MESSAGE value="ADD: CONTROLE ACESSO, ENCOMENDA  E OCORRENCIA E SUAS RESPECTIVAS RELAÇÕES E FUNCIONALIDADES" />
-    <option name="LAST_COMMIT_MESSAGE" value="ADD: CONTROLE ACESSO, ENCOMENDA  E OCORRENCIA E SUAS RESPECTIVAS RELAÇÕES E FUNCIONALIDADES" />
+    <MESSAGE value="ADD: finalizado relatorio e suas respectivas opções assim como alteraçôes em reserva para armazenar o Morador que deseja fazer sua reserva" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADD: finalizado relatorio e suas respectivas opções assim como alteraçôes em reserva para armazenar o Morador que deseja fazer sua reserva" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
