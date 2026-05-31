@@ -11,6 +11,7 @@ public abstract class Morador {
     protected Unidade unidade;
     protected String email;
     protected StatusMorador status;
+    protected String descricao;
 
     // =========================
     // CONSTRUTOR
@@ -37,6 +38,7 @@ public abstract class Morador {
     // =========================
     // SETTERS
     // =========================
+
 
     public void setEmail(String email) {
 
@@ -125,6 +127,7 @@ public abstract class Morador {
     // =========================
     // GETTERS
     // =========================
+
 
     public String getEmail() {
         return email;

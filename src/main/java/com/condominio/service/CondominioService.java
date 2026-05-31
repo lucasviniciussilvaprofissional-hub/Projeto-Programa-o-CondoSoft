@@ -5,6 +5,8 @@ import com.condominio.models.area.Reserva;
 import com.condominio.models.finance.Boleto;
 import com.condominio.models.moradia.Morador;
 import com.condominio.models.moradia.Unidade;
+import com.condominio.repository.implementation.MoradorRepositoryImpl;
+import com.condominio.repository.implementation.UnidadeRepositoryImpl;
 
 
 import java.time.LocalDate;
@@ -12,8 +14,8 @@ import java.util.List;
 
 public class CondominioService {
 
-    private List<Unidade> unidades;
-    private List<Morador> moradores;
+    private final MoradorRepositoryImpl moradorRepository;
+    private final UnidadeRepositoryImpl unidadeRepository;
     private List<Reserva> reservas;
     private List<Boleto> boletos;
 
@@ -22,25 +24,21 @@ public class CondominioService {
                              List<Reserva> reservas,
                              List<Boleto> boletos) {
 
-        this.unidades = unidades;
-        this.moradores = moradores;
+        this.moradorRepository = new MoradorRepositoryImpl();
+        this.unidadeRepository = new UnidadeRepositoryImpl();
         this.reservas = reservas;
         this.boletos = boletos;
     }
 
 
-    public void adicionarUnidade(Unidade unidade) {
 
-        unidades.add(unidade);
-    }
-
-
-    public void adicionarMorador(Morador morador,
-                                 Unidade unidade) {
-
-        moradores.add(morador);
+    public void adicionarMorador(Morador morador, Unidade unidade) {
 
         unidade.adicionarMorador(morador);
+
+        moradorRepository.salvar(morador);
+
+        unidadeRepository.atualizar(unidade);
     }
 
 
@@ -86,13 +84,13 @@ public class CondominioService {
 
     public List<Unidade> listarUnidades() {
 
-        return unidades;
+        return unidadeRepository.listar();
     }
 
 
     public List<Morador> listarMoradores() {
 
-        return moradores;
+        return moradorRepository.listar();
     }
 
 

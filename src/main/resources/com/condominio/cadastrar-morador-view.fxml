@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="cadastrarMoradorRoot"
+            prefHeight="750.0" prefWidth="1200.0"
+            style="-fx-background-color: #F7F8FA;"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.condominio.controller.unidade.CadastrarMoradorController">
+
+    <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="68.0"
+              style="-fx-background-color: #1E293B; -fx-padding: 0 48 0 48;">
+            <VBox alignment="CENTER_LEFT" spacing="2.0">
+                <Label text="CondoSoft"
+                       style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                <Label text="Cadastrar Morador"
+                       style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="12.0" alignment="CENTER_RIGHT">
+                <Button fx:id="btnVoltarMoradores" text="← Moradores da Unidade"
+                        onAction="#voltarGerenciarMoradores"
+                        style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-font-size: 13;
+                               -fx-cursor: hand; -fx-border-color: #334155; -fx-border-radius: 8;
+                               -fx-background-radius: 8; -fx-padding: 8 20;"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- ═══════════════════════ CONTEÚDO ═══════════════════════ -->
+    <center>
+        <ScrollPane fitToWidth="true"
+                    style="-fx-background: #F7F8FA; -fx-background-color: #F7F8FA; -fx-border-color: transparent;">
+            <VBox spacing="28.0" style="-fx-background-color: #F7F8FA; -fx-padding: 40 60 40 60;">
+
+                <!-- Breadcrumb -->
+                <HBox spacing="6.0" alignment="CENTER_LEFT">
+                    <Label text="Início" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarHome"/>
+                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+                    <Label text="Unidades" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarUnidades"/>
+                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+                    <Label text="Detalhes" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarDetalhes"/>
+                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+                    <Label text="Moradores" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarGerenciarMoradores"/>
+                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+                    <Label text="Cadastrar" style="-fx-font-size: 12; -fx-text-fill: #1E293B;"/>
+                </HBox>
+
+                <VBox spacing="6.0">
+                    <Label text="Novo Morador"
+                           style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                    <Label fx:id="lblSubtitulo"
+                           text="Preencha os dados e selecione o tipo de morador"
+                           style="-fx-font-size: 13; -fx-text-fill: #64748B;"/>
+                </VBox>
+
+                <!-- ══════════════════════════════════════════
+                     SELETOR DE TIPO — destaque visual
+                ══════════════════════════════════════════ -->
+                <HBox spacing="16.0">
+
+                    <!-- Proprietário -->
+                    <VBox fx:id="cardProprietario" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="8.0"
+                          onMouseClicked="#selecionarProprietario"
+                          style="-fx-background-color: white; -fx-background-radius: 14;
+                                 -fx-border-color: #2563EB; -fx-border-radius: 14; -fx-border-width: 2;
+                                 -fx-padding: 22 16; -fx-cursor: hand;
+                                 -fx-effect: dropshadow(gaussian, #2563EB30, 10, 0, 0, 2);">
+                        <Label text="🏠" style="-fx-font-size: 28;"/>
+                        <Label text="Proprietário"
+                               style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #2563EB;"/>
+                        <Label text="Dono da unidade"
+                               style="-fx-font-size: 11; -fx-text-fill: #64748B;"/>
+                    </VBox>
+
+                    <!-- Inquilino -->
+                    <VBox fx:id="cardInquilino" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="8.0"
+                          onMouseClicked="#selecionarInquilino"
+                          style="-fx-background-color: white; -fx-background-radius: 14;
+                                 -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 2;
+                                 -fx-padding: 22 16; -fx-cursor: hand;">
+                        <Label text="🔑" style="-fx-font-size: 28;"/>
+                        <Label text="Inquilino"
+                               style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                        <Label text="Locatário com contrato"
+                               style="-fx-font-size: 11; -fx-text-fill: #64748B;"/>
+                    </VBox>
+
+                    <!-- Dependente -->
+                    <VBox fx:id="cardDependente" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="8.0"
+                          onMouseClicked="#selecionarDependente"
+                          style="-fx-background-color: white; -fx-background-radius: 14;
+                                 -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 2;
+                                 -fx-padding: 22 16; -fx-cursor: hand;">
+                        <Label text="👨‍👩‍👧" style="-fx-font-size: 28;"/>
+                        <Label text="Dependente"
+                               style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                        <Label text="Vinculado a um responsável"
+                               style="-fx-font-size: 11; -fx-text-fill: #64748B;"/>
+                    </VBox>
+
+                </HBox>
+
+                <!-- ══════════════════════════════════════════
+                     FORMULÁRIO (campos base – sempre visíveis)
+                ══════════════════════════════════════════ -->
+                <VBox style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0;
+                             -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 36;
+                             -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);"
+                      spacing="26.0">
+
+                    <!-- ── Dados Pessoais ── -->
+                    <Label text="DADOS PESSOAIS"
+                           style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                    <Separator/>
+
+                    <GridPane hgap="24.0" vgap="18.0">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="50.0"/>
+                            <ColumnConstraints percentWidth="25.0"/>
+                            <ColumnConstraints percentWidth="25.0"/>
+                        </columnConstraints>
+
+                        <!-- Nome -->
+                        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="6.0">
+                            <Label text="Nome Completo *"
+                                   style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <TextField fx:id="txtNome" promptText="Nome completo do morador"
+                                       style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                              -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13;"/>
+                        </VBox>
+
+                        <!-- CPF -->
+                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="6.0">
+                            <Label text="CPF *"
+                                   style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <TextField fx:id="txtCpf" promptText="000.000.000-00"
+                                       style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                              -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13;"/>
+                        </VBox>
+
+                        <!-- Telefone -->
+                        <VBox GridPane.columnIndex="2" GridPane.rowIndex="0" spacing="6.0">
+                            <Label text="Telefone"
+                                   style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <TextField fx:id="txtTelefone" promptText="(00) 00000-0000"
+                                       style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                              -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13;"/>
+                        </VBox>
+
+                        <!-- E-mail -->
+                        <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" spacing="6.0">
+                            <Label text="E-mail"
+                                   style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <TextField fx:id="txtEmail" promptText="email@exemplo.com"
+                                       style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                              -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13;"/>
+                        </VBox>
+
+                        <!-- Status -->
+                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="6.0">
+                            <Label text="Status"
+                                   style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <ComboBox fx:id="cmbStatus" promptText="Selecione..." maxWidth="Infinity"
+                                      style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                             -fx-background-radius: 8; -fx-padding: 4 8; -fx-font-size: 13;"/>
+                        </VBox>
+
+                        <!-- Unidade (readonly, preenchida pelo contexto) -->
+                        <VBox GridPane.columnIndex="2" GridPane.rowIndex="1" spacing="6.0">
+                            <Label text="Unidade"
+                                   style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                            <TextField fx:id="txtUnidade" editable="false"
+                                       style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                              -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #64748B;"/>
+                        </VBox>
+                    </GridPane>
+
+                    <!-- Descrição -->
+                    <VBox spacing="6.0">
+                        <Label text="Observações"
+                               style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                        <TextArea fx:id="txtDescricao" prefHeight="72.0" wrapText="true"
+                                  promptText="Informações adicionais sobre o morador..."
+                                  style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                         -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13;"/>
+                    </VBox>
+
+                    <!-- ══════════════════════════════════
+                         SEÇÃO EXTRA: Inquilino
+                         Visibilidade controlada pelo controller
+                    ══════════════════════════════════ -->
+                    <VBox fx:id="secaoInquilino" spacing="18.0" managed="false" visible="false">
+                        <Label text="DADOS DO CONTRATO — INQUILINO"
+                               style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #059669;"/>
+                        <Separator style="-fx-border-color: #BBF7D0;"/>
+                        <GridPane hgap="24.0" vgap="18.0">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50.0"/>
+                                <ColumnConstraints percentWidth="50.0"/>
+                            </columnConstraints>
+                            <!-- Data Início Contrato -->
+                            <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="6.0">
+                                <Label text="Início do Contrato *"
+                                       style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                                <DatePicker fx:id="dpDataInicioContrato" maxWidth="Infinity"
+                                            style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                                   -fx-background-radius: 8; -fx-font-size: 13;"/>
+                            </VBox>
+                            <!-- Status do Contrato -->
+                            <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="6.0">
+                                <Label text="Status do Contrato"
+                                       style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                                <ComboBox fx:id="cmbStatusContrato" promptText="Selecione..." maxWidth="Infinity"
+                                          style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                                 -fx-background-radius: 8; -fx-padding: 4 8; -fx-font-size: 13;"/>
+                            </VBox>
+                        </GridPane>
+                    </VBox>
+
+                    <!-- ══════════════════════════════════
+                         SEÇÃO EXTRA: Dependente
+                         Visibilidade controlada pelo controller
+                    ══════════════════════════════════ -->
+                    <VBox fx:id="secaoDependente" spacing="18.0" managed="false" visible="false">
+                        <Label text="VÍNCULO — DEPENDENTE"
+                               style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #7C3AED;"/>
+                        <Separator style="-fx-border-color: #DDD6FE;"/>
+                        <GridPane hgap="24.0" vgap="18.0">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="60.0"/>
+                                <ColumnConstraints percentWidth="40.0"/>
+                            </columnConstraints>
+                            <!-- Responsável -->
+                            <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="6.0">
+                                <Label text="Responsável * (Proprietário ou Inquilino)"
+                                       style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                                <ComboBox fx:id="cmbResponsavel" promptText="Selecione o responsável..." maxWidth="Infinity"
+                                          style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                                 -fx-background-radius: 8; -fx-padding: 4 8; -fx-font-size: 13;"/>
+                            </VBox>
+                            <!-- Parentesco -->
+                            <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="6.0">
+                                <Label text="Parentesco"
+                                       style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                                <ComboBox fx:id="cmbParentesco" promptText="Selecione..." maxWidth="Infinity"
+                                          style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8;
+                                                 -fx-background-radius: 8; -fx-padding: 4 8; -fx-font-size: 13;"/>
+                            </VBox>
+                        </GridPane>
+
+                        <!-- Aviso de validação -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0"
+                              style="-fx-background-color: #F5F3FF; -fx-background-radius: 8;
+                                     -fx-border-color: #DDD6FE; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 12 16;">
+                            <Label text="ℹ️" style="-fx-font-size: 14;"/>
+                            <Label text="Dependente precisa obrigatoriamente de um responsável (Proprietário ou Inquilino) vinculado a esta unidade."
+                                   style="-fx-font-size: 11; -fx-text-fill: #5B21B6;" wrapText="true"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Nota -->
+                    <Label text="* Campos obrigatórios"
+                           style="-fx-font-size: 11; -fx-text-fill: #94A3B8;"/>
+
+                    <!-- Botões -->
+                    <HBox spacing="12.0" alignment="CENTER_RIGHT">
+                        <Button fx:id="btnLimpar" text="Limpar"
+                                onAction="#limparFormulario"
+                                style="-fx-background-color: #F1F5F9; -fx-text-fill: #475569; -fx-background-radius: 8;
+                                       -fx-padding: 12 28; -fx-font-size: 13; -fx-cursor: hand;
+                                       -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-border-width: 1;"/>
+                        <Button fx:id="btnSalvarMorador" text="Salvar Morador"
+                                onAction="#salvarMorador"
+                                style="-fx-background-color: #7C3AED; -fx-text-fill: white; -fx-background-radius: 8;
+                                       -fx-padding: 12 32; -fx-font-size: 13; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                    </HBox>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

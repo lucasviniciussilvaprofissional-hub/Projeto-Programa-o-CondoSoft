@@ -22,9 +22,6 @@ public class Unidade {
     private List<Veiculo> veiculos;
     private List<Pet> pets;
 
-    // =========================================================================
-    // CONSTRUTOR ORIGINAL (9 PARÂMETROS)
-    // =========================================================================
     public Unidade(int id,
                    String bloco,
                    StatusUnidade status,
