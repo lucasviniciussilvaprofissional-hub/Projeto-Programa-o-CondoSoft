@@ -1,4 +1,4 @@
-package com.condominio.controller.reserva;
+package com.condominio.controller.financeiro;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,21 +12,20 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
-public class ListaReservaController {
+public class InadimplenciaController {
 
     @FXML
     public void initialize() {
-        System.out.println("[CondoSoft] Tela de Reservas inicializada.");
+        System.out.println("[CondoSoft] Tela de Inadimplência inicializada.");
     }
 
     /**
-     * BOTÃO VOLTAR: Rota de busca universal para encontrar a sua Home
+     * BOTÃO VOLTAR: Rota inteligente para encontrar a sua Home
      */
     @FXML
     private void voltarHome(ActionEvent event) {
         System.out.println("[CondoSoft] Solicitando retorno para a Home...");
 
-        // Lista de caminhos onde sua home-view pode estar (baseado no seu projeto)
         String[] caminhosHome = {
                 "/com/condominio/home-view.fxml",
                 "/com/condominio/unidade/home-view.fxml",
@@ -41,7 +40,7 @@ public class ListaReservaController {
 
         try {
             if (urlHome == null) {
-                throw new IOException("O arquivo 'home-view.fxml' não foi encontrado em nenhuma pasta.");
+                throw new IOException("O arquivo 'home-view.fxml' não foi encontrado.");
             }
 
             Parent root = FXMLLoader.load(urlHome);

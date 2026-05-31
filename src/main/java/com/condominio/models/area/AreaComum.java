@@ -7,7 +7,7 @@ public class AreaComum
     private int capacidadeMaxima;
     private String descricao;
 
-    public AreaComum(int id, String nome, int capacidadeMaxima, String descricao)
+    public AreaComum(String nome, int capacidadeMaxima)
     {
         this.id = id;
         this.nome = nome;

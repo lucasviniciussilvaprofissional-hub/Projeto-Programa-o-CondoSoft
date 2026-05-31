@@ -1,72 +1,93 @@
 package com.condominio.controller.financeiro;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class BalanceteController {
 
-    public void voltarHome(ActionEvent event) {
-        trocarTela(event, "/com/condominio/home-view.fxml");
-    }
+    @FXML private ComboBox<String> cbMes;
+    @FXML private ComboBox<String> cbAno;
 
-    public void voltarHome(MouseEvent event) {
-        trocarTela(event, "/com/condominio/home-view.fxml");
-    }
-
-    public void voltarRelatorios(ActionEvent event) {
-        trocarTela(event, "/com/condominio/financeiro/relatorios-view.fxml");
-    }
-
-    public void voltarRelatorios(MouseEvent event) {
-        trocarTela(event, "/com/condominio/financeiro/relatorios-view.fxml");
-    }
-
-    public void gerarBalancete(ActionEvent event) {
-        System.out.println("Gerar balancete");
-    }
-
-    public void exportarPDF(ActionEvent event) {
-        System.out.println("Exportar PDF");
-    }
-
-    public void filtrarLancamentos(ActionEvent event) {
-        System.out.println("Filtrar lançamentos");
-    }
-
-    private void trocarTela(ActionEvent event, String caminhoFXML) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource(caminhoFXML));
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (IOException e) {
-            System.out.println("Erro ao abrir: " + caminhoFXML);
-            e.printStackTrace();
+    @FXML
+    public void initialize() {
+        System.out.println("[CondoSoft] Inicializando seletores do Balancete...");
+        if (cbMes != null) {
+            cbMes.setItems(FXCollections.observableArrayList(
+                    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+                    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+            ));
+            cbMes.setValue("Maio");
+        }
+        if (cbAno != null) {
+            cbAno.setItems(FXCollections.observableArrayList(
+                    "2024", "2025", "2026", "2027"
+            ));
+            cbAno.setValue("2026");
         }
     }
 
-    private void trocarTela(MouseEvent event, String caminhoFXML) {
+    // Vinculado ao botão "Gerar Balancete" mapeando as duas grafias possíveis
+    @FXML
+    private void gerarBalancete(ActionEvent event) {
+        System.out.println("[CondoSoft] Gerando relatório para o período selecionado...");
+    }
+
+    @FXML
+    private void generarBalancete(ActionEvent event) {
+        System.out.println("[CondoSoft] Gerando relatório para o período selecionado...");
+    }
+
+    /**
+     * BOTÃO VOLTAR: Corrigido para carregar "relatorio-view.fxml" na pasta "relatorio"
+     */
+    @FXML
+    private void voltarRelatorios(ActionEvent event) {
+        System.out.println("[CondoSoft] Solicitando retorno para o painel de relatórios...");
+
+        // Caminho corrigido com base na sua árvore de ficheiros real!
+        String rotaFxml = "/com/condominio/relatorio/relatorio-view.fxml";
+
+        URL fxmlUrl = getClass().getResource(rotaFxml);
+        if (fxmlUrl == null) {
+            fxmlUrl = BalanceteController.class.getResource(rotaFxml);
+        }
+        if (fxmlUrl == null) {
+            fxmlUrl = Thread.currentThread().getContextClassLoader().getResource(rotaFxml);
+        }
+
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(caminhoFXML));
+            if (fxmlUrl == null) {
+                throw new IOException("O ficheiro 'relatorio-view.fxml' não foi encontrado em: resources" + rotaFxml);
+            }
+
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
             stage.setScene(new Scene(root));
+            stage.setTitle("CondoSoft - Central de Relatórios");
             stage.show();
 
-        } catch (IOException e) {
-            System.out.println("Erro ao abrir: " + caminhoFXML);
+        } catch (Exception e) {
+            System.out.println("[ERRO] Erro ao carregar a tela anterior.");
             e.printStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro de Rota");
+            alert.setHeaderText("Não foi possível carregar a tela anterior");
+            alert.setContentText("Mensagem: " + e.getMessage());
+            alert.showAndWait();
         }
     }
 }
