@@ -3,6 +3,7 @@ package com.condominio.models.disciplina;
 import com.condominio.enums.StatusOcorrencia;
 import com.condominio.enums.TipoOcorrencia;
 import com.condominio.models.moradia.Morador;
+import com.condominio.models.moradia.MoradorOcorrencia;
 import com.condominio.models.moradia.Unidade;
 
 import java.time.LocalDateTime;
@@ -21,10 +22,7 @@ public class Ocorrencia {
 
     private LocalDateTime dataCriacao;
 
-    // =========================
-    // CONSTRUTOR
-    // =========================
-
+    // Construtor Completo
     public Ocorrencia(int id,
                       String titulo,
                       String descricao,
@@ -42,196 +40,117 @@ public class Ocorrencia {
         setResponsavel(responsavel);
         setUnidade(unidade);
         setDataCriacao(dataCriacao);
-
     }
 
-    // =========================
-    // SETTERS
-    // =========================
+    // Construtor Adaptado para a Tela
+    public Ocorrencia(String nomeUnidade, String nomeMorador, String tipoStr, String descricao) {
+        this.id = (int) (System.currentTimeMillis() & 0xfffffff);
+        this.titulo = "Ocorrência em " + nomeUnidade;
+        setDescricao(descricao);
 
-    public void setId(int id) {
-
-        if (id <= 0) {
-
-            throw new IllegalArgumentException("ID inválido.");
-
+        if (tipoStr != null) {
+            String tipoTratado = tipoStr.toLowerCase();
+            if (tipoTratado.contains("advert")) {
+                this.tipo = TipoOcorrencia.ADVERTENCIA;
+            } else if (tipoTratado.contains("multa")) {
+                this.tipo = TipoOcorrencia.MULTA;
+            } else if (tipoTratado.contains("barulho")) {
+                this.tipo = TipoOcorrencia.BARULHO_EXCESSIVO;
+            } else if (tipoTratado.contains("uso indevido")) {
+                this.tipo = TipoOcorrencia.USO_INDEVIDO_AREA_COMUM;
+            } else if (tipoTratado.contains("infrac") || tipoTratado.contains("infraç")) {
+                this.tipo = TipoOcorrencia.INFRACAO_REGIMENTO;
+            } else {
+                this.tipo = TipoOcorrencia.OUTROS;
+            }
+        } else {
+            this.tipo = TipoOcorrencia.OUTROS;
         }
 
-        this.id = id;
+        this.status = StatusOcorrencia.ABERTA;
+        this.unidade = new Unidade(nomeUnidade);
+        this.responsavel = new MoradorOcorrencia(nomeMorador);
+        this.dataCriacao = LocalDateTime.now();
+    }
 
+    // Métodos Auxiliares de Formatação para o JavaFX
+    public String getNomeUnidadeFormatado() {
+        return this.unidade != null ? this.unidade.toString() : "";
+    }
+
+    public String getNomeMoradorFormatado() {
+        return this.responsavel != null ? this.responsavel.getNome() : "";
+    }
+
+    // Setters
+    public void setId(int id) {
+        if (id <= 0) throw new IllegalArgumentException("ID inválido.");
+        this.id = id;
     }
 
     public void setTitulo(String titulo) {
-
-        if (titulo == null || titulo.isEmpty()) {
-
-            throw new IllegalArgumentException("Título inválido.");
-
-        }
-
+        if (titulo == null || titulo.isEmpty()) throw new IllegalArgumentException("Título inválido.");
         this.titulo = titulo;
-
     }
 
     public void setDescricao(String descricao) {
-
-        if (descricao == null || descricao.isEmpty()) {
-
-            throw new IllegalArgumentException("Descrição inválida.");
-
-        }
-
+        if (descricao == null || descricao.isEmpty()) throw new IllegalArgumentException("Descrição inválida.");
         this.descricao = descricao;
-
     }
 
     public void setTipo(TipoOcorrencia tipo) {
-
-        if (tipo == null) {
-
-            throw new IllegalArgumentException("Tipo inválido.");
-
-        }
-
+        if (tipo == null) throw new IllegalArgumentException("Tipo inválido.");
         this.tipo = tipo;
-
     }
 
     public void setStatus(StatusOcorrencia status) {
-
-        if (status == null) {
-
-            throw new IllegalArgumentException("Status inválido.");
-
-        }
-
+        if (status == null) throw new IllegalArgumentException("Status inválido.");
         this.status = status;
-
     }
 
     public void setResponsavel(Morador responsavel) {
-
-        if (responsavel == null) {
-
-            throw new IllegalArgumentException("Responsável inválido.");
-
-        }
-
+        if (responsavel == null) throw new IllegalArgumentException("Responsável inválido.");
         this.responsavel = responsavel;
-
     }
 
     public void setUnidade(Unidade unidade) {
-
-        if (unidade == null) {
-
-            throw new IllegalArgumentException("Unidade inválida.");
-
-        }
-
+        if (unidade == null) throw new IllegalArgumentException("Unidade inválida.");
         this.unidade = unidade;
-
     }
 
     public void setDataCriacao(LocalDateTime dataCriacao) {
-
-        if (dataCriacao == null) {
-
-            throw new IllegalArgumentException("Data inválida.");
-
-        }
-
+        if (dataCriacao == null) throw new IllegalArgumentException("Data inválida.");
         this.dataCriacao = dataCriacao;
-
     }
 
-    // =========================
-    // GETTERS
-    // =========================
+    // Getters
+    public int getId() { return id; }
+    public String getTitulo() { return titulo; }
+    public String getDescricao() { return descricao; }
+    public TipoOcorrencia getTipo() { return tipo; }
+    public StatusOcorrencia getStatus() { return status; }
+    public Morador getResponsavel() { return responsavel; }
+    public Unidade getUnidade() { return unidade; }
+    public LocalDateTime getDataCriacao() { return dataCriacao; }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public TipoOcorrencia getTipo() {
-        return tipo;
-    }
-
-    public StatusOcorrencia getStatus() {
-        return status;
-    }
-
-    public Morador getResponsavel() {
-        return responsavel;
-    }
-
-    public Unidade getUnidade() {
-        return unidade;
-    }
-
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
-    }
-
-    // =========================
-    // REGRAS DE NEGÓCIO
-    // =========================
-
+    // Regras de Negócio
     public boolean ocorrenciaAtiva() {
-
-        return status == StatusOcorrencia.ABERTA
-                || status == StatusOcorrencia.EM_ANDAMENTO;
-
+        return status == StatusOcorrencia.ABERTA || status == StatusOcorrencia.EM_ANDAMENTO;
     }
 
     public void iniciarAtendimento() {
-
-        if (status == StatusOcorrencia.CANCELADA) {
-
-            throw new IllegalArgumentException("Ocorrência cancelada.");
-
-        }
-
-        if (status == StatusOcorrencia.FINALIZADA) {
-
-            throw new IllegalArgumentException("Ocorrência já finalizada.");
-
-        }
-
+        if (status == StatusOcorrencia.CANCELADA) throw new IllegalArgumentException("Ocorrência cancelada.");
+        if (status == StatusOcorrencia.FINALIZADA) throw new IllegalArgumentException("Ocorrência já finalizada.");
         status = StatusOcorrencia.EM_ANDAMENTO;
-
     }
 
     public void finalizarOcorrencia() {
-
-        if (status == StatusOcorrencia.CANCELADA) {
-
-            throw new IllegalArgumentException("Ocorrência cancelada.");
-
-        }
-
+        if (status == StatusOcorrencia.CANCELADA) throw new IllegalArgumentException("Ocorrência cancelada.");
         status = StatusOcorrencia.FINALIZADA;
-
     }
 
     public void cancelarOcorrencia() {
-
-        if (status == StatusOcorrencia.FINALIZADA) {
-
-            throw new IllegalArgumentException("Ocorrência já finalizada.");
-
-        }
-
+        if (status == StatusOcorrencia.FINALIZADA) throw new IllegalArgumentException("Ocorrência já finalizada.");
         status = StatusOcorrencia.CANCELADA;
-
     }
-
 }

@@ -4,13 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="">
+    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT; CORREÇÃO DE BUGS DISCIPLINA E COMUNICAÇÃO">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/models/moradia/MoradorOcorrencia.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/OcorrenciaRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/interfaces/IOcorrenciaRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/comunicacao/ComunicacaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/comunicacao/ComunicacaoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/PortariaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/portaria/PortariaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/RelatoriosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/relatorio/RelatoriosController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/disciplina/DisciplinaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/disciplina/DisciplinaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/comunicacao/comunicacao-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/comunicacao/comunicacao-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/disciplina/disciplina-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/disciplina/disciplina-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/enums/TipoOcorrencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/enums/TipoOcorrencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/models/disciplina/Ocorrencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/models/disciplina/Ocorrencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/models/moradia/Unidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/models/moradia/Unidade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/portaria-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/portaria-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio/relatorio-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio/relatorio-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +29,7 @@
       <list>
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -62,32 +70,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;SHELLCHECK.PATH&quot;: &quot;I do mind&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#3 on dev&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.qodana&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "Application.MainApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SHELLCHECK.PATH": "I do mind",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "#3 on dev",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.condominio.repository.implementation" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.condominio.MainApplication" />
@@ -123,7 +136,8 @@
       <workItem from="1779995767471" duration="24000" />
       <workItem from="1780108800888" duration="6170000" />
       <workItem from="1780171723368" duration="2517000" />
-      <workItem from="1780174266223" duration="3859000" />
+      <workItem from="1780174266223" duration="4972000" />
+      <workItem from="1780189691242" duration="8726000" />
     </task>
     <task id="LOCAL-00001" summary="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros">
       <option name="closed" value="true" />
@@ -149,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780112966147</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="FEAT; CORREÇÃO DE BUGS DISCIPLINA E COMUNICAÇÃO">
+      <option name="closed" value="true" />
+      <created>1780179927757</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1780179927757</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,7 +192,8 @@
     <MESSAGE value="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros" />
     <MESSAGE value="FEAT: Adição da home-view.fxml e da secção Unidade" />
     <MESSAGE value="FEAT: ADIÇÃO TELA DE COMUNICAÇÃO + DISCIPLINA." />
-    <option name="LAST_COMMIT_MESSAGE" value="FEAT: ADIÇÃO TELA DE COMUNICAÇÃO + DISCIPLINA." />
+    <MESSAGE value="FEAT; CORREÇÃO DE BUGS DISCIPLINA E COMUNICAÇÃO" />
+    <option name="LAST_COMMIT_MESSAGE" value="FEAT; CORREÇÃO DE BUGS DISCIPLINA E COMUNICAÇÃO" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -16,7 +16,7 @@
             style="-fx-background-color: #F7F8FA;"
             xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.condominio.controller.PortariaController">
+            fx:controller="com.condominio.controller.portaria.PortariaController">
 
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="68.0"

@@ -1,4 +1,4 @@
-package com.condominio.controller;
+package com.condominio.controller.portaria;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class RelatoriosController {
+public class PortariaController {
 
     public void voltarHome(ActionEvent event) {
         trocarTela(event, "/com/condominio/home-view.fxml");
@@ -20,16 +20,16 @@ public class RelatoriosController {
         trocarTela(event, "/com/condominio/home-view.fxml");
     }
 
-    public void abrirBalancete(ActionEvent event) {
-        trocarTela(event, "/com/condominio/financeiro/balancete-view.fxml");
+    public void abrirControleAcesso(ActionEvent event) {
+        // trocarTela(event, "/com/condominio/portaria/controle-acesso-view.fxml");
     }
 
-    public void abrirReservas(ActionEvent event) {
-        trocarTela(event, "/com/condominio/reservas/lista-reserva-view.fxml");
+    public void abrirEncomendas(ActionEvent event) {
+        // trocarTela(event, "/com/condominio/portaria/encomendas-view.fxml");
     }
 
-    public void abrirInadimplencia(ActionEvent event) {
-        trocarTela(event, "/com/condominio/financeiro/inadimplencia-view.fxml");
+    public void abrirOcorrencias(ActionEvent event) {
+        // trocarTela(event, "/com/condominio/portaria/ocorrencias-view.fxml");
     }
 
     private void trocarTela(ActionEvent event, String caminhoFXML) {
