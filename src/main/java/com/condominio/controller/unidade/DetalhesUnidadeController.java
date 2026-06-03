@@ -27,6 +27,8 @@ public class DetalhesUnidadeController {
     @FXML private Label lblContadorMoradores;
     @FXML private Label lblContadorVeiculos;
     @FXML private Label lblContadorPets;
+    @FXML
+    private Label lblBlocoAndar;
 
     private Unidade unidadeAtual;
 
@@ -56,9 +58,69 @@ public class DetalhesUnidadeController {
         if (lblFracaoIdeal != null) lblFracaoIdeal.setText(String.valueOf(unidade.getFracaoIdeal()));
         if (lblBadgeUnidade != null) lblBadgeUnidade.setText(unidade.getNumero() + " - " + unidade.getBloco());
         if (lblBreadcrumbUnidade != null) lblBreadcrumbUnidade.setText("Unidade " + unidade.getNumero());
+        atualizarInformacoes();
 
         // Opcional: Atualizar os contadores da tela de detalhes se os métodos existirem no seu Model
         // if (lblContadorVeiculos != null) lblContadorVeiculos.setText(String.valueOf(unidade.getVeiculos().size()));
+    }
+    private void atualizarInformacoes() {
+
+        if (unidadeAtual == null) {
+            return;
+        }
+
+        lblNomeUnidade.setText(
+                unidadeAtual.getTipo() + " " + unidadeAtual.getNumero()
+        );
+
+        lblTipo.setText(
+                unidadeAtual.getTipo().toString()
+        );
+
+        lblArea.setText(
+                unidadeAtual.getMetragem()
+        );
+
+        lblStatusUnidade.setText(
+                unidadeAtual.getStatus().toString()
+        );
+
+        lblQtdMoradores.setText(
+                unidadeAtual.quantidadeMoradores() + " moradores"
+        );
+
+        lblContadorMoradores.setText(
+                unidadeAtual.quantidadeMoradores() + " moradores"
+        );
+
+        lblContadorVeiculos.setText(
+                unidadeAtual.quantidadeVeiculos() + " veículos"
+        );
+
+        lblContadorPets.setText(
+                unidadeAtual.quantidadePets() + " pets"
+        );
+
+        lblCapacidade.setText(
+                unidadeAtual.getCapacidade() + " pessoas"
+        );
+
+        lblFracaoIdeal.setText(
+                String.valueOf(unidadeAtual.getFracaoIdeal())
+        );
+
+        lblBadgeUnidade.setText(
+                unidadeAtual.getNumero() + " - " + unidadeAtual.getBloco()
+        );
+
+        lblBreadcrumbUnidade.setText(
+                "Unidade " + unidadeAtual.getNumero()
+        );
+
+        // BLOCO
+        lblBlocoAndar.setText(
+                "Bloco " + unidadeAtual.getBloco()
+        );
     }
 
     // Navegação para sub-telas (Passando a unidade)
@@ -88,12 +150,20 @@ public class DetalhesUnidadeController {
     }
 
     @FXML
-    public void voltarUnidades(MouseEvent event) {
+    public void voltarUnidades(ActionEvent event) {
+        trocarTelaSimples(event, "/com/condominio/unidade/unidade-view.fxml");
+    }
+    @FXML
+    public void voltarUnidadesBreadCrumb(ActionEvent event) {
         trocarTelaSimples(event, "/com/condominio/unidade/unidade-view.fxml");
     }
 
     @FXML
-    public void voltarListagem(MouseEvent event) {
+    public void voltarListagem(ActionEvent event) {
+        trocarTelaSimples(event, "/com/condominio/unidade/listar-unidade-view.fxml");
+    }
+    @FXML
+    public void voltarListagemBreadCrumb(MouseEvent event) {
         trocarTelaSimples(event, "/com/condominio/unidade/listar-unidade-view.fxml");
     }
 

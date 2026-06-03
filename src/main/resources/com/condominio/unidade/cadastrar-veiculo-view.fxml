@@ -31,7 +31,7 @@
             </VBox>
             <Region HBox.hgrow="ALWAYS"/>
             <Button fx:id="btnVoltarVeiculos" text="← Veículos"
-                    onAction="#voltarVeiculos"
+                    onAction="#voltarDetalhesUnidade"
                     style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-font-size: 13;
                            -fx-cursor: hand; -fx-border-color: #334155; -fx-border-radius: 8;
                            -fx-background-radius: 8; -fx-padding: 8 20;"/>
@@ -50,9 +50,9 @@
                     <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
                     <Label text="Unidades" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarUnidades"/>
                     <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
-                    <Label text="Detalhes" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarDetalhes"/>
+                    <Label text="Detalhes" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarDetalhesUnidadeBreadCrumb"/>
                     <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
-                    <Label text="Veículos" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarVeiculos"/>
+                    <Label text="Veículos" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarDetalhesUnidadeBreadCrumb"/>
                     <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
                     <Label text="Cadastrar" style="-fx-font-size: 12; -fx-text-fill: #1E293B;"/>
                 </HBox>

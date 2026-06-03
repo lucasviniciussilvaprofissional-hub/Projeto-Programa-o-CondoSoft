@@ -59,7 +59,7 @@
                 <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
                 <Label text="Unidades" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarUnidades"/>
                 <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
-                <Label text="Detalhes" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarDetalhesUnidade"/>
+                <Label text="Detalhes" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarDetalhesUnidadeBreadCrumb"/>
                 <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
                 <Label text="Pets" style="-fx-font-size: 12; -fx-text-fill: #1E293B;"/>
             </HBox>

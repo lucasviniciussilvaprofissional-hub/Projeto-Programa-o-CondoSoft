@@ -65,9 +65,9 @@
                 <HBox spacing="6.0" alignment="CENTER_LEFT">
                     <Label text="Início" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarHome"/>
                     <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
-                    <Label text="Unidades" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarUnidades"/>
-                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarListagem"/>
-                    <Label text="Listagem" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarListagem"/>
+                    <Label text="Unidades" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarUnidadesBreadCrumb"/>
+                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarListagemBreadCrumb"/>
+                    <Label text="Listagem" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarListagemBreadCrumb"/>
                     <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
                     <Label fx:id="lblBreadcrumbUnidade" text="Apto 101"
                            style="-fx-font-size: 12; -fx-text-fill: #1E293B;"/>

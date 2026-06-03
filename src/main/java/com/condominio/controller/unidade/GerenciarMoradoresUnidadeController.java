@@ -293,12 +293,64 @@ public class GerenciarMoradoresUnidadeController {
 
     @FXML
     public void voltarDetalhesUnidade(ActionEvent event) {
-        trocarTela(event, "/com/condominio/unidade/detalhes-unidade-view.fxml");
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/com/condominio/unidade/detalhes-unidade-view.fxml"
+                    )
+            );
+
+            Parent root = loader.load();
+
+            DetalhesUnidadeController controller =
+                    loader.getController();
+
+            controller.setUnidade(unidadeSelecionadaGlobal);
+
+            Stage stage = (Stage)
+                    ((Node) event.getSource())
+                            .getScene()
+                            .getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    public void voltarDetalhesUnidade(MouseEvent event) {
-        trocarTela(event, "/com/condominio/unidade/detalhes-unidade-view.fxml");
+    public void voltarDetalhesUnidadeBreadCrumb(MouseEvent event) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/com/condominio/unidade/detalhes-unidade-view.fxml"
+                    )
+            );
+
+            Parent root = loader.load();
+
+            DetalhesUnidadeController controller =
+                    loader.getController();
+
+            controller.setUnidade(unidadeSelecionadaGlobal);
+
+            Stage stage = (Stage)
+                    ((Node) event.getSource())
+                            .getScene()
+                            .getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // ───── utilidades ──────────────────────────────────────────────────────

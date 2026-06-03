@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
 public class CadastrarVeiculoController {
 
     // ───── estado global ───────────────────────────────────────────────────
@@ -165,9 +166,72 @@ public class CadastrarVeiculoController {
     }
 
     @FXML
-    public void voltarDetalhes(MouseEvent event) {
-        trocarTela(event, "/com/condominio/unidade/detalhes-unidade-view.fxml");
+    public void voltarDetalhesUnidade(ActionEvent event) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/com/condominio/unidade/detalhes-unidade-view.fxml"
+                    )
+            );
+
+            Parent root = loader.load();
+
+            DetalhesUnidadeController controller =
+                    loader.getController();
+
+            controller.setUnidade(
+                    GerenciarMoradoresUnidadeController.getUnidadeSelecionadaGlobal()
+            );
+
+            Stage stage = (Stage)
+                    ((Node) event.getSource())
+                            .getScene()
+                            .getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    @FXML
+    public void voltarDetalhesUnidadeBreadCrumb(MouseEvent event) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/com/condominio/unidade/detalhes-unidade-view.fxml"
+                    )
+            );
+
+            Parent root = loader.load();
+
+            DetalhesUnidadeController controller =
+                    loader.getController();
+
+            controller.setUnidade(
+                    GerenciarMoradoresUnidadeController.getUnidadeSelecionadaGlobal()
+            );
+
+            Stage stage = (Stage)
+                    ((Node) event.getSource())
+                            .getScene()
+                            .getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     // ───── utilidades ──────────────────────────────────────────────────────
     private void mostrarAlerta(String titulo, String header,
