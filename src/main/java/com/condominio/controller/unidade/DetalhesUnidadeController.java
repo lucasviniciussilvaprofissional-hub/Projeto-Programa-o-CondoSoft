@@ -24,25 +24,44 @@ public class DetalhesUnidadeController {
     @FXML private Label lblFracaoIdeal;
     @FXML private Label lblBadgeUnidade;
     @FXML private Label lblBreadcrumbUnidade;
+    @FXML private Label lblContadorMoradores;
+    @FXML private Label lblContadorVeiculos;
+    @FXML private Label lblContadorPets;
 
     private Unidade unidadeAtual;
 
-    // ───── setUnidade (chamado pelo controller anterior) ───────────────────
+    // ════════════════════════════════════════════════════════════════════════
+    // CORREÇÃO: O JavaFX chama este método automaticamente ao carregar a tela!
+    // ════════════════════════════════════════════════════════════════════════
+    @FXML
+    public void initialize() {
+        // Se voltamos de VeiculoController, pegamos a unidade salva globalmente lá
+        Unidade global = VeiculoController.getUnidadeSelecionadaGlobal();
+
+        if (global != null) {
+            setUnidade(global);
+        }
+    }
+
+    // Métodos de Inicialização / Dados
     public void setUnidade(Unidade unidade) {
         this.unidadeAtual = unidade;
 
-        lblNomeUnidade.setText("Unidade " + unidade.getNumero());
-        lblTipo.setText(unidade.getTipo().toString());
-        lblArea.setText(unidade.getMetragem());
-        lblCapacidade.setText(String.valueOf(unidade.getCapacidade()));
-        lblStatusUnidade.setText(unidade.getStatus().toString());
-        lblQtdMoradores.setText(unidade.quantidadeMoradores() + " morador(es)");
-        lblFracaoIdeal.setText(String.valueOf(unidade.getFracaoIdeal()));
-        lblBadgeUnidade.setText(unidade.getNumero() + " - " + unidade.getBloco());
-        lblBreadcrumbUnidade.setText("Unidade " + unidade.getNumero());
+        if (lblNomeUnidade != null) lblNomeUnidade.setText("Unidade " + unidade.getNumero());
+        if (lblTipo != null) lblTipo.setText(unidade.getTipo() != null ? unidade.getTipo().toString() : "");
+        if (lblArea != null) lblArea.setText(unidade.getMetragem());
+        if (lblCapacidade != null) lblCapacidade.setText(String.valueOf(unidade.getCapacidade()));
+        if (lblStatusUnidade != null) lblStatusUnidade.setText(unidade.getStatus() != null ? unidade.getStatus().toString() : "");
+        if (lblQtdMoradores != null) lblQtdMoradores.setText(unidade.quantidadeMoradores() + " morador(es)");
+        if (lblFracaoIdeal != null) lblFracaoIdeal.setText(String.valueOf(unidade.getFracaoIdeal()));
+        if (lblBadgeUnidade != null) lblBadgeUnidade.setText(unidade.getNumero() + " - " + unidade.getBloco());
+        if (lblBreadcrumbUnidade != null) lblBreadcrumbUnidade.setText("Unidade " + unidade.getNumero());
+
+        // Opcional: Atualizar os contadores da tela de detalhes se os métodos existirem no seu Model
+        // if (lblContadorVeiculos != null) lblContadorVeiculos.setText(String.valueOf(unidade.getVeiculos().size()));
     }
 
-    // ───── navegação para sub-telas (passando a unidade) ──────────────────
+    // Navegação para sub-telas (Passando a unidade)
     @FXML
     public void abrirGerenciarMoradores(ActionEvent event) {
         GerenciarMoradoresUnidadeController.setUnidadeSelecionadaGlobal(unidadeAtual);
@@ -62,15 +81,10 @@ public class DetalhesUnidadeController {
         trocarTelaSimples(event, "/com/condominio/unidade/pet-view.fxml");
     }
 
-    // ───── navegação genérica ──────────────────────────────────────────────
+    // Ações do Breadcrumb
     @FXML
     public void voltarHome(MouseEvent event) {
         trocarTelaSimples(event, "/com/condominio/home-view.fxml");
-    }
-
-    @FXML
-    public void voltarUnidades(ActionEvent event) {
-        trocarTelaSimples(event, "/com/condominio/unidade/unidade-view.fxml");
     }
 
     @FXML
@@ -79,12 +93,12 @@ public class DetalhesUnidadeController {
     }
 
     @FXML
-    public void voltarListagem(ActionEvent event) {
+    public void voltarListagem(MouseEvent event) {
         trocarTelaSimples(event, "/com/condominio/unidade/listar-unidade-view.fxml");
     }
 
     @FXML
-    public void voltarListagem(MouseEvent event) {
+    public void voltarListagemBotao(ActionEvent event) {
         trocarTelaSimples(event, "/com/condominio/unidade/listar-unidade-view.fxml");
     }
 
@@ -95,10 +109,9 @@ public class DetalhesUnidadeController {
 
     @FXML
     public void confirmarExclusaoUnidade(ActionEvent event) {
-        System.out.println("Excluir unidade – implementar confirma Alert aqui");
+        System.out.println("Excluir unidade? Implementar confirma Alert aqui");
     }
 
-    // ───── util ───────────────────────────────────────────────────────────
     private void trocarTelaSimples(javafx.event.Event event, String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));

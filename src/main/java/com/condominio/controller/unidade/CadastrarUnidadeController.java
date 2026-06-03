@@ -33,9 +33,6 @@ public class CadastrarUnidadeController {
     private TextField txtCapacidade;
 
     @FXML
-    private TextField txtAndar;
-
-    @FXML
     private TextField txtArea;
 
     @FXML
@@ -92,12 +89,12 @@ public class CadastrarUnidadeController {
     // ==========================
     // BREADCRUMB
     // ==========================
-
+    @FXML
     public void voltarHome(MouseEvent event) {
         trocarTela(event, "/com/condominio/home-view.fxml");
     }
-
-    public void voltarUnidades(MouseEvent event) {
+    @FXML
+    public void voltarUnidadesBreadcrumbs(MouseEvent event) {
         trocarTela(event, "/com/condominio/unidade/unidade-view.fxml");
     }
 
@@ -180,7 +177,6 @@ public class CadastrarUnidadeController {
         cmbTipo.setValue(null);
 
         txtCapacidade.clear();
-        txtAndar.clear();
         txtArea.clear();
 
         cmbStatus.setValue(null);

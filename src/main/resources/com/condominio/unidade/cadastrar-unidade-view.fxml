@@ -15,37 +15,21 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane
-    fx:id="cadastrarUnidadeRoot"
-    prefHeight="750.0"
-    prefWidth="1200.0"
-    style="-fx-background-color: #F7F8FA;"
-    xmlns="http://javafx.com/javafx/17"
-    xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="com.condominio.controller.unidade.CadastrarUnidadeController">
+<BorderPane fx:id="cadastrarUnidadeRoot" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #F7F8FA;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.condominio.controller.unidade.CadastrarUnidadeController">
 
     <!-- ══════════════════════════════════════════════════════
          HEADER
     ══════════════════════════════════════════════════════ -->
     <top>
-        <HBox
-            alignment="CENTER_LEFT"
-            prefHeight="68.0"
-            style="-fx-background-color: #1E293B; -fx-padding: 0 48 0 48;">
+        <HBox alignment="CENTER_LEFT" prefHeight="68.0" style="-fx-background-color: #1E293B; -fx-padding: 0 48 0 48;">
             <VBox alignment="CENTER_LEFT" spacing="2.0">
-                <Label text="CondoSoft"
-                       style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
-                <Label text="Cadastrar Unidade"
-                       style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <Label style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #94A3B8;" text="CondoSoft" />
+                <Label style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Cadastrar Unidade" />
             </VBox>
-            <Region HBox.hgrow="ALWAYS"/>
-            <HBox spacing="12.0" alignment="CENTER_RIGHT">
-                <Button fx:id="btnVoltarUnidades" text="← Unidades"
-                        onAction="#voltarUnidades"
-                        style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-font-size: 13; -fx-cursor: hand; -fx-border-color: #334155; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 20;"/>
-                <Button fx:id="btnVoltarHome" text="Início"
-                        onAction="#voltarHome"
-                        style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 13; -fx-cursor: hand; -fx-padding: 8 20;"/>
+            <Region HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER_RIGHT" spacing="12.0">
+                <Button fx:id="btnVoltarUnidades" onAction="#voltarUnidades" style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-font-size: 13; -fx-cursor: hand; -fx-border-color: #334155; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 20;" text="← Unidades" />
+                <Button fx:id="btnVoltarHome" onAction="#voltarHome" style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 13; -fx-cursor: hand; -fx-padding: 8 20;" text="Início" />
             </HBox>
         </HBox>
     </top>
@@ -54,144 +38,102 @@
          CONTEÚDO PRINCIPAL
     ══════════════════════════════════════════════════════ -->
     <center>
-        <ScrollPane
-            fitToWidth="true"
-            style="-fx-background: #F7F8FA; -fx-background-color: #F7F8FA; -fx-border-color: transparent;">
+        <ScrollPane fitToWidth="true" style="-fx-background: #F7F8FA; -fx-background-color: #F7F8FA; -fx-border-color: transparent;">
 
             <VBox spacing="28.0" style="-fx-background-color: #F7F8FA; -fx-padding: 48 60 48 60;">
 
                 <!-- Breadcrumb -->
-                <HBox spacing="6.0" alignment="CENTER_LEFT">
-                    <Label text="Início" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarHome"/>
-                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
-                    <Label text="Unidades" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarUnidades"/>
-                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
-                    <Label text="Cadastrar" style="-fx-font-size: 12; -fx-text-fill: #1E293B;"/>
+                <HBox alignment="CENTER_LEFT" spacing="6.0">
+                    <Label onMouseClicked="#voltarHome" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" text="Início" />
+                    <Label style="-fx-font-size: 12; -fx-text-fill: #94A3B8;" text="›" />
+                    <Label onMouseClicked="#voltarUnidadesBreadcrumbs" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" text="Unidades" />
+                    <Label style="-fx-font-size: 12; -fx-text-fill: #94A3B8;" text="›" />
+                    <Label style="-fx-font-size: 12; -fx-text-fill: #1E293B;" text="Cadastrar" />
                 </HBox>
+
 
                 <!-- Título -->
                 <VBox spacing="6.0">
-                    <Label text="Nova Unidade"
-                           style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
-                    <Label text="Preencha os campos abaixo para cadastrar uma nova unidade no sistema"
-                           style="-fx-font-size: 13; -fx-text-fill: #64748B;"/>
+                    <Label style="-fx-font-size: 26; -fx-font-weight: bold; -fx-text-fill: #1E293B;" text="Nova Unidade" />
+                    <Label style="-fx-font-size: 13; -fx-text-fill: #64748B;" text="Preencha os campos abaixo para cadastrar uma nova unidade no sistema" />
                 </VBox>
 
-                <Separator/>
+                <Separator />
 
                 <!-- ── Card do Formulário ── -->
-                <VBox
-                    style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0; -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 40; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);"
-                    spacing="28.0">
+                <VBox spacing="28.0" style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0; -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 40; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
 
                     <!-- Seção: Identificação -->
                     <VBox spacing="6.0">
-                        <Label text="IDENTIFICAÇÃO"
-                               style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
-                        <Separator/>
+                        <Label style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;" text="IDENTIFICAÇÃO" />
+                        <Separator />
                     </VBox>
 
                     <GridPane hgap="24.0" vgap="20.0">
                         <columnConstraints>
-                            <ColumnConstraints percentWidth="25.0"/>
-                            <ColumnConstraints percentWidth="25.0"/>
-                            <ColumnConstraints percentWidth="25.0"/>
-                            <ColumnConstraints percentWidth="25.0"/>
+                            <ColumnConstraints percentWidth="25.0" />
+                            <ColumnConstraints percentWidth="25.0" />
+                            <ColumnConstraints percentWidth="25.0" />
+                            <ColumnConstraints percentWidth="25.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints/>
-                            <RowConstraints/>
+                            <RowConstraints maxHeight="70.0" minHeight="56.0" prefHeight="67.0" />
+                            <RowConstraints maxHeight="72.0" minHeight="58.0" prefHeight="61.0" />
                         </rowConstraints>
 
                         <!-- Número da Unidade -->
-                        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="6.0">
-                            <Label text="Número da Unidade *"
-                                   style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
-                            <TextField fx:id="txtNumeroUnidade"
-                                       promptText="Ex: 101"
-                                       style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #1E293B;"/>
+                        <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;" text="Número da Unidade *" />
+                            <TextField fx:id="txtNumeroUnidade" promptText="Ex: 101" style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #1E293B;" />
                         </VBox>
 
                         <!-- Bloco -->
-                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="6.0">
-                            <Label text="Bloco *"
-                                   style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
-                            <TextField fx:id="txtBloco"
-                                       promptText="Ex: A"
-                                       style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #1E293B;"/>
+                        <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;" text="Bloco *" />
+                            <TextField fx:id="txtBloco" promptText="Ex: A" style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #1E293B;" />
                         </VBox>
 
                         <!-- Tipo -->
-                        <VBox GridPane.columnIndex="2" GridPane.rowIndex="0" spacing="6.0">
-                            <Label text="Tipo *"
-                                   style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
-                            <ComboBox fx:id="cmbTipo"
-                                      promptText="Selecione..."
-                                      maxWidth="Infinity"
-                                      style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 4 8; -fx-font-size: 13;"/>
+                        <VBox spacing="6.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                     <children>
+                               <Label style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;" text="Capacidade (pessoas)" />
+                               <TextField fx:id="txtCapacidade" promptText="Ex: 4" style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #1E293B;" />
+                     </children>
                         </VBox>
 
                         <!-- Capacidade -->
-                        <VBox GridPane.columnIndex="3" GridPane.rowIndex="0" spacing="6.0">
-                            <Label text="Capacidade (pessoas)"
-                                   style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
-                            <TextField fx:id="txtCapacidade"
-                                       promptText="Ex: 4"
-                                       style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #1E293B;"/>
+                        <VBox spacing="6.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;" text="Tipo *" />
+                            <ComboBox fx:id="cmbTipo" maxWidth="Infinity" promptText="Selecione..." style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 4 8; -fx-font-size: 13;" />
                         </VBox>
 
                         <!-- Andar -->
-                        <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" spacing="6.0">
-                            <Label text="Andar"
-                                   style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
-                            <TextField fx:id="txtAndar"
-                                       promptText="Ex: 1"
-                                       style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #1E293B;"/>
+                        <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                     <children>
+                                <Label style="-fx-font-size: 12;                             -fx-font-weight: bold;                             -fx-text-fill: #374151;" text="Fração Ideal (%)" />
+                               <TextField fx:id="txtFracaoIdeal" promptText="Ex: 1.25" style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #1E293B;" />
+                     </children>
                         </VBox>
 
                         <!-- Área (m²) -->
-                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="6.0">
-                            <Label text="Área (m²)"
-                                   style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
-                            <TextField fx:id="txtArea"
-                                       promptText="Ex: 75.50"
-                                       style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #1E293B;"/>
+                        <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <Label style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;" text="Área (m²)" />
+                            <TextField fx:id="txtArea" promptText="Ex: 75.50" style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #1E293B;" />
                         </VBox>
 
                         <!-- Status -->
-                        <VBox GridPane.columnIndex="2" GridPane.rowIndex="1" spacing="6.0">
-                            <Label text="Status"
-                                   style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
-                            <ComboBox fx:id="cmbStatus"
-                                      promptText="Selecione..."
-                                      maxWidth="Infinity"
-                                      style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 4 8; -fx-font-size: 13;"/>
+                        <VBox spacing="6.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                            <Label style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;" text="Status" />
+                            <ComboBox fx:id="cmbStatus" maxWidth="Infinity" promptText="Selecione..." style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 4 8; -fx-font-size: 13;" />
                         </VBox>
 
                         <!-- Fração Ideal -->
-                        <VBox GridPane.columnIndex="3" GridPane.rowIndex="1" spacing="6.0">
-                            <Label text="Fração Ideal (%)"
-                                   style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
-                            <TextField fx:id="txtFracaoIdeal"
-                                       promptText="Ex: 1.25"
-                                       style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #1E293B;"/>
+                        <VBox spacing="6.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                            <Label style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;" text="Situação Financeira" />
 
-                            <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" spacing="6.0">
-                                <Label text="Situação Financeira"
-                                       style="-fx-font-size: 12;
-                            -fx-font-weight: bold;
-                            -fx-text-fill: #374151;"/>
+                            <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-                                <ComboBox fx:id="cmbSituacaoFinanceira"
-                                          promptText="Selecione..."
-                                          maxWidth="Infinity"
-                                          style="-fx-background-color: white;
-                                 -fx-border-color: #CBD5E1;
-                                 -fx-border-radius: 8;
-                                 -fx-background-radius: 8;
-                                 -fx-padding: 4 8;
-                                 -fx-font-size: 13;"/>
-                            </VBox>
+                             <ComboBox fx:id="cmbSituacaoFinanceira" maxWidth="Infinity" prefHeight="20.0" prefWidth="227.0" promptText="Selecione..." style="-fx-background-color: white;                                  -fx-border-color: #CBD5E1;                                  -fx-border-radius: 8;                                  -fx-background-radius: 8;                                  -fx-padding: 4 8;                                  -fx-font-size: 13;" />
                         </VBox>
 
 
@@ -199,35 +141,22 @@
 
                     <!-- Seção: Observações -->
                     <VBox spacing="6.0">
-                        <Label text="INFORMAÇÕES ADICIONAIS"
-                               style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
-                        <Separator/>
+                        <Label style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;" text="INFORMAÇÕES ADICIONAIS" />
+                        <Separator />
                     </VBox>
 
                     <VBox spacing="6.0">
-                        <Label text="Observações"
-                               style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
-                        <TextArea fx:id="txtObservacoes"
-                                  promptText="Informações adicionais sobre a unidade..."
-                                  prefHeight="90.0"
-                                  style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #1E293B;"
-                                  wrapText="true"/>
+                        <Label style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #374151;" text="Observações" />
+                        <TextArea fx:id="txtObservacoes" prefHeight="90.0" promptText="Informações adicionais sobre a unidade..." style="-fx-background-color: white; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10 14; -fx-font-size: 13; -fx-text-fill: #1E293B;" wrapText="true" />
                     </VBox>
 
                     <!-- Nota obrigatório -->
-                    <Label text="* Campos obrigatórios"
-                           style="-fx-font-size: 11; -fx-text-fill: #94A3B8;"/>
+                    <Label style="-fx-font-size: 11; -fx-text-fill: #94A3B8;" text="* Campos obrigatórios" />
 
                     <!-- ── Botões de Ação ── -->
-                    <HBox spacing="12.0" alignment="CENTER_RIGHT">
-                        <Button fx:id="btnLimparFormulario"
-                                text="Limpar"
-                                onAction="#limparFormulario"
-                                style="-fx-background-color: #F1F5F9; -fx-text-fill: #475569; -fx-background-radius: 8; -fx-padding: 12 28; -fx-font-size: 13; -fx-cursor: hand; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-border-width: 1;"/>
-                        <Button fx:id="btnSalvarUnidade"
-                                text="Salvar Unidade"
-                                onAction="#salvarUnidade"
-                                style="-fx-background-color: #2563EB; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 12 32; -fx-font-size: 13; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                    <HBox alignment="CENTER_RIGHT" spacing="12.0">
+                        <Button fx:id="btnLimparFormulario" onAction="#limparFormulario" style="-fx-background-color: #F1F5F9; -fx-text-fill: #475569; -fx-background-radius: 8; -fx-padding: 12 28; -fx-font-size: 13; -fx-cursor: hand; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-border-width: 1;" text="Limpar" />
+                        <Button fx:id="btnSalvarUnidade" onAction="#salvarUnidade" style="-fx-background-color: #2563EB; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 12 32; -fx-font-size: 13; -fx-font-weight: bold; -fx-cursor: hand;" text="Salvar Unidade" />
                     </HBox>
 
                 </VBox>

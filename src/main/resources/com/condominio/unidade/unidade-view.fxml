@@ -68,18 +68,27 @@
                 <!-- Breadcrumb -->
                 <HBox spacing="6.0" alignment="CENTER_LEFT">
 
-                    <Label text="Início"
-                           style="-fx-font-size: 12;
-                                  -fx-text-fill: #2563EB;
-                                  -fx-cursor: hand;"/>
+                    <Button fx:id="btnBreadcrumbInicio"
+                            text="Início"
+                            onAction="#voltarHome"
+                            style="-fx-background-color: transparent;
+                   -fx-text-fill: #2563EB;
+                   -fx-font-size: 12;
+                   -fx-cursor: hand;
+                   -fx-padding: 0;" />
 
                     <Label text=">"
                            style="-fx-font-size: 12;
-                                  -fx-text-fill: #94A3B8;"/>
+                  -fx-text-fill: #94A3B8;" />
 
-                    <Label text="Unidades"
-                           style="-fx-font-size: 12;
-                                  -fx-text-fill: #1E293B;"/>
+                    <Button fx:id="btnBreadcrumbUnidades"
+                            text="Unidades"
+                            style="-fx-background-color: transparent;
+                   -fx-text-fill: #1E293B;
+                   -fx-font-size: 12;
+                   -fx-cursor: hand;
+                   -fx-padding: 0;" />
+
                 </HBox>
 
                 <!-- Título -->

@@ -198,7 +198,7 @@
                             <VBox spacing="3.0">
                                 <Label text="Moradores"
                                        style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
-                                <Label fx:id="lblContadorMoradores" text="2 moradores"
+                                <Label fx:id="lblContadorMoradores" text=" moradores"
                                        style="-fx-font-size: 12; -fx-text-fill: #7C3AED;"/>
                             </VBox>
                         </HBox>
