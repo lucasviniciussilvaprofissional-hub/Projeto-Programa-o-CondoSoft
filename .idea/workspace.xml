@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT: Correção de bugs e alterações e sistema de gerenciar moradores, pets e veiculos.">
+    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT: Correção de bugs nos botôes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/CadastrarUnidadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/CadastrarUnidadeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/CadastrarVeiculoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/CadastrarVeiculoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/DetalhesUnidadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/DetalhesUnidadeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/GerenciarMoradoresUnidadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/GerenciarMoradoresUnidadeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/PetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/PetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/VeiculoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/VeiculoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/cadastrar-veiculo-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/cadastrar-veiculo-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/detalhes-unidade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/detalhes-unidade-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/gerenciar-moradores-unidade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/gerenciar-moradores-unidade-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/pet-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/pet-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/veiculo-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/veiculo-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ReservaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/UnidadeRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/UnidadeRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/ocorrencia-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/ocorrencia-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/reserva-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/reserva-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +36,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:lucasviniciussilvaprofissional-hub/Projeto-Programa-o-CondoSoft.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/lucasviniciussilvaprofissional-hub/Projeto-Programa-o-CondoSoft.git&quot;,
     &quot;accountId&quot;: &quot;cf52056f-eb42-4fd9-a47e-c2901a010278&quot;
   }
 }</component>
@@ -145,6 +138,9 @@
       <workItem from="1780339493026" duration="608000" />
       <workItem from="1780411486986" duration="19000" />
       <workItem from="1780447382473" duration="4082000" />
+      <workItem from="1780510473237" duration="607000" />
+      <workItem from="1780667151133" duration="23000" />
+      <workItem from="1780684028056" duration="2830000" />
     </task>
     <task id="LOCAL-00001" summary="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros">
       <option name="closed" value="true" />
@@ -202,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780265774811</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="FEAT: Correção de bugs nos botôes">
+      <option name="closed" value="true" />
+      <created>1780504994719</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1780504994720</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,7 +231,8 @@
     <MESSAGE value="FEAT; CORREÇÃO DE BUGS DISCIPLINA E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES" />
     <MESSAGE value="FEAT; CORREÇÃO DE BUGS COMUNICAÇÃO E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES" />
     <MESSAGE value="FEAT: Correção de bugs e alterações e sistema de gerenciar moradores, pets e veiculos." />
-    <option name="LAST_COMMIT_MESSAGE" value="FEAT: Correção de bugs e alterações e sistema de gerenciar moradores, pets e veiculos." />
+    <MESSAGE value="FEAT: Correção de bugs nos botôes" />
+    <option name="LAST_COMMIT_MESSAGE" value="FEAT: Correção de bugs nos botôes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

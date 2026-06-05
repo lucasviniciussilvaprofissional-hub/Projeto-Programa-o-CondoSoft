@@ -6,8 +6,10 @@ import com.condominio.models.moradia.Morador;
 import com.condominio.models.moradia.Unidade;
 import com.condominio.enums.StatusReserva;
 import com.condominio.repository.implementation.ReservaRepositoryImpl;
+import com.condominio.repository.implementation.UnidadeRepositoryImpl;
 import com.condominio.repository.interfaces.IReservaRepository;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,35 +21,103 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Comparator;
+import java.util.List;
 
 public class ReservaController {
 
     @FXML private ComboBox<String> cbAreaComum;
+    @FXML private ComboBox<Unidade> cbUnidade; // Alterado para receber o objeto Unidade
+    @FXML private ComboBox<Morador> cbMorador; // Alterado para receber o objeto Morador
     @FXML private DatePicker dpData;
     @FXML private TextField txtHoraInicio;
     @FXML private TextField txtHoraFim;
 
     private final IReservaRepository repository = new ReservaRepositoryImpl();
+    private final UnidadeRepositoryImpl unidadeRepo = new UnidadeRepositoryImpl();
     private static int geradorId = 1;
 
     @FXML
     public void initialize() {
+        // 1. Popula as Áreas Comuns
         if (cbAreaComum != null) {
             cbAreaComum.getItems().clear();
             cbAreaComum.getItems().addAll("Salão de Festas", "Churrasqueira", "Quadra Poliesportiva", "Espaço Gourmet");
         }
+
+        // 2. Configura a exibição e popula a lista ordenada de Unidades
+        configurarFormatacaoComboBoxes();
+        carregarUnidadesOrdenadas();
+    }
+
+    private void configurarFormatacaoComboBoxes() {
+        // Configura para mostrar "Apto X - Bloco Y" no ComboBox de Unidades
+        cbUnidade.setConverter(new StringConverter<Unidade>() {
+            @Override
+            public String toString(Unidade u) {
+                return u == null ? "" : "Apto " + u.getNumero() + " - Bloco " + u.getBloco();
+            }
+            @Override
+            public Unidade fromString(String string) { return null; }
+        });
+
+        // Configura para mostrar apenas o nome do morador no ComboBox de Moradores
+        cbMorador.setConverter(new StringConverter<Morador>() {
+            @Override
+            public String toString(Morador m) {
+                return m == null ? "" : m.getNome();
+            }
+            @Override
+            public Morador fromString(String string) { return null; }
+        });
+    }
+
+    private void carregarUnidadesOrdenadas() {
+        // Busca do banco de dados e ordena pelo número do apartamento
+        List<Unidade> unidades = unidadeRepo.listar();
+        unidades.sort(Comparator.comparing(Unidade::getNumero));
+        cbUnidade.setItems(FXCollections.observableArrayList(unidades));
+    }
+
+    @FXML
+    public void aoSelecionarUnidade(ActionEvent event) {
+        Unidade unidadeSelecionada = cbUnidade.getValue();
+
+        if (unidadeSelecionada != null) {
+            // Limpa a seleção anterior de morador para evitar conflitos
+            cbMorador.setValue(null);
+
+            // Puxa e preenche dinamicamente os moradores pertencentes estritamente a esta residência
+            List<Morador> moradoresDaCasa = unidadeSelecionada.getMoradores();
+            cbMorador.setItems(FXCollections.observableArrayList(moradoresDaCasa));
+
+            if(moradoresDaCasa.isEmpty()) {
+                cbMorador.setPromptText("Nenhum morador nesta unidade");
+            } else {
+                cbMorador.setPromptText("Selecione um morador...");
+            }
+        }
+    }
+
+    @FXML
+    public void abrirSelecaoUnidade(ActionEvent event) {
+        // Mantido vazio conforme solicitado para evitar quebras com o botão antigo do seu FXML
+        System.out.println("Botão antigo 'Selecionar Unidade' clicado (Lógica descontinuada).");
     }
 
     @FXML
     private void salvarReserva(ActionEvent event) {
         try {
-            if (cbAreaComum.getValue() == null || dpData.getValue() == null ||
+            // Validação atualizada contendo os objetos de Unidade e Morador selecionados nas listas
+            if (cbAreaComum.getValue() == null || cbUnidade.getValue() == null ||
+                    cbMorador.getValue() == null || dpData.getValue() == null ||
                     txtHoraInicio.getText().isEmpty() || txtHoraFim.getText().isEmpty()) {
 
                 exibirAviso("Campos Incompletos", "Por favor, preencha todos os dados.");
@@ -61,21 +131,13 @@ public class ReservaController {
             LocalDateTime inicio = LocalDateTime.of(dataEscolhida, horaInicio);
             LocalDateTime fim = LocalDateTime.of(dataEscolhida, horaFim);
 
-            // 1. Recupera a Área Comum selecionada
             AreaComum areaSelecionada = new AreaComum(cbAreaComum.getValue(), 50);
 
-            // 2. RECUPERAÇÃO DO MORADOR REAL DO SISTEMA:
-            // Substitua as linhas abaixo pela sua classe de Sessão, Login ou busca no Banco de Dados.
-            // Exemplo: Morador moradorReal = SessaoSistema.getUsuarioLogado();
-            Morador moradorReal = obterMoradorLogado();
-            Unidade unidadeReal = obterUnidadeDoMorador(moradorReal);
+            // Resgata os objetos reais diretamente dos seletores visuais
+            Unidade unidadeReal = cbUnidade.getValue();
+            Morador moradorReal = cbMorador.getValue();
 
-            if (moradorReal == null || unidadeReal == null) {
-                exibirAviso("Erro de Sessão", "Não foi possível identificar o morador logado para realizar o agendamento.");
-                return;
-            }
-
-            // Instancia a classe Reserva usando os objetos reais do sistema
+            // Instancia a classe Reserva com os dados coletados da tela
             Reserva novaReserva = new Reserva(
                     geradorId++,
                     areaSelecionada,
@@ -87,7 +149,7 @@ public class ReservaController {
                     StatusReserva.ATIVA
             );
 
-            // Salva no Repositório Oficial
+            // Salva no Repositório
             repository.salvar(novaReserva);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -101,21 +163,6 @@ public class ReservaController {
         } catch (Exception e) {
             exibirAviso("Erro no Formulário", "Verifique se a hora está no formato correto (ex: 14:00).\nErro: " + e.getMessage());
         }
-    }
-
-    /**
-     * Métodos para você conectar com o seu sistema de Login ou DAO
-     */
-    private Morador obterMoradorLogado() {
-        // TODO: Retornar o objeto Morador que está logado no CondoSoft atualmente
-        // Exemplo: return LoginController.getMoradorAutenticado();
-        return null;
-    }
-
-    private Unidade obterUnidadeDoMorador(Morador morador) {
-        // TODO: Retornar a unidade vinculada a este morador
-        // Exemplo: return unidadeDAO.buscarPorMorador(morador.getId());
-        return null;
     }
 
     @FXML
