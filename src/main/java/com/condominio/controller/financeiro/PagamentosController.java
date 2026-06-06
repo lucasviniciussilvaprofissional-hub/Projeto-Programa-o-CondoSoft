@@ -1,80 +1,174 @@
 package com.condominio.controller.financeiro;
 
+import com.condominio.enums.StatusBoleto;
+import com.condominio.models.finance.Boleto;
+import com.condominio.models.finance.Pagamento;
+import com.condominio.repository.implementation.*;
+import com.condominio.service.FinanceiroService;
+
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.net.URL;
 
+import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+
+/** REQ07 — Registrar pagamentos de boletos e histórico. */
 public class PagamentosController {
 
-    @FXML private TableView<ItemLinhaPagamento> tvPagamentos;
-    @FXML private TableColumn<ItemLinhaPagamento, String> colDescricao;
-    @FXML private TableColumn<ItemLinhaPagamento, String> colVencimento;
-    @FXML private TableColumn<ItemLinhaPagamento, String> colPagamento;
-    @FXML private TableColumn<ItemLinhaPagamento, String> colValor;
-    @FXML private TableColumn<ItemLinhaPagamento, String> colStatus;
+    // ── FXML ──────────────────────────────────────────────────────────────
+    @FXML private TableView<Boleto>           tvBoletos;
+    @FXML private TableColumn<Boleto, String> colUnidade;
+    @FXML private TableColumn<Boleto, String> colDescricao;
+    @FXML private TableColumn<Boleto, String> colCompetencia;
+    @FXML private TableColumn<Boleto, String> colVencimento;
+    @FXML private TableColumn<Boleto, String> colValor;
+    @FXML private TableColumn<Boleto, String> colStatus;
 
+    @FXML private TableView<Pagamento>           tvHistorico;
+    @FXML private TableColumn<Pagamento, String> colHUnidade;
+    @FXML private TableColumn<Pagamento, String> colHValor;
+    @FXML private TableColumn<Pagamento, String> colHForma;
+    @FXML private TableColumn<Pagamento, String> colHData;
+
+    @FXML private ComboBox<String> cmbFiltroStatus;
+    @FXML private Label lblTotalPago;
+    @FXML private Label lblTotalPendente;
+
+    private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+    private final FinanceiroService service = new FinanceiroService(
+            new BoletoRepositoryImpl(), new DespesaRepositoryImpl(),
+            new RateioRepositoryImpl(), new PagamentoRepositoryImpl(),
+            new InadimplenciaRepositoryImpl());
+
+    // ── init ──────────────────────────────────────────────────────────────
     @FXML
     public void initialize() {
-        System.out.println("[CondoSoft] Inicializando tabelas de Pagamento...");
+        service.verificarInadimplencias();
 
-        if (colDescricao != null) colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-        if (colVencimento != null) colVencimento.setCellValueFactory(new PropertyValueFactory<>("dataVencimento"));
-        if (colPagamento != null) colPagamento.setCellValueFactory(new PropertyValueFactory<>("dataPagamento"));
-        if (colValor != null) colValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
-        if (colStatus != null) colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        cmbFiltroStatus.setItems(FXCollections.observableArrayList(
+                "Todos", "PENDENTE", "PAGO", "VENCIDO", "CANCELADO"));
+        cmbFiltroStatus.getSelectionModel().selectFirst();
 
-        if (tvPagamentos != null) {
-            ObservableList<ItemLinhaPagamento> dados = FXCollections.observableArrayList(
-                    new ItemLinhaPagamento("Taxa Condominial - Maio/2026", "10/05/2026", "08/05/2026", "R$ 350,00", "PAGO"),
-                    new ItemLinhaPagamento("Taxa Condominial - Abril/2026", "10/04/2026", "09/04/2026", "R$ 350,00", "PAGO"),
-                    new ItemLinhaPagamento("Taxa Condominial - Junho/2026", "10/06/2026", "-", "R$ 350,00", "PENDENTE")
-            );
-            tvPagamentos.setItems(dados);
-        }
+        configurarColunasBoletos();
+        configurarColunasHistorico();
+        carregarTudo();
     }
 
+    private void configurarColunasBoletos() {
+        colUnidade.setCellValueFactory(c ->
+                new SimpleStringProperty(c.getValue().getUnidade() != null
+                        ? "Apto " + c.getValue().getUnidade().getNumero() : "—"));
+        colDescricao.setCellValueFactory(c ->
+                new SimpleStringProperty("Taxa Condominial"));
+        colCompetencia.setCellValueFactory(c ->
+                new SimpleStringProperty(c.getValue().getCompetencia()));
+        colVencimento.setCellValueFactory(c ->
+                new SimpleStringProperty(c.getValue().getDataVencimento() != null
+                        ? c.getValue().getDataVencimento().toString() : "—"));
+        colValor.setCellValueFactory(c ->
+                new SimpleStringProperty(String.format("R$ %.2f", c.getValue().getValor())));
+        colStatus.setCellValueFactory(c ->
+                new SimpleStringProperty(c.getValue().getStatus().name()));
+
+        // destaque visual por status
+        tvBoletos.setRowFactory(tv -> new TableRow<>() {
+            @Override protected void updateItem(Boleto b, boolean empty) {
+                super.updateItem(b, empty);
+                if (b == null || empty) { setStyle(""); return; }
+                switch (b.getStatus()) {
+                    case PAGO      -> setStyle("-fx-background-color: #DCFCE7;");
+                    case VENCIDO   -> setStyle("-fx-background-color: #FEE2E2;");
+                    case PENDENTE  -> setStyle("-fx-background-color: #FEF9C3;");
+                    default        -> setStyle("");
+                }
+            }
+        });
+    }
+
+    private void configurarColunasHistorico() {
+        colHUnidade.setCellValueFactory(c ->
+                new SimpleStringProperty(c.getValue().getBoleto() != null
+                        && c.getValue().getBoleto().getUnidade() != null
+                        ? "Apto " + c.getValue().getBoleto().getUnidade().getNumero() : "—"));
+        colHValor.setCellValueFactory(c ->
+                new SimpleStringProperty(String.format("R$ %.2f", c.getValue().getValorPago())));
+        colHForma.setCellValueFactory(c ->
+                new SimpleStringProperty(c.getValue().getFormaPagamento()));
+        colHData.setCellValueFactory(c ->
+                new SimpleStringProperty(c.getValue().getDataPagamento() != null
+                        ? c.getValue().getDataPagamento().format(FMT) : "—"));
+    }
+
+    private void carregarTudo() {
+        // boletos com filtro
+        String f = cmbFiltroStatus.getValue();
+        var boletos = "Todos".equals(f)
+                ? service.listarBoletos()
+                : service.listarBoletos().stream()
+                        .filter(b -> b.getStatus().name().equals(f))
+                        .toList();
+        tvBoletos.setItems(FXCollections.observableArrayList(boletos));
+
+        // histórico completo
+        tvHistorico.setItems(FXCollections.observableArrayList(service.listarPagamentos()));
+
+        // totais
+        double pago = service.listarBoletosPagos().stream().mapToDouble(Boleto::getValor).sum();
+        double pend = service.listarBoletosPendentes().stream().mapToDouble(Boleto::getValor).sum()
+                    + service.listarBoletosVencidos().stream().mapToDouble(Boleto::getValor).sum();
+        lblTotalPago.setText(String.format("R$ %.2f", pago));
+        lblTotalPendente.setText(String.format("R$ %.2f", pend));
+    }
+
+    // ── registrar pagamento ───────────────────────────────────────────────
     @FXML
-    private void voltarFinanceiro(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/condominio/financeiro/financeiro-view.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void registrarPagamento(ActionEvent event) {
+        Boleto sel = tvBoletos.getSelectionModel().getSelectedItem();
+        if (sel == null) { alerta("Selecione um boleto."); return; }
+        if (sel.getStatus() == StatusBoleto.PAGO) { alerta("Boleto já pago."); return; }
+        if (sel.getStatus() == StatusBoleto.CANCELADO) { alerta("Boleto cancelado."); return; }
+
+        TextInputDialog dlg = new TextInputDialog("PIX");
+        dlg.setTitle("Registrar Pagamento");
+        dlg.setHeaderText("Boleto: " + sel.getCodigoBarras()
+                + "\nValor: R$ " + String.format("%.2f", sel.getValor()));
+        dlg.setContentText("Forma de pagamento:");
+        dlg.showAndWait().ifPresent(forma -> {
+            try {
+                service.registrarPagamento(sel.getId(), forma.isBlank() ? "PIX" : forma);
+                new Alert(Alert.AlertType.INFORMATION, "Pagamento registrado!", ButtonType.OK)
+                        .showAndWait();
+                carregarTudo();
+            } catch (IllegalArgumentException e) { alerta(e.getMessage()); }
+        });
     }
 
-    public static class ItemLinhaPagamento {
-        private String descricao;
-        private String dataVencimento;
-        private String dataPagamento;
-        private String valor;
-        private String status;
+    @FXML public void filtrarBoletos(ActionEvent event) { carregarTudo(); }
+    @FXML public void atualizar(ActionEvent event)       { service.verificarInadimplencias(); carregarTudo(); }
 
-        public ItemLinhaPagamento(String d, String v, String p, String val, String s) {
-            this.descricao = d;
-            this.dataVencimento = v;
-            this.dataPagamento = p;
-            this.valor = val;
-            this.status = s;
-        }
+    // ── navegação ─────────────────────────────────────────────────────────
+    @FXML public void voltarFinanceiro(ActionEvent event) {
+        nav(event, "/com/condominio/financeiro/financeiro-view.fxml");
+    }
 
-        public String getDescricao() { return descricao; }
-        public String getDataVencimento() { return dataVencimento; }
-        public String getDataPagamento() { return dataPagamento; }
-        public String getValor() { return valor; }
-        public String getStatus() { return status; }
+    private void alerta(String msg) {
+        new Alert(Alert.AlertType.WARNING, msg, ButtonType.OK).showAndWait();
+    }
+    private void nav(ActionEvent event, String fxml) {
+        try {
+            FXMLLoader l = new FXMLLoader(getClass().getResource(fxml));
+            Parent r = l.load();
+            Stage s = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            s.setScene(new Scene(r)); s.show();
+        } catch (IOException e) { e.printStackTrace(); }
     }
 }

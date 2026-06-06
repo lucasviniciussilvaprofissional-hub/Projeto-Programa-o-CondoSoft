@@ -1,73 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #F8FAFC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.condominio.controller.financeiro.PagamentosController">
+<BorderPane prefHeight="750.0" prefWidth="1200.0"
+            style="-fx-background-color:#F8FAFC;"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.condominio.controller.financeiro.PagamentosController">
     <top>
-        <HBox alignment="CENTER_LEFT" prefHeight="80.0" style="-fx-background-color: #1E293B; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0;" BorderPane.alignment="CENTER">
-            <children>
-                <VBox alignment="CENTER_LEFT" prefHeight="79.0" prefWidth="450.0">
-                    <children>
-                        <Label text="CondoSoft - Painel Financeiro" textFill="#94A3B8">
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <Label text="Histórico de Pagamentos" textFill="white">
-                            <font>
-                                <Font name="System Bold" size="22.0" />
-                            </font>
-                        </Label>
-                    </children>
-                    <HBox.margin>
-                        <Insets left="30.0" />
-                    </HBox.margin>
-                </VBox>
-                <Region HBox.hgrow="ALWAYS" />
-                <Button mnemonicParsing="false" onAction="#voltarFinanceiro" style="-fx-background-color: #EF4444; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold;" text="Voltar">
-                    <padding>
-                        <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
-                    </padding>
-                    <HBox.margin>
-                        <Insets right="30.0" />
-                    </HBox.margin>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-            </children>
+        <HBox alignment="CENTER_LEFT" prefHeight="70.0"
+              style="-fx-background-color:#1E293B;">
+            <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                <Label text="Pagamentos" textFill="white"><font><Font name="System Bold" size="22.0"/></font></Label>
+                <Label text="REQ07 — Registre pagamentos e acompanhe o histórico" textFill="#94A3B8"/>
+                <HBox.margin><Insets left="30.0"/></HBox.margin>
+            </VBox>
+            <Button text="← Financeiro" onAction="#voltarFinanceiro"
+                    style="-fx-background-color:#475569;-fx-text-fill:white;-fx-background-radius:8;-fx-padding:8 18;">
+                <HBox.margin><Insets right="30.0"/></HBox.margin>
+            </Button>
         </HBox>
     </top>
     <center>
-        <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0" BorderPane.alignment="CENTER">
-            <children>
-                <VBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-width: 1;" VBox.vgrow="ALWAYS">
-                    <children>
-                        <TableView fx:id="tvPagamentos" prefHeight="500.0" prefWidth="1140.0" style="-fx-background-radius: 8;" VBox.vgrow="ALWAYS">
-                            <columns>
-                                <TableColumn fx:id="colDescricao" prefWidth="400.0" text="Descrição da Cobrança" />
-                                <TableColumn fx:id="colVencimento" prefWidth="180.0" text="Data Vencimento" />
-                                <TableColumn fx:id="colPagamento" prefWidth="180.0" text="Data Pagamento" />
-                                <TableColumn fx:id="colValor" prefWidth="180.0" text="Valor" />
-                                <TableColumn fx:id="colStatus" prefWidth="180.0" text="Status" />
-                            </columns>
-                        </TableView>
-                    </children>
+        <VBox spacing="16.0">
+            <padding><Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/></padding>
+
+            <!-- totais + filtro -->
+            <HBox spacing="16.0" alignment="CENTER_LEFT">
+                <VBox prefWidth="190.0" style="-fx-background-color:white;-fx-background-radius:8;-fx-border-color:#E2E8F0;-fx-padding:12;">
+                    <Label text="TOTAL PAGO" textFill="#64748B"><font><Font name="System Bold" size="11.0"/></font></Label>
+                    <Label fx:id="lblTotalPago" text="R$ 0,00" textFill="#10B981"><font><Font name="System Bold" size="20.0"/></font></Label>
                 </VBox>
-            </children>
-            <padding>
-                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-            </padding>
+                <VBox prefWidth="190.0" style="-fx-background-color:white;-fx-background-radius:8;-fx-border-color:#E2E8F0;-fx-padding:12;">
+                    <Label text="TOTAL PENDENTE/VENCIDO" textFill="#64748B"><font><Font name="System Bold" size="11.0"/></font></Label>
+                    <Label fx:id="lblTotalPendente" text="R$ 0,00" textFill="#EF4444"><font><Font name="System Bold" size="20.0"/></font></Label>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Filtrar:" textFill="#374151"/>
+                <ComboBox fx:id="cmbFiltroStatus" prefWidth="150.0" onAction="#filtrarBoletos"/>
+                <Button text="Registrar Pagamento" onAction="#registrarPagamento"
+                        style="-fx-background-color:#059669;-fx-text-fill:white;-fx-background-radius:8;-fx-font-weight:bold;-fx-padding:9 16;"/>
+                <Button text="↺ Atualizar" onAction="#atualizar"
+                        style="-fx-background-color:#E2E8F0;-fx-background-radius:8;-fx-padding:9 12;"/>
+            </HBox>
+
+            <Label text="Boletos" textFill="#1E293B"><font><Font name="System Bold" size="14.0"/></font></Label>
+            <TableView fx:id="tvBoletos" prefHeight="280.0">
+                <columns>
+                    <TableColumn fx:id="colUnidade"    text="Unidade"    prefWidth="140"/>
+                    <TableColumn fx:id="colDescricao"  text="Descrição"  prefWidth="180"/>
+                    <TableColumn fx:id="colCompetencia" text="Competência" prefWidth="110"/>
+                    <TableColumn fx:id="colVencimento" text="Vencimento" prefWidth="120"/>
+                    <TableColumn fx:id="colValor"      text="Valor"      prefWidth="110"/>
+                    <TableColumn fx:id="colStatus"     text="Status"     prefWidth="110"/>
+                </columns>
+                <placeholder><Label text="Nenhum boleto encontrado."/></placeholder>
+            </TableView>
+
+            <Label text="Histórico de Pagamentos" textFill="#1E293B"><font><Font name="System Bold" size="14.0"/></font></Label>
+            <TableView fx:id="tvHistorico" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colHUnidade" text="Unidade"   prefWidth="180"/>
+                    <TableColumn fx:id="colHValor"   text="Valor Pago" prefWidth="130"/>
+                    <TableColumn fx:id="colHForma"   text="Forma"     prefWidth="130"/>
+                    <TableColumn fx:id="colHData"    text="Data/Hora" prefWidth="200"/>
+                </columns>
+                <placeholder><Label text="Nenhum pagamento registrado."/></placeholder>
+            </TableView>
         </VBox>
     </center>
 </BorderPane>

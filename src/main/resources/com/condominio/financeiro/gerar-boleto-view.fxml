@@ -3,15 +3,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0"
+<AnchorPane prefHeight="550.0"
             prefWidth="700.0"
-            xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.condominio.controller.financeiro.GerarBoletoController">
 
     <children>
 
-        <Label layoutX="260.0"
+        <Label layoutX="250.0"
                layoutY="20.0"
                text="GERAR BOLETO"
                style="-fx-font-size: 22px; -fx-font-weight: bold;" />
@@ -31,7 +31,7 @@
                   layoutY="85.0"
                   prefWidth="250.0"/>
 
-        <!-- Informações calculadas -->
+        <!-- Informações -->
 
         <Label layoutX="50.0"
                layoutY="150.0"
@@ -57,45 +57,59 @@
                    layoutY="230.0"
                    prefWidth="500.0"/>
 
-        <!-- Dados do boleto -->
+        <!-- Competência -->
 
         <Label layoutX="50.0"
                layoutY="260.0"
+               text="Competência:"/>
+
+        <TextField fx:id="txtCompetencia"
+                   layoutX="180.0"
+                   layoutY="255.0"
+                   prefWidth="250.0"
+                   promptText="Ex: 07/2026"/>
+
+        <!-- Valor -->
+
+        <Label layoutX="50.0"
+               layoutY="310.0"
                text="Valor do Boleto:"/>
 
         <TextField fx:id="txtValor"
                    layoutX="180.0"
-                   layoutY="255.0"
+                   layoutY="305.0"
                    prefWidth="250.0"/>
 
+        <!-- Vencimento -->
+
         <Label layoutX="50.0"
-               layoutY="310.0"
+               layoutY="360.0"
                text="Vencimento:"/>
 
         <DatePicker fx:id="dpVencimento"
                     layoutX="180.0"
-                    layoutY="305.0"
+                    layoutY="355.0"
                     prefWidth="250.0"/>
 
         <!-- Botões -->
 
         <Button fx:id="btnGerar"
-                layoutX="100.0"
-                layoutY="400.0"
+                layoutX="70.0"
+                layoutY="460.0"
                 prefWidth="160.0"
                 text="Gerar Boleto"
                 onAction="#gerarBoleto"/>
 
         <Button fx:id="btnGerarTodos"
-                layoutX="280.0"
-                layoutY="400.0"
+                layoutX="260.0"
+                layoutY="460.0"
                 prefWidth="160.0"
                 text="Gerar Todos"
                 onAction="#gerarTodosBoletos"/>
 
         <Button fx:id="btnVoltar"
-                layoutX="460.0"
-                layoutY="400.0"
+                layoutX="450.0"
+                layoutY="460.0"
                 prefWidth="160.0"
                 text="Voltar"
                 onAction="#voltarFinanceiro"/>
