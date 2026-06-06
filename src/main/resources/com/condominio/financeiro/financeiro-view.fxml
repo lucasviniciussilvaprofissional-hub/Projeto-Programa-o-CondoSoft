@@ -10,127 +10,346 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #F8FAFC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.condominio.controller.financeiro.FinanceiroController">
+<BorderPane prefHeight="750.0"
+            prefWidth="1200.0"
+            style="-fx-background-color: #F8FAFC;"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.condominio.controller.financeiro.FinanceiroController">
+
     <top>
-        <HBox alignment="CENTER_LEFT" prefHeight="80.0" style="-fx-background-color: #1E293B; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0;" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER_LEFT"
+              prefHeight="80.0"
+              style="-fx-background-color: #1E293B; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0;"
+              BorderPane.alignment="CENTER">
+
             <children>
-                <VBox alignment="CENTER_LEFT" prefHeight="79.0" prefWidth="450.0">
+
+                <VBox alignment="CENTER_LEFT"
+                      prefHeight="79.0"
+                      prefWidth="450.0">
+
                     <children>
-                        <Label text="Gestão Financeira" textFill="white">
+
+                        <Label text="Gestão Financeira"
+                               textFill="white">
                             <font>
-                                <Font name="System Bold" size="24.0" />
+                                <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Label text="Controle de boletos, pagamentos e inadimplência do condomínio" textFill="#94A3B8">
+
+                        <Label text="Controle de boletos, pagamentos e inadimplência do condomínio"
+                               textFill="#94A3B8">
                             <font>
-                                <Font size="13.0" />
+                                <Font size="13.0"/>
                             </font>
                         </Label>
+
                     </children>
+
                     <HBox.margin>
-                        <Insets left="30.0" />
+                        <Insets left="30.0"/>
                     </HBox.margin>
+
                 </VBox>
-                <Region HBox.hgrow="ALWAYS" />
-                <Button mnemonicParsing="false" onAction="#voltarHome" style="-fx-background-color: #EF4444; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold;" text="Voltar ao Início">
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Button mnemonicParsing="false"
+                        onAction="#voltarHome"
+                        style="-fx-background-color: #EF4444; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold;"
+                        text="Voltar ao Início">
+
                     <padding>
-                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                        <Insets bottom="10.0"
+                                left="20.0"
+                                right="20.0"
+                                top="10.0"/>
                     </padding>
+
                     <HBox.margin>
-                        <Insets right="30.0" />
+                        <Insets right="30.0"/>
                     </HBox.margin>
+
                     <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="HAND"/>
                     </cursor>
+
                 </Button>
+
             </children>
+
         </HBox>
     </top>
+
     <center>
-        <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+
+        <VBox spacing="30.0"
+              BorderPane.alignment="CENTER">
+
             <children>
+
+                <!-- DASHBOARD -->
+
                 <HBox spacing="20.0">
+
                     <children>
-                        <VBox prefHeight="100.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-padding: 15;">
+
+                        <!-- ARRECADADO -->
+
+                        <VBox prefHeight="100.0"
+                              prefWidth="230.0"
+                              style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-padding: 15;">
+
                             <children>
-                                <Label text="ARRECADADO (MÊS)" textFill="#64748B"><font><Font name="System Bold" size="11.0" /></font></Label>
-                                <Region VBox.vgrow="ALWAYS" />
-                                <Label text="R$ 4.200,00" textFill="#10B981"><font><Font name="System Bold" size="22.0" /></font></Label>
+
+                                <Label text="ARRECADADO (MÊS)"
+                                       textFill="#64748B">
+
+                                    <font>
+                                        <Font name="System Bold" size="11.0"/>
+                                    </font>
+
+                                </Label>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <Label fx:id="lblArrecadado"
+                                       text="R$ 0,00"
+                                       textFill="#10B981">
+
+                                    <font>
+                                        <Font name="System Bold" size="22.0"/>
+                                    </font>
+
+                                </Label>
+
                             </children>
+
                         </VBox>
-                        <VBox prefHeight="100.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-padding: 15;">
+
+                        <!-- INADIMPLÊNCIA -->
+
+                        <VBox prefHeight="100.0"
+                              prefWidth="230.0"
+                              style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-padding: 15;">
+
                             <children>
-                                <Label text="INADIMPLÊNCIA" textFill="#64748B"><font><Font name="System Bold" size="11.0" /></font></Label>
-                                <Region VBox.vgrow="ALWAYS" />
-                                <Label text="R$ 350,00" textFill="#EF4444"><font><Font name="System Bold" size="22.0" /></font></Label>
+
+                                <Label text="INADIMPLÊNCIA"
+                                       textFill="#64748B">
+
+                                    <font>
+                                        <Font name="System Bold" size="11.0"/>
+                                    </font>
+
+                                </Label>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <Label fx:id="lblInadimplencia"
+                                       text="R$ 0,00"
+                                       textFill="#EF4444">
+
+                                    <font>
+                                        <Font name="System Bold" size="22.0"/>
+                                    </font>
+
+                                </Label>
+
                             </children>
+
                         </VBox>
-                        <VBox prefHeight="100.0" prefWidth="230.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-padding: 15;">
+
+                        <!-- BOLETOS ABERTOS -->
+
+                        <VBox prefHeight="100.0"
+                              prefWidth="230.0"
+                              style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-padding: 15;">
+
                             <children>
-                                <Label text="BOLETOS ABERTOS" textFill="#64748B"><font><Font name="System Bold" size="11.0" /></font></Label>
-                                <Region VBox.vgrow="ALWAYS" />
-                                <Label text="1" textFill="#F59E0B"><font><Font name="System Bold" size="22.0" /></font></Label>
+
+                                <Label text="BOLETOS ABERTOS"
+                                       textFill="#64748B">
+
+                                    <font>
+                                        <Font name="System Bold" size="11.0"/>
+                                    </font>
+
+                                </Label>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <Label fx:id="lblBoletosAbertos"
+                                       text="0"
+                                       textFill="#F59E0B">
+
+                                    <font>
+                                        <Font name="System Bold" size="22.0"/>
+                                    </font>
+
+                                </Label>
+
                             </children>
+
                         </VBox>
+
                     </children>
+
                 </HBox>
 
-                <Label text="Módulos" textFill="#1E293B">
+                <Label text="Módulos"
+                       textFill="#1E293B">
+
                     <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="16.0"/>
                     </font>
+
                 </Label>
 
-                <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+                <HBox spacing="20.0"
+                      VBox.vgrow="ALWAYS">
+
                     <children>
-                        <VBox prefHeight="260.0" prefWidth="340.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0; -fx-padding: 20;">
+
+                        <!-- GERAR BOLETO -->
+
+                        <VBox prefHeight="260.0"
+                              prefWidth="340.0"
+                              style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0; -fx-padding: 20;">
+
                             <children>
-                                <Label text="Gerar Boleto" textFill="#1E293B">
-                                    <font><Font name="System Bold" size="18.0" /></font>
+
+                                <Label text="Gerar Boleto"
+                                       textFill="#1E293B">
+
+                                    <font>
+                                        <Font name="System Bold" size="18.0"/>
+                                    </font>
+
                                 </Label>
-                                <Label prefHeight="70.0" text="Gere boletos de cobrança para unidades com vencimento personalizado." textFill="#64748B" wrapText="true">
-                                    <VBox.margin><Insets top="8.0" /></VBox.margin>
+
+                                <Label prefHeight="70.0"
+                                       text="Gere boletos de cobrança para unidades com vencimento personalizado."
+                                       textFill="#64748B"
+                                       wrapText="true">
+
+                                    <VBox.margin>
+                                        <Insets top="8.0"/>
+                                    </VBox.margin>
+
                                 </Label>
-                                <Region VBox.vgrow="ALWAYS" />
-                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirGerarBoleto" style="-fx-background-color: #D97706; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold; -fx-padding: 12;" text="Gerar Boleto →">
-                                    <cursor><Cursor fx:constant="HAND" /></cursor>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <Button maxWidth="1.7976931348623157E308"
+                                        onAction="#abrirGerarBoleto"
+                                        style="-fx-background-color: #D97706; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold; -fx-padding: 12;"
+                                        text="Gerar Boleto">
+
+                                    <cursor>
+                                        <Cursor fx:constant="HAND"/>
+                                    </cursor>
+
                                 </Button>
+
                             </children>
+
                         </VBox>
 
-                        <VBox prefHeight="260.0" prefWidth="340.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0; -fx-padding: 20;">
+                        <!-- PAGAMENTOS -->
+
+                        <VBox prefHeight="260.0"
+                              prefWidth="340.0"
+                              style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0; -fx-padding: 20;">
+
                             <children>
-                                <Label text="Pagamentos" textFill="#1E293B">
-                                    <font><Font name="System Bold" size="18.0" /></font>
+
+                                <Label text="Pagamentos"
+                                       textFill="#1E293B">
+
+                                    <font>
+                                        <Font name="System Bold" size="18.0"/>
+                                    </font>
+
                                 </Label>
-                                <Label prefHeight="70.0" text="Registre e liste os pagamentos realizados pelas unidades do condomínio." textFill="#64748B" wrapText="true">
-                                    <VBox.margin><Insets top="8.0" /></VBox.margin>
-                                </Label>
-                                <Region VBox.vgrow="ALWAYS" />
-                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirTelaPagamentos" style="-fx-background-color: #049260; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold; -fx-padding: 12;" text="Gerenciar →">
-                                    <cursor><Cursor fx:constant="HAND" /></cursor>
+
+                                <Label prefHeight="70.0"
+                                       text="Registre e liste os pagamentos realizados pelas unidades do condomínio."
+                                       textFill="#64748B"
+                                       wrapText="true"/>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <Button maxWidth="1.7976931348623157E308"
+                                        onAction="#abrirTelaPagamentos"
+                                        style="-fx-background-color: #049260; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold; -fx-padding: 12;"
+                                        text="Gerenciar">
+
+                                    <cursor>
+                                        <Cursor fx:constant="HAND"/>
+                                    </cursor>
+
                                 </Button>
+
                             </children>
+
                         </VBox>
 
-                        <VBox prefHeight="260.0" prefWidth="340.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0; -fx-padding: 20;">
+                        <!-- INADIMPLÊNCIA -->
+
+                        <VBox prefHeight="260.0"
+                              prefWidth="340.0"
+                              style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #E2E8F0; -fx-padding: 20;">
+
                             <children>
-                                <Label text="Inadimplência" textFill="#1E293B">
-                                    <font><Font name="System Bold" size="18.0" /></font>
+
+                                <Label text="Inadimplência"
+                                       textFill="#1E293B">
+
+                                    <font>
+                                        <Font name="System Bold" size="18.0"/>
+                                    </font>
+
                                 </Label>
-                                <Label prefHeight="70.0" text="Visualize e gerencie as unidades com pagamentos em atraso." textFill="#64748B" wrapText="true">
-                                    <VBox.margin><Insets top="8.0" /></VBox.margin>
-                                </Label>
-                                <Region VBox.vgrow="ALWAYS" />
-                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirInadimplencia" style="-fx-background-color: #DC2626; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold; -fx-padding: 12;" text="Gerenciar →">
-                                    <cursor><Cursor fx:constant="HAND" /></cursor>
+
+                                <Label prefHeight="70.0"
+                                       text="Visualize e gerencie as unidades com pagamentos em atraso."
+                                       textFill="#64748B"
+                                       wrapText="true"/>
+
+                                <Region VBox.vgrow="ALWAYS"/>
+
+                                <Button maxWidth="1.7976931348623157E308"
+                                        onAction="#abrirInadimplencia"
+                                        style="-fx-background-color: #DC2626; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold; -fx-padding: 12;"
+                                        text="Gerenciar">
+
+                                    <cursor>
+                                        <Cursor fx:constant="HAND"/>
+                                    </cursor>
+
                                 </Button>
+
                             </children>
+
                         </VBox>
+
                     </children>
+
                 </HBox>
+
             </children>
-            <padding><Insets bottom="30.0" left="30.0" right="30.0" top="30.0" /></padding>
+
+            <padding>
+                <Insets top="30.0"
+                        right="30.0"
+                        bottom="30.0"
+                        left="30.0"/>
+            </padding>
+
         </VBox>
+
     </center>
+
 </BorderPane>

@@ -51,7 +51,7 @@ public class CondominioService {
 
     public void registrarPagamento(Boleto boleto) {
 
-        boleto.setStatus(StatusBoleto.valueOf("PAGO"));
+        boleto.setStatus(StatusBoleto.PAGO);
     }
 
     public Boleto gerarBoleto(Unidade unidade) {

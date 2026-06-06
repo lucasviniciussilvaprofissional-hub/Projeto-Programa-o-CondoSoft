@@ -4,12 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT: Correção de bugs nos botôes">
+    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT: Implementação do rep de unidades na reserva.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/BoletoRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/InadimplenciaRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/interfaces/IBoletoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/interfaces/IInadimplenciaRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ReservaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/UnidadeRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/UnidadeRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/FinanceiroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/FinanceiroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/GerarBoletoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/GerarBoletoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/CadastrarMoradorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/CadastrarMoradorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/models/finance/Inadimplencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/models/finance/Inadimplencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/models/moradia/Unidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/models/moradia/Unidade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/service/CondominioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/service/CondominioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/financeiro-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/financeiro-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/gerar-boleto-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/gerar-boleto-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/home-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/home-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/ocorrencia-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/ocorrencia-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/reserva-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/reserva-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/detalhes-unidade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/detalhes-unidade-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +31,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -140,7 +152,8 @@
       <workItem from="1780447382473" duration="4082000" />
       <workItem from="1780510473237" duration="607000" />
       <workItem from="1780667151133" duration="23000" />
-      <workItem from="1780684028056" duration="2830000" />
+      <workItem from="1780684028056" duration="2922000" />
+      <workItem from="1780705163425" duration="7080000" />
     </task>
     <task id="LOCAL-00001" summary="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros">
       <option name="closed" value="true" />
@@ -206,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780504994720</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="FEAT: Implementação do rep de unidades na reserva.">
+      <option name="closed" value="true" />
+      <created>1780686933156</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1780686933156</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +253,8 @@
     <MESSAGE value="FEAT; CORREÇÃO DE BUGS COMUNICAÇÃO E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES" />
     <MESSAGE value="FEAT: Correção de bugs e alterações e sistema de gerenciar moradores, pets e veiculos." />
     <MESSAGE value="FEAT: Correção de bugs nos botôes" />
-    <option name="LAST_COMMIT_MESSAGE" value="FEAT: Correção de bugs nos botôes" />
+    <MESSAGE value="FEAT: Implementação do rep de unidades na reserva." />
+    <option name="LAST_COMMIT_MESSAGE" value="FEAT: Implementação do rep de unidades na reserva." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

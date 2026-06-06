@@ -11,10 +11,19 @@ public class Inadimplencia {
     private Boleto boleto;
     private Unidade unidade;
 
-    public Inadimplencia() {
+    public Inadimplencia(int id,
+                         float valorDevido,
+                         int diasAtraso,
+                         Boleto boleto,
+                         Unidade unidade) {
+
+        this.id = id;
+        this.valorDevido = valorDevido;
+        this.diasAtraso = diasAtraso;
+        this.boleto = boleto;
+        this.unidade = unidade;
         this.status = "PENDENTE";
     }
-
     // getters e setters
 
     public int getId() {
@@ -59,5 +68,9 @@ public class Inadimplencia {
 
     public void setUnidade(Unidade unidade) {
         this.unidade = unidade;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

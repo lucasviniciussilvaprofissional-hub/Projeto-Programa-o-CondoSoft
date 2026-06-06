@@ -167,6 +167,7 @@ public class Unidade {
         }
     }
 
+
     public void removerMorador(Morador morador) {
         if (morador == null) throw new IllegalArgumentException("Morador inválido.");
         if (!moradores.contains(morador)) throw new IllegalArgumentException("Morador não encontrado.");

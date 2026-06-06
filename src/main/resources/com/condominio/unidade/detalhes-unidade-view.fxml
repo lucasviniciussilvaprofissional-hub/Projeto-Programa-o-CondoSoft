@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -12,41 +13,24 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane
-    fx:id="detalhesUnidadeRoot"
-    prefHeight="750.0"
-    prefWidth="1200.0"
-    style="-fx-background-color: #F7F8FA;"
-    xmlns="http://javafx.com/javafx/17"
-    xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="com.condominio.controller.unidade.DetalhesUnidadeController">
+<BorderPane fx:id="detalhesUnidadeRoot" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #F7F8FA;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.condominio.controller.unidade.DetalhesUnidadeController">
 
     <!-- ══════════════════════════════════════════════════════
          HEADER
     ══════════════════════════════════════════════════════ -->
     <top>
-        <HBox
-            alignment="CENTER_LEFT"
-            prefHeight="68.0"
-            style="-fx-background-color: #1E293B; -fx-padding: 0 48 0 48;">
+        <HBox alignment="CENTER_LEFT" prefHeight="68.0" style="-fx-background-color: #1E293B; -fx-padding: 0 48 0 48;">
             <VBox alignment="CENTER_LEFT" spacing="2.0">
-                <Label text="CondoSoft"
-                       style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
-                <HBox spacing="8.0" alignment="CENTER_LEFT">
-                    <Label text="Detalhes da Unidade"
-                           style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
-                    <Label fx:id="lblBadgeUnidade"
-                           style="-fx-background-color: #334155; -fx-text-fill: #94A3B8; -fx-background-radius: 6; -fx-padding: 4 12; -fx-font-size: 12;"/>
+                <Label style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #94A3B8;" text="CondoSoft" />
+                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                    <Label style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Detalhes da Unidade" />
+                    <Label fx:id="lblBadgeUnidade" style="-fx-background-color: #334155; -fx-text-fill: #94A3B8; -fx-background-radius: 6; -fx-padding: 4 12; -fx-font-size: 12;" />
                 </HBox>
             </VBox>
-            <Region HBox.hgrow="ALWAYS"/>
-            <HBox spacing="12.0" alignment="CENTER_RIGHT">
-                <Button fx:id="btnVoltarListagem" text="← Listagem"
-                        onAction="#voltarListagem"
-                        style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-font-size: 13; -fx-cursor: hand; -fx-border-color: #334155; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 20;"/>
-                <Button fx:id="btnVoltarUnidades" text="Unidades"
-                        onAction="#voltarUnidades"
-                        style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 13; -fx-cursor: hand; -fx-padding: 8 16;"/>
+            <Region HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER_RIGHT" spacing="12.0">
+                <Button fx:id="btnVoltarListagem" onAction="#voltarListagem" style="-fx-background-color: transparent; -fx-text-fill: #94A3B8; -fx-font-size: 13; -fx-cursor: hand; -fx-border-color: #334155; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 8 20;" text="← Listagem" />
+                <Button fx:id="btnVoltarUnidades" onAction="#voltarUnidades" style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 13; -fx-cursor: hand; -fx-padding: 8 16;" text="Unidades" />
             </HBox>
         </HBox>
     </top>
@@ -55,111 +39,88 @@
          CONTEÚDO PRINCIPAL
     ══════════════════════════════════════════════════════ -->
     <center>
-        <ScrollPane
-            fitToWidth="true"
-            style="-fx-background: #F7F8FA; -fx-background-color: #F7F8FA; -fx-border-color: transparent;">
+        <ScrollPane fitToWidth="true" style="-fx-background: #F7F8FA; -fx-background-color: #F7F8FA; -fx-border-color: transparent;">
 
             <VBox spacing="28.0" style="-fx-background-color: #F7F8FA; -fx-padding: 40 60 40 60;">
 
                 <!-- Breadcrumb -->
-                <HBox spacing="6.0" alignment="CENTER_LEFT">
-                    <Label text="Início" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarHome"/>
-                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
-                    <Label text="Unidades" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarUnidadesBreadCrumb"/>
-                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarListagemBreadCrumb"/>
-                    <Label text="Listagem" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" onMouseClicked="#voltarListagemBreadCrumb"/>
-                    <Label text="›" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
-                    <Label fx:id="lblBreadcrumbUnidade" text="Apto 101"
-                           style="-fx-font-size: 12; -fx-text-fill: #1E293B;"/>
+                <HBox alignment="CENTER_LEFT" spacing="6.0">
+                    <Label onMouseClicked="#voltarHome" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" text="Início" />
+                    <Label style="-fx-font-size: 12; -fx-text-fill: #94A3B8;" text="›" />
+                    <Label onMouseClicked="#voltarUnidadesBreadCrumb" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" text="Unidades" />
+                    <Label onMouseClicked="#voltarListagemBreadCrumb" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" text="›" />
+                    <Label onMouseClicked="#voltarListagemBreadCrumb" style="-fx-font-size: 12; -fx-text-fill: #2563EB; -fx-cursor: hand;" text="Listagem" />
+                    <Label style="-fx-font-size: 12; -fx-text-fill: #94A3B8;" text="›" />
+                    <Label fx:id="lblBreadcrumbUnidade" style="-fx-font-size: 12; -fx-text-fill: #1E293B;" text="Apto 101" />
                 </HBox>
 
                 <!-- ══════════════════════
                      CARD DE INFORMAÇÕES DA UNIDADE
                 ══════════════════════ -->
-                <VBox
-                    style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0; -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 32; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);"
-                    spacing="20.0">
+                <VBox spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0; -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 32; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
 
                     <!-- Cabeçalho do card -->
                     <HBox alignment="CENTER_LEFT">
-                        <VBox
-                            alignment="CENTER"
-                            prefWidth="56.0" prefHeight="56.0" maxWidth="56.0"
-                            style="-fx-background-color: #EFF6FF; -fx-background-radius: 14;">
-                            <Label text="🏢" style="-fx-font-size: 26;"/>
+                        <VBox alignment="CENTER" maxWidth="56.0" prefHeight="56.0" prefWidth="56.0" style="-fx-background-color: #EFF6FF; -fx-background-radius: 14;">
+                            <Label style="-fx-font-size: 26;" text="🏢" />
                         </VBox>
                         <VBox spacing="4.0" style="-fx-padding: 0 0 0 16;">
-                            <Label fx:id="lblNomeUnidade" text="Apartamento 101"
-                                   style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
-                            <Label fx:id="lblBlocoAndar" text="Bloco A  ·  1º Andar"
-                                   style="-fx-font-size: 13; -fx-text-fill: #64748B;"/>
+                            <Label fx:id="lblNomeUnidade" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #1E293B;" text="Apartamento 101" />
+                            <Label fx:id="lblBlocoAndar" style="-fx-font-size: 13; -fx-text-fill: #64748B;" text="Bloco A  ·  1º Andar" />
                         </VBox>
-                        <Region HBox.hgrow="ALWAYS"/>
+                        <Region HBox.hgrow="ALWAYS" />
                         <!-- Badge de status -->
-                        <Label fx:id="lblStatusUnidade" text="● Ocupado"
-                               style="-fx-background-color: #DCFCE7; -fx-text-fill: #166534; -fx-background-radius: 20; -fx-padding: 6 16; -fx-font-size: 12; -fx-font-weight: bold;"/>
-                        <Button fx:id="btnEditarUnidade" text="Editar Unidade"
-                                onAction="#editarUnidade"
-                                style="-fx-background-color: #F1F5F9; -fx-text-fill: #374151; -fx-background-radius: 8; -fx-padding: 8 20; -fx-font-size: 12; -fx-cursor: hand; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-border-width: 1;">
+                        <Label fx:id="lblStatusUnidade" style="-fx-background-color: #DCFCE7; -fx-text-fill: #166534; -fx-background-radius: 20; -fx-padding: 6 16; -fx-font-size: 12; -fx-font-weight: bold;" text="● Ocupado" />
+                        <Button fx:id="btnEditarUnidade" onAction="#editarUnidade" style="-fx-background-color: #F1F5F9; -fx-text-fill: #374151; -fx-background-radius: 8; -fx-padding: 8 20; -fx-font-size: 12; -fx-cursor: hand; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-border-width: 1;" text="Editar Unidade">
                             <HBox.margin>
-                                <javafx.geometry.Insets left="16.0"/>
+                                <javafx.geometry.Insets left="16.0" />
                             </HBox.margin>
                         </Button>
                     </HBox>
 
-                    <Separator/>
+                    <Separator />
 
                     <!-- Dados da unidade em grid -->
                     <GridPane hgap="32.0" vgap="16.0">
                         <columnConstraints>
-                            <ColumnConstraints percentWidth="20.0"/>
-                            <ColumnConstraints percentWidth="20.0"/>
-                            <ColumnConstraints percentWidth="20.0"/>
-                            <ColumnConstraints percentWidth="20.0"/>
-                            <ColumnConstraints percentWidth="20.0"/>
+                            <ColumnConstraints percentWidth="20.0" />
+                            <ColumnConstraints percentWidth="20.0" />
+                            <ColumnConstraints percentWidth="20.0" />
+                            <ColumnConstraints percentWidth="20.0" />
+                            <ColumnConstraints percentWidth="20.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints/>
+                            <RowConstraints />
                         </rowConstraints>
 
                         <!-- Tipo -->
-                        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="4.0">
-                            <Label text="TIPO"
-                                   style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
-                            <Label fx:id="lblTipo" text="Apartamento"
-                                   style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                        <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;" text="TIPO" />
+                            <Label fx:id="lblTipo" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #1E293B;" text="Apartamento" />
                         </VBox>
 
                         <!-- Área -->
-                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="4.0">
-                            <Label text="ÁREA"
-                                   style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
-                            <Label fx:id="lblArea" text="75,50 m²"
-                                   style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                        <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;" text="ÁREA" />
+                            <Label fx:id="lblArea" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #1E293B;" text="75,50 m²" />
                         </VBox>
 
                         <!-- Capacidade -->
-                        <VBox GridPane.columnIndex="2" GridPane.rowIndex="0" spacing="4.0">
-                            <Label text="CAPACIDADE"
-                                   style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
-                            <Label fx:id="lblCapacidade" text="0 pessoas"
-                                   style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                        <VBox spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;" text="CAPACIDADE" />
+                            <Label fx:id="lblCapacidade" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #1E293B;" text="0 pessoas" />
                         </VBox>
 
                         <!-- Moradores -->
-                        <VBox GridPane.columnIndex="3" GridPane.rowIndex="0" spacing="4.0">
-                            <Label text="MORADORES"
-                                   style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
-                            <Label fx:id="lblQtdMoradores" text="0 moradores"
-                                   style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                        <VBox spacing="4.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;" text="MORADORES" />
+                            <Label fx:id="lblQtdMoradores" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #1E293B;" text="0 moradores" />
                         </VBox>
 
                         <!-- Fração Ideal -->
-                        <VBox GridPane.columnIndex="4" GridPane.rowIndex="0" spacing="4.0">
-                            <Label text="FRAÇÃO IDEAL"
-                                   style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
-                            <Label fx:id="lblFracaoIdeal" text="0%"
-                                   style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
+                        <VBox spacing="4.0" GridPane.columnIndex="4" GridPane.rowIndex="0">
+                            <Label style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;" text="FRAÇÃO IDEAL" />
+                            <Label fx:id="lblFracaoIdeal" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #1E293B;" text="0%" />
                         </VBox>
 
                     </GridPane>
@@ -169,144 +130,83 @@
                 <!-- ══════════════════════
                      SEÇÃO: GERENCIAMENTO
                 ══════════════════════ -->
-                <Label text="GERENCIAMENTO DA UNIDADE"
-                       style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                <Label style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #94A3B8;" text="GERENCIAMENTO DA UNIDADE" />
 
                 <!-- Cards de sub-módulos (3 colunas) -->
                 <GridPane hgap="20.0" vgap="20.0">
                     <columnConstraints>
-                        <ColumnConstraints percentWidth="33.33"/>
-                        <ColumnConstraints percentWidth="33.33"/>
-                        <ColumnConstraints percentWidth="33.33"/>
+                        <ColumnConstraints percentWidth="33.33" />
+                        <ColumnConstraints percentWidth="33.33" />
+                        <ColumnConstraints percentWidth="33.33" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="220.0"/>
+                        <RowConstraints minHeight="220.0" />
                     </rowConstraints>
 
                     <!-- ─── Moradores da Unidade ─── -->
-                    <VBox
-                        GridPane.columnIndex="0" GridPane.rowIndex="0"
-                        spacing="16.0"
-                        style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0; -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                    <VBox spacing="16.0" style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0; -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);" GridPane.columnIndex="0" GridPane.rowIndex="0">
                         <HBox alignment="CENTER_LEFT" spacing="14.0">
-                            <VBox
-                                alignment="CENTER"
-                                prefWidth="48.0" prefHeight="48.0" maxWidth="48.0"
-                                style="-fx-background-color: #F5F3FF; -fx-background-radius: 12;">
-                                <Label text="👥" style="-fx-font-size: 22;"/>
+                            <VBox alignment="CENTER" maxWidth="48.0" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #F5F3FF; -fx-background-radius: 12;">
+                                <Label style="-fx-font-size: 22;" text="👥" />
                             </VBox>
                             <VBox spacing="3.0">
-                                <Label text="Moradores"
-                                       style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
-                                <Label fx:id="lblContadorMoradores" text=" moradores"
-                                       style="-fx-font-size: 12; -fx-text-fill: #7C3AED;"/>
+                                <Label style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1E293B;" text="Moradores" />
+                                <Label fx:id="lblContadorMoradores" style="-fx-font-size: 12; -fx-text-fill: #7C3AED;" text=" moradores" />
                             </VBox>
                         </HBox>
-                        <Separator/>
+                        <Separator />
                         <VBox spacing="10.0">
-                            <Label text="Gerencie os moradores vinculados a esta unidade, adicione novos ou remova os existentes."
-                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;"
-                                   wrapText="true"/>
+                            <Label style="-fx-font-size: 12; -fx-text-fill: #64748B;" text="Gerencie os moradores vinculados a esta unidade, adicione novos ou remova os existentes." wrapText="true" />
                         </VBox>
-                        <Region VBox.vgrow="ALWAYS"/>
+                        <Region VBox.vgrow="ALWAYS" />
                         <VBox spacing="8.0">
-                            <Button fx:id="btnGerenciarMoradores"
-                                    text="Gerenciar Moradores →"
-                                    onAction="#abrirGerenciarMoradores"
-                                    maxWidth="Infinity"
-                                    style="-fx-background-color: #7C3AED; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 11 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                            <Button fx:id="btnGerenciarMoradores" maxWidth="Infinity" onAction="#abrirGerenciarMoradores" style="-fx-background-color: #7C3AED; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 11 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;" text="Gerenciar Moradores →" />
                         </VBox>
                     </VBox>
 
                     <!-- ─── Veículos ─── -->
-                    <VBox
-                        GridPane.columnIndex="1" GridPane.rowIndex="0"
-                        spacing="16.0"
-                        style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0; -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                    <VBox spacing="16.0" style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0; -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);" GridPane.columnIndex="1" GridPane.rowIndex="0">
                         <HBox alignment="CENTER_LEFT" spacing="14.0">
-                            <VBox
-                                alignment="CENTER"
-                                prefWidth="48.0" prefHeight="48.0" maxWidth="48.0"
-                                style="-fx-background-color: #FFFBEB; -fx-background-radius: 12;">
-                                <Label text="🚗" style="-fx-font-size: 22;"/>
+                            <VBox alignment="CENTER" maxWidth="48.0" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #FFFBEB; -fx-background-radius: 12;">
+                                <Label style="-fx-font-size: 22;" text="🚗" />
                             </VBox>
                             <VBox spacing="3.0">
-                                <Label text="Veículos"
-                                       style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
-                                <Label fx:id="lblContadorVeiculos" text="0 veículo"
-                                       style="-fx-font-size: 12; -fx-text-fill: #D97706;"/>
+                                <Label style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1E293B;" text="Veículos" />
+                                <Label fx:id="lblContadorVeiculos" style="-fx-font-size: 12; -fx-text-fill: #D97706;" text="0 veículo" />
                             </VBox>
                         </HBox>
-                        <Separator/>
+                        <Separator />
                         <VBox spacing="10.0">
-                            <Label text="Controle os veículos cadastrados para esta unidade com placa, modelo e cor."
-                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;"
-                                   wrapText="true"/>
+                            <Label style="-fx-font-size: 12; -fx-text-fill: #64748B;" text="Controle os veículos cadastrados para esta unidade com placa, modelo e cor." wrapText="true" />
                         </VBox>
-                        <Region VBox.vgrow="ALWAYS"/>
+                        <Region VBox.vgrow="ALWAYS" />
                         <VBox spacing="8.0">
-                            <Button fx:id="btnGerenciarVeiculos"
-                                    text="Gerenciar Veículos →"
-                                    onAction="#abrirGerenciarVeiculos"
-                                    maxWidth="Infinity"
-                                    style="-fx-background-color: #D97706; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 11 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                            <Button fx:id="btnGerenciarVeiculos" maxWidth="Infinity" onAction="#abrirGerenciarVeiculos" style="-fx-background-color: #D97706; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 11 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;" text="Gerenciar Veículos →" />
                         </VBox>
                     </VBox>
 
                     <!-- ─── Pets ─── -->
-                    <VBox
-                        GridPane.columnIndex="2" GridPane.rowIndex="0"
-                        spacing="16.0"
-                        style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0; -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+                    <VBox spacing="16.0" style="-fx-background-color: white; -fx-background-radius: 16; -fx-border-color: #E2E8F0; -fx-border-radius: 16; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);" GridPane.columnIndex="2" GridPane.rowIndex="0">
                         <HBox alignment="CENTER_LEFT" spacing="14.0">
-                            <VBox
-                                alignment="CENTER"
-                                prefWidth="48.0" prefHeight="48.0" maxWidth="48.0"
-                                style="-fx-background-color: #ECFDF5; -fx-background-radius: 12;">
-                                <Label text="🐾" style="-fx-font-size: 22;"/>
+                            <VBox alignment="CENTER" maxWidth="48.0" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #ECFDF5; -fx-background-radius: 12;">
+                                <Label style="-fx-font-size: 22;" text="🐾" />
                             </VBox>
                             <VBox spacing="3.0">
-                                <Label text="Pets"
-                                       style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
-                                <Label fx:id="lblContadorPets" text="0 pets"
-                                       style="-fx-font-size: 12; -fx-text-fill: #059669;"/>
+                                <Label style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1E293B;" text="Pets" />
+                                <Label fx:id="lblContadorPets" style="-fx-font-size: 12; -fx-text-fill: #059669;" text="0 pets" />
                             </VBox>
                         </HBox>
-                        <Separator/>
+                        <Separator />
                         <VBox spacing="10.0">
-                            <Label text="Registre os animais de estimação da unidade com nome, espécie e raça."
-                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;"
-                                   wrapText="true"/>
+                            <Label style="-fx-font-size: 12; -fx-text-fill: #64748B;" text="Registre os animais de estimação da unidade com nome, espécie e raça." wrapText="true" />
                         </VBox>
-                        <Region VBox.vgrow="ALWAYS"/>
+                        <Region VBox.vgrow="ALWAYS" />
                         <VBox spacing="8.0">
-                            <Button fx:id="btnGerenciarPets"
-                                    text="Gerenciar Pets →"
-                                    onAction="#abrirGerenciarPets"
-                                    maxWidth="Infinity"
-                                    style="-fx-background-color: #059669; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 11 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;"/>
+                            <Button fx:id="btnGerenciarPets" maxWidth="Infinity" onAction="#abrirGerenciarPets" style="-fx-background-color: #059669; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 11 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;" text="Gerenciar Pets →" />
                         </VBox>
                     </VBox>
 
                 </GridPane>
-
-                <!-- Zona de perigo -->
-                <VBox
-                    style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-color: #FEE2E2; -fx-border-radius: 12; -fx-border-width: 1; -fx-padding: 20 24;">
-                    <HBox alignment="CENTER_LEFT" spacing="16.0">
-                        <VBox spacing="3.0" HBox.hgrow="ALWAYS">
-                            <Label text="Zona de Perigo"
-                                   style="-fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #991B1B;"/>
-                            <Label text="A exclusão da unidade é permanente e removerá todos os dados vinculados."
-                                   style="-fx-font-size: 12; -fx-text-fill: #64748B;"
-                                   wrapText="true"/>
-                        </VBox>
-                        <Button fx:id="btnExcluirUnidade"
-                                text="Excluir Unidade"
-                                onAction="#confirmarExclusaoUnidade"
-                                style="-fx-background-color: white; -fx-text-fill: #DC2626; -fx-background-radius: 8; -fx-padding: 10 24; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand; -fx-border-color: #FECACA; -fx-border-radius: 8; -fx-border-width: 1;"/>
-                    </HBox>
-                </VBox>
 
             </VBox>
         </ScrollPane>

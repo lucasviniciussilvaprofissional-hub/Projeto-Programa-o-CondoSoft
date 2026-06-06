@@ -1,238 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #F8FAFC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.condominio.controller.financeiro.GerarBoletoController">
-    <top>
-        <HBox alignment="CENTER_LEFT" prefHeight="80.0" style="-fx-background-color: #1E293B; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0;" BorderPane.alignment="CENTER">
-            <children>
-                <VBox alignment="CENTER_LEFT" prefHeight="79.0" prefWidth="388.0">
-                    <children>
-                        <Label text="CondoSoft" textFill="#94A3B8">
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <Label text="Boleto Bancário" textFill="white">
-                            <font>
-                                <Font name="System Bold" size="22.0" />
-                            </font>
-                        </Label>
-                    </children>
-                    <HBox.margin>
-                        <Insets left="30.0" />
-                    </HBox.margin>
-                </VBox>
-                <Region HBox.hgrow="ALWAYS" />
-                <Button mnemonicParsing="false" onAction="#imprimirBoleto" style="-fx-background-color: #10B981; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold;" text="Imprimir Documento">
-                    <padding>
-                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-                    </padding>
-                    <HBox.margin>
-                        <Insets right="15.0" />
-                    </HBox.margin>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-                <Button mnemonicParsing="false" onAction="#voltarHome" style="-fx-background-color: #EF4444; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold;" text="Voltar ao Início">
-                    <padding>
-                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-                    </padding>
-                    <HBox.margin>
-                        <Insets right="30.0" />
-                    </HBox.margin>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-            </children>
-        </HBox>
-    </top>
-    <center>
-        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
-            <children>
-                <VBox maxWidth="850.0" style="-fx-background-color: white; -fx-border-color: #000000; -fx-border-width: 1; -fx-padding: 20; -fx-background-radius: 4;">
-                    <children>
-                        <HBox alignment="BOTTOM_LEFT" prefHeight="45.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0; -fx-padding: 0 0 5 0;">
-                            <children>
-                                <Label text="Banco CondoSoft" textFill="#1e293b">
-                                    <font>
-                                        <Font name="System Bold" size="20.0" />
-                                    </font>
-                                </Label>
-                                <Label style="-fx-border-color: black; -fx-border-width: 0 1 0 1; -fx-padding: 0 10 0 10;" text="001-9">
-                                    <font>
-                                        <Font name="System Bold" size="20.0" />
-                                    </font>
-                                    <HBox.margin>
-                                        <Insets left="15.0" />
-                                    </HBox.margin>
-                                </Label>
-                                <Region HBox.hgrow="ALWAYS" />
-                                <Label fx:id="lblLinhaDigitavel" text="00000.00000 00000.000000 00000.000000 0 00000000000000" textFill="#1e293b">
-                                    <font>
-                                        <Font name="Monospaced Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
+<AnchorPane prefHeight="500.0"
+            prefWidth="700.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.condominio.controller.financeiro.GerarBoletoController">
 
-                        <HBox prefHeight="50.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
-                            <children>
-                                <VBox prefHeight="50.0" prefWidth="600.0" style="-fx-border-color: black; -fx-border-width: 0 1 0 0; -fx-padding: 5;">
-                                    <children>
-                                        <Label text="Local de Pagamento" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                        <Label text="Pagável em qualquer banco até o vencimento." textFill="#111111"><font><Font name="System Bold" size="12.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                                <VBox prefHeight="50.0" prefWidth="210.0" style="-fx-padding: 5; -fx-background-color: #F1F5F9;">
-                                    <children>
-                                        <Label text="Vencimento" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                        <Label fx:id="lblVencimento" text="00/00/0000" textFill="#111111"><font><Font name="System Bold" size="13.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                            </children>
-                        </HBox>
+    <children>
 
-                        <HBox prefHeight="50.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
-                            <children>
-                                <VBox prefHeight="50.0" prefWidth="600.0" style="-fx-border-color: black; -fx-border-width: 0 1 0 0; -fx-padding: 5;">
-                                    <children>
-                                        <Label text="Beneficiário" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                        <Label text="CONDOMINIO RESIDENCIAL CONDOSOFT - CNPJ: 12.345.678/0001-99" textFill="#111111"><font><Font size="12.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                                <VBox prefHeight="50.0" prefWidth="210.0" style="-fx-padding: 5;">
-                                    <children>
-                                        <Label text="Agência / Código Beneficiário" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                        <Label text="7900 / 0104351-3" textFill="#111111"><font><Font name="System Bold" size="13.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                            </children>
-                        </HBox>
+        <Label layoutX="260.0"
+               layoutY="20.0"
+               text="GERAR BOLETO"
+               style="-fx-font-size: 22px; -fx-font-weight: bold;" />
 
-                        <HBox prefHeight="50.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
-                            <children>
-                                <VBox prefHeight="50.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 1 0 0; -fx-padding: 5;">
-                                    <children>
-                                        <Label text="Data do Documento" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                        <Label fx:id="lblDataDocumento" text="00/00/0000" textFill="#111111"><font><Font size="12.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                                <VBox prefHeight="50.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 1 0 0; -fx-padding: 5;">
-                                    <children>
-                                        <Label text="Nº do Documento" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                        <Label text="REC-240185" textFill="#111111"><font><Font size="12.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                                <VBox prefHeight="50.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 1 0 0; -fx-padding: 5;">
-                                    <children>
-                                        <Label text="Espécie Doc." textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                        <Label text="RC" textFill="#111111"><font><Font size="12.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                                <VBox prefHeight="50.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 1 0 0; -fx-padding: 5;">
-                                    <children>
-                                        <Label text="Aceite" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                        <Label text="N" textFill="#111111"><font><Font size="12.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                                <VBox prefHeight="50.0" prefWidth="210.0" style="-fx-padding: 5;">
-                                    <children>
-                                        <Label text="Nosso Número" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                        <Label fx:id="lblNossoNumero" text="00/00000000-0" textFill="#111111"><font><Font name="System Bold" size="13.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                            </children>
-                        </HBox>
+        <Separator layoutX="20.0"
+                   layoutY="60.0"
+                   prefWidth="660.0"/>
 
-                        <HBox prefHeight="50.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
-                            <children>
-                                <VBox prefHeight="50.0" prefWidth="200.0" style="-fx-border-color: black; -fx-border-width: 0 1 0 0; -fx-padding: 5;">
-                                    <children>
-                                        <Label text="Uso do Banco" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                                <VBox prefHeight="50.0" prefWidth="130.0" style="-fx-border-color: black; -fx-border-width: 0 1 0 0; -fx-padding: 5;">
-                                    <children>
-                                        <Label text="Carteira" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                        <Label text="109" textFill="#111111"><font><Font size="12.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                                <VBox prefHeight="50.0" prefWidth="120.0" style="-fx-border-color: black; -fx-border-width: 0 1 0 0; -fx-padding: 5;">
-                                    <children>
-                                        <Label text="Espécie Moeda" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                        <Label text="R$" textFill="#111111"><font><Font size="12.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                                <VBox prefHeight="50.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 1 0 0; -fx-padding: 5;">
-                                    <children>
-                                        <Label text="Quantidade Moeda" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                                <VBox prefHeight="50.0" prefWidth="210.0" style="-fx-padding: 5; -fx-background-color: #F1F5F9;">
-                                    <children>
-                                        <Label text="(=) Valor do Documento" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                        <Label fx:id="lblValorDocumento" text="R$ 0,00" textFill="#111111"><font><Font name="System Bold" size="14.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                            </children>
-                        </HBox>
+        <!-- Unidade -->
 
-                        <HBox prefHeight="110.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
-                            <children>
-                                <VBox prefHeight="110.0" prefWidth="600.0" style="-fx-border-color: black; -fx-border-width: 0 1 0 0; -fx-padding: 10;" spacing="5.0">
-                                    <children>
-                                        <Label text="Instruções (Texto de responsabilidade do beneficiário)" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                        <Label text="• COBRANÇA REFERENTE À COTA CONDOMINIAL CORRENTE." textFill="#333333"><font><Font size="11.0" /></font></Label>
-                                        <Label text="• APÓS O VENCIMENTO, COBRAR MULTA DE 2% E JUROS DE 1% AO MÊS." textFill="#333333"><font><Font size="11.0" /></font></Label>
-                                    </children>
-                                </VBox>
-                                <VBox prefHeight="110.0" prefWidth="210.0">
-                                    <children>
-                                        <VBox prefHeight="55.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0; -fx-padding: 5;">
-                                            <children><Label text="(-) Descontos / Abatimento" textFill="#555555"><font><Font size="9.0" /></font></Label></children>
-                                        </VBox>
-                                        <VBox prefHeight="55.0" style="-fx-padding: 5;">
-                                            <children><Label text="(+) Mora / Multa" textFill="#555555"><font><Font size="9.0" /></font></Label></children>
-                                        </VBox>
-                                    </children>
-                                </VBox>
-                            </children>
-                        </HBox>
+        <Label layoutX="50.0"
+               layoutY="90.0"
+               text="Unidade:" />
 
-                        <VBox prefHeight="65.0" style="-fx-padding: 10;">
-                            <children>
-                                <Label text="Pagador" textFill="#555555"><font><Font size="9.0" /></font></Label>
-                                <Label text="MORADOR SISTEMA CONDOSOFT" textFill="#111111"><font><Font name="System Bold" size="12.0" /></font></Label>
-                                <Label text="RESIDENCIAL CONDOSOFT" textFill="#444444"><font><Font size="11.0" /></font></Label>
-                            </children>
-                        </VBox>
-                    </children>
-                </VBox>
+        <ComboBox fx:id="cbUnidade"
+                  layoutX="180.0"
+                  layoutY="85.0"
+                  prefWidth="250.0"/>
 
-                <VBox alignment="CENTER" maxWidth="850.0" prefHeight="70.0" style="-fx-background-color: #111111;">
-                    <children>
-                        <Label text="|||||||||||||||||||||||||| |||||||||||||||||||||||||||||||||| ||||||||||||||||||||||||||||||||||||||||||||||||||||||||" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="28.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </VBox>
-            </children>
-            <padding>
-                <Insets top="40.0" />
-            </padding>
-        </VBox>
-    </center>
-</BorderPane>
+        <!-- Informações calculadas -->
+
+        <Label layoutX="50.0"
+               layoutY="150.0"
+               text="Fração Ideal:"/>
+
+        <Label fx:id="lblFracaoIdeal"
+               layoutX="180.0"
+               layoutY="150.0"
+               text="-"
+               style="-fx-font-weight: bold;"/>
+
+        <Label layoutX="50.0"
+               layoutY="190.0"
+               text="Valor Sugerido:"/>
+
+        <Label fx:id="lblValorSugerido"
+               layoutX="180.0"
+               layoutY="190.0"
+               text="R$ 0,00"
+               style="-fx-font-weight: bold;"/>
+
+        <Separator layoutX="50.0"
+                   layoutY="230.0"
+                   prefWidth="500.0"/>
+
+        <!-- Dados do boleto -->
+
+        <Label layoutX="50.0"
+               layoutY="260.0"
+               text="Valor do Boleto:"/>
+
+        <TextField fx:id="txtValor"
+                   layoutX="180.0"
+                   layoutY="255.0"
+                   prefWidth="250.0"/>
+
+        <Label layoutX="50.0"
+               layoutY="310.0"
+               text="Vencimento:"/>
+
+        <DatePicker fx:id="dpVencimento"
+                    layoutX="180.0"
+                    layoutY="305.0"
+                    prefWidth="250.0"/>
+
+        <!-- Botões -->
+
+        <Button fx:id="btnGerar"
+                layoutX="100.0"
+                layoutY="400.0"
+                prefWidth="160.0"
+                text="Gerar Boleto"
+                onAction="#gerarBoleto"/>
+
+        <Button fx:id="btnGerarTodos"
+                layoutX="280.0"
+                layoutY="400.0"
+                prefWidth="160.0"
+                text="Gerar Todos"
+                onAction="#gerarTodosBoletos"/>
+
+        <Button fx:id="btnVoltar"
+                layoutX="460.0"
+                layoutY="400.0"
+                prefWidth="160.0"
+                text="Voltar"
+                onAction="#voltarFinanceiro"/>
+
+    </children>
+
+</AnchorPane>

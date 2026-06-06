@@ -8,6 +8,7 @@ import com.condominio.models.moradia.Dependente;
 import com.condominio.enums.StatusMorador;
 import com.condominio.service.CondominioService;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,10 +19,12 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CadastrarMoradorController {
 
@@ -41,7 +44,7 @@ public class CadastrarMoradorController {
 
     @FXML private ComboBox<String> cmbStatus;
     @FXML private ComboBox<String> cmbStatusContrato;
-    @FXML private ComboBox<String> cmbResponsavel;
+    @FXML private ComboBox<Morador> cmbResponsavel; // Alterado de String para Morador
     @FXML private ComboBox<String> cmbParentesco;
 
     @FXML private DatePicker dpDataInicioContrato;
@@ -65,14 +68,59 @@ public class CadastrarMoradorController {
         cmbStatusContrato.getItems().addAll("Ativo", "Encerrado", "Pendente");
         cmbParentesco.getItems().addAll("Filho(a)", "Cônjuge", "Pai", "Mãe", "Irmão(a)", "Outro");
 
+        configurarFormatacaoResponsavel();
+
         // Se a unidade veio guardada da tela anterior, preenche e trava o campo
         if (unidadeSelecionadaGlobal != null) {
             txtUnidade.setText(String.valueOf(unidadeSelecionadaGlobal.getNumero()));
             txtUnidade.setEditable(false);
             txtUnidade.setStyle("-fx-background-color: #F1F5F9; -fx-text-fill: #64748B;");
+
+            // Carrega e preenche o ComboBox com os moradores da unidade que podem ser responsáveis
+            carregarResponsaveisDaUnidade();
         }
 
         selecionarProprietario(null);
+    }
+
+    private void configurarFormatacaoResponsavel() {
+        // Define como o objeto Morador será exibido dentro da lista expansível
+        cmbResponsavel.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(Morador item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getNome() + " (" + item.getClass().getSimpleName() + ")");
+                }
+            }
+        });
+
+        // Define como o objeto Morador será exibido após ser selecionado (no botão fechado)
+        cmbResponsavel.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Morador item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getNome());
+                }
+            }
+        });
+    }
+
+    private void carregarResponsaveisDaUnidade() {
+        if (unidadeSelecionadaGlobal != null && condominioService.listarMoradores() != null) {
+            List<Morador> moradoresFiltrados = condominioService.listarMoradores().stream()
+                    .filter(m -> m.getUnidade() != null &&
+                            m.getUnidade().getId() == unidadeSelecionadaGlobal.getId() &&
+                            (m instanceof Proprietario || m instanceof Inquilino))
+                    .toList();
+
+            cmbResponsavel.setItems(FXCollections.observableArrayList(moradoresFiltrados));
+        }
     }
 
     @FXML
@@ -125,14 +173,13 @@ public class CadastrarMoradorController {
                     break;
 
                 case "DEPENDENTE":
-                    String cpfResponsavel = cmbResponsavel.getValue();
-                    if (cpfResponsavel == null || cpfResponsavel.isEmpty()) {
-                        exibirAlerta("Erro", "Responsável Ausente", "Selecione o CPF do responsável.", Alert.AlertType.ERROR);
+                    // Pegando diretamente o objeto Morador selecionado no ComboBox encadeado
+                    Morador responsavel = cmbResponsavel.getValue();
+
+                    if (responsavel == null) {
+                        exibirAlerta("Erro", "Responsável Ausente", "Selecione um morador responsável para este dependente.", Alert.AlertType.ERROR);
                         return;
                     }
-                    Morador responsavel = condominioService.listarMoradores().stream()
-                            .filter(m -> m.getCpf().equals(cpfResponsavel.replaceAll("[^0-9]", "")))
-                            .findFirst().orElse(null);
 
                     morador = new Dependente(idNovoMorador, nome, cpf, telefone, unidade, responsavel, email, statusMorador);
                     break;
@@ -192,6 +239,9 @@ public class CadastrarMoradorController {
         cardDependente.setStyle("-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #2563EB; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 22 16; -fx-cursor: hand;");
         secaoDependente.setVisible(true); secaoDependente.setManaged(true);
         secaoInquilino.setVisible(false); secaoInquilino.setManaged(false);
+
+        // Recarrega sempre a lista ao clicar na aba, evitando inconsistências de inclusões recentes
+        carregarResponsaveisDaUnidade();
     }
 
     @FXML public void limparFormulario(ActionEvent event) { limparCampos(); }
@@ -218,7 +268,7 @@ public class CadastrarMoradorController {
     @FXML public void voltarHome(MouseEvent event) { trocarTela(event, "/com/condominio/home-view.fxml"); }
     @FXML public void voltarUnidades(MouseEvent event) { trocarTela(event, "/com/condominio/unidade/unidade-view.fxml"); }
     @FXML public void voltarDetalhes(MouseEvent event) { trocarTela(event, "/com/condominio/unidade/unidade-view.fxml"); }
-    
+
     private void trocarTela(javafx.event.Event event, String caminhoFXML) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(caminhoFXML));
