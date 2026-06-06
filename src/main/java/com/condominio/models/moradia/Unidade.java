@@ -22,6 +22,15 @@ public class Unidade {
     private List<Veiculo> veiculos;
     private List<Pet> pets;
 
+    // =========================================================================
+    // NOVO: CONSTRUTOR VAZIO (Para o Controller criar instâncias flexíveis)
+    // =========================================================================
+    public Unidade() {
+        this.moradores = new ArrayList<>();
+        this.veiculos = new ArrayList<>();
+        this.pets = new ArrayList<>();
+    }
+
     public Unidade(int id,
                    String bloco,
                    StatusUnidade status,
@@ -54,11 +63,9 @@ public class Unidade {
         this.id = (int) (System.currentTimeMillis() & 0xfffffff);
         this.bloco = "Bloco Geral";
 
-        // Pega o primeiro status disponível no Enum
         this.status = StatusUnidade.values().length > 0 ? StatusUnidade.values()[0] : null;
         this.fracaoIdeal = 1.0;
 
-        // Filtra apenas números do texto digitado ou selecionado
         int numeroExtraido = 1;
         try {
             String apenasNumeros = textoTela.replaceAll("[^0-9]", "");
@@ -71,7 +78,6 @@ public class Unidade {
         }
         this.numero = numeroExtraido;
 
-        // Pega o primeiro tipo disponível no Enum
         this.tipo = TipoUnidade.values().length > 0 ? TipoUnidade.values()[0] : null;
         this.metragem = "Padrão";
         this.capacidade = 4;

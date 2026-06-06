@@ -5,6 +5,7 @@ import com.condominio.models.moradia.Unidade;
 import com.condominio.enums.StatusReserva;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,123 +21,64 @@ public class Reserva {
     private List<Convidado> convidados;
     private StatusReserva status;
 
-    public Reserva(int id,
-                   AreaComum area,
-                   Unidade unidade,
-                   Morador responsavel,
-                   LocalDateTime dataInicio,
-                   LocalDateTime dataFim,
-                   int quantidadePessoas,
-                   StatusReserva status) {
-
+    public Reserva(int id, AreaComum area, Unidade unidade, Morador responsavel,
+                   LocalDateTime dataInicio, LocalDateTime dataFim, int quantidadePessoas, StatusReserva status) {
         this.id = id;
-        // Importante: Definir o início antes do fim para as validações não darem NullPointer
-        setDataInicio(dataInicio);
-        setDataFim(dataFim);
-        setArea(area);
-        setUnidade(unidade);
-        setResponsavel(responsavel);
-        setQuantidadePessoas(quantidadePessoas);
-        setStatus(status);
-
-        // Correção aqui: Inicializa a lista vazia corretamente
+        this.area = area;
+        this.unidade = unidade;
+        this.responsavel = responsavel;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+        this.quantidadePessoas = quantidadePessoas;
+        this.status = status;
         this.convidados = new ArrayList<>();
     }
 
-    // Métodos auxiliares para a TableView do JavaFX conseguir ler textos simples
+    // =========================================================================
+    // MÉTODOS OBRIGATÓRIOS PARA O JAVAFX EXIBIR O TEXTO NA TABELA
+    // =========================================================================
+
+    public String getStringInicio() {
+        if (this.dataInicio == null) return "";
+        return this.dataInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+    }
+
     public String getNomeArea() {
-        return area != null ? area.toString() : "Área não definida";
+        return (this.area != null) ? this.area.getNome() : "Não definida";
     }
 
     public String getNomeResponsavel() {
-        return responsavel != null ? responsavel.toString() : "Não informado";
+        return (this.responsavel != null) ? this.responsavel.getNome() : "Não informado";
     }
 
-    // =========================
-    // SETTERS
-    // =========================
-
-    public void setId(int id) {
-        if (id <= 0) throw new IllegalArgumentException("ID inválido.");
-        this.id = id;
+    public String getStringFim() {
+        if (this.dataFim == null) return "";
+        return this.dataFim.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
     }
 
-    public void setArea(AreaComum area) {
-        if (area == null) throw new IllegalArgumentException("Área inválida.");
-        this.area = area;
+    public String getStringStatus() {
+        return (this.status != null) ? this.status.toString() : "ATIVA";
     }
 
-    public void setUnidade(Unidade unidade) {
-        if (unidade == null) throw new IllegalArgumentException("Unidade inválida.");
-        this.unidade = unidade;
-    }
+    // =========================================================================
+    // GETTERS E SETTERS TRADICIONAIS
+    // =========================================================================
 
-    public void setDataFim(LocalDateTime dataFim) {
-        if (dataInicio != null && dataFim.isBefore(dataInicio)) {
-            throw new IllegalArgumentException("Data final inválida.");
-        }
-        this.dataFim = dataFim;
-    }
-
-    public void setDataInicio(LocalDateTime dataInicio) {
-        // Removida a validação de retroatividade estrita para testes locais não quebrarem dependendo do horário do PC
-        this.dataInicio = dataInicio;
-    }
-
-    public void setQuantidadePessoas(int quantidadePessoas) {
-        if (quantidadePessoas <= 0) throw new IllegalArgumentException("Quantidade inválida.");
-        this.quantidadePessoas = quantidadePessoas;
-    }
-
-    public void setResponsavel(Morador responsavel) {
-        if (responsavel == null) throw new IllegalArgumentException("Responsável inválido.");
-        this.responsavel = responsavel;
-    }
-
-    public void setStatus(StatusReserva status) {
-        this.status = status;
-    }
-
-    // =========================
-    // GETTERS
-    // =========================
-
-    public Unidade getUnidade() { return unidade; }
     public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
     public AreaComum getArea() { return area; }
-    public LocalDateTime getDataFim() { return dataFim; }
-    public int getQuantidadePessoas() { return quantidadePessoas; }
+    public void setArea(AreaComum area) { this.area = area; }
+    public Unidade getUnidade() { return unidade; }
+    public void setUnidade(Unidade unidade) { this.unidade = unidade; }
     public LocalDateTime getDataInicio() { return dataInicio; }
+    public void setDataInicio(LocalDateTime dataInicio) { this.dataInicio = dataInicio; }
+    public LocalDateTime getDataFim() { return dataFim; }
+    public void setDataFim(LocalDateTime dataFim) { this.dataFim = dataFim; }
+    public int getQuantidadePessoas() { return quantidadePessoas; }
+    public void setQuantidadePessoas(int quantidadePessoas) { this.quantidadePessoas = quantidadePessoas; }
     public Morador getResponsavel() { return responsavel; }
-    public List<Convidado> getConvidados() { return convidados; }
+    public void setResponsavel(Morador responsavel) { this.responsavel = responsavel; }
     public StatusReserva getStatus() { return status; }
-
-    // =========================
-    // REGRAS DE NEGÓCIO
-    // =========================
-
-    public void adicionarConvidado(int id, String nome, String documento) {
-        if (status == StatusReserva.CANCELADA) throw new IllegalArgumentException("Reserva cancelada.");
-        if (area != null && quantidadePessoas >= area.getCapacidadeMaxima()) {
-            throw new IllegalArgumentException("Capacidade máxima atingida.");
-        }
-        this.convidados.add(new Convidado(id, nome, documento));
-        quantidadePessoas++;
-    }
-
-    public void cancelarReserva() {
-        if (status == StatusReserva.FINALIZADA) throw new IllegalArgumentException("Reserva já finalizada.");
-        status = StatusReserva.CANCELADA;
-    }
-
-    public void finalizarReserva() {
-        if (status == StatusReserva.CANCELADA) throw new IllegalArgumentException("Reserva cancelada.");
-        status = StatusReserva.FINALIZADA;
-    }
-
-    public boolean reservaAtiva() { return status == StatusReserva.ATIVA; }
-
-    public void validarDatas() {
-        if (dataFim.isBefore(dataInicio)) throw new IllegalArgumentException("Período da reserva inválido.");
-    }
+    public void setStatus(StatusReserva status) { this.status = status; }
+    public List<Convidado> getConvidados() { return convidados; }
 }

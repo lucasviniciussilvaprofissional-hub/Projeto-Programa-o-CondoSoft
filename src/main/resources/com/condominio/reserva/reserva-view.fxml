@@ -19,218 +19,100 @@
             style="-fx-background-color: #F7F8FA;"
             xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.condominio.controller.reserva.ReservaController">
+            fx:controller="com.condominio.controller.reserva.NovaReservaController">
 
     <top>
         <HBox alignment="CENTER_LEFT"
               prefHeight="80.0"
               style="-fx-background-color: #1E293B; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0;">
-
             <children>
-
                 <VBox alignment="CENTER_LEFT">
                     <children>
                         <Label text="CondoSoft" textFill="#94A3B8">
-                            <font>
-                                <Font name="System Bold" size="14.0"/>
-                            </font>
+                            <font><Font name="System Bold" size="14.0"/></font>
                         </Label>
-
                         <Label text="Novo Agendamento" textFill="white">
-                            <font>
-                                <Font name="System Bold" size="22.0"/>
+                            <font><Font name="System Bold" size="22.0"/>
                             </font>
                         </Label>
                     </children>
-
-                    <HBox.margin>
-                        <Insets left="30.0"/>
-                    </HBox.margin>
+                    <HBox.margin><Insets left="30.0"/></HBox.margin>
                 </VBox>
-
                 <Region HBox.hgrow="ALWAYS"/>
-
                 <Button mnemonicParsing="false"
                         onAction="#voltarHome"
                         style="-fx-background-color: #EF4444; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold;"
                         text="Voltar ao Início">
-
-                    <padding>
-                        <Insets top="10.0" right="20.0" bottom="10.0" left="20.0"/>
-                    </padding>
-
-                    <HBox.margin>
-                        <Insets right="30.0"/>
-                    </HBox.margin>
-
-                    <cursor>
-                        <Cursor fx:constant="HAND"/>
-                    </cursor>
+                    <padding><Insets top="10.0" right="20.0" bottom="10.0" left="20.0"/></padding>
+                    <HBox.margin><Insets right="30.0"/></HBox.margin>
+                    <cursor><Cursor fx:constant="HAND"/></cursor>
                 </Button>
-
             </children>
         </HBox>
     </top>
 
     <center>
-
-        <VBox alignment="TOP_CENTER"
-              spacing="20.0">
-
-            <padding>
-                <Insets top="50.0"/>
-            </padding>
-
+        <VBox alignment="TOP_CENTER" spacing="20.0">
+            <padding><Insets top="50.0"/></padding>
             <children>
-
-                <VBox maxWidth="500.0"
-                      spacing="24.0"
+                <VBox maxWidth="500.0" spacing="24.0"
                       style="-fx-background-color: white; -fx-padding: 40; -fx-background-radius: 12; -fx-border-color: #E2E8F0; -fx-border-width: 1; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);">
-
                     <children>
-
-                        <Label text="Formulário de Reserva"
-                               textFill="#1E293B">
-
-                            <font>
-                                <Font name="System Bold" size="20.0"/>
-                            </font>
+                        <Label text="Formulário de Reserva" textFill="#1E293B">
+                            <font><Font name="System Bold" size="20.0"/></font>
                         </Label>
-
                         <VBox spacing="8.0">
-
                             <children>
-
-                                <Label text="Selecione a Área Comum"
-                                       textFill="#475569"/>
-
-                                <ComboBox fx:id="cbAreaComum"
-                                          prefHeight="40.0"
-                                          prefWidth="420.0"
-                                          promptText="Escolha o local..."
-                                          style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6;"/>
-
+                                <Label text="Selecione a Área Comum" textFill="#475569"/>
+                                <ComboBox fx:id="cbAreaComum" prefHeight="40.0" prefWidth="420.0" promptText="Escolha o local..." style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6;"/>
                             </children>
-
                         </VBox>
-
                         <VBox spacing="8.0">
-
                             <children>
-
-                                <Label text="Unidade / Apartamento"
-                                       textFill="#475569"/>
-
-                                <ComboBox fx:id="cbUnidade"
-                                          onAction="#aoSelecionarUnidade"
-                                          prefHeight="40.0"
-                                          prefWidth="420.0"
-                                          promptText="Selecione a unidade..."
-                                          style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6;"/>
-
+                                <Label text="Unidade / Apartamento" textFill="#475569"/>
+                                <ComboBox fx:id="cbUnidade" prefHeight="40.0" prefWidth="420.0" promptText="Selecione a unidade..." style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6;"/>
                             </children>
-
                         </VBox>
-
                         <VBox spacing="8.0">
-
                             <children>
-
-                                <Label text="Morador Responsável"
-                                       textFill="#475569"/>
-
-                                <ComboBox fx:id="cbMorador"
-                                          prefHeight="40.0"
-                                          prefWidth="420.0"
-                                          promptText="Selecione um morador..."
-                                          style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6;"/>
-
+                                <Label text="Morador Responsável" textFill="#475569"/>
+                                <ComboBox fx:id="cbMorador" prefHeight="40.0" prefWidth="420.0" promptText="Selecione um morador..." style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6;"/>
                             </children>
-
                         </VBox>
-
                         <VBox spacing="8.0">
-
                             <children>
-
-                                <Label text="Data da Reserva"
-                                       textFill="#475569"/>
-
-                                <DatePicker fx:id="dpData"
-                                            prefHeight="40.0"
-                                            prefWidth="420.0"
-                                            style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6;"/>
-
+                                <Label text="Data da Reserva" textFill="#475569"/>
+                                <DatePicker fx:id="dpData" prefHeight="40.0" prefWidth="420.0" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6;"/>
                             </children>
-
                         </VBox>
-
                         <HBox spacing="20.0">
-
                             <children>
-
-                                <VBox spacing="8.0"
-                                      HBox.hgrow="ALWAYS">
-
+                                <VBox spacing="8.0" HBox.hgrow="ALWAYS">
                                     <children>
-
-                                        <Label text="Horário de Início"
-                                               textFill="#475569"/>
-
-                                        <TextField fx:id="txtHoraInicio"
-                                                   prefHeight="40.0"
-                                                   promptText="00:00"
-                                                   style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6;"/>
-
+                                        <Label text="Horário de Início" textFill="#475569"/>
+                                        <TextField fx:id="txtHoraInicio" prefHeight="40.0" promptText="08:00" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6;"/>
                                     </children>
-
                                 </VBox>
-
-                                <VBox spacing="8.0"
-                                      HBox.hgrow="ALWAYS">
-
+                                <VBox spacing="8.0" HBox.hgrow="ALWAYS">
                                     <children>
-
-                                        <Label text="Horário de Término"
-                                               textFill="#475569"/>
-
-                                        <TextField fx:id="txtHoraFim"
-                                                   prefHeight="40.0"
-                                                   promptText="00:00"
-                                                   style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6;"/>
-
+                                        <Label text="Horário de Término" textFill="#475569"/>
+                                        <TextField fx:id="txtHoraFim" prefHeight="40.0" promptText="12:00" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6;"/>
                                     </children>
-
                                 </VBox>
-
                             </children>
-
                         </HBox>
-
                         <Button mnemonicParsing="false"
                                 onAction="#salvarReserva"
                                 prefHeight="45.0"
                                 prefWidth="420.0"
                                 style="-fx-background-color: #4F46E5; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold; -fx-font-size: 14px;"
                                 text="Confirmar Solicitação">
-
-                            <VBox.margin>
-                                <Insets top="10.0"/>
-                            </VBox.margin>
-
-                            <cursor>
-                                <Cursor fx:constant="HAND"/>
-                            </cursor>
-
+                            <VBox.margin><Insets top="10.0"/></VBox.margin>
+                            <cursor><Cursor fx:constant="HAND"/></cursor>
                         </Button>
-
                     </children>
-
                 </VBox>
-
             </children>
-
         </VBox>
-
     </center>
 </BorderPane>
