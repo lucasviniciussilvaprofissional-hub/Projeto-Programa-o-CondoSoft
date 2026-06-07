@@ -45,13 +45,18 @@
                 <HBox spacing="12.0">
                     <VBox spacing="6.0" HBox.hgrow="ALWAYS">
                         <Label text="Apartamento/Unidade" style="-fx-text-fill: #64748B; -fx-font-weight: bold; -fx-font-size: 12;"/>
-                        <TextField fx:id="txtUnidade" promptText="Ex: 102" style="-fx-padding: 10; -fx-background-radius: 6;"/>
+                        <ComboBox fx:id="cbUnidade" onAction="#aoSelecionarUnidade" maxWidth="Infinity" style="-fx-padding: 6; -fx-background-radius: 6;" promptText="Selecione..."/>
                     </VBox>
                     <VBox spacing="6.0" HBox.hgrow="ALWAYS">
                         <Label text="Tipo" style="-fx-text-fill: #64748B; -fx-font-weight: bold; -fx-font-size: 12;"/>
                         <ComboBox fx:id="cbTipo" maxWidth="Infinity" style="-fx-padding: 6; -fx-background-radius: 6;"/>
                     </VBox>
                 </HBox>
+
+                <VBox spacing="6.0">
+                    <Label text="Morador Envolvido" style="-fx-text-fill: #64748B; -fx-font-weight: bold; -fx-font-size: 12;"/>
+                    <ComboBox fx:id="cbMorador" maxWidth="Infinity" style="-fx-padding: 6; -fx-background-radius: 6;" promptText="Selecione a unidade antes..."/>
+                </VBox>
 
                 <VBox spacing="6.0">
                     <Label text="Título Resumido" style="-fx-text-fill: #64748B; -fx-font-weight: bold; -fx-font-size: 12;"/>

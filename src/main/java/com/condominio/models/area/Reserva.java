@@ -35,6 +35,46 @@ public class Reserva {
     }
 
     // =========================================================================
+    // MÉTODOS DE REGRAS DE NEGÓCIO (EXIGIDOS PELO RESERVASERVICE)
+    // =========================================================================
+
+    /**
+     * REQ09 - Adiciona um convidado à lista de acesso da reserva e incrementa
+     * a contagem de pessoas atual da reserva.
+     */
+    public void adicionarConvidado(int idConvidado, String nome, String documento) {
+        if (this.status != StatusReserva.ATIVA) {
+            throw new IllegalStateException("Não é possível adicionar convidados a uma reserva que não está ATIVA.");
+        }
+
+        Convidado novoConvidado = new Convidado(idConvidado, nome, documento);
+        this.convidados.add(novoConvidado);
+
+        // Incrementa a quantidade de pessoas presentes na reserva para bater com o REQ17 do Service
+        this.quantidadePessoas++;
+    }
+
+    /**
+     * REQ10 - Modifica o status da reserva para FINALIZADA.
+     */
+    public void finalizarReserva() {
+        if (this.status != StatusReserva.ATIVA) {
+            throw new IllegalStateException("Apenas reservas com status ATIVA podem ser finalizadas.");
+        }
+        this.status = StatusReserva.FINALIZADA;
+    }
+
+    /**
+     * Modifica o status da reserva para CANCELADA.
+     */
+    public void cancelarReserva() {
+        if (this.status == StatusReserva.FINALIZADA) {
+            throw new IllegalStateException("Não é possível cancelar uma reserva que já foi finalizada.");
+        }
+        this.status = StatusReserva.CANCELADA;
+    }
+
+    // =========================================================================
     // MÉTODOS OBRIGATÓRIOS PARA O JAVAFX EXIBIR O TEXTO NA TABELA
     // =========================================================================
 
@@ -60,6 +100,10 @@ public class Reserva {
         return (this.status != null) ? this.status.toString() : "ATIVA";
     }
 
+    public int getNumeroUnidade() {
+        return (this.unidade != null) ? this.unidade.getNumero() : 0;
+    }
+
     // =========================================================================
     // GETTERS E SETTERS TRADICIONAIS
     // =========================================================================
@@ -81,4 +125,5 @@ public class Reserva {
     public StatusReserva getStatus() { return status; }
     public void setStatus(StatusReserva status) { this.status = status; }
     public List<Convidado> getConvidados() { return convidados; }
+    public void setConvidados(List<Convidado> convidados) { this.convidados = convidados; }
 }

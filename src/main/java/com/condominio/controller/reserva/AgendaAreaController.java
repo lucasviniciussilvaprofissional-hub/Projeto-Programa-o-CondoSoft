@@ -1,83 +1,161 @@
 package com.condominio.controller.reserva;
 
+import com.condominio.models.area.AreaComum;
+import com.condominio.models.area.Reserva;
+import com.condominio.repository.implementation.BoletoRepositoryImpl;
+import com.condominio.repository.implementation.ReservaRepositoryImpl;
+import com.condominio.repository.implementation.TaxaLimpezaRepositoryImpl;
+import com.condominio.service.ReservaService;
+
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class AgendaAreaController {
 
-    public VBox vboxAgendaConteudo;
+    // ── FXML ──────────────────────────────────────────────────────────────
+    @FXML public VBox  vboxAgendaConteudo;
+    @FXML private ComboBox<String> cmbAreaFiltro;
+    @FXML private DatePicker       dpSemana;
+    @FXML private Label lblDia1, lblDia2, lblDia3,
+                        lblDia4, lblDia5, lblDia6, lblDia7;
 
-    public void voltarHome(ActionEvent event) {
-        trocarTela(event, "/com/condominio/home-view.fxml");
+    // ── áreas ─────────────────────────────────────────────────────────────
+    private static final List<AreaComum> AREAS = List.of(
+            new AreaComum("Salão de Festas", 80),
+            new AreaComum("Churrasqueira",   30),
+            new AreaComum("Piscina",         50),
+            new AreaComum("Quadra",          20),
+            new AreaComum("Espaço Gourmet",  40)
+    );
+
+    private final ReservaService service = new ReservaService(
+            new ReservaRepositoryImpl(),
+            new TaxaLimpezaRepositoryImpl(),
+            new BoletoRepositoryImpl());
+
+    private LocalDate semanaAtual = LocalDate.now();
+    private static final DateTimeFormatter FMT_DIA  = DateTimeFormatter.ofPattern("EEE dd/MM");
+    private static final DateTimeFormatter FMT_HORA = DateTimeFormatter.ofPattern("HH:mm");
+
+    // ── init ──────────────────────────────────────────────────────────────
+    @FXML
+    public void initialize() {
+        cmbAreaFiltro.getItems().add("Todas as Áreas");
+        for (AreaComum a : AREAS) cmbAreaFiltro.getItems().add(a.getNome());
+        cmbAreaFiltro.getSelectionModel().selectFirst();
+
+        dpSemana.setValue(semanaAtual);
+        atualizarCabecalhos();
+        renderizarAgenda();
     }
 
-    public void voltarHome(MouseEvent event) {
-        trocarTela(event, "/com/condominio/home-view.fxml");
+    // ── navegação de semana ───────────────────────────────────────────────
+    @FXML public void semanaAnterior(ActionEvent event) { semanaAtual = semanaAtual.minusWeeks(1); recarregar(); }
+    @FXML public void proximaSemana(ActionEvent event)  { semanaAtual = semanaAtual.plusWeeks(1);  recarregar(); }
+    @FXML public void irParaHoje(ActionEvent event)     { semanaAtual = LocalDate.now();           recarregar(); }
+
+    @FXML public void carregarAgenda(ActionEvent event) {
+        if (dpSemana.getValue() != null) semanaAtual = dpSemana.getValue();
+        recarregar();
     }
 
-    public void voltarReservas(ActionEvent event) {
-        trocarTela(event, "/com/condominio/reserva-view.fxml");
+    private void recarregar() {
+        dpSemana.setValue(semanaAtual);
+        atualizarCabecalhos();
+        renderizarAgenda();
     }
 
-    public void voltarReservas(MouseEvent event) {
-        trocarTela(event, "/com/condominio/reserva-view.fxml");
+    private void atualizarCabecalhos() {
+        LocalDate dom = semanaAtual.with(DayOfWeek.SUNDAY);
+        Label[] labels = {lblDia1, lblDia2, lblDia3, lblDia4, lblDia5, lblDia6, lblDia7};
+        for (int i = 0; i < 7; i++)
+            if (labels[i] != null) labels[i].setText(dom.plusDays(i).format(FMT_DIA));
     }
 
-    public void abrirNovaReserva(ActionEvent event) {
-        trocarTela(event, "/com/condominio/cadastrar-reserva-view.fxml");
-    }
+    private void renderizarAgenda() {
+        if (vboxAgendaConteudo == null) return;
+        vboxAgendaConteudo.getChildren().clear();
 
-    public void carregarAgenda(ActionEvent event) {
-        System.out.println("Carregar agenda");
-    }
+        String filtro = cmbAreaFiltro.getValue();
+        LocalDate dom = semanaAtual.with(DayOfWeek.SUNDAY);
+        LocalDate sab = dom.plusDays(6);
 
-    public void semanaAnterior(ActionEvent event) {
-        System.out.println("Semana anterior");
-    }
+        List<Reserva> todas = service.listarReservas();
+        int exibidas = 0;
 
-    public void proximaSemana(ActionEvent event) {
-        System.out.println("Próxima semana");
-    }
+        for (Reserva r : todas) {
+            if (r.getDataInicio() == null) continue;
 
-    public void irParaHoje(ActionEvent event) {
-        System.out.println("Ir para hoje");
-    }
+            LocalDate diaR = r.getDataInicio().toLocalDate();
+            if (diaR.isBefore(dom) || diaR.isAfter(sab)) continue;
 
-    private void trocarTela(ActionEvent event, String caminhoFXML) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource(caminhoFXML));
+            boolean passaFiltro = filtro == null || "Todas as Áreas".equals(filtro)
+                    || r.getNomeArea().equals(filtro);
+            if (!passaFiltro) continue;
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            String cor = switch (r.getStatus()) {
+                case ATIVA      -> "#DCFCE7";
+                case CANCELADA  -> "#FEE2E2";
+                case FINALIZADA -> "#E0E7FF";
+            };
 
-            stage.setScene(new Scene(root));
-            stage.show();
+            Label card = new Label(
+                    r.getDataInicio().format(FMT_DIA) + "  "
+                    + r.getDataInicio().format(FMT_HORA) + "–"
+                    + r.getDataFim().format(FMT_HORA) + "  │  "
+                    + r.getNomeArea() + "  │  "
+                    + r.getNomeResponsavel()
+                    + "  │  " + r.getQuantidadePessoas() + " pess."
+                    + "  │  [" + r.getStatus() + "]");
+            card.setMaxWidth(Double.MAX_VALUE);
+            card.setWrapText(true);
+            card.setStyle("-fx-background-color:" + cor + ";"
+                    + "-fx-background-radius:8;"
+                    + "-fx-padding:10 14;"
+                    + "-fx-font-size:12;"
+                    + "-fx-border-color:#CBD5E1;"
+                    + "-fx-border-radius:8;"
+                    + "-fx-border-width:1;");
+            vboxAgendaConteudo.getChildren().add(card);
+            exibidas++;
+        }
 
-        } catch (IOException e) {
-            System.out.println("Erro ao abrir: " + caminhoFXML);
-            e.printStackTrace();
+        if (exibidas == 0) {
+            Label vazio = new Label("Nenhuma reserva encontrada para esta semana / filtro.");
+            vazio.setStyle("-fx-text-fill:#94A3B8; -fx-font-size:13; -fx-padding:20;");
+            vboxAgendaConteudo.getChildren().add(vazio);
         }
     }
 
-    private void trocarTela(MouseEvent event, String caminhoFXML) {
+    // ── navegação ─────────────────────────────────────────────────────────
+    @FXML public void abrirNovaReserva(ActionEvent event) { nav(event, "/com/condominio/reserva/nova-reserva-view.fxml"); }
+    @FXML public void voltarHome(ActionEvent event)       { nav(event, "/com/condominio/home-view.fxml"); }
+    @FXML public void voltarHome(MouseEvent event)        { nav(event, "/com/condominio/home-view.fxml"); }
+    @FXML public void voltarReservas(ActionEvent event)   { nav(event, "/com/condominio/reserva/reserva-view.fxml"); }
+    @FXML public void voltarReservas(MouseEvent event)    { nav(event, "/com/condominio/reserva/reserva-view.fxml"); }
+
+    // ── util ──────────────────────────────────────────────────────────────
+    private void nav(javafx.event.Event event, String fxml) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(caminhoFXML));
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (IOException e) {
-            System.out.println("Erro ao abrir: " + caminhoFXML);
-            e.printStackTrace();
-        }
+            FXMLLoader l = new FXMLLoader(getClass().getResource(fxml));
+            Parent r = l.load();
+            Stage s = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            s.setScene(new Scene(r)); s.show();
+        } catch (IOException e) { e.printStackTrace(); }
     }
 }

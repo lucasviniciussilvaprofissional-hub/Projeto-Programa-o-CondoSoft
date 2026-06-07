@@ -235,18 +235,25 @@ public class FinanceiroService {
      */
     public void verificarInadimplencias() {
         for (Boleto b : boletoRepo.listar()) {
+            // 1. Se o boleto estiver PENDENTE mas a data passou, atualiza para VENCIDO
             if (b.getStatus() == StatusBoleto.PENDENTE && b.boletoVencido()) {
                 b.setStatus(StatusBoleto.VENCIDO);
                 boletoRepo.atualizar(b);
+            }
 
-                // só registra se ainda não existe inadimplência para este boleto
+            // 2. Agora, se o boleto for VENCIDO (ou porque foi atualizado acima, ou porque nasceu vencido)
+            if (b.getStatus() == StatusBoleto.VENCIDO) {
+
+                // Só registra se ainda não existe inadimplência para este boleto
                 boolean jaRegistrado = inadimplenciaRepo.listar().stream()
-                        .anyMatch(i -> i.getBoleto() != null
-                                && i.getBoleto().getId() == b.getId());
+                        .anyMatch(i -> i.getBoleto() != null && i.getBoleto().getId() == b.getId());
 
                 if (!jaRegistrado && b.getUnidade() != null) {
-                    int dias = (int) (LocalDate.now().toEpochDay()
-                            - b.getDataVencimento().toEpochDay());
+                    // Calcula os dias de atraso de forma segura
+                    int dias = (int) (LocalDate.now().toEpochDay() - b.getDataVencimento().toEpochDay());
+                    // Garante que o número de dias não seja negativo caso haja alguma inconsistência
+                    if (dias < 0) dias = 0;
+
                     float multa = (float) b.calcularMulta();
 
                     Inadimplencia inadimplencia = new Inadimplencia(
@@ -254,7 +261,8 @@ public class FinanceiroService {
                             b.getValor() + multa,
                             dias,
                             b,
-                            b.getUnidade());
+                            b.getUnidade()
+                    );
                     inadimplenciaRepo.salvar(inadimplencia);
                 }
             }

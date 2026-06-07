@@ -48,28 +48,12 @@ public class HomeController {
         stage.show();
     }
 
-    public void abrirMoradores(ActionEvent event) throws IOException {
-
-        Parent root = FXMLLoader.load(
-                HomeController.class.getResource(
-                        "/com/condominio/unidade/listar-moradores-view.fxml"
-                )
-        );
-
-        Stage stage = (Stage)
-                ((Node) event.getSource())
-                        .getScene()
-                        .getWindow();
-
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
 
     public void abrirReservas(ActionEvent event) throws IOException {
 
         Parent root = FXMLLoader.load(
                 getClass().getResource(
-                        "/com/condominio/reserva/reserva-view.fxml"
+                        "/com/condominio/reserva/lista-reserva-view.fxml"
                 )
         );
 
