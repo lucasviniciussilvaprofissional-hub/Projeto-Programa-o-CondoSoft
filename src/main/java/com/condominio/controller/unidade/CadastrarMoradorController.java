@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -32,25 +33,41 @@ public class CadastrarMoradorController {
         unidadeSelecionadaGlobal = unidade;
     }
 
-    @FXML private TextField txtNome;
-    @FXML private TextField txtCpf;
-    @FXML private TextField txtTelefone;
-    @FXML private TextField txtEmail;
-    @FXML private TextField txtUnidade;
-    @FXML private TextArea txtDescricao;
+    @FXML
+    private TextField txtNome;
+    @FXML
+    private TextField txtCpf;
+    @FXML
+    private TextField txtTelefone;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private TextField txtUnidade;
+    @FXML
+    private TextArea txtDescricao;
 
-    @FXML private ComboBox<String> cmbStatus;
-    @FXML private ComboBox<String> cmbStatusContrato;
-    @FXML private ComboBox<String> cmbResponsavel;
-    @FXML private ComboBox<String> cmbParentesco;
+    @FXML
+    private ComboBox<String> cmbStatus;
+    @FXML
+    private ComboBox<String> cmbStatusContrato;
+    @FXML
+    private ComboBox<String> cmbResponsavel;
+    @FXML
+    private ComboBox<String> cmbParentesco;
 
-    @FXML private DatePicker dpDataInicioContrato;
+    @FXML
+    private DatePicker dpDataInicioContrato;
 
-    @FXML private VBox cardProprietario;
-    @FXML private VBox cardInquilino;
-    @FXML private VBox cardDependente;
-    @FXML private VBox secaoInquilino;
-    @FXML private VBox secaoDependente;
+    @FXML
+    private VBox cardProprietario;
+    @FXML
+    private VBox cardInquilino;
+    @FXML
+    private VBox cardDependente;
+    @FXML
+    private VBox secaoInquilino;
+    @FXML
+    private VBox secaoDependente;
 
     private String tipoSelecionado = "PROPRIETARIO";
 
@@ -144,7 +161,7 @@ public class CadastrarMoradorController {
             // 3. SALVA APENAS O MORADOR NO REPOSITÓRIO VINCULADO À UNIDADE ACHADA
             condominioService.adicionarMorador(morador, unidade);
 
-            exibirAlerta("Sucesso", null, "Morador salvo e vinculado à Unidade " + unidade.getNumero() + "!", Alert.AlertType.INFORMATION);
+            exibirAlerta("Sucesso", null, "Morador saved e vinculado à Unidade " + unidade.getNumero() + "!", Alert.AlertType.INFORMATION);
             limparCampos();
 
         } catch (Exception e) {
@@ -170,8 +187,10 @@ public class CadastrarMoradorController {
         cardProprietario.setStyle("-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #2563EB; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 22 16; -fx-cursor: hand;");
         cardInquilino.setStyle("-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 22 16; -fx-cursor: hand;");
         cardDependente.setStyle("-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 22 16; -fx-cursor: hand;");
-        secaoInquilino.setVisible(false); secaoInquilino.setManaged(false);
-        secaoDependente.setVisible(false); secaoDependente.setManaged(false);
+        secaoInquilino.setVisible(false);
+        secaoInquilino.setManaged(false);
+        secaoDependente.setVisible(false);
+        secaoDependente.setManaged(false);
     }
 
     @FXML
@@ -180,8 +199,10 @@ public class CadastrarMoradorController {
         cardProprietario.setStyle("-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 22 16; -fx-cursor: hand;");
         cardInquilino.setStyle("-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #2563EB; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 22 16; -fx-cursor: hand;");
         cardDependente.setStyle("-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 22 16; -fx-cursor: hand;");
-        secaoInquilino.setVisible(true); secaoInquilino.setManaged(true);
-        secaoDependente.setVisible(false); secaoDependente.setManaged(false);
+        secaoInquilino.setVisible(true);
+        secaoInquilino.setManaged(true);
+        secaoDependente.setVisible(false);
+        secaoDependente.setManaged(false);
     }
 
     @FXML
@@ -190,11 +211,16 @@ public class CadastrarMoradorController {
         cardProprietario.setStyle("-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 22 16; -fx-cursor: hand;");
         cardInquilino.setStyle("-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 22 16; -fx-cursor: hand;");
         cardDependente.setStyle("-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #2563EB; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 22 16; -fx-cursor: hand;");
-        secaoDependente.setVisible(true); secaoDependente.setManaged(true);
-        secaoInquilino.setVisible(false); secaoInquilino.setManaged(false);
+        secaoDependente.setVisible(true);
+        secaoDependente.setManaged(true);
+        secaoInquilino.setVisible(false);
+        secaoInquilino.setManaged(false);
     }
 
-    @FXML public void limparFormulario(ActionEvent event) { limparCampos(); }
+    @FXML
+    public void limparFormulario(ActionEvent event) {
+        limparCampos();
+    }
 
     private void limparCampos() {
         txtNome.clear();
@@ -210,23 +236,67 @@ public class CadastrarMoradorController {
         dpDataInicioContrato.setValue(null);
         selecionarProprietario(null);
     }
+// =========================================================================
+// NAVEGAÇÃO — Corrigido para voltar exatamente para a página da Unidade
+// =========================================================================
 
-    // ==========================
-    // NAVEGAÇÃO
-    // ==========================
-    @FXML public void voltarGerenciarMoradores(ActionEvent event) { trocarTela(event, "/com/condominio/morador/morador-view.fxml"); }
-    @FXML public void voltarHome(MouseEvent event) { trocarTela(event, "/com/condominio/home-view.fxml"); }
-    @FXML public void voltarUnidades(MouseEvent event) { trocarTela(event, "/com/condominio/unidade/unidade-view.fxml"); }
-    @FXML public void voltarDetalhes(MouseEvent event) { trocarTela(event, "/com/condominio/unidade/unidade-view.fxml"); }
-    
+    @FXML
+    public void voltarTopo(ActionEvent event) {
+        trocarTela(event, "/com/condominio/unidade/unidade-view.fxml");
+    }
+
+    @FXML
+    public void voltarTopoIcone(MouseEvent event) {
+        trocarTela(event, "/com/condominio/unidade/unidade-view.fxml");
+    }
+
+    @FXML
+    public void voltarGerenciarMoradores(ActionEvent event) {
+        // Alinhado para voltar para a página de visualização da Unidade
+        trocarTela(event, "/com/condominio/unidade/unidade-view.fxml");
+    }
+
+    @FXML
+    public void voltarHome(MouseEvent event) {
+        trocarTela(event, "/com/condominio/unidade/home-view.fxml");
+    }
+
+    @FXML
+    public void voltarUnidades(MouseEvent event) {
+        trocarTela(event, "/com/condominio/unidade/home-view.fxml");
+    }
+
+    @FXML
+    public void voltarDetalhes(MouseEvent event) {
+        trocarTela(event, "/com/condominio/unidade/unidade-view.fxml");
+    }
+
     private void trocarTela(javafx.event.Event event, String caminhoFXML) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(caminhoFXML));
+            URL url = getClass().getResource(caminhoFXML);
+
+            if (url == null && caminhoFXML.startsWith("/")) {
+                url = Thread.currentThread().getContextClassLoader().getResource(caminhoFXML.substring(1));
+            }
+
+            if (url == null) {
+                throw new IOException("O arquivo FXML de destino não foi localizado em: " + caminhoFXML);
+            }
+
+            Parent root = FXMLLoader.load(url);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
+
         } catch (IOException e) {
+            System.err.println("[CondoSoft] Falha crítica de redirecionamento: " + e.getMessage());
             e.printStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro de Interface");
+            alert.setHeaderText("A tela solicitada não pôde ser carregada.");
+            alert.setContentText("Caminho afetado: " + caminhoFXML + "\nVerifique se o nome do arquivo fxml na pasta 'unidade' é exatamente unidade-view.fxml");
+            alert.showAndWait();
         }
     }
 }

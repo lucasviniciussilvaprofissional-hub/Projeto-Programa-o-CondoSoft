@@ -4,25 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT: Implementação dos requisitos para financeiro">
+    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT: Correção de bugs nos botôes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/AgendaAreaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/AgendaAreaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ListaReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ListaReservaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/NovaReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/NovaReservaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ReservaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/models/area/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/models/area/Reserva.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/ReservaRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/ReservaRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/repository/interfaces/IReservaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/interfaces/IReservaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/service/FinanceiroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/service/FinanceiroService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/service/ReservaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/service/ReservaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/rateio-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/rateio-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/ocorrencia-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/ocorrencia-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio/relatorio-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio/relatorio-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/agenda-area-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/agenda-area-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/lista-reserva-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/lista-reserva-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/nova-reserva-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/nova-reserva-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/reserva-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/reserva-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/BalanceteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/BalanceteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/CadastrarMoradorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/CadastrarMoradorController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,13 +17,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="INCOMING_COMMITS_CHECK_STRATEGY" value="FETCH" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="dev" />
@@ -55,7 +41,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/lucasviniciussilvaprofissional-hub/Projeto-Programa-o-CondoSoft.git&quot;,
-    &quot;accountId&quot;: &quot;cf52056f-eb42-4fd9-a47e-c2901a010278&quot;
+    &quot;accountId&quot;: &quot;fb94e1c8-ca18-43e1-8cfd-478e485eeebd&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -80,34 +66,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ProjetoIP [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ProjetoIP [compile].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;SHELLCHECK.PATH&quot;: &quot;I do mind&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#3 on dev&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "Application.MainApplication.executor": "Run",
+    "Maven.ProjetoIP [clean].executor": "Run",
+    "Maven.ProjetoIP [compile].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SHELLCHECK.PATH": "I do mind",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "#3 on dev",
+    "git.auto.fetch.suggestion.counter": "1",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.condominio.repository.implementation" />
@@ -158,9 +145,9 @@
       <workItem from="1780447382473" duration="4082000" />
       <workItem from="1780510473237" duration="607000" />
       <workItem from="1780667151133" duration="23000" />
-      <workItem from="1780684028056" duration="2922000" />
-      <workItem from="1780705163425" duration="8759000" />
-      <workItem from="1780786070543" duration="5730000" />
+      <workItem from="1780684028056" duration="2830000" />
+      <workItem from="1780877863324" duration="901000" />
+      <workItem from="1780878791626" duration="2403000" />
     </task>
     <task id="LOCAL-00001" summary="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros">
       <option name="closed" value="true" />
@@ -226,23 +213,7 @@
       <option name="project" value="LOCAL" />
       <updated>1780504994720</updated>
     </task>
-    <task id="LOCAL-00009" summary="FEAT: Implementação do rep de unidades na reserva.">
-      <option name="closed" value="true" />
-      <created>1780686933156</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1780686933156</updated>
-    </task>
-    <task id="LOCAL-00010" summary="FEAT: Implementação dos requisitos para financeiro">
-      <option name="closed" value="true" />
-      <created>1780712327725</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1780712327725</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,9 +239,7 @@
     <MESSAGE value="FEAT; CORREÇÃO DE BUGS COMUNICAÇÃO E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES" />
     <MESSAGE value="FEAT: Correção de bugs e alterações e sistema de gerenciar moradores, pets e veiculos." />
     <MESSAGE value="FEAT: Correção de bugs nos botôes" />
-    <MESSAGE value="FEAT: Implementação do rep de unidades na reserva." />
-    <MESSAGE value="FEAT: Implementação dos requisitos para financeiro" />
-    <option name="LAST_COMMIT_MESSAGE" value="FEAT: Implementação dos requisitos para financeiro" />
+    <option name="LAST_COMMIT_MESSAGE" value="FEAT: Correção de bugs nos botôes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
