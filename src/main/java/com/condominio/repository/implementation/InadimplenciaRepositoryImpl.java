@@ -9,7 +9,7 @@ import java.util.List;
 public class InadimplenciaRepositoryImpl
         implements IInadimplenciaRepository {
 
-    private final List<Inadimplencia> inadimplencias =
+    private static final List<Inadimplencia> inadimplencias =
             new ArrayList<>();
 
     @Override

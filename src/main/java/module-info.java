@@ -4,6 +4,7 @@ module com.example.projetoip {
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
+    requires java.desktop;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
 

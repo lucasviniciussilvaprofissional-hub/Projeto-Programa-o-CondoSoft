@@ -4,25 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT: Implementação dos requisitos para financeiro">
+    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT: Implementação dos requisitos para financeiro 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/AgendaAreaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/AgendaAreaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ListaReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ListaReservaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/NovaReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/NovaReservaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/ReservaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/models/area/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/models/area/Reserva.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/ReservaRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/ReservaRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/repository/interfaces/IReservaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/interfaces/IReservaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/service/FinanceiroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/service/FinanceiroService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/service/ReservaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/service/ReservaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/rateio-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/rateio-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/ocorrencia-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/portaria/ocorrencia-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio/relatorio-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio/relatorio-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/agenda-area-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/agenda-area-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/lista-reserva-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/lista-reserva-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/nova-reserva-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/nova-reserva-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/reserva-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/reserva-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/BalanceteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/financeiro/BalanceteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/relatorio/RelatorioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/relatorio/RelatorioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/InadimplenciaRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/InadimplenciaRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/PagamentoRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/repository/implementation/PagamentoRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/balancete-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/financeiro/balancete-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,6 +150,8 @@
       <workItem from="1780684028056" duration="2922000" />
       <workItem from="1780705163425" duration="8759000" />
       <workItem from="1780786070543" duration="5730000" />
+      <workItem from="1780863860457" duration="4859000" />
+      <workItem from="1780931441227" duration="510000" />
     </task>
     <task id="LOCAL-00001" summary="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros">
       <option name="closed" value="true" />
@@ -242,7 +233,23 @@
       <option name="project" value="LOCAL" />
       <updated>1780712327725</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="FEAT: Implementação dos requisitos para financeiro">
+      <option name="closed" value="true" />
+      <created>1780863949478</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1780863949478</updated>
+    </task>
+    <task id="LOCAL-00012" summary="FEAT: Implementação dos requisitos para financeiro 2">
+      <option name="closed" value="true" />
+      <created>1780863960321</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1780863960321</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +277,8 @@
     <MESSAGE value="FEAT: Correção de bugs nos botôes" />
     <MESSAGE value="FEAT: Implementação do rep de unidades na reserva." />
     <MESSAGE value="FEAT: Implementação dos requisitos para financeiro" />
-    <option name="LAST_COMMIT_MESSAGE" value="FEAT: Implementação dos requisitos para financeiro" />
+    <MESSAGE value="FEAT: Implementação dos requisitos para financeiro 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="FEAT: Implementação dos requisitos para financeiro 2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

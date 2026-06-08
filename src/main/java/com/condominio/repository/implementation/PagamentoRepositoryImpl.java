@@ -8,7 +8,7 @@ import com.condominio.repository.interfaces.IPagamentoRepository;
 
 public class PagamentoRepositoryImpl implements IPagamentoRepository {
 
-    private final List<Pagamento> pagamentos = new ArrayList<>();
+    private static final List<Pagamento> pagamentos = new ArrayList<>();
 
     @Override
     public void salvar(Pagamento pagamento) {
