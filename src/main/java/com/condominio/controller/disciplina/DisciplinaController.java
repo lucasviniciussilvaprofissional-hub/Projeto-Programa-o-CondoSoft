@@ -1,8 +1,15 @@
 package com.condominio.controller.disciplina;
 
+import com.condominio.enums.StatusOcorrencia;
+import com.condominio.enums.TipoOcorrencia;
 import com.condominio.models.disciplina.Ocorrencia;
+import com.condominio.models.moradia.Morador;
+import com.condominio.repository.implementation.MoradorRepositoryImpl;
 import com.condominio.repository.implementation.OcorrenciaRepositoryImpl;
 import com.condominio.repository.interfaces.IOcorrenciaRepository;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,25 +17,32 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DisciplinaController {
 
-    private final IOcorrenciaRepository repository = new OcorrenciaRepositoryImpl();
+    // ────────────────────────────────────────────────────────────────────────
+    // FXML Componentes
+    // ────────────────────────────────────────────────────────────────────────
+    @FXML private ComboBox<String> cbUnidade; // Populado via Repositório de Moradores
+    @FXML private ComboBox<String> cmbTipoOcorrencia;
+    @FXML private TextField txtMorador; // Apenas exibe ou recebe o texto do nome desejado
+    @FXML private TextArea txtDescricao;
 
     @FXML private Button btnVoltarHome;
     @FXML private Button btnRegistrarOcorrencia;
-    @FXML private ComboBox<String> cmbUnidade;
-    @FXML private ComboBox<String> cmbTipoOcorrencia;
-    @FXML private TextField txtMorador;
-    @FXML private TextArea txtDescricao;
+
+    // Contadores
     @FXML private Label lblTotalOcorrencias;
     @FXML private Label lblAdvertencias;
     @FXML private Label lblMultas;
 
+    // Tabela Histórica
     @FXML private TableView<Ocorrencia> tabelaOcorrencias;
     @FXML private TableColumn<Ocorrencia, String> colUnidade;
     @FXML private TableColumn<Ocorrencia, String> colMorador;
@@ -36,59 +50,128 @@ public class DisciplinaController {
     @FXML private TableColumn<Ocorrencia, String> colData;
     @FXML private TableColumn<Ocorrencia, String> colStatus;
 
+    // ────────────────────────────────────────────────────────────────────────
+    // Repositories
+    // ────────────────────────────────────────────────────────────────────────
+    private final IOcorrenciaRepository repository = new OcorrenciaRepositoryImpl();
+    private final MoradorRepositoryImpl moradorRepo = new MoradorRepositoryImpl();
+
+    // ────────────────────────────────────────────────────────────────────────
+    // Inicialização
+    // ────────────────────────────────────────────────────────────────────────
     @FXML
     public void initialize() {
-        // Popula as ComboBoxes
-        cmbUnidade.getItems().addAll("Apto 101", "Apto 102", "Apto 201", "Apto 202", "Bloco A - 103", "Casa 01", "Casa 02");
-        cmbTipoOcorrencia.getItems().addAll("Advertência", "Barulho Excessive", "Uso Indevido de Área Comum", "Infração de Regimento", "Multa");
-
-        atualizarContadores();
-
-        // MAPEAMENTO ROBUSTO USANDO LAMBDAS (Solução definitiva do erro)
-        colUnidade.setCellValueFactory(cellData ->
-                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNomeUnidadeFormatado())
+        // 1. Popula Tipos de Ocorrência
+        cmbTipoOcorrencia.getItems().clear();
+        cmbTipoOcorrencia.getItems().addAll(
+                "Advertencia",
+                "Barulho Excessivo",
+                "Uso Indevido de Area Comum",
+                "Infracao de Regimento",
+                "Multa"
         );
 
-        colMorador.setCellValueFactory(cellData ->
-                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNomeMoradorFormatado())
-        );
-
-        colTipo.setCellValueFactory(cellData ->
-                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getTipo() != null ? cellData.getValue().getTipo().toString() : "")
-        );
-
-        colStatus.setCellValueFactory(cellData ->
-                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getStatus() != null ? cellData.getValue().getStatus().toString() : "")
-        );
-
-        colData.setCellValueFactory(cellData -> {
-            var data = cellData.getValue().getDataCriacao();
-            if (data != null) {
-                return new javafx.beans.property.SimpleStringProperty(data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+        // 2. Popula Unidades a partir dos Moradores Cadastrados (Igual ao NovaReservaController)
+        cbUnidade.getItems().clear();
+        for (Morador m : moradorRepo.listar()) {
+            if (m.getUnidade() != null) {
+                cbUnidade.getItems().add(labelMorador(m));
             }
-            return new javafx.beans.property.SimpleStringProperty("");
+        }
+        if (cbUnidade.getItems().isEmpty()) {
+            cbUnidade.getItems().add("(Nenhum morador cadastrado)");
+        }
+
+        // Listener opcional: Se quiser autocompletar o campo do Morador ao escolher a Unidade
+        cbUnidade.getSelectionModel().selectedItemProperty().addListener((obs, antigo, novo) -> {
+            if (novo != null && !novo.startsWith("(")) {
+                String nomeMorador = novo.split(" - ")[0].trim();
+                txtMorador.setText(nomeMorador);
+            }
         });
 
+        // 3. Inicializa componentes de visualização de dados
+        configurarColunas();
+        atualizarContadores();
         atualizarTabela();
     }
 
+    private String labelMorador(Morador m) {
+        return m.getNome() + " - Apto " + m.getUnidade().getNumero() + " / " + m.getUnidade().getBloco();
+    }
+
+    private void configurarColunas() {
+        colUnidade.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getNomeUnidadeFormatado())
+        );
+
+        colMorador.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getNomeMoradorFormatado())
+        );
+
+        colTipo.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getTipo() != null ? cellData.getValue().getTipo().toString() : "")
+        );
+
+        colStatus.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getStatus() != null ? cellData.getValue().getStatus().toString() : "")
+        );
+
+        colData.setCellValueFactory(cellData -> {
+            LocalDateTime data = cellData.getValue().getDataCriacao();
+            if (data != null) {
+                return new SimpleStringProperty(data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+            }
+            return new SimpleStringProperty("");
+        });
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // Regras de Negócio e Gravação
+    // ────────────────────────────────────────────────────────────────────────
     @FXML
     private void registrarOcorrencia() {
-        String unidade = cmbUnidade.getValue();
-        String tipo = cmbTipoOcorrencia.getValue();
-        String morador = txtMorador.getText();
+        String unidadeSelecionada = cbUnidade.getValue();
+        String nomeMorador = txtMorador.getText();
+        String tipoStr = cmbTipoOcorrencia.getValue();
         String descricao = txtDescricao.getText();
 
-        if (unidade == null || tipo == null || morador.isBlank() || descricao.isBlank()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Campos obrigatórios");
-            alert.setHeaderText(null);
-            alert.setContentText("Preencha todos os campos.");
-            alert.showAndWait();
+        if (unidadeSelecionada == null || unidadeSelecionada.startsWith("(")
+                || nomeMorador == null || nomeMorador.isBlank()
+                || tipoStr == null || descricao == null || descricao.isBlank()) {
+            alerta("Preencha Unidade, Morador envolvido, Tipo e Descricao.");
             return;
         }
 
-        Ocorrencia ocorrencia = new Ocorrencia(unidade, morador, tipo, descricao);
+        // Resgata o Morador do repositório correspondente à Label selecionada (Sem instanciar novos)
+        Morador responsavel = moradorByLabel(unidadeSelecionada);
+        if (responsavel == null) {
+            alerta("Morador cadastrado nao encontrado para esta unidade.");
+            return;
+        }
+
+        // Mapeamento seguro de String limpa para Enum real do sistema
+        TipoOcorrencia tipo = TipoOcorrencia.OUTROS;
+        if (tipoStr.contains("Advert")) tipo = TipoOcorrencia.ADVERTENCIA;
+        else if (tipoStr.contains("Barulho")) tipo = TipoOcorrencia.BARULHO_EXCESSIVO;
+        else if (tipoStr.contains("Area")) tipo = TipoOcorrencia.USO_INDEVIDO_AREA_COMUM;
+        else if (tipoStr.contains("Regimento")) tipo = TipoOcorrencia.INFRACAO_REGIMENTO;
+        else if (tipoStr.contains("Multa")) tipo = TipoOcorrencia.MULTA;
+
+        int novoId = repository.listar().size() + 1;
+
+        // Instancia a Ocorrencia vinculando as referências encontradas nos Repositories
+        Ocorrencia ocorrencia = new Ocorrencia(
+                novoId,
+                "Ocorrencia: " + tipoStr,
+                descricao,
+                tipo,
+                StatusOcorrencia.ABERTA,
+                responsavel,
+                responsavel.getUnidade(),
+                LocalDateTime.now()
+        );
+
         repository.salvar(ocorrencia);
 
         atualizarTabela();
@@ -97,7 +180,7 @@ public class DisciplinaController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Sucesso");
         alert.setHeaderText(null);
-        alert.setContentText("Ocorrência registrada com sucesso!");
+        alert.setContentText("Ocorrencia registrada com sucesso!");
         alert.showAndWait();
 
         limparFormulario();
@@ -116,12 +199,8 @@ public class DisciplinaController {
         for (Ocorrencia o : repository.listar()) {
             if (o.getTipo() != null) {
                 String nomeEnum = o.getTipo().name().toLowerCase();
-                if (nomeEnum.contains("advert")) {
-                    advertencias++;
-                }
-                if (nomeEnum.contains("multa")) {
-                    multas++;
-                }
+                if (nomeEnum.contains("advert")) advertencias++;
+                if (nomeEnum.contains("multa")) multas++;
             }
         }
 
@@ -134,16 +213,37 @@ public class DisciplinaController {
     private void limparFormulario() {
         txtMorador.clear();
         txtDescricao.clear();
-        cmbUnidade.getSelectionModel().clearSelection();
+        cbUnidade.getSelectionModel().clearSelection();
         cmbTipoOcorrencia.getSelectionModel().clearSelection();
     }
 
-    @FXML
-    private void voltarHome(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/condominio/home-view.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+    private Morador moradorByLabel(String label) {
+        for (Morador m : moradorRepo.listar()) {
+            if (m.getUnidade() != null && labelMorador(m).equals(label)) return m;
+        }
+        return null;
+    }
+
+    private void alerta(String msg) {
+        new Alert(Alert.AlertType.WARNING, msg, ButtonType.OK).showAndWait();
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // Navegação Receptiva (Suporta MouseEvent e ActionEvent)
+    // ────────────────────────────────────────────────────────────────────────
+    @FXML private void voltarHome(ActionEvent event) { trocarTela(event, "/com/condominio/home-view.fxml"); }
+    @FXML private void voltarHomeMouse(MouseEvent event) { trocarTela(event, "/com/condominio/home-view.fxml"); }
+
+    private void trocarTela(javafx.event.Event event, String fxml) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML private void filtrarOcorrencias() {}

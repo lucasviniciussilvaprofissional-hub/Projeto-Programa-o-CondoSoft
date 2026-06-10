@@ -207,14 +207,38 @@ public class CadastrarMoradorController {
 
     @FXML
     public void selecionarDependente(MouseEvent event) {
+
         tipoSelecionado = "DEPENDENTE";
+
         cardProprietario.setStyle("-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 22 16; -fx-cursor: hand;");
         cardInquilino.setStyle("-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 22 16; -fx-cursor: hand;");
         cardDependente.setStyle("-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #2563EB; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 22 16; -fx-cursor: hand;");
+
         secaoDependente.setVisible(true);
         secaoDependente.setManaged(true);
+
         secaoInquilino.setVisible(false);
         secaoInquilino.setManaged(false);
+
+        // ============================
+        // CARREGA RESPONSÁVEIS
+        // ============================
+
+        cmbResponsavel.getItems().clear();
+
+        for (Morador morador : condominioService.listarMoradores()) {
+
+            if (unidadeSelecionadaGlobal != null
+                    && morador.getUnidade() != null
+                    && morador.getUnidade().getId() == unidadeSelecionadaGlobal.getId()) {
+
+                if (!(morador instanceof Dependente)) {
+                    cmbResponsavel.getItems().add(
+                            morador.getNome() + " - " + morador.getCpf()
+                    );
+                }
+            }
+        }
     }
 
     @FXML
@@ -258,12 +282,12 @@ public class CadastrarMoradorController {
 
     @FXML
     public void voltarHome(MouseEvent event) {
-        trocarTela(event, "/com/condominio/unidade/home-view.fxml");
+        trocarTela(event, "/com/condominio/home-view.fxml");
     }
 
     @FXML
     public void voltarUnidades(MouseEvent event) {
-        trocarTela(event, "/com/condominio/unidade/home-view.fxml");
+        trocarTela(event, "/com/condominios/unidade/unidade-view.fxml");
     }
 
     @FXML

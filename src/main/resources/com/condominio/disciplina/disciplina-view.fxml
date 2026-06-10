@@ -192,7 +192,7 @@
 
                         <VBox spacing="5">
                             <Label text="Unidade"/>
-                            <ComboBox fx:id="cmbUnidade"
+                            <ComboBox fx:id="cbUnidade"
                                       promptText="Selecione a unidade"/>
                         </VBox>
 
