@@ -248,24 +248,47 @@ public class CadastrarPetController {
         atualizarPreview();
     }
 
-    // ───── navegação ───────────────────────────────────────────────────────
+    // ==========================
+// NAVEGAÇÃO
+// ==========================
+
     @FXML
     public void voltarPets(ActionEvent event) {
+        petEmEdicao = null;
         trocarTela(event, "/com/condominio/unidade/pet-view.fxml");
     }
 
     @FXML
+    public void voltarHome(ActionEvent event) {
+        petEmEdicao = null;
+        trocarTela(event, "/com/condominio/home-view.fxml");
+    }
+
+    @FXML
+    public void voltarUnidades(ActionEvent event) {
+        petEmEdicao = null;
+        trocarTela(event, "/com/condominio/unidade/unidade-view.fxml");
+    }
+
+// ==========================
+// BREADCRUMBS
+// ==========================
+
+    @FXML
     public void voltarHome(MouseEvent event) {
+        petEmEdicao = null;
         trocarTela(event, "/com/condominio/home-view.fxml");
     }
 
     @FXML
     public void voltarUnidades(MouseEvent event) {
+        petEmEdicao = null;
         trocarTela(event, "/com/condominio/unidade/unidade-view.fxml");
     }
 
     @FXML
     public void voltarDetalhes(MouseEvent event) {
+        petEmEdicao = null;
         trocarTela(event, "/com/condominio/unidade/detalhes-unidade-view.fxml");
     }
 

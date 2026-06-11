@@ -9,41 +9,27 @@ import com.condominio.repository.interfaces.IDespesaRepository;
 import com.condominio.repository.interfaces.IInadimplenciaRepository;
 import com.condominio.repository.interfaces.IPagamentoRepository;
 
-import com.itextpdf.kernel.colors.ColorConstants;
-import com.itextpdf.kernel.colors.DeviceRgb;
-import com.itextpdf.kernel.font.PdfFont;
-import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.kernel.geom.PageSize;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.borders.SolidBorder;
-import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.properties.TextAlignment;
-import com.itextpdf.layout.properties.UnitValue;
-import com.itextpdf.io.font.constants.StandardFonts;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RelatorioService {
-
-    private static final DeviceRgb COR_AZUL_ESCURO = new DeviceRgb(30,  80, 160);
-    private static final DeviceRgb COR_AZUL_MEDIO  = new DeviceRgb(52, 120, 200);
-    private static final DeviceRgb COR_LINHA_PAR   = new DeviceRgb(235, 242, 252);
-    private static final DeviceRgb COR_VERDE       = new DeviceRgb(30,  130,  76);
-    private static final DeviceRgb COR_VERMELHO    = new DeviceRgb(180,  30,  30);
-    private static final DeviceRgb COR_TOTAL_BG    = new DeviceRgb(220, 230, 245);
-    private static final DeviceRgb COR_BORDA_CARD  = new DeviceRgb(200, 210, 230);
 
     private final IBoletoRepository        boletoRepo;
     private final IDespesaRepository       despesaRepo;
@@ -63,7 +49,7 @@ public class RelatorioService {
     }
 
     // =========================================================================
-    // Geracao do Balancete
+    // Geracao do Balancete (logica de dados - sem mudancas)
     // =========================================================================
 
     public Balancete gerarBalancete(int mes, int ano) {
@@ -100,136 +86,65 @@ public class RelatorioService {
     }
 
     // =========================================================================
-    // REQ14 - Gerar PDF real do balancete via iText 7
+    // REQ14 - Gerar PDF via JasperReports
     // =========================================================================
 
-    public String gerarPdfBalancete(Balancete balancete, String pastaDestino) throws IOException {
+    /**
+     * Gera o balancete em PDF usando JasperReports.
+     * O template balancete.jrxml deve estar em src/main/resources/relatorios/
+     *
+     * @param balancete    objeto populado por gerarBalancete()
+     * @param pastaDestino pasta onde o PDF sera salvo
+     * @return caminho absoluto do arquivo gerado
+     */
+    public String gerarPdfBalancete(Balancete balancete, String pastaDestino) throws Exception {
 
+        // --- 1. Carrega e compila o template JRXML do classpath --------------
+        InputStream jrxmlStream =
+                getClass().getResourceAsStream(
+                        "/com/condominio/relatorio/balancete.jrxml");
+
+        if (jrxmlStream == null) {
+            throw new IllegalStateException(
+                    "Template nao encontrado: /relatorio/balancete.jrxml\n"
+                            + "Verifique se o arquivo esta em src/main/resources/relatorio/");
+        }
+
+        JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
+
+        // --- 2. Monta os parametros do cabecalho -----------------------------
+        Map<String, Object> params = new HashMap<>();
+
+        params.put("PERIODO",        balancete.getPeriodo());
+        params.put("DATA_GERACAO",   LocalDate.now()
+                .format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        params.put("TOTAL_RECEITAS", moeda(balancete.getTotalReceitas()));
+        params.put("TOTAL_DESPESAS", moeda(balancete.getTotalDespesas()));
+        params.put("SALDO_FINAL",    moeda(balancete.getSaldoFinal()));
+        params.put("COR_SALDO",      balancete.getSaldoFinal() >= 0 ? "verde" : "vermelho");
+
+        // --- 3. Monta o datasource com as linhas de lancamentos --------------
+        List<LancamentoRow> linhas = montarLinhas(balancete);
+
+        JRBeanCollectionDataSource dataSource =
+                new JRBeanCollectionDataSource(linhas.isEmpty()
+                        ? List.of(new LancamentoRow("-", "Sem lancamentos", "-", "-", "-", "-"))
+                        : linhas);
+
+        // --- 4. Preenche o relatorio -----------------------------------------
+        JasperPrint jasperPrint = JasperFillManager.fillReport(
+                jasperReport, params, dataSource);
+
+        // --- 5. Exporta para PDF ---------------------------------------------
         String nomeArquivo = "Balancete_"
                 + balancete.getPeriodo().replace("/", "_")
                 + ".pdf";
 
         Path destino = Path.of(pastaDestino, nomeArquivo);
 
-        try (PdfWriter   writer = new PdfWriter(destino.toFile());
-             PdfDocument pdf    = new PdfDocument(writer);
-             Document    doc    = new Document(pdf, PageSize.A4)) {
-
-            doc.setMargins(36, 36, 36, 36);
-
-            PdfFont bold   = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
-            PdfFont normal = PdfFontFactory.createFont(StandardFonts.HELVETICA);
-
-            // --- Cabecalho ---------------------------------------------------
-            doc.add(new Paragraph("CONDOSOFT")
-                    .setFont(bold)
-                    .setFontSize(22)
-                    .setFontColor(COR_AZUL_ESCURO)
-                    .setTextAlignment(TextAlignment.CENTER));
-
-            doc.add(new Paragraph("Balancete Mensal - " + balancete.getPeriodo())
-                    .setFont(bold)
-                    .setFontSize(14)
-                    .setFontColor(COR_AZUL_MEDIO)
-                    .setTextAlignment(TextAlignment.CENTER)
-                    .setMarginBottom(4));
-
-            String dataHoje = LocalDate.now()
-                    .format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
-            doc.add(new Paragraph("Gerado em: " + dataHoje)
-                    .setFont(normal)
-                    .setFontSize(9)
-                    .setFontColor(ColorConstants.GRAY)
-                    .setTextAlignment(TextAlignment.CENTER)
-                    .setMarginBottom(16));
-
-            // --- Cards de resumo ---------------------------------------------
-            Table resumo = new Table(UnitValue.createPercentArray(new float[]{1, 1, 1}))
-                    .setWidth(UnitValue.createPercentValue(100))
-                    .setMarginBottom(20);
-
-            resumo.addCell(cardResumo("Total de Receitas",
-                    moeda(balancete.getTotalReceitas()), COR_VERDE, bold, normal));
-            resumo.addCell(cardResumo("Total de Despesas",
-                    moeda(balancete.getTotalDespesas()), COR_VERMELHO, bold, normal));
-
-            float saldo = balancete.getSaldoFinal();
-            resumo.addCell(cardResumo("Saldo Final",
-                    moeda(saldo), saldo >= 0 ? COR_VERDE : COR_VERMELHO, bold, normal));
-
-            doc.add(resumo);
-
-            // --- Tabela de receitas ------------------------------------------
-            doc.add(secao("Receitas - Pagamentos Recebidos", bold));
-
-            List<Pagamento> pagamentos = balancete.getPagamentos();
-            if (pagamentos == null || pagamentos.isEmpty()) {
-                doc.add(vazio("Nenhum pagamento registrado neste periodo.", normal));
-            } else {
-                Table t = tabela(new String[]{"#", "Data", "Forma de Pagamento", "Valor (R$)"},
-                        new float[] { 5,  20,      50,                   25 }, bold);
-
-                for (int i = 0; i < pagamentos.size(); i++) {
-                    Pagamento p = pagamentos.get(i);
-                    boolean par = i % 2 == 0;
-                    String data = p.getDataPagamento() != null
-                            ? p.getDataPagamento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-                            : "-";
-                    String forma = p.getFormaPagamento() != null ? p.getFormaPagamento() : "-";
-
-                    t.addCell(celula(String.valueOf(i + 1), normal, par, TextAlignment.CENTER));
-                    t.addCell(celula(data,  normal, par, TextAlignment.CENTER));
-                    t.addCell(celula(forma, normal, par, TextAlignment.LEFT));
-                    t.addCell(celula(moeda(p.getValorPago()), normal, par, TextAlignment.RIGHT));
-                }
-
-                t.addCell(totalLabel(3, "Total Receitas", bold));
-                t.addCell(totalValor(moeda(balancete.getTotalReceitas()), bold, COR_VERDE));
-                doc.add(t.setMarginBottom(16));
-            }
-
-            // --- Tabela de despesas ------------------------------------------
-            doc.add(secao("Despesas Lancadas", bold));
-
-            List<Despesa> despesas = balancete.getDespesas();
-            if (despesas == null || despesas.isEmpty()) {
-                doc.add(vazio("Nenhuma despesa registrada neste periodo.", normal));
-            } else {
-                Table t = tabela(new String[]{"#", "Descricao", "Tipo", "Vencimento", "Valor (R$)"},
-                        new float[] { 5,   40,          15,     18,            22 }, bold);
-
-                for (int i = 0; i < despesas.size(); i++) {
-                    Despesa d = despesas.get(i);
-                    boolean par = i % 2 == 0;
-                    String venc = d.getDataVencimento() != null
-                            ? d.getDataVencimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-                            : "-";
-                    String tipo = d.getTipo() != null ? d.getTipo().toString() : "-";
-                    String desc = d.getDescricao() != null ? d.getDescricao() : "-";
-
-                    t.addCell(celula(String.valueOf(i + 1), normal, par, TextAlignment.CENTER));
-                    t.addCell(celula(desc, normal, par, TextAlignment.LEFT));
-                    t.addCell(celula(tipo, normal, par, TextAlignment.CENTER));
-                    t.addCell(celula(venc, normal, par, TextAlignment.CENTER));
-                    t.addCell(celula(moeda(d.getValor()), normal, par, TextAlignment.RIGHT));
-                }
-
-                t.addCell(totalLabel(4, "Total Despesas", bold));
-                t.addCell(totalValor(moeda(balancete.getTotalDespesas()), bold, COR_VERMELHO));
-                doc.add(t.setMarginBottom(16));
-            }
-
-            // --- Rodape ------------------------------------------------------
-            doc.add(new Paragraph(
-                    "Documento gerado automaticamente pelo sistema CondoSoft. "
-                            + "Competencia: " + balancete.getPeriodo() + ".")
-                    .setFont(normal)
-                    .setFontSize(8)
-                    .setFontColor(ColorConstants.GRAY)
-                    .setTextAlignment(TextAlignment.CENTER)
-                    .setMarginTop(16));
-        }
+        JasperExportManager.exportReportToPdfFile(
+                jasperPrint,
+                destino.toAbsolutePath().toString());
 
         return destino.toAbsolutePath().toString();
     }
@@ -272,88 +187,109 @@ public class RelatorioService {
     }
 
     // =========================================================================
-    // Helpers privados de layout
+    // Helpers privados
     // =========================================================================
 
-    private Cell cardResumo(String titulo, String valor,
-                            DeviceRgb corValor, PdfFont bold, PdfFont normal) {
-        Cell c = new Cell()
-                .setPadding(10)
-                .setBorder(new SolidBorder(COR_BORDA_CARD, 1));
-        c.add(new Paragraph(titulo)
-                .setFont(normal).setFontSize(9)
-                .setFontColor(ColorConstants.GRAY).setMarginBottom(4));
-        c.add(new Paragraph(valor)
-                .setFont(bold).setFontSize(15)
-                .setFontColor(corValor));
-        return c;
-    }
+    /**
+     * Constroi a lista de linhas para o datasource do JasperReports
+     * a partir dos pagamentos e despesas do balancete.
+     */
+    private List<LancamentoRow> montarLinhas(Balancete balancete) {
 
-    private Paragraph secao(String texto, PdfFont bold) {
-        return new Paragraph(texto)
-                .setFont(bold).setFontSize(11)
-                .setFontColor(COR_AZUL_ESCURO).setMarginBottom(4);
-    }
+        List<LancamentoRow> linhas = new ArrayList<>();
+        double saldoAcum = 0;
 
-    private Paragraph vazio(String texto, PdfFont normal) {
-        return new Paragraph(texto)
-                .setFont(normal).setFontSize(10)
-                .setFontColor(ColorConstants.GRAY)
-                .setItalic().setMarginBottom(16);
-    }
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    private Table tabela(String[] headers, float[] cols, PdfFont bold) {
-        Table t = new Table(UnitValue.createPercentArray(cols))
-                .setWidth(UnitValue.createPercentValue(100));
-        for (String h : headers) {
-            t.addHeaderCell(new Cell()
-                    .setBackgroundColor(COR_AZUL_ESCURO)
-                    .setBorder(Border.NO_BORDER)
-                    .setPadding(5)
-                    .add(new Paragraph(h)
-                            .setFont(bold).setFontSize(9)
-                            .setFontColor(ColorConstants.WHITE)
-                            .setTextAlignment(TextAlignment.CENTER)));
+        if (balancete.getPagamentos() != null) {
+            for (Pagamento p : balancete.getPagamentos()) {
+                saldoAcum += p.getValorPago();
+
+                String data = p.getDataPagamento() != null
+                        ? p.getDataPagamento().toLocalDate().format(fmt)
+                        : "-";
+
+                String descricao = (p.getBoleto() != null
+                        && p.getBoleto().getUnidade() != null)
+                        ? "Apto " + p.getBoleto().getUnidade().getNumero()
+                        : "Pagamento";
+
+                String forma = p.getFormaPagamento() != null
+                        ? p.getFormaPagamento() : "-";
+
+                linhas.add(new LancamentoRow(
+                        data,
+                        descricao + " (" + forma + ")",
+                        "Taxa Condominial",
+                        "RECEITA",
+                        moeda(p.getValorPago()),
+                        moeda((float) saldoAcum)));
+            }
         }
-        return t;
+
+        if (balancete.getDespesas() != null) {
+            for (Despesa d : balancete.getDespesas()) {
+                saldoAcum -= d.getValor();
+
+                String data = d.getDataVencimento() != null
+                        ? d.getDataVencimento().format(fmt)
+                        : "-";
+
+                String tipo = d.getTipo() != null
+                        ? d.getTipo().toString() : "-";
+
+                String desc = d.getDescricao() != null
+                        ? d.getDescricao() : "-";
+
+                linhas.add(new LancamentoRow(
+                        data,
+                        desc,
+                        tipo,
+                        "DESPESA",
+                        moeda(d.getValor()),
+                        moeda((float) saldoAcum)));
+            }
+        }
+
+        return linhas;
     }
 
-    private Cell celula(String texto, PdfFont font, boolean par, TextAlignment align) {
-        return new Cell()
-                .setBackgroundColor(par ? COR_LINHA_PAR : ColorConstants.WHITE)
-                .setBorder(Border.NO_BORDER)
-                .setPadding(4)
-                .add(new Paragraph(texto != null ? texto : "-")
-                        .setFont(font).setFontSize(9)
-                        .setTextAlignment(align));
-    }
-
-    private Cell totalLabel(int span, String label, PdfFont bold) {
-        return new Cell(1, span)
-                .setBackgroundColor(COR_TOTAL_BG)
-                .setBorder(Border.NO_BORDER)
-                .setPadding(5)
-                .add(new Paragraph(label)
-                        .setFont(bold).setFontSize(9)
-                        .setTextAlignment(TextAlignment.RIGHT));
-    }
-
-    private Cell totalValor(String valor, PdfFont bold, DeviceRgb cor) {
-        return new Cell()
-                .setBackgroundColor(COR_TOTAL_BG)
-                .setBorder(Border.NO_BORDER)
-                .setPadding(5)
-                .add(new Paragraph(valor)
-                        .setFont(bold).setFontSize(9)
-                        .setFontColor(cor)
-                        .setTextAlignment(TextAlignment.RIGHT));
-    }
-
+    /** Formata float como moeda: R$ 1.234,56 */
     private String moeda(float valor) {
-        // Formata como R$ 1.234,56
         String s = String.format("R$ %,.2f", valor);
-        // String.format usa locale do sistema; normaliza para padrao BR
-        s = s.replace(",", "X").replace(".", ",").replace("X", ".");
-        return s;
+        return s.replace(",", "X").replace(".", ",").replace("X", ".");
+    }
+
+    // =========================================================================
+    // DTO interno para o datasource do JasperReports
+    // JasperReports acessa os campos via getters (Java Beans)
+    // =========================================================================
+
+    public static class LancamentoRow {
+
+        private final String data;
+        private final String descricao;
+        private final String tipo;
+        private final String categoria;
+        private final String valor;
+        private final String saldoAcum;
+
+        public LancamentoRow(String data, String descricao,
+                             String tipo, String categoria,
+                             String valor, String saldoAcum) {
+            this.data      = data;
+            this.descricao = descricao;
+            this.tipo      = tipo;
+            this.categoria = categoria;
+            this.valor     = valor;
+            this.saldoAcum = saldoAcum;
+        }
+
+        public String getData()      { return data; }
+        public String getDescricao() { return descricao; }
+        public String getTipo()      { return tipo; }
+        public String getCategoria() { return categoria; }
+        public String getValor()     { return valor; }
+        public String getSaldoAcum() { return saldoAcum; }
     }
 }

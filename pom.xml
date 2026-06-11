@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.example</groupId>
     <artifactId>ProjetoIP</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -58,21 +57,22 @@
             <version>0.4.0</version>
         </dependency>
 
-        <!-- iText 7 — geração de PDF (REQ14) -->
+        <!-- JasperReports - geracao de PDF (REQ14) -->
         <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>kernel</artifactId>
-            <version>7.2.5</version>
-        </dependency>
-        <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>layout</artifactId>
-            <version>7.2.5</version>
-        </dependency>
-        <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>io</artifactId>
-            <version>7.2.5</version>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.21.0</version>
+            <exclusions>
+                <!-- exclui dependencias antigas de XML que conflitam com Java 21 -->
+                <exclusion>
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>xerces</groupId>
+                    <artifactId>xercesImpl</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- JUnit -->
@@ -101,15 +101,6 @@
                 <version>3.13.0</version>
                 <configuration>
                     <release>${maven.compiler.release}</release>
-                    <!--
-                        compilerArgs abaixo passa os JARs não-modulares (iText)
-                        para o patch-module / add-reads automaticamente em tempo
-                        de compilação, sem precisar declará-los no module-info.
-                    -->
-                    <compilerArgs>
-                        <arg>--add-reads</arg>
-                        <arg>com.example.projetoip=ALL-UNNAMED</arg>
-                    </compilerArgs>
                 </configuration>
             </plugin>
 
@@ -120,13 +111,14 @@
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>com.condominio.MainApplication</mainClass>
-                    <!--
-                        options abaixo abre o classpath de JARs não-modulares
-                        (iText) para o módulo do projeto em tempo de execução.
-                    -->
+                    <!-- abre o classpath para JasperReports (nao-modular) -->
                     <options>
                         <option>--add-reads</option>
                         <option>com.example.projetoip=ALL-UNNAMED</option>
+                        <option>--add-opens</option>
+                        <option>java.base/java.lang=ALL-UNNAMED</option>
+                        <option>--add-opens</option>
+                        <option>java.base/java.util=ALL-UNNAMED</option>
                     </options>
                 </configuration>
             </plugin>

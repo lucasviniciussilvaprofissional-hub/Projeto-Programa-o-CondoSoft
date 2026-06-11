@@ -7,18 +7,12 @@ module com.example.projetoip {
     requires java.desktop;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
-    requires kernel;
-
-    /*
-     * iText 7 não é um módulo nomeado (os JARs não têm module-info.class).
-     * Por isso NÃO usamos "requires com.itextpdf.*" aqui.
-     * O --add-reads no pom.xml já garante que o compilador e a JVM
-     * enxergam os JARs do iText como "módulo unnamed", resolvendo
-     * o erro "Module not found: kernel / com.itextpdf.kernel".
-     */
+    requires jasperreports;
+    requires java.sql;
 
     opens com.condominio to javafx.fxml;
-
+    exports com.condominio.service;
+    opens com.condominio.service;
     opens com.condominio.controller.unidade     to javafx.fxml;
     opens com.condominio.controller.financeiro   to javafx.fxml;
     opens com.condominio.controller.reserva      to javafx.fxml;

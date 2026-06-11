@@ -1,0 +1,750 @@
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\n\n    <modelVersion>4.0.0</modelVersion>\n\n    <groupId>com.example</groupId>\n    <artifactId>ProjetoIP</artifactId>\n    <version>1.0-SNAPSHOT</version>\n    <name>ProjetoIP2</name>\n\n    <properties>\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\n        <junit.version>5.12.1</junit.version>\n        <maven.compiler.release>21</maven.compiler.release>\n        <javafx.version>21.0.6</javafx.version>\n    </properties>\n\n    <dependencies>\n\n        <!-- JavaFX -->\n        <dependency>\n            <groupId>org.openjfx</groupId>\n            <artifactId>javafx-controls</artifactId>\n            <version>${javafx.version}</version>\n        </dependency>\n        <dependency>\n            <groupId>org.openjfx</groupId>\n            <artifactId>javafx-fxml</artifactId>\n            <version>${javafx.version}</version>\n        </dependency>\n\n        <!-- ControlsFX -->\n        <dependency>\n            <groupId>org.controlsfx</groupId>\n            <artifactId>controlsfx</artifactId>\n            <version>11.2.1</version>\n        </dependency>\n\n        <!-- FormsFX -->\n        <dependency>\n            <groupId>com.dlsc.formsfx</groupId>\n            <artifactId>formsfx-core</artifactId>\n            <version>11.6.0</version>\n            <exclusions>\n                <exclusion>\n                    <groupId>org.openjfx</groupId>\n                    <artifactId>*</artifactId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n\n        <!-- BootstrapFX -->\n        <dependency>\n            <groupId>org.kordamp.bootstrapfx</groupId>\n            <artifactId>bootstrapfx-core</artifactId>\n            <version>0.4.0</version>\n        </dependency>\n\n        <!-- iText 7 — geração de PDF (REQ14) -->\n        <dependency>\n            <groupId>com.itextpdf</groupId>\n            <artifactId>kernel</artifactId>\n            <version>7.2.5</version>\n        </dependency>\n        <dependency>\n            <groupId>com.itextpdf</groupId>\n            <artifactId>layout</artifactId>\n            <version>7.2.5</version>\n        </dependency>\n        <dependency>\n            <groupId>com.itextpdf</groupId>\n            <artifactId>io</artifactId>\n            <version>7.2.5</version>\n        </dependency>\n\n        <!-- JUnit -->\n        <dependency>\n            <groupId>org.junit.jupiter</groupId>\n            <artifactId>junit-jupiter-api</artifactId>\n            <version>${junit.version}</version>\n            <scope>test</scope>\n        </dependency>\n        <dependency>\n            <groupId>org.junit.jupiter</groupId>\n            <artifactId>junit-jupiter-engine</artifactId>\n            <version>${junit.version}</version>\n            <scope>test</scope>\n        </dependency>\n\n    </dependencies>\n\n    <build>\n        <plugins>\n\n            <!-- Compiler -->\n            <plugin>\n                <groupId>org.apache.maven.plugins</groupId>\n                <artifactId>maven-compiler-plugin</artifactId>\n                <version>3.13.0</version>\n                <configuration>\n                    <release>${maven.compiler.release}</release>\n                    <!--\n                        compilerArgs abaixo passa os JARs não-modulares (iText)\n                        para o patch-module / add-reads automaticamente em tempo\n                        de compilação, sem precisar declará-los no module-info.\n                    -->\n                    <compilerArgs>\n                        <arg>--add-reads</arg>\n                        <arg>com.example.projetoip=ALL-UNNAMED</arg>\n                    </compilerArgs>\n                </configuration>\n            </plugin>\n\n            <!-- JavaFX Plugin -->\n            <plugin>\n                <groupId>org.openjfx</groupId>\n                <artifactId>javafx-maven-plugin</artifactId>\n                <version>0.0.8</version>\n                <configuration>\n                    <mainClass>com.condominio.MainApplication</mainClass>\n                    <!--\n                        options abaixo abre o classpath de JARs não-modulares\n                        (iText) para o módulo do projeto em tempo de execução.\n                    -->\n                    <options>\n                        <option>--add-reads</option>\n                        <option>com.example.projetoip=ALL-UNNAMED</option>\n                    </options>\n                </configuration>\n            </plugin>\n\n        </plugins>\n    </build>\n\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision 35e32c9d6c73f0e89bda745043a18f6c58e19092)
++++ b/pom.xml	(date 1781144279328)
+@@ -4,7 +4,6 @@
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+ 
+     <modelVersion>4.0.0</modelVersion>
+-
+     <groupId>com.example</groupId>
+     <artifactId>ProjetoIP</artifactId>
+     <version>1.0-SNAPSHOT</version>
+@@ -58,21 +57,22 @@
+             <version>0.4.0</version>
+         </dependency>
+ 
+-        <!-- iText 7 — geração de PDF (REQ14) -->
+-        <dependency>
+-            <groupId>com.itextpdf</groupId>
+-            <artifactId>kernel</artifactId>
+-            <version>7.2.5</version>
+-        </dependency>
+-        <dependency>
+-            <groupId>com.itextpdf</groupId>
+-            <artifactId>layout</artifactId>
+-            <version>7.2.5</version>
+-        </dependency>
++        <!-- JasperReports - geracao de PDF (REQ14) -->
+         <dependency>
+-            <groupId>com.itextpdf</groupId>
+-            <artifactId>io</artifactId>
+-            <version>7.2.5</version>
++            <groupId>net.sf.jasperreports</groupId>
++            <artifactId>jasperreports</artifactId>
++            <version>6.21.0</version>
++            <exclusions>
++                <!-- exclui dependencias antigas de XML que conflitam com Java 21 -->
++                <exclusion>
++                    <groupId>xml-apis</groupId>
++                    <artifactId>xml-apis</artifactId>
++                </exclusion>
++                <exclusion>
++                    <groupId>xerces</groupId>
++                    <artifactId>xercesImpl</artifactId>
++                </exclusion>
++            </exclusions>
+         </dependency>
+ 
+         <!-- JUnit -->
+@@ -101,15 +101,6 @@
+                 <version>3.13.0</version>
+                 <configuration>
+                     <release>${maven.compiler.release}</release>
+-                    <!--
+-                        compilerArgs abaixo passa os JARs não-modulares (iText)
+-                        para o patch-module / add-reads automaticamente em tempo
+-                        de compilação, sem precisar declará-los no module-info.
+-                    -->
+-                    <compilerArgs>
+-                        <arg>--add-reads</arg>
+-                        <arg>com.example.projetoip=ALL-UNNAMED</arg>
+-                    </compilerArgs>
+                 </configuration>
+             </plugin>
+ 
+@@ -120,13 +111,14 @@
+                 <version>0.0.8</version>
+                 <configuration>
+                     <mainClass>com.condominio.MainApplication</mainClass>
+-                    <!--
+-                        options abaixo abre o classpath de JARs não-modulares
+-                        (iText) para o módulo do projeto em tempo de execução.
+-                    -->
++                    <!-- abre o classpath para JasperReports (nao-modular) -->
+                     <options>
+                         <option>--add-reads</option>
+                         <option>com.example.projetoip=ALL-UNNAMED</option>
++                        <option>--add-opens</option>
++                        <option>java.base/java.lang=ALL-UNNAMED</option>
++                        <option>--add-opens</option>
++                        <option>java.base/java.util=ALL-UNNAMED</option>
+                     </options>
+                 </configuration>
+             </plugin>
+Index: src/main/java/module-info.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>module com.example.projetoip {\n\n    requires javafx.controls;\n    requires javafx.fxml;\n\n    requires org.controlsfx.controls;\n    requires java.desktop;\n    requires com.dlsc.formsfx;\n    requires org.kordamp.bootstrapfx.core;\n    requires kernel;\n\n    /*\n     * iText 7 não é um módulo nomeado (os JARs não têm module-info.class).\n     * Por isso NÃO usamos \"requires com.itextpdf.*\" aqui.\n     * O --add-reads no pom.xml já garante que o compilador e a JVM\n     * enxergam os JARs do iText como \"módulo unnamed\", resolvendo\n     * o erro \"Module not found: kernel / com.itextpdf.kernel\".\n     */\n\n    opens com.condominio to javafx.fxml;\n\n    opens com.condominio.controller.unidade     to javafx.fxml;\n    opens com.condominio.controller.financeiro   to javafx.fxml;\n    opens com.condominio.controller.reserva      to javafx.fxml;\n    exports com.condominio.controller.reserva;\n    opens com.condominio.controller.comunicacao  to javafx.fxml;\n    opens com.condominio.controller.disciplina   to javafx.fxml;\n    opens com.condominio.controller.portaria     to javafx.fxml;\n    opens com.condominio.controller.relatorio    to javafx.fxml;\n    opens com.condominio.models.moradia          to javafx.base;\n\n    exports com.condominio;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/module-info.java b/src/main/java/module-info.java
+--- a/src/main/java/module-info.java	(revision 35e32c9d6c73f0e89bda745043a18f6c58e19092)
++++ b/src/main/java/module-info.java	(date 1781146409266)
+@@ -7,18 +7,12 @@
+     requires java.desktop;
+     requires com.dlsc.formsfx;
+     requires org.kordamp.bootstrapfx.core;
+-    requires kernel;
+-
+-    /*
+-     * iText 7 não é um módulo nomeado (os JARs não têm module-info.class).
+-     * Por isso NÃO usamos "requires com.itextpdf.*" aqui.
+-     * O --add-reads no pom.xml já garante que o compilador e a JVM
+-     * enxergam os JARs do iText como "módulo unnamed", resolvendo
+-     * o erro "Module not found: kernel / com.itextpdf.kernel".
+-     */
++    requires jasperreports;
++    requires java.sql;
+ 
+     opens com.condominio to javafx.fxml;
+-
++    exports com.condominio.service;
++    opens com.condominio.service;
+     opens com.condominio.controller.unidade     to javafx.fxml;
+     opens com.condominio.controller.financeiro   to javafx.fxml;
+     opens com.condominio.controller.reserva      to javafx.fxml;
+Index: src/main/java/com/condominio/controller/unidade/CadastrarPetController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.condominio.controller.unidade;\n\nimport com.condominio.enums.TipoPet;\nimport com.condominio.models.moradia.Pet;\nimport com.condominio.models.moradia.Unidade;\nimport com.condominio.repository.implementation.PetRepositoryImpl;\nimport com.condominio.repository.implementation.UnidadeRepositoryImpl;\n\nimport javafx.event.ActionEvent;\nimport javafx.fxml.FXML;\nimport javafx.fxml.FXMLLoader;\nimport javafx.scene.Node;\nimport javafx.scene.Parent;\nimport javafx.scene.Scene;\nimport javafx.scene.control.*;\nimport javafx.scene.input.MouseEvent;\nimport javafx.scene.layout.VBox;\nimport javafx.stage.Stage;\n\nimport java.io.IOException;\n\npublic class CadastrarPetController {\n\n    // ───── estado global ───────────────────────────────────────────────────\n    private static Pet petEmEdicao = null;\n\n    public static void setPetEmEdicao(Pet p) {\n        petEmEdicao = p;\n    }\n\n    // ───── FXML ────────────────────────────────────────────────────────────\n    @FXML private Label        lblUnidadeContexto;\n    @FXML private TextField    txtNome;\n    @FXML private ComboBox<String> cmbTipoPet;\n    @FXML private TextField    txtRaca;\n    @FXML private TextField    txtCor;\n    @FXML private TextField    txtUnidade;\n    @FXML private TextField    txtTipoPetHidden;\n\n    @FXML private Label previewEmoji;\n    @FXML private Label previewNome;\n    @FXML private Label previewTipo;\n    @FXML private Label previewRaca;\n    @FXML private Label previewCor;\n\n    @FXML private VBox cardCao;\n    @FXML private VBox cardGato;\n    @FXML private VBox cardPassaro;\n    @FXML private VBox cardRoedor;\n    @FXML private VBox cardReptil;\n    @FXML private VBox cardOutro;\n\n    // ───── repositórios ────────────────────────────────────────────────────\n    private final PetRepositoryImpl    petRepo     = new PetRepositoryImpl();\n    private final UnidadeRepositoryImpl unidadeRepo  = new UnidadeRepositoryImpl();\n\n    private TipoPet tipoSelecionado = TipoPet.CACHORRO;\n\n    // ───── inicialização ───────────────────────────────────────────────────\n    @FXML\n    public void initialize() {\n        // Preenche combobox com enum TipoPet\n        for (TipoPet t : TipoPet.values()) {\n            cmbTipoPet.getItems().add(t.name());\n        }\n\n        Unidade unidade = PetController.getUnidadeSelecionadaGlobal();\n        if (unidade != null) {\n            txtUnidade.setText(String.valueOf(unidade.getNumero()));\n            lblUnidadeContexto.setText(\n                    \"Apto \" + unidade.getNumero() + \" – \" + unidade.getBloco());\n        }\n\n        if (petEmEdicao != null) {\n            txtNome.setText(petEmEdicao.getNome());\n            txtRaca.setText(petEmEdicao.getRaca());\n            txtCor.setText(petEmEdicao.getCor());\n            tipoSelecionado = petEmEdicao.getTipo();\n            cmbTipoPet.setValue(petEmEdicao.getTipo().name());\n            destacarCard(tipoSelecionado);\n            atualizarPreview();\n        } else {\n            selecionarCao(null);\n        }\n    }\n\n    // ───── cards de seleção de tipo ────────────────────────────────────────\n    @FXML public void selecionarCao(MouseEvent event) {\n        tipoSelecionado = TipoPet.CACHORRO;\n        cmbTipoPet.setValue(TipoPet.CACHORRO.name());\n        destacarCard(TipoPet.CACHORRO);\n        atualizarPreview();\n    }\n\n    @FXML public void selecionarGato(MouseEvent event) {\n        tipoSelecionado = TipoPet.GATO;\n        cmbTipoPet.setValue(TipoPet.GATO.name());\n        destacarCard(TipoPet.GATO);\n        atualizarPreview();\n    }\n\n    @FXML public void selecionarPassaro(MouseEvent event) {\n        tipoSelecionado = TipoPet.PASSARO;\n        cmbTipoPet.setValue(TipoPet.PASSARO.name());\n        destacarCard(TipoPet.PASSARO);\n        atualizarPreview();\n    }\n\n    @FXML public void selecionarRoedor(MouseEvent event) {\n        tipoSelecionado = TipoPet.OUTRO;\n        cmbTipoPet.setValue(TipoPet.OUTRO.name());\n        destacarCard(null);   // \"Roedor\" mapeia para OUTRO\n        atualizarPreview();\n    }\n\n    @FXML public void selecionarReptil(MouseEvent event) {\n        tipoSelecionado = TipoPet.OUTRO;\n        cmbTipoPet.setValue(TipoPet.OUTRO.name());\n        destacarCard(null);\n        atualizarPreview();\n    }\n\n    @FXML public void selecionarOutro(MouseEvent event) {\n        tipoSelecionado = TipoPet.OUTRO;\n        cmbTipoPet.setValue(TipoPet.OUTRO.name());\n        destacarCard(null);\n        atualizarPreview();\n    }\n\n    /** Sincroniza seleção do ComboBox → cards e tipo interno */\n    @FXML public void sincronizarCards(ActionEvent event) {\n        String valor = cmbTipoPet.getValue();\n        if (valor == null) return;\n        try {\n            tipoSelecionado = TipoPet.valueOf(valor);\n        } catch (IllegalArgumentException e) {\n            tipoSelecionado = TipoPet.OUTRO;\n        }\n        destacarCard(tipoSelecionado);\n        atualizarPreview();\n    }\n\n    private void destacarCard(TipoPet tipo) {\n        String normal    = \"-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 18 16; -fx-cursor: hand;\";\n        String selecionado = \"-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #059669; -fx-border-radius: 14; -fx-border-width: 2; -fx-padding: 18 16; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, #05966930, 10, 0, 0, 2);\";\n\n        cardCao.setStyle(tipo == TipoPet.CACHORRO ? selecionado : normal);\n        cardGato.setStyle(tipo == TipoPet.GATO    ? selecionado : normal);\n        cardPassaro.setStyle(tipo == TipoPet.PASSARO ? selecionado : normal);\n        // Roedor, Réptil e Outro não mapeiam 1:1 — deixamos sem destaque especial\n        cardRoedor.setStyle(normal);\n        cardReptil.setStyle(normal);\n        cardOutro.setStyle(tipo == TipoPet.OUTRO ? selecionado : normal);\n    }\n\n    // ───── preview ─────────────────────────────────────────────────────────\n    @FXML public void atualizarPreview() {\n        String nome  = txtNome.getText();\n        String raca  = txtRaca.getText();\n        String cor   = txtCor.getText();\n\n        previewNome.setText(nome.isEmpty()  ? \"Nome não preenchido\" : nome);\n        previewRaca.setText(\"Raça: \" + (raca.isEmpty() ? \"—\" : raca));\n        previewCor.setText(\"Cor: \"  + (cor.isEmpty()  ? \"—\" : cor));\n        previewTipo.setText(\"Tipo: \" + (tipoSelecionado != null ? tipoSelecionado.name() : \"—\"));\n\n        if (previewEmoji != null) {\n            previewEmoji.setText(emojiParaTipo(tipoSelecionado));\n        }\n    }\n\n    private String emojiParaTipo(TipoPet tipo) {\n        if (tipo == null) return \"\uD83D\uDC3E\";\n        switch (tipo) {\n            case CACHORRO: return \"\uD83D\uDC36\";\n            case GATO:     return \"\uD83D\uDC31\";\n            case PASSARO:  return \"\uD83D\uDC26\";\n            default:       return \"\uD83D\uDC3E\";\n        }\n    }\n\n    // ───── salvar ──────────────────────────────────────────────────────────\n    @FXML\n    public void salvarPet(ActionEvent event) {\n        if (txtNome.getText().isEmpty()\n                || txtRaca.getText().isEmpty()\n                || txtCor.getText().isEmpty()) {\n            mostrarAlerta(\"Erro\", \"Campos obrigatórios\",\n                    \"Preencha Nome, Raça e Cor.\",\n                    Alert.AlertType.ERROR);\n            return;\n        }\n\n        Unidade unidade = PetController.getUnidadeSelecionadaGlobal();\n        if (unidade == null) {\n            mostrarAlerta(\"Erro\", \"Unidade não encontrada\",\n                    \"Nenhuma unidade selecionada.\",\n                    Alert.AlertType.ERROR);\n            return;\n        }\n\n        try {\n            if (petEmEdicao != null) {\n                petEmEdicao.setNome(txtNome.getText());\n                petEmEdicao.setTipo(tipoSelecionado);\n                petEmEdicao.setRaca(txtRaca.getText());\n                petEmEdicao.setCor(txtCor.getText());\n                petRepo.atualizar(petEmEdicao);\n\n                mostrarAlerta(\"Sucesso\", null, \"Pet atualizado!\",\n                        Alert.AlertType.INFORMATION);\n\n            } else {\n                int novoId = petRepo.listar().size() + 1;\n                Pet pet = new Pet(\n                        novoId,\n                        txtNome.getText(),\n                        tipoSelecionado,\n                        txtRaca.getText(),\n                        txtCor.getText());\n\n                unidade.adicionarPet(pet);\n                petRepo.salvar(pet);\n                unidadeRepo.atualizar(unidade);\n\n                mostrarAlerta(\"Sucesso\", null,\n                        \"Pet cadastrado na Unidade \" + unidade.getNumero() + \"!\",\n                        Alert.AlertType.INFORMATION);\n            }\n\n            limparFormulario(null);\n            petEmEdicao = null;\n\n        } catch (IllegalArgumentException e) {\n            mostrarAlerta(\"Erro\", \"Falha ao salvar\", e.getMessage(),\n                    Alert.AlertType.ERROR);\n        }\n    }\n\n    @FXML\n    public void limparFormulario(ActionEvent event) {\n        txtNome.clear();\n        txtRaca.clear();\n        txtCor.clear();\n        tipoSelecionado = TipoPet.CACHORRO;\n        cmbTipoPet.setValue(TipoPet.CACHORRO.name());\n        destacarCard(TipoPet.CACHORRO);\n        atualizarPreview();\n    }\n\n    // ───── navegação ───────────────────────────────────────────────────────\n    @FXML\n    public void voltarPets(ActionEvent event) {\n        trocarTela(event, \"/com/condominio/unidade/pet-view.fxml\");\n    }\n\n    @FXML\n    public void voltarHome(MouseEvent event) {\n        trocarTela(event, \"/com/condominio/home-view.fxml\");\n    }\n\n    @FXML\n    public void voltarUnidades(MouseEvent event) {\n        trocarTela(event, \"/com/condominio/unidade/unidade-view.fxml\");\n    }\n\n    @FXML\n    public void voltarDetalhes(MouseEvent event) {\n        trocarTela(event, \"/com/condominio/unidade/detalhes-unidade-view.fxml\");\n    }\n\n    // ───── utilidades ──────────────────────────────────────────────────────\n    private void mostrarAlerta(String titulo, String header,\n                               String conteudo, Alert.AlertType tipo) {\n        Alert alert = new Alert(tipo);\n        alert.setTitle(titulo);\n        alert.setHeaderText(header);\n        alert.setContentText(conteudo);\n        alert.showAndWait();\n    }\n\n    private void trocarTela(javafx.event.Event event, String fxml) {\n        try {\n            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));\n            Parent root = loader.load();\n            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();\n            stage.setScene(new Scene(root));\n            stage.show();\n        } catch (IOException e) {\n            e.printStackTrace();\n            System.out.println(\"Erro ao abrir: \" + fxml);\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/condominio/controller/unidade/CadastrarPetController.java b/src/main/java/com/condominio/controller/unidade/CadastrarPetController.java
+--- a/src/main/java/com/condominio/controller/unidade/CadastrarPetController.java	(revision 35e32c9d6c73f0e89bda745043a18f6c58e19092)
++++ b/src/main/java/com/condominio/controller/unidade/CadastrarPetController.java	(date 1781147300942)
+@@ -248,24 +248,47 @@
+         atualizarPreview();
+     }
+ 
+-    // ───── navegação ───────────────────────────────────────────────────────
++    // ==========================
++// NAVEGAÇÃO
++// ==========================
++
+     @FXML
+     public void voltarPets(ActionEvent event) {
++        petEmEdicao = null;
+         trocarTela(event, "/com/condominio/unidade/pet-view.fxml");
+     }
+ 
++    @FXML
++    public void voltarHome(ActionEvent event) {
++        petEmEdicao = null;
++        trocarTela(event, "/com/condominio/home-view.fxml");
++    }
++
++    @FXML
++    public void voltarUnidades(ActionEvent event) {
++        petEmEdicao = null;
++        trocarTela(event, "/com/condominio/unidade/unidade-view.fxml");
++    }
++
++// ==========================
++// BREADCRUMBS
++// ==========================
++
+     @FXML
+     public void voltarHome(MouseEvent event) {
++        petEmEdicao = null;
+         trocarTela(event, "/com/condominio/home-view.fxml");
+     }
+ 
+     @FXML
+     public void voltarUnidades(MouseEvent event) {
++        petEmEdicao = null;
+         trocarTela(event, "/com/condominio/unidade/unidade-view.fxml");
+     }
+ 
+     @FXML
+     public void voltarDetalhes(MouseEvent event) {
++        petEmEdicao = null;
+         trocarTela(event, "/com/condominio/unidade/detalhes-unidade-view.fxml");
+     }
+ 
+Index: src/main/java/com/condominio/service/RelatorioService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.condominio.service;\n\nimport com.condominio.models.finance.Despesa;\nimport com.condominio.models.finance.Inadimplencia;\nimport com.condominio.models.finance.Pagamento;\nimport com.condominio.models.relatorio.Balancete;\nimport com.condominio.repository.interfaces.IBoletoRepository;\nimport com.condominio.repository.interfaces.IDespesaRepository;\nimport com.condominio.repository.interfaces.IInadimplenciaRepository;\nimport com.condominio.repository.interfaces.IPagamentoRepository;\n\nimport com.itextpdf.kernel.colors.ColorConstants;\nimport com.itextpdf.kernel.colors.DeviceRgb;\nimport com.itextpdf.kernel.font.PdfFont;\nimport com.itextpdf.kernel.font.PdfFontFactory;\nimport com.itextpdf.kernel.geom.PageSize;\nimport com.itextpdf.kernel.pdf.PdfDocument;\nimport com.itextpdf.kernel.pdf.PdfWriter;\nimport com.itextpdf.layout.Document;\nimport com.itextpdf.layout.borders.Border;\nimport com.itextpdf.layout.borders.SolidBorder;\nimport com.itextpdf.layout.element.Cell;\nimport com.itextpdf.layout.element.Paragraph;\nimport com.itextpdf.layout.element.Table;\nimport com.itextpdf.layout.properties.TextAlignment;\nimport com.itextpdf.layout.properties.UnitValue;\nimport com.itextpdf.io.font.constants.StandardFonts;\n\nimport java.io.IOException;\nimport java.nio.charset.StandardCharsets;\nimport java.nio.file.Files;\nimport java.nio.file.Path;\nimport java.time.LocalDate;\nimport java.time.format.DateTimeFormatter;\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class RelatorioService {\n\n    private static final DeviceRgb COR_AZUL_ESCURO = new DeviceRgb(30,  80, 160);\n    private static final DeviceRgb COR_AZUL_MEDIO  = new DeviceRgb(52, 120, 200);\n    private static final DeviceRgb COR_LINHA_PAR   = new DeviceRgb(235, 242, 252);\n    private static final DeviceRgb COR_VERDE       = new DeviceRgb(30,  130,  76);\n    private static final DeviceRgb COR_VERMELHO    = new DeviceRgb(180,  30,  30);\n    private static final DeviceRgb COR_TOTAL_BG    = new DeviceRgb(220, 230, 245);\n    private static final DeviceRgb COR_BORDA_CARD  = new DeviceRgb(200, 210, 230);\n\n    private final IBoletoRepository        boletoRepo;\n    private final IDespesaRepository       despesaRepo;\n    private final IPagamentoRepository     pagamentoRepo;\n    private final IInadimplenciaRepository inadimplenciaRepo;\n\n    public RelatorioService(\n            IBoletoRepository boletoRepo,\n            IDespesaRepository despesaRepo,\n            IPagamentoRepository pagamentoRepo,\n            IInadimplenciaRepository inadimplenciaRepo) {\n\n        this.boletoRepo        = boletoRepo;\n        this.despesaRepo       = despesaRepo;\n        this.pagamentoRepo     = pagamentoRepo;\n        this.inadimplenciaRepo = inadimplenciaRepo;\n    }\n\n    // =========================================================================\n    // Geracao do Balancete\n    // =========================================================================\n\n    public Balancete gerarBalancete(int mes, int ano) {\n\n        String periodo = String.format(\"%02d/%d\", mes, ano);\n\n        List<Pagamento> pagamentos    = new ArrayList<>();\n        List<Despesa>   despesas      = new ArrayList<>();\n        float           receitas      = 0;\n        float           totalDespesas = 0;\n\n        for (Pagamento p : pagamentoRepo.listar()) {\n            if (p.getDataPagamento() == null) continue;\n            if (p.getDataPagamento().getMonthValue() == mes\n                    && p.getDataPagamento().getYear() == ano) {\n                pagamentos.add(p);\n                receitas += p.getValorPago();\n            }\n        }\n\n        for (Despesa d : despesaRepo.listar()) {\n            if (d.getDataVencimento() == null) continue;\n            if (d.getDataVencimento().getMonthValue() == mes\n                    && d.getDataVencimento().getYear() == ano) {\n                despesas.add(d);\n                totalDespesas += d.getValor();\n            }\n        }\n\n        Balancete balancete = new Balancete(1, receitas, totalDespesas, periodo);\n        balancete.setPagamentos(pagamentos);\n        balancete.setDespesas(despesas);\n        return balancete;\n    }\n\n    // =========================================================================\n    // REQ14 - Gerar PDF real do balancete via iText 7\n    // =========================================================================\n\n    public String gerarPdfBalancete(Balancete balancete, String pastaDestino) throws IOException {\n\n        String nomeArquivo = \"Balancete_\"\n                + balancete.getPeriodo().replace(\"/\", \"_\")\n                + \".pdf\";\n\n        Path destino = Path.of(pastaDestino, nomeArquivo);\n\n        try (PdfWriter   writer = new PdfWriter(destino.toFile());\n             PdfDocument pdf    = new PdfDocument(writer);\n             Document    doc    = new Document(pdf, PageSize.A4)) {\n\n            doc.setMargins(36, 36, 36, 36);\n\n            PdfFont bold   = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);\n            PdfFont normal = PdfFontFactory.createFont(StandardFonts.HELVETICA);\n\n            // --- Cabecalho ---------------------------------------------------\n            doc.add(new Paragraph(\"CONDOSOFT\")\n                    .setFont(bold)\n                    .setFontSize(22)\n                    .setFontColor(COR_AZUL_ESCURO)\n                    .setTextAlignment(TextAlignment.CENTER));\n\n            doc.add(new Paragraph(\"Balancete Mensal - \" + balancete.getPeriodo())\n                    .setFont(bold)\n                    .setFontSize(14)\n                    .setFontColor(COR_AZUL_MEDIO)\n                    .setTextAlignment(TextAlignment.CENTER)\n                    .setMarginBottom(4));\n\n            String dataHoje = LocalDate.now()\n                    .format(DateTimeFormatter.ofPattern(\"dd/MM/yyyy\"));\n\n            doc.add(new Paragraph(\"Gerado em: \" + dataHoje)\n                    .setFont(normal)\n                    .setFontSize(9)\n                    .setFontColor(ColorConstants.GRAY)\n                    .setTextAlignment(TextAlignment.CENTER)\n                    .setMarginBottom(16));\n\n            // --- Cards de resumo ---------------------------------------------\n            Table resumo = new Table(UnitValue.createPercentArray(new float[]{1, 1, 1}))\n                    .setWidth(UnitValue.createPercentValue(100))\n                    .setMarginBottom(20);\n\n            resumo.addCell(cardResumo(\"Total de Receitas\",\n                    moeda(balancete.getTotalReceitas()), COR_VERDE, bold, normal));\n            resumo.addCell(cardResumo(\"Total de Despesas\",\n                    moeda(balancete.getTotalDespesas()), COR_VERMELHO, bold, normal));\n\n            float saldo = balancete.getSaldoFinal();\n            resumo.addCell(cardResumo(\"Saldo Final\",\n                    moeda(saldo), saldo >= 0 ? COR_VERDE : COR_VERMELHO, bold, normal));\n\n            doc.add(resumo);\n\n            // --- Tabela de receitas ------------------------------------------\n            doc.add(secao(\"Receitas - Pagamentos Recebidos\", bold));\n\n            List<Pagamento> pagamentos = balancete.getPagamentos();\n            if (pagamentos == null || pagamentos.isEmpty()) {\n                doc.add(vazio(\"Nenhum pagamento registrado neste periodo.\", normal));\n            } else {\n                Table t = tabela(new String[]{\"#\", \"Data\", \"Forma de Pagamento\", \"Valor (R$)\"},\n                        new float[] { 5,  20,      50,                   25 }, bold);\n\n                for (int i = 0; i < pagamentos.size(); i++) {\n                    Pagamento p = pagamentos.get(i);\n                    boolean par = i % 2 == 0;\n                    String data = p.getDataPagamento() != null\n                            ? p.getDataPagamento().format(DateTimeFormatter.ofPattern(\"dd/MM/yyyy\"))\n                            : \"-\";\n                    String forma = p.getFormaPagamento() != null ? p.getFormaPagamento() : \"-\";\n\n                    t.addCell(celula(String.valueOf(i + 1), normal, par, TextAlignment.CENTER));\n                    t.addCell(celula(data,  normal, par, TextAlignment.CENTER));\n                    t.addCell(celula(forma, normal, par, TextAlignment.LEFT));\n                    t.addCell(celula(moeda(p.getValorPago()), normal, par, TextAlignment.RIGHT));\n                }\n\n                t.addCell(totalLabel(3, \"Total Receitas\", bold));\n                t.addCell(totalValor(moeda(balancete.getTotalReceitas()), bold, COR_VERDE));\n                doc.add(t.setMarginBottom(16));\n            }\n\n            // --- Tabela de despesas ------------------------------------------\n            doc.add(secao(\"Despesas Lancadas\", bold));\n\n            List<Despesa> despesas = balancete.getDespesas();\n            if (despesas == null || despesas.isEmpty()) {\n                doc.add(vazio(\"Nenhuma despesa registrada neste periodo.\", normal));\n            } else {\n                Table t = tabela(new String[]{\"#\", \"Descricao\", \"Tipo\", \"Vencimento\", \"Valor (R$)\"},\n                        new float[] { 5,   40,          15,     18,            22 }, bold);\n\n                for (int i = 0; i < despesas.size(); i++) {\n                    Despesa d = despesas.get(i);\n                    boolean par = i % 2 == 0;\n                    String venc = d.getDataVencimento() != null\n                            ? d.getDataVencimento().format(DateTimeFormatter.ofPattern(\"dd/MM/yyyy\"))\n                            : \"-\";\n                    String tipo = d.getTipo() != null ? d.getTipo().toString() : \"-\";\n                    String desc = d.getDescricao() != null ? d.getDescricao() : \"-\";\n\n                    t.addCell(celula(String.valueOf(i + 1), normal, par, TextAlignment.CENTER));\n                    t.addCell(celula(desc, normal, par, TextAlignment.LEFT));\n                    t.addCell(celula(tipo, normal, par, TextAlignment.CENTER));\n                    t.addCell(celula(venc, normal, par, TextAlignment.CENTER));\n                    t.addCell(celula(moeda(d.getValor()), normal, par, TextAlignment.RIGHT));\n                }\n\n                t.addCell(totalLabel(4, \"Total Despesas\", bold));\n                t.addCell(totalValor(moeda(balancete.getTotalDespesas()), bold, COR_VERMELHO));\n                doc.add(t.setMarginBottom(16));\n            }\n\n            // --- Rodape ------------------------------------------------------\n            doc.add(new Paragraph(\n                    \"Documento gerado automaticamente pelo sistema CondoSoft. \"\n                            + \"Competencia: \" + balancete.getPeriodo() + \".\")\n                    .setFont(normal)\n                    .setFontSize(8)\n                    .setFontColor(ColorConstants.GRAY)\n                    .setTextAlignment(TextAlignment.CENTER)\n                    .setMarginTop(16));\n        }\n\n        return destino.toAbsolutePath().toString();\n    }\n\n    // =========================================================================\n    // REQ15 - Exportar inadimplentes em CSV\n    // =========================================================================\n\n    public String exportarInadimplentesCSV(String pastaDestino) throws IOException {\n        Path destino = Path.of(pastaDestino, \"inadimplentes.csv\");\n        StringBuilder csv = new StringBuilder(\"Unidade;Valor;DiasAtraso\\n\");\n        for (Inadimplencia i : listarInadimplenciasPendentes()) {\n            csv.append(i.getUnidade().getNumero())\n                    .append(\";\").append(i.getValorDevido())\n                    .append(\";\").append(i.getDiasAtraso())\n                    .append(\"\\n\");\n        }\n        Files.writeString(destino, csv.toString(), StandardCharsets.UTF_8);\n        return destino.toAbsolutePath().toString();\n    }\n\n    // =========================================================================\n    // Consultas auxiliares\n    // =========================================================================\n\n    public double calcularInadimplenciaTotal() {\n        double total = 0;\n        for (Inadimplencia i : inadimplenciaRepo.listar())\n            if (\"PENDENTE\".equalsIgnoreCase(i.getStatus()))\n                total += i.getValorDevido();\n        return total;\n    }\n\n    public List<Inadimplencia> listarInadimplenciasPendentes() {\n        List<Inadimplencia> lista = new ArrayList<>();\n        for (Inadimplencia i : inadimplenciaRepo.listar())\n            if (\"PENDENTE\".equalsIgnoreCase(i.getStatus()))\n                lista.add(i);\n        return lista;\n    }\n\n    // =========================================================================\n    // Helpers privados de layout\n    // =========================================================================\n\n    private Cell cardResumo(String titulo, String valor,\n                            DeviceRgb corValor, PdfFont bold, PdfFont normal) {\n        Cell c = new Cell()\n                .setPadding(10)\n                .setBorder(new SolidBorder(COR_BORDA_CARD, 1));\n        c.add(new Paragraph(titulo)\n                .setFont(normal).setFontSize(9)\n                .setFontColor(ColorConstants.GRAY).setMarginBottom(4));\n        c.add(new Paragraph(valor)\n                .setFont(bold).setFontSize(15)\n                .setFontColor(corValor));\n        return c;\n    }\n\n    private Paragraph secao(String texto, PdfFont bold) {\n        return new Paragraph(texto)\n                .setFont(bold).setFontSize(11)\n                .setFontColor(COR_AZUL_ESCURO).setMarginBottom(4);\n    }\n\n    private Paragraph vazio(String texto, PdfFont normal) {\n        return new Paragraph(texto)\n                .setFont(normal).setFontSize(10)\n                .setFontColor(ColorConstants.GRAY)\n                .setItalic().setMarginBottom(16);\n    }\n\n    private Table tabela(String[] headers, float[] cols, PdfFont bold) {\n        Table t = new Table(UnitValue.createPercentArray(cols))\n                .setWidth(UnitValue.createPercentValue(100));\n        for (String h : headers) {\n            t.addHeaderCell(new Cell()\n                    .setBackgroundColor(COR_AZUL_ESCURO)\n                    .setBorder(Border.NO_BORDER)\n                    .setPadding(5)\n                    .add(new Paragraph(h)\n                            .setFont(bold).setFontSize(9)\n                            .setFontColor(ColorConstants.WHITE)\n                            .setTextAlignment(TextAlignment.CENTER)));\n        }\n        return t;\n    }\n\n    private Cell celula(String texto, PdfFont font, boolean par, TextAlignment align) {\n        return new Cell()\n                .setBackgroundColor(par ? COR_LINHA_PAR : ColorConstants.WHITE)\n                .setBorder(Border.NO_BORDER)\n                .setPadding(4)\n                .add(new Paragraph(texto != null ? texto : \"-\")\n                        .setFont(font).setFontSize(9)\n                        .setTextAlignment(align));\n    }\n\n    private Cell totalLabel(int span, String label, PdfFont bold) {\n        return new Cell(1, span)\n                .setBackgroundColor(COR_TOTAL_BG)\n                .setBorder(Border.NO_BORDER)\n                .setPadding(5)\n                .add(new Paragraph(label)\n                        .setFont(bold).setFontSize(9)\n                        .setTextAlignment(TextAlignment.RIGHT));\n    }\n\n    private Cell totalValor(String valor, PdfFont bold, DeviceRgb cor) {\n        return new Cell()\n                .setBackgroundColor(COR_TOTAL_BG)\n                .setBorder(Border.NO_BORDER)\n                .setPadding(5)\n                .add(new Paragraph(valor)\n                        .setFont(bold).setFontSize(9)\n                        .setFontColor(cor)\n                        .setTextAlignment(TextAlignment.RIGHT));\n    }\n\n    private String moeda(float valor) {\n        // Formata como R$ 1.234,56\n        String s = String.format(\"R$ %,.2f\", valor);\n        // String.format usa locale do sistema; normaliza para padrao BR\n        s = s.replace(\",\", \"X\").replace(\".\", \",\").replace(\"X\", \".\");\n        return s;\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/condominio/service/RelatorioService.java b/src/main/java/com/condominio/service/RelatorioService.java
+--- a/src/main/java/com/condominio/service/RelatorioService.java	(revision 35e32c9d6c73f0e89bda745043a18f6c58e19092)
++++ b/src/main/java/com/condominio/service/RelatorioService.java	(date 1781146102598)
+@@ -9,42 +9,28 @@
+ import com.condominio.repository.interfaces.IInadimplenciaRepository;
+ import com.condominio.repository.interfaces.IPagamentoRepository;
+ 
+-import com.itextpdf.kernel.colors.ColorConstants;
+-import com.itextpdf.kernel.colors.DeviceRgb;
+-import com.itextpdf.kernel.font.PdfFont;
+-import com.itextpdf.kernel.font.PdfFontFactory;
+-import com.itextpdf.kernel.geom.PageSize;
+-import com.itextpdf.kernel.pdf.PdfDocument;
+-import com.itextpdf.kernel.pdf.PdfWriter;
+-import com.itextpdf.layout.Document;
+-import com.itextpdf.layout.borders.Border;
+-import com.itextpdf.layout.borders.SolidBorder;
+-import com.itextpdf.layout.element.Cell;
+-import com.itextpdf.layout.element.Paragraph;
+-import com.itextpdf.layout.element.Table;
+-import com.itextpdf.layout.properties.TextAlignment;
+-import com.itextpdf.layout.properties.UnitValue;
+-import com.itextpdf.io.font.constants.StandardFonts;
++import net.sf.jasperreports.engine.JasperCompileManager;
++import net.sf.jasperreports.engine.JasperExportManager;
++import net.sf.jasperreports.engine.JasperFillManager;
++import net.sf.jasperreports.engine.JasperPrint;
++import net.sf.jasperreports.engine.JasperReport;
++import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
++import net.sf.jasperreports.engine.JREmptyDataSource;
+ 
+ import java.io.IOException;
++import java.io.InputStream;
+ import java.nio.charset.StandardCharsets;
+ import java.nio.file.Files;
+ import java.nio.file.Path;
+ import java.time.LocalDate;
+ import java.time.format.DateTimeFormatter;
+ import java.util.ArrayList;
++import java.util.HashMap;
+ import java.util.List;
++import java.util.Map;
+ 
+ public class RelatorioService {
+ 
+-    private static final DeviceRgb COR_AZUL_ESCURO = new DeviceRgb(30,  80, 160);
+-    private static final DeviceRgb COR_AZUL_MEDIO  = new DeviceRgb(52, 120, 200);
+-    private static final DeviceRgb COR_LINHA_PAR   = new DeviceRgb(235, 242, 252);
+-    private static final DeviceRgb COR_VERDE       = new DeviceRgb(30,  130,  76);
+-    private static final DeviceRgb COR_VERMELHO    = new DeviceRgb(180,  30,  30);
+-    private static final DeviceRgb COR_TOTAL_BG    = new DeviceRgb(220, 230, 245);
+-    private static final DeviceRgb COR_BORDA_CARD  = new DeviceRgb(200, 210, 230);
+-
+     private final IBoletoRepository        boletoRepo;
+     private final IDespesaRepository       despesaRepo;
+     private final IPagamentoRepository     pagamentoRepo;
+@@ -63,7 +49,7 @@
+     }
+ 
+     // =========================================================================
+-    // Geracao do Balancete
++    // Geracao do Balancete (logica de dados - sem mudancas)
+     // =========================================================================
+ 
+     public Balancete gerarBalancete(int mes, int ano) {
+@@ -100,136 +86,65 @@
+     }
+ 
+     // =========================================================================
+-    // REQ14 - Gerar PDF real do balancete via iText 7
++    // REQ14 - Gerar PDF via JasperReports
+     // =========================================================================
+ 
+-    public String gerarPdfBalancete(Balancete balancete, String pastaDestino) throws IOException {
++    /**
++     * Gera o balancete em PDF usando JasperReports.
++     * O template balancete.jrxml deve estar em src/main/resources/relatorios/
++     *
++     * @param balancete    objeto populado por gerarBalancete()
++     * @param pastaDestino pasta onde o PDF sera salvo
++     * @return caminho absoluto do arquivo gerado
++     */
++    public String gerarPdfBalancete(Balancete balancete, String pastaDestino) throws Exception {
++
++        // --- 1. Carrega e compila o template JRXML do classpath --------------
++        InputStream jrxmlStream =
++                getClass().getResourceAsStream(
++                        "/com/condominio/relatorio/balancete.jrxml");
++
++        if (jrxmlStream == null) {
++            throw new IllegalStateException(
++                    "Template nao encontrado: /relatorio/balancete.jrxml\n"
++                            + "Verifique se o arquivo esta em src/main/resources/relatorio/");
++        }
++
++        JasperReport jasperReport = JasperCompileManager.compileReport(jrxmlStream);
++
++        // --- 2. Monta os parametros do cabecalho -----------------------------
++        Map<String, Object> params = new HashMap<>();
++
++        params.put("PERIODO",        balancete.getPeriodo());
++        params.put("DATA_GERACAO",   LocalDate.now()
++                .format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
++        params.put("TOTAL_RECEITAS", moeda(balancete.getTotalReceitas()));
++        params.put("TOTAL_DESPESAS", moeda(balancete.getTotalDespesas()));
++        params.put("SALDO_FINAL",    moeda(balancete.getSaldoFinal()));
++        params.put("COR_SALDO",      balancete.getSaldoFinal() >= 0 ? "verde" : "vermelho");
++
++        // --- 3. Monta o datasource com as linhas de lancamentos --------------
++        List<LancamentoRow> linhas = montarLinhas(balancete);
++
++        JRBeanCollectionDataSource dataSource =
++                new JRBeanCollectionDataSource(linhas.isEmpty()
++                        ? List.of(new LancamentoRow("-", "Sem lancamentos", "-", "-", "-", "-"))
++                        : linhas);
+ 
++        // --- 4. Preenche o relatorio -----------------------------------------
++        JasperPrint jasperPrint = JasperFillManager.fillReport(
++                jasperReport, params, dataSource);
++
++        // --- 5. Exporta para PDF ---------------------------------------------
+         String nomeArquivo = "Balancete_"
+                 + balancete.getPeriodo().replace("/", "_")
+                 + ".pdf";
+ 
+         Path destino = Path.of(pastaDestino, nomeArquivo);
+ 
+-        try (PdfWriter   writer = new PdfWriter(destino.toFile());
+-             PdfDocument pdf    = new PdfDocument(writer);
+-             Document    doc    = new Document(pdf, PageSize.A4)) {
+-
+-            doc.setMargins(36, 36, 36, 36);
+-
+-            PdfFont bold   = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
+-            PdfFont normal = PdfFontFactory.createFont(StandardFonts.HELVETICA);
+-
+-            // --- Cabecalho ---------------------------------------------------
+-            doc.add(new Paragraph("CONDOSOFT")
+-                    .setFont(bold)
+-                    .setFontSize(22)
+-                    .setFontColor(COR_AZUL_ESCURO)
+-                    .setTextAlignment(TextAlignment.CENTER));
+-
+-            doc.add(new Paragraph("Balancete Mensal - " + balancete.getPeriodo())
+-                    .setFont(bold)
+-                    .setFontSize(14)
+-                    .setFontColor(COR_AZUL_MEDIO)
+-                    .setTextAlignment(TextAlignment.CENTER)
+-                    .setMarginBottom(4));
+-
+-            String dataHoje = LocalDate.now()
+-                    .format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+-
+-            doc.add(new Paragraph("Gerado em: " + dataHoje)
+-                    .setFont(normal)
+-                    .setFontSize(9)
+-                    .setFontColor(ColorConstants.GRAY)
+-                    .setTextAlignment(TextAlignment.CENTER)
+-                    .setMarginBottom(16));
+-
+-            // --- Cards de resumo ---------------------------------------------
+-            Table resumo = new Table(UnitValue.createPercentArray(new float[]{1, 1, 1}))
+-                    .setWidth(UnitValue.createPercentValue(100))
+-                    .setMarginBottom(20);
+-
+-            resumo.addCell(cardResumo("Total de Receitas",
+-                    moeda(balancete.getTotalReceitas()), COR_VERDE, bold, normal));
+-            resumo.addCell(cardResumo("Total de Despesas",
+-                    moeda(balancete.getTotalDespesas()), COR_VERMELHO, bold, normal));
+-
+-            float saldo = balancete.getSaldoFinal();
+-            resumo.addCell(cardResumo("Saldo Final",
+-                    moeda(saldo), saldo >= 0 ? COR_VERDE : COR_VERMELHO, bold, normal));
+-
+-            doc.add(resumo);
+-
+-            // --- Tabela de receitas ------------------------------------------
+-            doc.add(secao("Receitas - Pagamentos Recebidos", bold));
+-
+-            List<Pagamento> pagamentos = balancete.getPagamentos();
+-            if (pagamentos == null || pagamentos.isEmpty()) {
+-                doc.add(vazio("Nenhum pagamento registrado neste periodo.", normal));
+-            } else {
+-                Table t = tabela(new String[]{"#", "Data", "Forma de Pagamento", "Valor (R$)"},
+-                        new float[] { 5,  20,      50,                   25 }, bold);
+-
+-                for (int i = 0; i < pagamentos.size(); i++) {
+-                    Pagamento p = pagamentos.get(i);
+-                    boolean par = i % 2 == 0;
+-                    String data = p.getDataPagamento() != null
+-                            ? p.getDataPagamento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+-                            : "-";
+-                    String forma = p.getFormaPagamento() != null ? p.getFormaPagamento() : "-";
+-
+-                    t.addCell(celula(String.valueOf(i + 1), normal, par, TextAlignment.CENTER));
+-                    t.addCell(celula(data,  normal, par, TextAlignment.CENTER));
+-                    t.addCell(celula(forma, normal, par, TextAlignment.LEFT));
+-                    t.addCell(celula(moeda(p.getValorPago()), normal, par, TextAlignment.RIGHT));
+-                }
+-
+-                t.addCell(totalLabel(3, "Total Receitas", bold));
+-                t.addCell(totalValor(moeda(balancete.getTotalReceitas()), bold, COR_VERDE));
+-                doc.add(t.setMarginBottom(16));
+-            }
+-
+-            // --- Tabela de despesas ------------------------------------------
+-            doc.add(secao("Despesas Lancadas", bold));
+-
+-            List<Despesa> despesas = balancete.getDespesas();
+-            if (despesas == null || despesas.isEmpty()) {
+-                doc.add(vazio("Nenhuma despesa registrada neste periodo.", normal));
+-            } else {
+-                Table t = tabela(new String[]{"#", "Descricao", "Tipo", "Vencimento", "Valor (R$)"},
+-                        new float[] { 5,   40,          15,     18,            22 }, bold);
+-
+-                for (int i = 0; i < despesas.size(); i++) {
+-                    Despesa d = despesas.get(i);
+-                    boolean par = i % 2 == 0;
+-                    String venc = d.getDataVencimento() != null
+-                            ? d.getDataVencimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+-                            : "-";
+-                    String tipo = d.getTipo() != null ? d.getTipo().toString() : "-";
+-                    String desc = d.getDescricao() != null ? d.getDescricao() : "-";
+-
+-                    t.addCell(celula(String.valueOf(i + 1), normal, par, TextAlignment.CENTER));
+-                    t.addCell(celula(desc, normal, par, TextAlignment.LEFT));
+-                    t.addCell(celula(tipo, normal, par, TextAlignment.CENTER));
+-                    t.addCell(celula(venc, normal, par, TextAlignment.CENTER));
+-                    t.addCell(celula(moeda(d.getValor()), normal, par, TextAlignment.RIGHT));
+-                }
+-
+-                t.addCell(totalLabel(4, "Total Despesas", bold));
+-                t.addCell(totalValor(moeda(balancete.getTotalDespesas()), bold, COR_VERMELHO));
+-                doc.add(t.setMarginBottom(16));
+-            }
+-
+-            // --- Rodape ------------------------------------------------------
+-            doc.add(new Paragraph(
+-                    "Documento gerado automaticamente pelo sistema CondoSoft. "
+-                            + "Competencia: " + balancete.getPeriodo() + ".")
+-                    .setFont(normal)
+-                    .setFontSize(8)
+-                    .setFontColor(ColorConstants.GRAY)
+-                    .setTextAlignment(TextAlignment.CENTER)
+-                    .setMarginTop(16));
+-        }
++        JasperExportManager.exportReportToPdfFile(
++                jasperPrint,
++                destino.toAbsolutePath().toString());
+ 
+         return destino.toAbsolutePath().toString();
+     }
+@@ -272,88 +187,109 @@
+     }
+ 
+     // =========================================================================
+-    // Helpers privados de layout
++    // Helpers privados
+     // =========================================================================
+ 
+-    private Cell cardResumo(String titulo, String valor,
+-                            DeviceRgb corValor, PdfFont bold, PdfFont normal) {
+-        Cell c = new Cell()
+-                .setPadding(10)
+-                .setBorder(new SolidBorder(COR_BORDA_CARD, 1));
+-        c.add(new Paragraph(titulo)
+-                .setFont(normal).setFontSize(9)
+-                .setFontColor(ColorConstants.GRAY).setMarginBottom(4));
+-        c.add(new Paragraph(valor)
+-                .setFont(bold).setFontSize(15)
+-                .setFontColor(corValor));
+-        return c;
+-    }
++    /**
++     * Constroi a lista de linhas para o datasource do JasperReports
++     * a partir dos pagamentos e despesas do balancete.
++     */
++    private List<LancamentoRow> montarLinhas(Balancete balancete) {
+ 
+-    private Paragraph secao(String texto, PdfFont bold) {
+-        return new Paragraph(texto)
+-                .setFont(bold).setFontSize(11)
+-                .setFontColor(COR_AZUL_ESCURO).setMarginBottom(4);
+-    }
++        List<LancamentoRow> linhas = new ArrayList<>();
++        double saldoAcum = 0;
+ 
+-    private Paragraph vazio(String texto, PdfFont normal) {
+-        return new Paragraph(texto)
+-                .setFont(normal).setFontSize(10)
+-                .setFontColor(ColorConstants.GRAY)
+-                .setItalic().setMarginBottom(16);
+-    }
++        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
++
++        if (balancete.getPagamentos() != null) {
++            for (Pagamento p : balancete.getPagamentos()) {
++                saldoAcum += p.getValorPago();
++
++                String data = p.getDataPagamento() != null
++                        ? p.getDataPagamento().toLocalDate().format(fmt)
++                        : "-";
++
++                String descricao = (p.getBoleto() != null
++                        && p.getBoleto().getUnidade() != null)
++                        ? "Apto " + p.getBoleto().getUnidade().getNumero()
++                        : "Pagamento";
++
++                String forma = p.getFormaPagamento() != null
++                        ? p.getFormaPagamento() : "-";
+ 
+-    private Table tabela(String[] headers, float[] cols, PdfFont bold) {
+-        Table t = new Table(UnitValue.createPercentArray(cols))
+-                .setWidth(UnitValue.createPercentValue(100));
+-        for (String h : headers) {
+-            t.addHeaderCell(new Cell()
+-                    .setBackgroundColor(COR_AZUL_ESCURO)
+-                    .setBorder(Border.NO_BORDER)
+-                    .setPadding(5)
+-                    .add(new Paragraph(h)
+-                            .setFont(bold).setFontSize(9)
+-                            .setFontColor(ColorConstants.WHITE)
+-                            .setTextAlignment(TextAlignment.CENTER)));
+-        }
+-        return t;
+-    }
++                linhas.add(new LancamentoRow(
++                        data,
++                        descricao + " (" + forma + ")",
++                        "Taxa Condominial",
++                        "RECEITA",
++                        moeda(p.getValorPago()),
++                        moeda((float) saldoAcum)));
++            }
++        }
+ 
+-    private Cell celula(String texto, PdfFont font, boolean par, TextAlignment align) {
+-        return new Cell()
+-                .setBackgroundColor(par ? COR_LINHA_PAR : ColorConstants.WHITE)
+-                .setBorder(Border.NO_BORDER)
+-                .setPadding(4)
+-                .add(new Paragraph(texto != null ? texto : "-")
+-                        .setFont(font).setFontSize(9)
+-                        .setTextAlignment(align));
+-    }
++        if (balancete.getDespesas() != null) {
++            for (Despesa d : balancete.getDespesas()) {
++                saldoAcum -= d.getValor();
++
++                String data = d.getDataVencimento() != null
++                        ? d.getDataVencimento().format(fmt)
++                        : "-";
++
++                String tipo = d.getTipo() != null
++                        ? d.getTipo().toString() : "-";
+ 
+-    private Cell totalLabel(int span, String label, PdfFont bold) {
+-        return new Cell(1, span)
+-                .setBackgroundColor(COR_TOTAL_BG)
+-                .setBorder(Border.NO_BORDER)
+-                .setPadding(5)
+-                .add(new Paragraph(label)
+-                        .setFont(bold).setFontSize(9)
+-                        .setTextAlignment(TextAlignment.RIGHT));
+-    }
++                String desc = d.getDescricao() != null
++                        ? d.getDescricao() : "-";
++
++                linhas.add(new LancamentoRow(
++                        data,
++                        desc,
++                        tipo,
++                        "DESPESA",
++                        moeda(d.getValor()),
++                        moeda((float) saldoAcum)));
++            }
++        }
+ 
+-    private Cell totalValor(String valor, PdfFont bold, DeviceRgb cor) {
+-        return new Cell()
+-                .setBackgroundColor(COR_TOTAL_BG)
+-                .setBorder(Border.NO_BORDER)
+-                .setPadding(5)
+-                .add(new Paragraph(valor)
+-                        .setFont(bold).setFontSize(9)
+-                        .setFontColor(cor)
+-                        .setTextAlignment(TextAlignment.RIGHT));
++        return linhas;
+     }
+ 
++    /** Formata float como moeda: R$ 1.234,56 */
+     private String moeda(float valor) {
+-        // Formata como R$ 1.234,56
+         String s = String.format("R$ %,.2f", valor);
+-        // String.format usa locale do sistema; normaliza para padrao BR
+-        s = s.replace(",", "X").replace(".", ",").replace("X", ".");
+-        return s;
++        return s.replace(",", "X").replace(".", ",").replace("X", ".");
++    }
++
++    // =========================================================================
++    // DTO interno para o datasource do JasperReports
++    // JasperReports acessa os campos via getters (Java Beans)
++    // =========================================================================
++
++    public static class LancamentoRow {
++
++        private final String data;
++        private final String descricao;
++        private final String tipo;
++        private final String categoria;
++        private final String valor;
++        private final String saldoAcum;
++
++        public LancamentoRow(String data, String descricao,
++                             String tipo, String categoria,
++                             String valor, String saldoAcum) {
++            this.data      = data;
++            this.descricao = descricao;
++            this.tipo      = tipo;
++            this.categoria = categoria;
++            this.valor     = valor;
++            this.saldoAcum = saldoAcum;
++        }
++
++        public String getData()      { return data; }
++        public String getDescricao() { return descricao; }
++        public String getTipo()      { return tipo; }
++        public String getCategoria() { return categoria; }
++        public String getValor()     { return valor; }
++        public String getSaldoAcum() { return saldoAcum; }
+     }
+ }
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"45d689cc-3a2e-41e6-9ecf-6383db13b784\" name=\"Changes\" comment=\"Fix: Disciplina\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pom.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/condominio/service/RelatorioService.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/condominio/service/RelatorioService.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/module-info.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/module-info.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"FxmlFile\" />\n        <option value=\"Interface\" />\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"dev\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;CaioMentornap&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/lucasviniciussilvaprofissional-hub/Projeto-Programa-o-CondoSoft.git&quot;,\n    &quot;accountId&quot;: &quot;cf52056f-eb42-4fd9-a47e-c2901a010278&quot;\n  }\n}</component>\n  <component name=\"MavenImportPreferences\">\n    <option name=\"generalSettings\">\n      <MavenGeneralSettings>\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\n      </MavenGeneralSettings>\n    </option>\n  </component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;customColor&quot;: &quot;&quot;,\n  &quot;associatedIndex&quot;: 5\n}</component>\n  <component name=\"ProjectId\" id=\"3EHfSyqDSCqDZX0MOEnXUAdfg80\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,\n    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,\n    &quot;Maven.ProjetoIP [clean].executor&quot;: &quot;Run&quot;,\n    &quot;Maven.ProjetoIP [compile].executor&quot;: &quot;Run&quot;,\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\n    &quot;SHELLCHECK.PATH&quot;: &quot;I do mind&quot;,\n    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;#3 on dev&quot;,\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\n    &quot;project.structure.side.proportion&quot;: &quot;0.35238096&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CreateClassDialog.RecentsKey\">\n      <recent name=\"com.condominio.repository.implementation\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"MainApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.condominio.MainApplication\" />\n      <module name=\"ProjetoIP\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"com.condominio.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.MainApplication\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"45d689cc-3a2e-41e6-9ecf-6383db13b784\" name=\"Changes\" comment=\"\" />\n      <created>1779840424182</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1779840424182</updated>\n      <workItem from=\"1779840424901\" duration=\"1193000\" />\n      <workItem from=\"1779841638847\" duration=\"226000\" />\n      <workItem from=\"1779841883574\" duration=\"3756000\" />\n      <workItem from=\"1779993327902\" duration=\"846000\" />\n      <workItem from=\"1779994274999\" duration=\"1479000\" />\n      <workItem from=\"1779995767471\" duration=\"24000\" />\n      <workItem from=\"1780108800888\" duration=\"6170000\" />\n      <workItem from=\"1780171723368\" duration=\"2517000\" />\n      <workItem from=\"1780174266223\" duration=\"4972000\" />\n      <workItem from=\"1780189691242\" duration=\"10673000\" />\n      <workItem from=\"1780233867004\" duration=\"8446000\" />\n      <workItem from=\"1780317922187\" duration=\"393000\" />\n      <workItem from=\"1780333998012\" duration=\"907000\" />\n      <workItem from=\"1780339493026\" duration=\"608000\" />\n      <workItem from=\"1780411486986\" duration=\"19000\" />\n      <workItem from=\"1780447382473\" duration=\"4082000\" />\n      <workItem from=\"1780510473237\" duration=\"607000\" />\n      <workItem from=\"1780667151133\" duration=\"23000\" />\n      <workItem from=\"1780684028056\" duration=\"2922000\" />\n      <workItem from=\"1780705163425\" duration=\"8759000\" />\n      <workItem from=\"1780786070543\" duration=\"5730000\" />\n      <workItem from=\"1780939379624\" duration=\"645000\" />\n      <workItem from=\"1781056363576\" duration=\"5396000\" />\n      <workItem from=\"1781103984114\" duration=\"5384000\" />\n      <workItem from=\"1781140163871\" duration=\"576000\" />\n      <workItem from=\"1781140751199\" duration=\"1085000\" />\n      <workItem from=\"1781141897054\" duration=\"1091000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"FEAT: Modelo JavaFX&#10;Fix: Resolução de erros\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1779842263581</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1779842263582</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"FEAT: Adição da home-view.fxml e da secção Unidade\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1779995714547</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1779995714547</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"FEAT: ADIÇÃO TELA DE COMUNICAÇÃO + DISCIPLINA.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1780112966147</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1780112966147</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"FEAT; CORREÇÃO DE BUGS DISCIPLINA E COMUNICAÇÃO\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1780179927757</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1780179927757</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"FEAT; CORREÇÃO DE BUGS DISCIPLINA E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1780200693771</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1780200693771</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"FEAT; CORREÇÃO DE BUGS COMUNICAÇÃO E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1780202034849</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1780202034849</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"FEAT: Correção de bugs e alterações e sistema de gerenciar moradores, pets e veiculos.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1780265774811</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1780265774811</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"FEAT: Correção de bugs nos botôes\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1780504994719</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1780504994720</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"FEAT: Implementação do rep de unidades na reserva.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1780686933156</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1780686933156</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"FEAT: Implementação dos requisitos para financeiro\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1780712327725</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1780712327725</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"Fix: Disciplina\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1781108431121</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1781108431121</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"12\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"FEAT: Modelo JavaFX&#10;Fix: Resolução de erros\" />\n    <MESSAGE value=\"FEAT: Adição da home-view.fxml e da secção Unidade\" />\n    <MESSAGE value=\"FEAT: ADIÇÃO TELA DE COMUNICAÇÃO + DISCIPLINA.\" />\n    <MESSAGE value=\"FEAT; CORREÇÃO DE BUGS DISCIPLINA E COMUNICAÇÃO\" />\n    <MESSAGE value=\"FEAT; CORREÇÃO DE BUGS DISCIPLINA E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES\" />\n    <MESSAGE value=\"FEAT; CORREÇÃO DE BUGS COMUNICAÇÃO E IMPLEMENTAÇÕES BASICAS DE INTERAÇÕES\" />\n    <MESSAGE value=\"FEAT: Correção de bugs e alterações e sistema de gerenciar moradores, pets e veiculos.\" />\n    <MESSAGE value=\"FEAT: Correção de bugs nos botôes\" />\n    <MESSAGE value=\"FEAT: Implementação do rep de unidades na reserva.\" />\n    <MESSAGE value=\"FEAT: Implementação dos requisitos para financeiro\" />\n    <MESSAGE value=\"Fix: Disciplina\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Fix: Disciplina\" />\n  </component>\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\n    <expand />\n    <select />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 35e32c9d6c73f0e89bda745043a18f6c58e19092)
++++ b/.idea/workspace.xml	(date 1781147756016)
+@@ -4,9 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="Fix: Disciplina">
++    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="Fix: Geração do pdf">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/CadastrarPetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/CadastrarPetController.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/service/RelatorioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/service/RelatorioService.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+     </list>
+@@ -66,38 +67,41 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
+-    &quot;Maven.ProjetoIP [clean].executor&quot;: &quot;Run&quot;,
+-    &quot;Maven.ProjetoIP [compile].executor&quot;: &quot;Run&quot;,
+-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;SHELLCHECK.PATH&quot;: &quot;I do mind&quot;,
+-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;#3 on dev&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.35238096&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Application.HelloApplication.executor": "Run",
++    "Application.MainApplication.executor": "Run",
++    "Maven.ProjetoIP [clean].executor": "Run",
++    "Maven.ProjetoIP [compile].executor": "Run",
++    "ModuleVcsDetector.initialDetectionPerformed": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
++    "RunOnceActivity.git.unshallow": "true",
++    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "SHELLCHECK.PATH": "I do mind",
++    "codeWithMe.voiceChat.enabledByDefault": "false",
++    "git-widget-placeholder": "#3 on dev",
++    "kotlin-language-version-configured": "true",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "project.structure.last.edited": "Modules",
++    "project.structure.proportion": "0.0",
++    "project.structure.side.proportion": "0.35238096",
++    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CreateClassDialog.RecentsKey">
+       <recent name="com.condominio.repository.implementation" />
+     </key>
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio" />
++    </key>
+   </component>
+   <component name="RunManager">
+     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+@@ -152,7 +156,7 @@
+       <workItem from="1781103984114" duration="5384000" />
+       <workItem from="1781140163871" duration="576000" />
+       <workItem from="1781140751199" duration="1085000" />
+-      <workItem from="1781141897054" duration="1091000" />
++      <workItem from="1781141897054" duration="5857000" />
+     </task>
+     <task id="LOCAL-00001" summary="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros">
+       <option name="closed" value="true" />
+@@ -242,7 +246,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1781108431121</updated>
+     </task>
+-    <option name="localTasksCounter" value="12" />
++    <task id="LOCAL-00012" summary="Fix: Geração do pdf">
++      <option name="closed" value="true" />
++      <created>1781143002507</created>
++      <option name="number" value="00012" />
++      <option name="presentableId" value="LOCAL-00012" />
++      <option name="project" value="LOCAL" />
++      <updated>1781143002508</updated>
++    </task>
++    <option name="localTasksCounter" value="13" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -271,7 +283,8 @@
+     <MESSAGE value="FEAT: Implementação do rep de unidades na reserva." />
+     <MESSAGE value="FEAT: Implementação dos requisitos para financeiro" />
+     <MESSAGE value="Fix: Disciplina" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Fix: Disciplina" />
++    <MESSAGE value="Fix: Geração do pdf" />
++    <option name="LAST_COMMIT_MESSAGE" value="Fix: Geração do pdf" />
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />
