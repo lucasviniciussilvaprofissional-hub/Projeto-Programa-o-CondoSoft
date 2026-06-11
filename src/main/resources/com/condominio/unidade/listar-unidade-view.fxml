@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -64,12 +63,6 @@
                         <TextField fx:id="txtBusca" onKeyReleased="#filtrarUnidades" prefWidth="260.0" promptText="Buscar por número ou bloco..." style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 13; -fx-text-fill: #1E293B;" />
                     </HBox>
 
-                    <!-- Filtro por bloco -->
-                    <ComboBox fx:id="cmbFiltroBloco" onAction="#filtrarUnidades" prefHeight="40.0" prefWidth="160.0" promptText="Todos os Blocos" style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-width: 1; -fx-font-size: 13;" />
-
-                    <!-- Filtro por tipo -->
-                    <ComboBox fx:id="cmbFiltroTipo" onAction="#filtrarUnidades" prefHeight="40.0" prefWidth="160.0" promptText="Todos os Tipos" style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-width: 1; -fx-font-size: 13;" />
-
                     <Region HBox.hgrow="ALWAYS" />
 
                     <Button fx:id="btnLimparFiltros" onAction="#limparFiltros" style="-fx-background-color: transparent; -fx-text-fill: #64748B; -fx-font-size: 12; -fx-cursor: hand;" text="Limpar Filtros" />
@@ -100,7 +93,6 @@
                 <!-- Barra de ações inferiores -->
                 <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-padding: 16 24 16 24; -fx-border-color: #F1F5F9 transparent transparent transparent; -fx-border-width: 1; -fx-background-color: #FAFBFC; -fx-background-radius: 0 0 16 16;">
                     <Button fx:id="btnVerDetalhes" onAction="#abrirDetalhesUnidade" style="-fx-background-color: #2563EB; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;" text="🔍  Ver Detalhes" />
-                    <Button fx:id="btnEditarUnidade" onAction="#editarUnidade" style="-fx-background-color: #F1F5F9; -fx-text-fill: #374151; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-cursor: hand; -fx-border-color: #E2E8F0; -fx-border-radius: 8; -fx-border-width: 1;" text="✏️  Editar" />
                     <Button fx:id="btnRemoverUnidade" onAction="#confirmarRemocaoUnidade" style="-fx-background-color: #FEF2F2; -fx-text-fill: #DC2626; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-cursor: hand; -fx-border-color: #FECACA; -fx-border-radius: 8; -fx-border-width: 1;" text="🗑️  Remover" />
                     <Region HBox.hgrow="ALWAYS" />
                     <Label fx:id="lblSelecaoInfo" style="-fx-font-size: 12; -fx-text-fill: #94A3B8;" text="Selecione uma unidade para gerenciá-la" />

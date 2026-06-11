@@ -70,22 +70,12 @@ public class GerenciarMoradoresUnidadeController {
     // ───── inicialização ───────────────────────────────────────────────────
     @FXML
     public void initialize() {
-        configurarFiltros();
         configurarColunas();
         atualizarBadgeUnidade();
         carregarTabela();
         configurarSelecao();
     }
 
-    private void configurarFiltros() {
-        cmbFiltroTipo.setItems(FXCollections.observableArrayList(
-                "Todos", "Proprietário", "Inquilino", "Dependente"));
-        cmbFiltroTipo.getSelectionModel().selectFirst();
-
-        cmbFiltroStatus.setItems(FXCollections.observableArrayList(
-                "Todos", "ATIVO", "INATIVO", "BLOQUEADO"));
-        cmbFiltroStatus.getSelectionModel().selectFirst();
-    }
 
     private void configurarColunas() {
         colTipo.setCellValueFactory(c -> new SimpleStringProperty(tipoMorador(c.getValue())));

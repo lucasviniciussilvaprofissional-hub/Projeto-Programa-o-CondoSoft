@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -11,275 +10,116 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane
-        fx:id="listarMoradoresRoot"
-        prefHeight="750.0"
-        prefWidth="1200.0"
-        style="-fx-background-color: #F7F8FA;"
-        xmlns="http://javafx.com/javafx/21"
-        xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="com.condominio.controller.unidade.ListarMoradoresController">
+<BorderPane fx:id="listarMoradoresRoot" prefHeight="750.0" prefWidth="1200.0" style="-fx-background-color: #F7F8FA;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.condominio.controller.unidade.ListarMoradoresController">
 
     <!-- HEADER -->
     <top>
-        <HBox
-                alignment="CENTER_LEFT"
-                prefHeight="68.0"
-                style="-fx-background-color: #1E293B; -fx-padding: 0 48 0 48;">
+        <HBox alignment="CENTER_LEFT" prefHeight="68.0" style="-fx-background-color: #1E293B; -fx-padding: 0 48 0 48;">
 
             <VBox alignment="CENTER_LEFT" spacing="2.0">
-                <Label text="CondoSoft"
-                       style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #94A3B8;"/>
+                <Label style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #94A3B8;" text="CondoSoft" />
 
-                <HBox spacing="8.0" alignment="CENTER_LEFT">
-                    <Label text="Moradores do Condomínio"
-                           style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                    <Label style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Moradores do Condomínio" />
                 </HBox>
             </VBox>
 
-            <Region HBox.hgrow="ALWAYS"/>
+            <Region HBox.hgrow="ALWAYS" />
 
-            <HBox spacing="12.0" alignment="CENTER_RIGHT">
+            <HBox alignment="CENTER_RIGHT" spacing="12.0">
 
-                <Button
-                        fx:id="btnNovoMorador"
-                        text="+ Novo Morador"
-                        onAction="#abrirCadastrarMorador"
-                        style="-fx-background-color: #2563EB;
-                               -fx-text-fill: white;
-                               -fx-font-size: 13;
-                               -fx-font-weight: bold;
-                               -fx-cursor: hand;
-                               -fx-background-radius: 8;
-                               -fx-padding: 8 20;"/>
+                <Button fx:id="btnNovoMorador" onAction="#abrirCadastrarMorador" style="-fx-background-color: #2563EB;                                -fx-text-fill: white;                                -fx-font-size: 13;                                -fx-font-weight: bold;                                -fx-cursor: hand;                                -fx-background-radius: 8;                                -fx-padding: 8 20;" text="+ Novo Morador" />
 
-                <Button
-                        fx:id="btnVoltarDetalhes"
-                        text="← Detalhes"
-                        onAction="#voltarDetalhesUnidade"
-                        style="-fx-background-color: transparent;
-                               -fx-text-fill: #94A3B8;
-                               -fx-font-size: 13;
-                               -fx-cursor: hand;
-                               -fx-border-color: #334155;
-                               -fx-border-radius: 8;
-                               -fx-background-radius: 8;
-                               -fx-padding: 8 20;"/>
+                <Button fx:id="btnVoltarDetalhes" onAction="#voltarDetalhesUnidade" style="-fx-background-color: transparent;                                -fx-text-fill: #94A3B8;                                -fx-font-size: 13;                                -fx-cursor: hand;                                -fx-border-color: #334155;                                -fx-border-radius: 8;                                -fx-background-radius: 8;                                -fx-padding: 8 20;" text="← Detalhes" />
             </HBox>
         </HBox>
     </top>
 
     <!-- CONTEÚDO -->
     <center>
-        <VBox spacing="0.0"
-              style="-fx-background-color: #F7F8FA;
-                     -fx-padding: 40 60 40 60;">
+        <VBox spacing="0.0" style="-fx-background-color: #F7F8FA;                      -fx-padding: 40 60 40 60;">
 
             <!-- Breadcrumb -->
-            <HBox spacing="6.0"
-                  alignment="CENTER_LEFT"
-                  style="-fx-padding: 0 0 24 0;">
+            <HBox alignment="CENTER_LEFT" spacing="6.0" style="-fx-padding: 0 0 24 0;">
 
-                <Label text="Início"
-                       onMouseClicked="#voltarHome"/>
+                <Label onMouseClicked="#voltarHome" text="Início" />
 
-                <Label text=">" />
+                <Label text="&gt;" />
 
-                <Label text="Moradores"/>
+                <Label text="Moradores" />
             </HBox>
 
             <!-- Título -->
-            <HBox alignment="CENTER_LEFT"
-                  style="-fx-padding: 0 0 24 0;">
+            <HBox alignment="CENTER_LEFT" style="-fx-padding: 0 0 24 0;">
 
                 <VBox spacing="4.0">
-                    <Label text="Moradores Cadastrados"
-                           style="-fx-font-size: 22;
-                                  -fx-font-weight: bold;
-                                  -fx-text-fill: #1E293B;"/>
+                    <Label style="-fx-font-size: 22;                                   -fx-font-weight: bold;                                   -fx-text-fill: #1E293B;" text="Moradores Cadastrados" />
 
-                    <Label fx:id="lblTotalMoradores"
-                           text="0 moradores encontrados"
-                           style="-fx-font-size: 13;
-                                  -fx-text-fill: #64748B;"/>
+                    <Label fx:id="lblTotalMoradores" style="-fx-font-size: 13;                                   -fx-text-fill: #64748B;" text="0 moradores encontrados" />
                 </VBox>
             </HBox>
 
             <!-- CARD -->
-            <VBox VBox.vgrow="ALWAYS"
-                  spacing="0.0"
-                  style="-fx-background-color: white;
-                         -fx-background-radius: 16;
-                         -fx-border-color: #E2E8F0;
-                         -fx-border-radius: 16;
-                         -fx-border-width: 1;
-                         -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);">
+            <VBox spacing="0.0" style="-fx-background-color: white;                          -fx-background-radius: 16;                          -fx-border-color: #E2E8F0;                          -fx-border-radius: 16;                          -fx-border-width: 1;                          -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);" VBox.vgrow="ALWAYS">
 
                 <!-- FILTROS -->
-                <HBox alignment="CENTER_LEFT"
-                      spacing="12.0"
-                      style="-fx-padding: 20 24 20 24;
-                             -fx-border-color: transparent transparent #F1F5F9 transparent;
-                             -fx-border-width: 1;">
+                <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-padding: 20 24 20 24;                              -fx-border-color: transparent transparent #F1F5F9 transparent;                              -fx-border-width: 1;">
 
                     <!-- Busca -->
-                    <HBox alignment="CENTER_LEFT"
-                          spacing="8.0"
-                          prefWidth="340.0"
-                          prefHeight="40.0"
-                          style="-fx-background-color: #F8FAFC;
-                                  -fx-border-color: #E2E8F0;
-                                  -fx-border-radius: 8;
-                                  -fx-background-radius: 8;
-                                  -fx-border-width: 1;
-                                  -fx-padding: 0 14;">
+                    <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="340.0" spacing="8.0" style="-fx-background-color: #F8FAFC;                                   -fx-border-color: #E2E8F0;                                   -fx-border-radius: 8;                                   -fx-background-radius: 8;                                   -fx-border-width: 1;                                   -fx-padding: 0 14;">
 
-                        <Label text="🔍"
-                               style="-fx-font-size: 13;"/>
+                        <Label style="-fx-font-size: 13;" text="🔍" />
 
-                        <TextField fx:id="txtBusca"
-                                   promptText="Buscar por nome ou CPF..."
-                                   prefWidth="280.0"
-                                   onKeyReleased="#filtrarMoradores"
-                                   style="-fx-background-color: transparent;
-                                          -fx-border-color: transparent;
-                                          -fx-font-size: 13;"/>
+                        <TextField fx:id="txtBusca" onKeyReleased="#filtrarMoradores" prefWidth="280.0" promptText="Buscar por nome ou CPF..." style="-fx-background-color: transparent;                                           -fx-border-color: transparent;                                           -fx-font-size: 13;" />
                     </HBox>
 
-                    <!-- Tipo -->
-                    <ComboBox fx:id="cmbTipo"
-                              promptText="Tipo"
-                              prefWidth="180.0"
-                              onAction="#filtrarMoradores"
-                              style="-fx-background-color: #F8FAFC;
-                                     -fx-border-color: #E2E8F0;
-                                     -fx-border-radius: 8;
-                                     -fx-background-radius: 8;"/>
+                    <Region HBox.hgrow="ALWAYS" />
 
-                    <!-- Status -->
-                    <ComboBox fx:id="cmbStatus"
-                              promptText="Status"
-                              prefWidth="180.0"
-                              onAction="#filtrarMoradores"
-                              style="-fx-background-color: #F8FAFC;
-                                     -fx-border-color: #E2E8F0;
-                                     -fx-border-radius: 8;
-                                     -fx-background-radius: 8;"/>
-
-                    <Region HBox.hgrow="ALWAYS"/>
-
-                    <Button text="Limpar Filtros"
-                            onAction="#limparFiltros"
-                            style="-fx-background-color: transparent;
-                                   -fx-text-fill: #64748B;
-                                   -fx-font-size: 12;
-                                   -fx-cursor: hand;"/>
+                    <Button onAction="#limparFiltros" style="-fx-background-color: transparent;                                    -fx-text-fill: #64748B;                                    -fx-font-size: 12;                                    -fx-cursor: hand;" text="Limpar Filtros" />
                 </HBox>
 
                 <!-- TABELA -->
-                <TableView fx:id="tabelaMoradores"
-                           VBox.vgrow="ALWAYS"
-                           prefHeight="460.0"
-                           style="-fx-background-color: transparent;
-                                  -fx-border-color: transparent;
-                                  -fx-font-size: 13;">
+                <TableView fx:id="tabelaMoradores" prefHeight="460.0" style="-fx-background-color: transparent;                                   -fx-border-color: transparent;                                   -fx-font-size: 13;" VBox.vgrow="ALWAYS">
 
                     <columns>
 
-                        <TableColumn fx:id="colNome"
-                                     text="Nome"
-                                     prefWidth="220.0"/>
+                        <TableColumn fx:id="colNome" prefWidth="220.0" text="Nome" />
 
-                        <TableColumn fx:id="colCpf"
-                                     text="CPF"
-                                     prefWidth="140.0"/>
+                        <TableColumn fx:id="colCpf" prefWidth="140.0" text="CPF" />
 
-                        <TableColumn fx:id="colTelefone"
-                                     text="Telefone"
-                                     prefWidth="140.0"/>
+                        <TableColumn fx:id="colTelefone" prefWidth="140.0" text="Telefone" />
 
-                        <TableColumn fx:id="colEmail"
-                                     text="Email"
-                                     prefWidth="240.0"/>
+                        <TableColumn fx:id="colEmail" prefWidth="240.0" text="Email" />
 
-                        <TableColumn fx:id="colTipo"
-                                     text="Tipo"
-                                     prefWidth="130.0"/>
+                        <TableColumn fx:id="colTipo" prefWidth="130.0" text="Tipo" />
 
-                        <TableColumn fx:id="colStatus"
-                                     text="Status"
-                                     prefWidth="110.0"/>
+                        <TableColumn fx:id="colStatus" prefWidth="110.0" text="Status" />
 
-                        <TableColumn fx:id="colAcoes"
-                                     text="Ações"
-                                     prefWidth="180.0"/>
+                        <TableColumn fx:id="colAcoes" prefWidth="180.0" text="Ações" />
                     </columns>
 
                     <placeholder>
-                        <VBox alignment="CENTER"
-                              spacing="12.0">
+                        <VBox alignment="CENTER" spacing="12.0">
 
-                            <Label text="👤"
-                                   style="-fx-font-size: 36;"/>
+                            <Label style="-fx-font-size: 36;" text="👤" />
 
-                            <Label text="Nenhum morador encontrado"
-                                   style="-fx-font-size: 14;
-                                          -fx-font-weight: bold;
-                                          -fx-text-fill: #94A3B8;"/>
+                            <Label style="-fx-font-size: 14;                                           -fx-font-weight: bold;                                           -fx-text-fill: #94A3B8;" text="Nenhum morador encontrado" />
 
-                            <Label text="Cadastre o primeiro morador"
-                                   style="-fx-font-size: 12;
-                                          -fx-text-fill: #CBD5E1;"/>
+                            <Label style="-fx-font-size: 12;                                           -fx-text-fill: #CBD5E1;" text="Cadastre o primeiro morador" />
                         </VBox>
                     </placeholder>
                 </TableView>
 
                 <!-- AÇÕES -->
-                <HBox alignment="CENTER_LEFT"
-                      spacing="12.0"
-                      style="-fx-padding: 16 24 16 24;
-                             -fx-border-color: #F1F5F9 transparent transparent transparent;
-                             -fx-border-width: 1;
-                             -fx-background-color: #FAFBFC;">
+                <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-padding: 16 24 16 24;                              -fx-border-color: #F1F5F9 transparent transparent transparent;                              -fx-border-width: 1;                              -fx-background-color: #FAFBFC;">
 
-                    <Button text="👁 Ver Detalhes"
-                            onAction="#abrirDetalhesMorador"
-                            style="-fx-background-color: #2563EB;
-                                   -fx-text-fill: white;
-                                   -fx-background-radius: 8;
-                                   -fx-padding: 9 20;
-                                   -fx-font-size: 12;
-                                   -fx-font-weight: bold;
-                                   -fx-cursor: hand;"/>
+                    <Button onAction="#abrirDetalhesMorador" style="-fx-background-color: #2563EB;                                    -fx-text-fill: white;                                    -fx-background-radius: 8;                                    -fx-padding: 9 20;                                    -fx-font-size: 12;                                    -fx-font-weight: bold;                                    -fx-cursor: hand;" text="👁 Ver Detalhes" />
 
-                    <Button text="✏ Editar"
-                            onAction="#editarMorador"
-                            style="-fx-background-color: #F1F5F9;
-                                   -fx-text-fill: #374151;
-                                   -fx-background-radius: 8;
-                                   -fx-padding: 9 20;
-                                   -fx-font-size: 12;
-                                   -fx-cursor: hand;
-                                   -fx-border-color: #E2E8F0;
-                                   -fx-border-radius: 8;"/>
+                    <Button onAction="#removerMorador" style="-fx-background-color: #FEF2F2;                                    -fx-text-fill: #DC2626;                                    -fx-background-radius: 8;                                    -fx-padding: 9 20;                                    -fx-font-size: 12;                                    -fx-cursor: hand;                                    -fx-border-color: #FECACA;                                    -fx-border-radius: 8;" text="🗑 Remover" />
 
-                    <Button text="🗑 Remover"
-                            onAction="#removerMorador"
-                            style="-fx-background-color: #FEF2F2;
-                                   -fx-text-fill: #DC2626;
-                                   -fx-background-radius: 8;
-                                   -fx-padding: 9 20;
-                                   -fx-font-size: 12;
-                                   -fx-cursor: hand;
-                                   -fx-border-color: #FECACA;
-                                   -fx-border-radius: 8;"/>
+                    <Region HBox.hgrow="ALWAYS" />
 
-                    <Region HBox.hgrow="ALWAYS"/>
-
-                    <Label fx:id="lblSelecaoInfo"
-                           text="Selecione um morador para gerenciá-lo"
-                           style="-fx-font-size: 12;
-                                  -fx-text-fill: #94A3B8;"/>
+                    <Label fx:id="lblSelecaoInfo" style="-fx-font-size: 12;                                   -fx-text-fill: #94A3B8;" text="Selecione um morador para gerenciá-lo" />
                 </HBox>
 
             </VBox>
