@@ -103,7 +103,7 @@ public class ReservaController {
         } catch (Exception e) { alerta(e.getMessage()); }
     }
 
-    @FXML private void voltarHome(ActionEvent event) { nav(event, "/com/condominio/home-view.fxml"); }
+    @FXML private void voltarHome(ActionEvent event) { nav(event, "/com/condominio/reserva/lista-reserva-view.fxml"); }
 
     private void alerta(String msg) { new Alert(Alert.AlertType.WARNING, msg, ButtonType.OK).showAndWait(); }
     private void nav(ActionEvent event, String fxml) {

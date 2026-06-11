@@ -32,7 +32,7 @@ public class AgendaAreaController {
     @FXML private ComboBox<String> cmbAreaFiltro;
     @FXML private DatePicker       dpSemana;
     @FXML private Label lblDia1, lblDia2, lblDia3,
-                        lblDia4, lblDia5, lblDia6, lblDia7;
+            lblDia4, lblDia5, lblDia6, lblDia7;
 
     // ── áreas ─────────────────────────────────────────────────────────────
     private static final List<AreaComum> AREAS = List.of(
@@ -116,12 +116,12 @@ public class AgendaAreaController {
 
             Label card = new Label(
                     r.getDataInicio().format(FMT_DIA) + "  "
-                    + r.getDataInicio().format(FMT_HORA) + "–"
-                    + r.getDataFim().format(FMT_HORA) + "  │  "
-                    + r.getNomeArea() + "  │  "
-                    + r.getNomeResponsavel()
-                    + "  │  " + r.getQuantidadePessoas() + " pess."
-                    + "  │  [" + r.getStatus() + "]");
+                            + r.getDataInicio().format(FMT_HORA) + "–"
+                            + r.getDataFim().format(FMT_HORA) + "  │  "
+                            + r.getNomeArea() + "  │  "
+                            + r.getNomeResponsavel()
+                            + "  │  " + r.getQuantidadePessoas() + " pess."
+                            + "  │  [" + r.getStatus() + "]");
             card.setMaxWidth(Double.MAX_VALUE);
             card.setWrapText(true);
             card.setStyle("-fx-background-color:" + cor + ";"
@@ -142,12 +142,12 @@ public class AgendaAreaController {
         }
     }
 
-    // ── navegação ─────────────────────────────────────────────────────────
+    // ── navegação corrigida para a lista principal de reservas ────────────
     @FXML public void abrirNovaReserva(ActionEvent event) { nav(event, "/com/condominio/reserva/nova-reserva-view.fxml"); }
-    @FXML public void voltarHome(ActionEvent event)       { nav(event, "/com/condominio/home-view.fxml"); }
-    @FXML public void voltarHome(MouseEvent event)        { nav(event, "/com/condominio/home-view.fxml"); }
-    @FXML public void voltarReservas(ActionEvent event)   { nav(event, "/com/condominio/reserva/reserva-view.fxml"); }
-    @FXML public void voltarReservas(MouseEvent event)    { nav(event, "/com/condominio/reserva/reserva-view.fxml"); }
+    @FXML public void voltarHome(ActionEvent event)       { nav(event, "/com/condominio/reserva/lista-reserva-view.fxml"); }
+    @FXML public void voltarHome(MouseEvent event)        { nav(event, "/com/condominio/reserva/lista-reserva-view.fxml"); }
+    @FXML public void voltarReservas(ActionEvent event)   { nav(event, "/com/condominio/reserva/lista-reserva-view.fxml"); }
+    @FXML public void voltarReservas(MouseEvent event)    { nav(event, "/com/condominio/reserva/lista-reserva-view.fxml"); }
 
     // ── util ──────────────────────────────────────────────────────────────
     private void nav(javafx.event.Event event, String fxml) {

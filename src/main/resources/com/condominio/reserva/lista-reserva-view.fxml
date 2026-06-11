@@ -15,7 +15,7 @@
             <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                 <Label text="Reservas de Áreas Comuns" textFill="white">
                     <font><Font name="System Bold" size="22.0"/></font></Label>
-                <Label text="REQ08 · REQ09 · REQ10 — Agenda, Convidados e Taxa de Limpeza"
+                <Label text=" Agenda, Convidados e Taxa de Limpeza"
                        textFill="#94A3B8"/>
                 <HBox.margin><Insets left="30.0"/></HBox.margin>
             </VBox>

@@ -14,7 +14,7 @@
               style="-fx-background-color:#1E293B;">
             <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                 <Label text="Inadimplência" textFill="white"><font><Font name="System Bold" size="22.0"/></font></Label>
-                <Label text="REQ07 — Boletos vencidos e histórico de atrasos" textFill="#94A3B8"/>
+                <Label text=" Boletos vencidos e histórico de atrasos" textFill="#94A3B8"/>
                 <HBox.margin><Insets left="30.0"/></HBox.margin>
             </VBox>
             <Button text="Voltar ao Início" onAction="#voltarHome"

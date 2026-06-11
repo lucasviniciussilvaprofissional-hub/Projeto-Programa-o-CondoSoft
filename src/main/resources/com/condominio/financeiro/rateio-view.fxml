@@ -19,7 +19,7 @@
         <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-background-color:#1E293B;">
             <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                 <Label text="Rateio Mensal" textFill="white"><font><Font name="System Bold" size="22.0" /></font></Label>
-                <Label text="REQ06 — Rateio por fração ideal de cada unidade" textFill="#94A3B8" />
+                <Label text=" Rateio por fração ideal de cada unidade" textFill="#94A3B8" />
                 <HBox.margin><Insets left="30.0" /></HBox.margin>
             </VBox>
             <Button onAction="#voltarFinanceiro" style="-fx-background-color:#475569;-fx-text-fill:white;-fx-background-radius:8;-fx-padding:8 18;" text="← Financeiro">

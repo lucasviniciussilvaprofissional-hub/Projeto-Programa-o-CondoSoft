@@ -193,8 +193,8 @@ public class NovaReservaController {
             reservaCriada = service.criarReserva(responsavel, area, i, f, qtd);
 
             // Adiciona convidados já digitados na tabela
-            for (String linha : tabelaConvidados.getItems()) {
-                String[] p = linha.split("\\|");
+            for (String alignment : tabelaConvidados.getItems()) {
+                String[] p = alignment.split("\\|");
                 String nome = p[0].trim();
                 String doc  = p.length > 1 ? p[1].trim() : "";
                 if (!nome.isEmpty()) {
@@ -205,8 +205,8 @@ public class NovaReservaController {
 
             new Alert(Alert.AlertType.INFORMATION,
                     "Reserva #" + reservaCriada.getId() + " criada com sucesso!\n"
-                    + "Área: " + area.getNome() + "\n"
-                    + "Convidados: " + reservaCriada.getConvidados().size(),
+                            + "Área: " + area.getNome() + "\n"
+                            + "Convidados: " + reservaCriada.getConvidados().size(),
                     ButtonType.OK).showAndWait();
 
             trocarTela(event, "/com/condominio/reserva/lista-reserva-view.fxml");
@@ -217,10 +217,10 @@ public class NovaReservaController {
     }
 
     // ── navegação ─────────────────────────────────────────────────────────
-    @FXML public void voltarHome(ActionEvent event)     { trocarTela(event, "/com/condominio/home-view.fxml"); }
-    @FXML public void voltarHome(MouseEvent event)      { trocarTela(event, "/com/condominio/home-view.fxml"); }
-    @FXML public void voltarReservas(ActionEvent event) { trocarTela(event, "/com/condominio/reserva/reserva-view.fxml"); }
-    @FXML public void voltarReservas(MouseEvent event)  { trocarTela(event, "/com/condominio/reserva/reserva-view.fxml"); }
+    @FXML public void voltarHome(ActionEvent event)     { trocarTela(event, "/com/condominio/reserva/lista-reserva-view.fxml"); }
+    @FXML public void voltarHome(MouseEvent event)      { trocarTela(event, "/com/condominio/reserva/lista-reserva-view.fxml"); }
+    @FXML public void voltarReservas(ActionEvent event) { trocarTela(event, "/com/condominio/reserva/lista-reserva-view.fxml"); }
+    @FXML public void voltarReservas(MouseEvent event)  { trocarTela(event, "/com/condominio/reserva/lista-reserva-view.fxml"); }
 
     // ── util ──────────────────────────────────────────────────────────────
     private void atualizarContadorConvidados() {

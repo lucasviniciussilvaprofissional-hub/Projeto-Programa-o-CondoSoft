@@ -14,7 +14,7 @@
               style="-fx-background-color:#1E293B;">
             <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                 <Label text="Despesas" textFill="white"><font><Font name="System Bold" size="22.0"/></font></Label>
-                <Label text="REQ05 — Fixas e Extraordinárias" textFill="#94A3B8"/>
+                <Label text=" Fixas e Extraordinárias" textFill="#94A3B8"/>
                 <HBox.margin><Insets left="30.0"/></HBox.margin>
             </VBox>
             <Button text="← Financeiro" onAction="#voltarFinanceiro"

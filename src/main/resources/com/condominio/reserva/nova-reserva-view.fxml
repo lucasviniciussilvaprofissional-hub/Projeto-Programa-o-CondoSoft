@@ -95,7 +95,7 @@
             <!-- COLUNA DIREITA: convidados REQ09 -->
             <VBox spacing="12.0" HBox.hgrow="ALWAYS"
                   style="-fx-background-color:white;-fx-background-radius:12;-fx-border-color:#E2E8F0;-fx-padding:22;">
-                <Label text="Lista de Convidados (REQ09)" textFill="#1E293B">
+                <Label text="Lista de Convidados " textFill="#1E293B">
                     <font><Font name="System Bold" size="16.0"/></font></Label>
                 <Label text="Para controle de acesso na portaria." textFill="#64748B"/>
 
