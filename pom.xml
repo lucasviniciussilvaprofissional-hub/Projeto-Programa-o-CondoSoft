@@ -25,7 +25,6 @@
             <artifactId>javafx-controls</artifactId>
             <version>${javafx.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
@@ -59,6 +58,23 @@
             <version>0.4.0</version>
         </dependency>
 
+        <!-- iText 7 — geração de PDF (REQ14) -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>kernel</artifactId>
+            <version>7.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>layout</artifactId>
+            <version>7.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>io</artifactId>
+            <version>7.2.5</version>
+        </dependency>
+
         <!-- JUnit -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -66,7 +82,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -86,6 +101,15 @@
                 <version>3.13.0</version>
                 <configuration>
                     <release>${maven.compiler.release}</release>
+                    <!--
+                        compilerArgs abaixo passa os JARs não-modulares (iText)
+                        para o patch-module / add-reads automaticamente em tempo
+                        de compilação, sem precisar declará-los no module-info.
+                    -->
+                    <compilerArgs>
+                        <arg>--add-reads</arg>
+                        <arg>com.example.projetoip=ALL-UNNAMED</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
 
@@ -95,9 +119,15 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>
-                        com.example.projetoip2/com.condominio.MainApplication
-                    </mainClass>
+                    <mainClass>com.condominio.MainApplication</mainClass>
+                    <!--
+                        options abaixo abre o classpath de JARs não-modulares
+                        (iText) para o módulo do projeto em tempo de execução.
+                    -->
+                    <options>
+                        <option>--add-reads</option>
+                        <option>com.example.projetoip=ALL-UNNAMED</option>
+                    </options>
                 </configuration>
             </plugin>
 
