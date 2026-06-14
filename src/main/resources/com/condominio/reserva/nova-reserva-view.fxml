@@ -9,24 +9,20 @@
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.condominio.controller.reserva.NovaReservaController">
+
     <top>
-        <HBox alignment="CENTER_LEFT" prefHeight="70.0"
-              style="-fx-background-color:#1E293B;">
-            <Button fx:id="btnVoltarReservas" text="← Reservas" onAction="#voltarReservas"
-                    style="-fx-background-color:transparent;-fx-text-fill:#94A3B8;-fx-font-size:13;-fx-cursor:hand;-fx-border-color:#334155;-fx-border-radius:8;-fx-background-radius:8;-fx-padding:8 18;">
-                <HBox.margin><Insets left="20.0"/></HBox.margin>
-            </Button>
-            <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+        <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="20.0"
+              style="-fx-background-color:#1E293B; -fx-padding: 0 24 0 24;">
+
+            <Button fx:id="btnVoltarReservas" text="← Voltar para Reservas" onAction="#voltarReservas"
+                    style="-fx-background-color:#4F46E5; -fx-text-fill:white; -fx-font-size:14; -fx-font-weight:bold; -fx-cursor:hand; -fx-background-radius:8; -fx-padding:12 24;" />
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <VBox alignment="CENTER_RIGHT">
                 <Label text="Nova Reserva" textFill="white">
-                    <font><Font name="System Bold" size="20.0"/></font></Label>
-                <HBox spacing="4.0" alignment="CENTER_LEFT">
-                    <Label text="Início" style="-fx-font-size:12;-fx-text-fill:#2563EB;-fx-cursor:hand;" onMouseClicked="#voltarHome"/>
-                    <Label text="›" textFill="#94A3B8"/>
-                    <Label text="Reservas" style="-fx-font-size:12;-fx-text-fill:#2563EB;-fx-cursor:hand;" onMouseClicked="#voltarReservas"/>
-                    <Label text="›" textFill="#94A3B8"/>
-                    <Label text="Nova" textFill="white" style="-fx-font-size:12;"/>
-                </HBox>
-                <HBox.margin><Insets left="16.0"/></HBox.margin>
+                    <font><Font name="System Bold" size="22.0"/></font>
+                </Label>
             </VBox>
         </HBox>
     </top>
@@ -35,7 +31,6 @@
         <HBox spacing="20.0">
             <padding><Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/></padding>
 
-            <!-- COLUNA ESQUERDA: formulário -->
             <VBox spacing="12.0" prefWidth="500.0"
                   style="-fx-background-color:white;-fx-background-radius:12;-fx-border-color:#E2E8F0;-fx-padding:22;">
                 <Label text="Dados da Reserva" textFill="#1E293B">
@@ -69,7 +64,6 @@
                 <Label text="Nº de Pessoas:" textFill="#374151"/>
                 <TextField fx:id="txtNumConvidados" promptText="Ex: 10"/>
 
-                <!-- Disponibilidade -->
                 <HBox fx:id="hboxDisponibilidade" alignment="CENTER_LEFT" spacing="8.0"
                       style="-fx-background-color:#F0FDF4;-fx-background-radius:8;-fx-padding:10;">
                     <Label fx:id="lblDisponibilidade" text="Verificando..."
@@ -92,7 +86,6 @@
                        style="-fx-font-size:11;-fx-text-fill:#94A3B8;" wrapText="true"/>
             </VBox>
 
-            <!-- COLUNA DIREITA: convidados REQ09 -->
             <VBox spacing="12.0" HBox.hgrow="ALWAYS"
                   style="-fx-background-color:white;-fx-background-radius:12;-fx-border-color:#E2E8F0;-fx-padding:22;">
                 <Label text="Lista de Convidados " textFill="#1E293B">
