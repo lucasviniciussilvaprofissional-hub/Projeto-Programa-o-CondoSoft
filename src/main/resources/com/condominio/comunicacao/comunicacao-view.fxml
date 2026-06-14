@@ -10,11 +10,8 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane prefHeight="850.0"
@@ -94,7 +91,7 @@
                         <HBox alignment="CENTER_LEFT">
                             <Label text="Histórico de Publicações" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #1E293B;"/>
                             <Region HBox.hgrow="ALWAYS"/>
-                            <ComboBox fx:id="cmbFiltrar" promptText="Filtrar por..." prefWidth="150"
+                            <ComboBox fx:id="cmbFiltrar" promptText="Filtrar por..." prefWidth="150" onAction="#filtrarPublicacoes"
                                       style="-fx-background-radius: 8; -fx-background-color: white; -fx-border-color: #E2E8F0; -fx-border-radius: 8;"/>
                         </HBox>
 
