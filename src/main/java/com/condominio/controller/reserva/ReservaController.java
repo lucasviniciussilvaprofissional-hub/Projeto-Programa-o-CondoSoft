@@ -24,7 +24,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-/** Tela simplificada de reserva (reserva-view.fxml). */
+
 public class ReservaController {
 
     @FXML private ComboBox<String> cbAreaComum;
