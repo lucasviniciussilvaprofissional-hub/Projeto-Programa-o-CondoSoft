@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="Fix: Geração do pdf Jasper">
+    <list default="true" id="45d689cc-3a2e-41e6-9ecf-6383db13b784" name="Changes" comment="FEAT: correção dos botões de voltark">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_6_26,_7_32 PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_6_26__7_32PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/GerenciarMoradoresUnidadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/unidade/GerenciarMoradoresUnidadeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio/relatorio-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/relatorio/relatorio-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/detalhes-unidade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/detalhes-unidade-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/gerenciar-moradores-unidade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/gerenciar-moradores-unidade-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/listar-moradores-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/listar-moradores-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/listar-unidade-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/unidade/listar-unidade-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/AgendaAreaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/condominio/controller/reserva/AgendaAreaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/agenda-area-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/agenda-area-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/nova-reserva-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/condominio/reserva/nova-reserva-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +33,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -41,12 +41,12 @@
     &quot;assignee&quot;: &quot;CaioMentornap&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/lucasviniciussilvaprofissional-hub/Projeto-Programa-o-CondoSoft.git&quot;,
-    &quot;accountId&quot;: &quot;cf52056f-eb42-4fd9-a47e-c2901a010278&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/lucasviniciussilvaprofissional-hub/Projeto-Programa-o-CondoSoft.git",
+    "accountId": "fb94e1c8-ca18-43e1-8cfd-478e485eeebd"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -69,34 +69,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HelloApplication.executor": "Run",
-    "Application.MainApplication.executor": "Run",
-    "Maven.ProjetoIP [clean].executor": "Run",
-    "Maven.ProjetoIP [compile].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "SHELLCHECK.PATH": "I do mind",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "dev",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.35238096",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ProjetoIP [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ProjetoIP [compile].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SHELLCHECK.PATH&quot;: &quot;I do mind&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#3 on dev&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.35238096&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.condominio.repository.implementation" />
@@ -156,7 +156,7 @@
       <workItem from="1781140163871" duration="576000" />
       <workItem from="1781140751199" duration="1085000" />
       <workItem from="1781141897054" duration="1091000" />
-      <workItem from="1781190729993" duration="3291000" />
+      <workItem from="1781462520982" duration="1879000" />
     </task>
     <task id="LOCAL-00001" summary="FEAT: Modelo JavaFX&#10;Fix: Resolução de erros">
       <option name="closed" value="true" />
@@ -246,15 +246,7 @@
       <option name="project" value="LOCAL" />
       <updated>1781108431121</updated>
     </task>
-    <task id="LOCAL-00012" summary="Fix: Geração do pdf Jasper">
-      <option name="closed" value="true" />
-      <created>1781147989471</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1781147989471</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,8 +275,7 @@
     <MESSAGE value="FEAT: Implementação do rep de unidades na reserva." />
     <MESSAGE value="FEAT: Implementação dos requisitos para financeiro" />
     <MESSAGE value="Fix: Disciplina" />
-    <MESSAGE value="Fix: Geração do pdf Jasper" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix: Geração do pdf Jasper" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix: Disciplina" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.Cursor?>
 
 <BorderPane fx:id="agendaAreaRoot" prefHeight="750.0" prefWidth="1200.0"
             style="-fx-background-color:#F8FAFC;"
@@ -15,9 +16,12 @@
             <Button fx:id="btnNovaReserva" text="+ Nova Reserva" onAction="#abrirNovaReserva"
                     style="-fx-background-color:#4F46E5;-fx-text-fill:white;-fx-background-radius:8;-fx-font-weight:bold;-fx-padding:9 14;">
                 <HBox.margin><Insets left="20.0"/></HBox.margin>
+                <cursor><Cursor fx:constant="HAND" /></cursor>
             </Button>
             <Button fx:id="btnVoltarReservas" text="← Reservas" onAction="#voltarReservas"
-                    style="-fx-background-color:transparent;-fx-text-fill:#94A3B8;-fx-border-color:#334155;-fx-border-radius:8;-fx-background-radius:8;-fx-padding:9 14;"/>
+                    style="-fx-background-color:transparent;-fx-text-fill:#94A3B8;-fx-border-color:#334155;-fx-border-radius:8;-fx-background-radius:8;-fx-padding:9 14;">
+                <cursor><Cursor fx:constant="HAND" /></cursor>
+            </Button>
             <Region HBox.hgrow="ALWAYS"/>
             <VBox alignment="CENTER_RIGHT">
                 <Label text="Agenda de Áreas Comuns" textFill="white">
@@ -32,7 +36,6 @@
         <VBox spacing="14.0">
             <padding><Insets top="18.0" right="18.0" bottom="18.0" left="18.0"/></padding>
 
-            <!-- Controles da agenda -->
             <HBox spacing="10.0" alignment="CENTER_LEFT"
                   style="-fx-background-color:white;-fx-background-radius:10;-fx-border-color:#E2E8F0;-fx-padding:12;">
                 <Label text="Área:" textFill="#374151"/>
@@ -42,14 +45,19 @@
                 <DatePicker fx:id="dpSemana" prefWidth="160.0" prefHeight="38.0"
                             onAction="#carregarAgenda"/>
                 <Button fx:id="btnAnterior" text="‹" onAction="#semanaAnterior"
-                        style="-fx-background-color:#E2E8F0;-fx-background-radius:8;-fx-font-size:16;-fx-padding:6 14;"/>
+                        style="-fx-background-color:#E2E8F0;-fx-background-radius:8;-fx-font-size:16;-fx-padding:6 14;">
+                    <cursor><Cursor fx:constant="HAND" /></cursor>
+                </Button>
                 <Button fx:id="btnProximo"  text="›" onAction="#proximaSemana"
-                        style="-fx-background-color:#E2E8F0;-fx-background-radius:8;-fx-font-size:16;-fx-padding:6 14;"/>
+                        style="-fx-background-color:#E2E8F0;-fx-background-radius:8;-fx-font-size:16;-fx-padding:6 14;">
+                    <cursor><Cursor fx:constant="HAND" /></cursor>
+                </Button>
                 <Button fx:id="btnHoje"     text="Hoje" onAction="#irParaHoje"
-                        style="-fx-background-color:#4F46E5;-fx-text-fill:white;-fx-background-radius:8;-fx-padding:8 16;"/>
+                        style="-fx-background-color:#4F46E5;-fx-text-fill:white;-fx-background-radius:8;-fx-padding:8 16;">
+                    <cursor><Cursor fx:constant="HAND" /></cursor>
+                </Button>
             </HBox>
 
-            <!-- Cabeçalho de dias -->
             <GridPane hgap="4.0" style="-fx-background-color:white;-fx-background-radius:10;-fx-border-color:#E2E8F0;-fx-padding:10;">
                 <columnConstraints>
                     <ColumnConstraints prefWidth="60.0"/>
@@ -71,7 +79,6 @@
                 <Label fx:id="lblDia7" text="Sáb" textFill="#1E293B" style="-fx-font-weight:bold;-fx-font-size:12;" GridPane.columnIndex="7"/>
             </GridPane>
 
-            <!-- Conteúdo dinâmico -->
             <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
                         style="-fx-background-color:transparent;-fx-border-color:transparent;">
                 <VBox fx:id="vboxAgendaConteudo" spacing="6.0"

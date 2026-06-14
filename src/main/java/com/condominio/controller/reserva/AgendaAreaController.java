@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -28,7 +29,7 @@ import java.util.List;
 public class AgendaAreaController {
 
     // ── FXML ──────────────────────────────────────────────────────────────
-    @FXML public VBox  vboxAgendaConteudo;
+    @FXML public VBox vboxAgendaConteudo;
     @FXML private ComboBox<String> cmbAreaFiltro;
     @FXML private DatePicker       dpSemana;
     @FXML private Label lblDia1, lblDia2, lblDia3,
@@ -142,12 +143,33 @@ public class AgendaAreaController {
         }
     }
 
-    // ── navegação corrigida para a lista principal de reservas ────────────
+    // ── NAVEGAÇÃO DIRECIONADA PARA A TELA DE RESERVAS DE ÁREAS COMUNS ──
     @FXML public void abrirNovaReserva(ActionEvent event) { nav(event, "/com/condominio/reserva/nova-reserva-view.fxml"); }
-    @FXML public void voltarHome(ActionEvent event)       { nav(event, "/com/condominio/reserva/lista-reserva-view.fxml"); }
-    @FXML public void voltarHome(MouseEvent event)        { nav(event, "/com/condominio/reserva/lista-reserva-view.fxml"); }
-    @FXML public void voltarReservas(ActionEvent event)   { nav(event, "/com/condominio/reserva/lista-reserva-view.fxml"); }
-    @FXML public void voltarReservas(MouseEvent event)    { nav(event, "/com/condominio/reserva/lista-reserva-view.fxml"); }
+
+    @FXML public void voltarHome(ActionEvent event)       { voltarParaPainelReservas(event); }
+    @FXML public void voltarHome(MouseEvent event)        { voltarParaPainelReservas(event); }
+    @FXML public void voltarReservas(ActionEvent event)   { voltarParaPainelReservas(event); }
+    @FXML public void voltarReservas(MouseEvent event)    { voltarParaPainelReservas(event); }
+
+    private void voltarParaPainelReservas(javafx.event.Event event) {
+        // Mapeia todas as possíveis variações de pacotes no seu projeto para achar o FXML correto
+        String[] rotasListaReservas = {
+                "/com/condominio/reserva/lista-reserva-view.fxml",
+                "/com/condominio/reserva/reserva-view.fxml",
+                "/com/condominio/lista-reserva-view.fxml",
+                "/com/condominio/reserva-view.fxml"
+        };
+
+        for (String rota : rotasListaReservas) {
+            URL urlExistente = getClass().getResource(rota);
+            if (urlExistente != null) {
+                System.out.println("[CondoSoft] Voltando para a tela: Reservas de Áreas Comuns -> " + rota);
+                nav(event, rota);
+                return;
+            }
+        }
+        System.err.println("[ERRO] Arquivo FXML de listagem de reservas não foi encontrado em nenhum dos caminhos.");
+    }
 
     // ── util ──────────────────────────────────────────────────────────────
     private void nav(javafx.event.Event event, String fxml) {
@@ -155,7 +177,9 @@ public class AgendaAreaController {
             FXMLLoader l = new FXMLLoader(getClass().getResource(fxml));
             Parent r = l.load();
             Stage s = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            s.setScene(new Scene(r)); s.show();
+            s.setScene(new Scene(r));
+            s.setTitle("CondoSoft - Reservas de Áreas Comuns");
+            s.show();
         } catch (IOException e) { e.printStackTrace(); }
     }
 }
