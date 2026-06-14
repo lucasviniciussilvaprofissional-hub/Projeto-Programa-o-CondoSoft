@@ -109,6 +109,11 @@ public class CadastrarUnidadeController {
 
         try {
 
+            int novoId = repository.listar().stream()
+                    .mapToInt(Unidade::getId)
+                    .max()
+                    .orElse(0) + 1;
+
             int numero =
                     Integer.parseInt(txtNumeroUnidade.getText());
 
@@ -134,7 +139,7 @@ public class CadastrarUnidadeController {
                     cmbSituacaoFinanceira.getValue();
 
             Unidade unidade = new Unidade(
-                    4,
+                    novoId,
                     bloco,
                     status,
                     fracaoIdeal,

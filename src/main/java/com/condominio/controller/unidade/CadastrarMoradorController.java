@@ -275,9 +275,63 @@ public class CadastrarMoradorController {
     }
 
     @FXML
+    public void voltarGerenciarMoradoresBreadcrumb(MouseEvent event) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/com/condominio/unidade/detalhes-unidade-view.fxml"
+                    )
+            );
+
+            Parent root = loader.load();
+
+            DetalhesUnidadeController controller =
+                    loader.getController();
+
+            controller.setUnidade(unidadeSelecionadaGlobal);
+
+            Stage stage = (Stage)
+                    ((Node) event.getSource())
+                            .getScene()
+                            .getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void voltarGerenciarMoradores(ActionEvent event) {
-        // Alinhado para voltar para a página de visualização da Unidade
-        trocarTela(event, "/com/condominio/unidade/unidade-view.fxml");
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/com/condominio/unidade/detalhes-unidade-view.fxml"
+                    )
+            );
+
+            Parent root = loader.load();
+
+            DetalhesUnidadeController controller =
+                    loader.getController();
+
+            controller.setUnidade(unidadeSelecionadaGlobal);
+
+            Stage stage = (Stage)
+                    ((Node) event.getSource())
+                            .getScene()
+                            .getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
