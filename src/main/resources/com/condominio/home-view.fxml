@@ -116,7 +116,7 @@
                     </VBox>
 
                     <!-- ─── PORTARIA ─── -->
-                    <VBox spacing="14.0" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <VBox spacing="14.0" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);" GridPane.rowIndex="1">
                         <HBox alignment="CENTER" maxWidth="44.0" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: #FFF1F2; -fx-background-radius: 10;">
                             <Label style="-fx-font-size: 20;" text="🚪" />
                         </HBox>
@@ -129,7 +129,7 @@
                     </VBox>
 
                     <!-- ─── COMUNICAÇÃO ─── -->
-                    <VBox spacing="14.0" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <VBox spacing="14.0" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);" GridPane.columnIndex="1" GridPane.rowIndex="1">
                         <HBox alignment="CENTER" maxWidth="44.0" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: #F0FDFA; -fx-background-radius: 10;">
                             <Label style="-fx-font-size: 20;" text="📢" />
                         </HBox>
@@ -139,19 +139,6 @@
                         </VBox>
                         <Region VBox.vgrow="ALWAYS" />
                         <Button fx:id="btnModuloComunicacao" maxWidth="Infinity" onAction="#abrirComunicacao" style="-fx-background-color: #0D9488; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;" text="Acessar →" />
-                    </VBox>
-
-                    <!-- ─── DISCIPLINA ─── -->
-                    <VBox spacing="14.0" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #E2E8F0; -fx-border-radius: 14; -fx-border-width: 1; -fx-padding: 28; -fx-effect: dropshadow(gaussian, #00000010, 12, 0, 0, 2);" GridPane.rowIndex="1">
-                        <HBox alignment="CENTER" maxWidth="44.0" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: #FFF7ED; -fx-background-radius: 10;">
-                            <Label style="-fx-font-size: 20;" text="⚖️" />
-                        </HBox>
-                        <VBox spacing="5.0">
-                            <Label style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1E293B;" text="Disciplina" />
-                            <Label style="-fx-font-size: 12; -fx-text-fill: #64748B;" text="Reclamações, ocorrências e infrações" wrapText="true" />
-                        </VBox>
-                        <Region VBox.vgrow="ALWAYS" />
-                        <Button fx:id="btnModuloDisciplina" maxWidth="Infinity" onAction="#abrirDisciplina" style="-fx-background-color: #DC2626; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 9 20; -fx-font-size: 12; -fx-font-weight: bold; -fx-cursor: hand;" text="Acessar →" />
                     </VBox>
 
                 </GridPane>
